@@ -1,0 +1,108 @@
+/Users/sardor/Desktop/sendgrid-key-placement.png
+
+import { Steps, Step } from "@mintlify/components";
+
+Setting up SendGrid requires three main steps: **Registering your account, Authenticating your domain, and Generating an API key**. Follow this guide to complete each stage.
+
+---
+
+## 1. Register for SendGrid
+
+<Steps>
+  <Step title="Go to the Sign-Up Page">
+    Visit [SendGrid Sign-Up](https://signup.sendgrid.com/). Choose **Domain Authentication**
+    (recommended for businesses).
+  </Step>
+  <Step title="Create Your Account">
+    Enter your **name, company name, email, and password**. Agree to the terms and click **Create
+    Account**.
+  </Step>
+  <Step title="Confirm Your Email">
+    Check your inbox for a **SendGrid verification email**. Click the verification link to activate
+    your account.
+  </Step>
+  <Step title="Log In to Dashboard">
+    After confirming, log in at [SendGrid Dashboard](https://app.sendgrid.com/). You’re now ready to
+    set up domain authentication.
+  </Step>
+</Steps>
+
+Additional articles: [Official: How to Create a SendGrid Account
+](https://support.sendgrid.com/hc/en-us/articles/35394877582235-How-to-Create-a-SendGrid-Account)
+
+---
+
+## 2. Authenticate Your Domain
+
+Domain authentication ensures your emails are trusted and not flagged as spam. It also removes the “via sendgrid.net” label from your messages.
+
+<Steps>
+  <Step title="Navigate to Sender Authentication">
+    In the left sidebar, go to **Settings → Sender Authentication**.
+  </Step>
+  <Step title="Start Domain Authentication">
+    Click **Get Started** under **Domain Authentication**. Enter your **domain name** (e.g.,
+    `yourcompany.com`).
+  </Step>
+  <Step title="Select DNS Host">
+    Choose your DNS provider (e.g., Cloudflare, GoDaddy, Google Domains). If not listed, select
+    **Other Host (Manual Setup)**.
+  </Step>
+  <Step title="Add DNS Records">
+    SendGrid will generate **CNAME records**. Copy and paste these into your DNS provider’s
+    settings. Wait up to 24–48 hours for propagation.
+  </Step>
+  <Step title="Verify Domain">
+    Go back to the SendGrid dashboard and click **Verify**. Once successful, your domain will show
+    as **Authenticated**.
+  </Step>
+</Steps>
+
+## <iframe title="vimeo-player" src="https://player.vimeo.com/video/265066856?h=ce249456a7" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>
+
+## 3. Generate an API Key
+
+An API key is required for integration with applications (e.g., CRMs, servers, or custom apps).
+
+<Steps>
+  <Step title="Go to API Keys">From the left sidebar, click **Settings → API Keys**.</Step>
+  <Step title="Create API Key">
+    Click **Create API Key** and give it a clear name (e.g., “Production Mail”).
+  </Step>
+  <Step title="Set Permissions">
+    - **Full Access**: Grants all permissions (not recommended unless required). - **Restricted
+    Access**: Recommended — select only what you need, e.g., **Mail Send**. - **Read Access**:
+    View-only.
+  </Step>
+  <Step title="Save the Key">
+    Click **Create & View**. Copy the key immediately (example: `SG.xxxxx.yyyyy`). Store it securely
+    in environment variables or a secret manager.
+  </Step>
+</Steps>
+
+## <iframe width="560" height="315" src="https://www.youtube.com/embed/Waty-a586hk?si=tkESnH8kTQFMV42g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
+## 4. Connect SendGrid to BeRocker
+
+<Steps>
+  <Step title="Open BeRocker Dashboard">
+    Log in to your [BeRocker Dashboard](https://app.berocker.com).
+  </Step>
+  <Step title="Go to Integrations">
+    Navigate to **Settings → Integrations** from the sidebar menu.
+  </Step>
+  <Step title="Configure SendGrid">
+    Locate the **SendGrid integration** item. Click **Configure** to open the setup window.
+  </Step>
+  <Step title="Add API Key">
+    Paste your generated SendGrid API key into the **API Key** field. Set the status to **Active**.
+  </Step>
+  <Step title="Apply Changes">
+    Click **Apply** to save your configuration. Your BeRocker system will now send emails using your
+    authenticated SendGrid account.
+  </Step>
+</Steps>
+
+## ![Placing Sendgrid API key](/images/sendgrid-key-placement.png)
