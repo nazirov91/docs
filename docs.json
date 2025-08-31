@@ -42,7 +42,8 @@
             "pages": [
               "integrations/phone/how-to-configure-twilio",
               "integrations/phone/telnyx/telnyx-account-verification",
-              "integrations/phone/vonage-add-user"
+              "integrations/phone/vonage-add-user",
+              "integrations/phone/add-ring-central-phone-numbers"
             ]
           },
           {
