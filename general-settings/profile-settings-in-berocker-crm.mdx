@@ -1,0 +1,91 @@
+---
+title: "Profile Settings"
+category: "Personal Settings"
+published: true
+order: 0
+created_at: "2025-06-15T10:50:55.454767+00:00"
+updated_at: "2025-06-15T10:50:55.454767+00:00"
+---
+
+The **Profile Settings** page is where each user manages their personal communication tools, authentication preferences, and login activity. This setup ensures your account is secure and ready for seamless CRM usage — including messaging, calling, and email.
+
+## Sections Covered:
+
+- Two-Factor Authentication (2FA)
+- User Contacts (Communication Channels)
+- Login Sessions
+
+## 1. Enable Two-Factor Authentication (2FA)
+
+Two-factor authentication adds a second layer of security to your account.
+
+- Click the green **Enable** button at the top
+- A confirmation modal will appear
+- Click **OK** to activate 2FA for your account
+
+<Info>Recommended for all admins and agents handling sensitive customer data</Info>
+
+## 2. Manage User Contact Channels
+
+This section allows you to add and manage the contact methods you’ll use for communication inside the CRM — including **Call, SMS, WhatsApp, and Email**.
+
+## Add a Contact Method
+
+- Click the **+ Add User Contact** button
+- In the popup form, select:
+- Channel (SMS, Call, WhatsApp, or Email)
+- Provider (e.g., Twilio, RingCentral, Mailgun)
+- Contact Info (phone number or email address)
+- Status (Active, Pending, etc.)
+- Check **'Is Default'** to set this as your main communication path
+- Click **Apply** to save
+
+<Info>
+  You can set one default per channel type (e.g., one default Call number, one default Email, etc.)
+</Info>
+
+## Important Rules
+
+- If using the **same number** for **Call and SMS**, you must add it **twice**, selecting each channel separately
+- You can mix providers (e.g., use RingCentral for calls and Twilio for SMS)
+- You may add multiple options and switch defaults at any time
+
+## RingCentral Users: Don’t Forget to Register
+
+If your contact uses **RingCentral**, you'll see a **'Register'** button next to the number.
+
+- Click **Register**
+- This will trigger an OAuth popup to authenticate the number with RingCentral
+- Registration is required before the number can be used for calling or texting
+
+<Warning>If you skip this step, outbound communication via RingCentral will fail</Warning>
+
+## 3. View Login Sessions
+
+At the bottom of the page, you’ll find your **login activity log**, which shows:
+
+- Country of access
+- Device name
+- Last activity timestamp
+- IP address
+
+Use this section to:
+
+- Track which devices you’ve used
+- Monitor for suspicious access
+- Revoke access manually via security settings if needed
+
+## Summary Checklist
+
+```javascript
+| Action               | Required?                | Notes                                  |
+| -------------------- | ------------------------ | -------------------------------------- |
+| Enable 2FA           | Optional but recommended | Adds security for all users            |
+| Add Call channel     | Required                 | From Twilio, RingCentral, etc.         |
+| Add SMS channel      | Required                 | Can use same number as call            |
+| Add Email            | Optional                 | Used for outbound notifications        |
+| Set Defaults         | Required                 | One per channel type                   |
+| Register RingCentral | Required if using RC     | Must authorize to enable functionality |
+```
+
+With your profile fully set up, you’ll be ready to send messages, make calls, and secure your account for daily operations in BeRocker CRM.

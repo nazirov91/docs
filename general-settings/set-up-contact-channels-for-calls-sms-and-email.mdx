@@ -1,0 +1,65 @@
+---
+title: "Setting up communication channels"
+category: "Getting Started"
+published: true
+order: 3
+created_at: "2025-06-15T04:17:29.285005+00:00"
+updated_at: "2025-06-15T09:59:50.231+00:00"
+---
+
+> Category: Getting Started → Profile Setup
+
+Before using BeRocker CRM to communicate with shippers, carriers, and leads, you need to set up your contact and communication channels. This includes assigning the numbers and email addresses used for calls, SMS, and email automation.
+
+## Step 1: Go to Profile Settings
+
+- Navigate to Settings from the sidebar
+- Click Profile to open your personal and communication settings
+
+## Step 2: Add Your Contact Channels
+
+You can add multiple communication channels from different providers — Twilio, RingCentral, OpenPhone, etc.
+
+- Type: Call or SMS
+- Provider: Twilio, RingCentral, etc.
+- Phone Number or Email
+- “Is default” checkbox
+
+## Default Channel Logic
+
+BeRocker allows full flexibility:
+
+- You can have one number for calls and another for SMS
+- Or use the same number for both — just add it twice (once for Call, once for SMS)
+
+> Be sure to check the “Is default” box for each channel you want as your primary outgoing contact.
+
+## Step 3: Register RingCentral (If Used)
+
+If you're using RingCentral, you must:
+
+- Add your RingCentral number
+- Click the Register button
+- Authorize and activate it on the RingCentral platform
+
+> Without this step, BeRocker won’t be able to use RingCentral for calling or texting.
+
+## Step 4: Add an Email Channel (Optional)
+
+- Add the email address you want used for outbound communication (quotes, notifications)
+- Mark it as default to ensure CRM uses it across templates
+
+## Summary
+
+```
+| Task                     | Required?     | Notes                          |
+| ------------------------ | ------------- | ------------------------------ |
+| Add call number          | ✅             | From Twilio, RingCentral, etc. |
+| Add SMS number           | ✅             | Can be same or different       |
+| Tick "Is default"        | ✅             | One default per type           |
+| RingCentral registration | ✅ if using RC | Must activate on RC side       |
+| Add email                | Optional      | Used in notifications & quotes |
+
+```
+
+Once completed, your CRM will automatically use these defaults when sending messages or initiating calls.

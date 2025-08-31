@@ -1,0 +1,90 @@
+---
+title: "Configure Team Members"
+category: "Getting Started"
+published: true
+order: 4
+created_at: "2025-06-15T09:19:14.39108+00:00"
+updated_at: "2025-06-15T09:28:35.115+00:00"
+---
+
+Category: Getting Started → Team & Security
+
+## Step 1: Add a New User
+
+Go to Settings → Team & Security → People, then click Add User.
+
+- Email – login email
+- Name – full user name
+- Profile Name – how this user appears in the CRM
+- Password – initial login password
+- Team – assign or create a squad
+- Role – agent, admin, etc.
+- Optionally enable 2FA for security
+
+Click Next Step to continue.
+
+## Step 2: Configure Payout Settings
+
+On the payout configuration screen:
+
+- Fixed Amount – If you pay the user a base salary or monthly fee, enter it here. Otherwise, leave it 0.
+- Percentage from Gross – Enter commission percent (e.g. 20%).
+- Custom Ranged Percent – If you use tiered payout logic:
+
+> Example:
+> up to $2,000 → 20%
+> $2,001–$3,000 → 22.5%
+> above $3,000 → 25%
+
+You can add custom ranges as needed.
+
+Click Next Step when finished.
+
+## Step 3: Add User Contact Instruments
+
+This step defines what tools the agent will use for calls, SMS, email, and WhatsApp.
+
+- Click Add User Contact
+- Select the channel type (Call, SMS, Email, WhatsApp)
+- Enter the contact detail (phone number or email)
+- Choose the provider (e.g., Twilio or RingCentral)
+- Tick Is Default to mark the main communication line
+- Click Save
+
+<Info>
+  If you’re using the same number for both Call and SMS, add it twice, once with each channel type.
+</Info>
+
+<Info>
+  If the contact is from RingCentral, you must click Register — this opens a popup to authorize the
+  number on the RingCentral side.
+</Info>
+
+## Step 4: Set Up Lead Distribution
+
+Once contacts are set, you’ll be taken to the Lead Distribution screen.
+
+You’ll see a week table (Mon–Sun)
+
+Set how many leads per day this agent should receive
+
+> Example: 10 leads Mon–Fri, 5 on weekends
+
+<Info>Advanced Distribution Filters (Optional)</Info>
+
+If you work with multiple lead sources and want to restrict who gets what:
+
+- Click Filter by Lead Provider
+- Select the specific Lead Source (e.g. Lead Provider #1)
+- For agents you want to exclude, set lead amount to 0
+- For agents who should receive these leads, set their quota
+
+This ensures only the right people get leads from specific providers.
+
+## Final Step: Share Login & Register Number
+
+Once everything is set:
+
+- Click Save
+- Share login credentials with your agent
+- The agent should go to Profile → User Contacts and click Register on their RingCentral number if used — this activates the number inside BeRocker.

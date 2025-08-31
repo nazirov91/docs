@@ -11,15 +11,45 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "General Settings",
+        "groups": [
+          {
+            "group": "Main",
+            "pages": [
+              "general-settings/profile-settings-in-berocker-crm",
+              "general-settings/add-and-configure-team-members-in-berocker-crm",
+              "general-settings/add-a-new-lead-source-in-berocker-app",
+              "general-settings/choose-your-tools",
+              "general-settings/set-up-contact-channels-for-calls-sms-and-email",
+              "general-settings/business-info"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Integrations",
         "groups": [
           {
-            "group": "Sendgrid",
-            "pages": ["integrations/sendgrid/sendgrid-setup"]
+            "group": "Email",
+            "pages": [
+              "integrations/email/sendgrid/sendgrid-setup",
+              "integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings"
+            ]
           },
           {
-            "group": "Telnyx",
-            "pages": ["integrations/telnyx/telnyx-account-verification"]
+            "group": "Phone",
+            "pages": [
+              "integrations/phone/how-to-configure-twilio",
+              "integrations/phone/telnyx/telnyx-account-verification"
+            ]
+          },
+          {
+            "group": "Payment",
+            "pages": ["integrations/phone/telnyx/telnyx-account-verification"]
+          },
+          {
+            "group": "Loadboards",
+            "pages": ["integrations/phone/telnyx/telnyx-account-verification"]
           }
         ]
       }
