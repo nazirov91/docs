@@ -1,0 +1,199 @@
+# How to Edit & Manage Message Templates
+
+Your dashboard allows you to control all the message templates that are automatically sent to customers by SMS or email. These templates cover different stages in the workflow such as quotes, follow-ups, and booking links.
+
+---
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/svwj98Ey_d8"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+## Where to Find Templates
+
+1. Go to **Dashboard → Settings → Message Templates**
+2. You’ll see a list of templates with these details:
+   - **Chat type**: SMS or Email
+   - **Scheduler type**: When the message is sent (e.g., Quote, Follow Up, Booking Link)
+   - **Status**: Active or Inactive
+
+> **Tip:** Set a template to **Inactive** if you don’t want it used in conversations.
+
+## Why Use Multiple Versions
+
+It’s best to create several versions of the same template. The system will randomly pick one each time, so customers don’t receive the exact same wording repeatedly.
+
+Example versions of a follow-up message:
+
+- “Just checking in about your transport — still interested?”
+- “Quick follow-up on your quote. Want me to lock it in?”
+- “Hi [lead.first_name], did you want to move forward with booking?”
+
+---
+
+## Editing a Template
+
+1. Open **Settings → Message Templates**
+2. Click **Edit** next to the template you want to change
+3. Update the message body
+4. Insert variables to personalize the message
+5. Click **Update Message Template** to save
+
+---
+
+## Template Variables
+
+You can use variables to automatically insert customer or vehicle details into messages. Examples include:
+
+Here’s a short and intuitive explanation for each placeholder — when it is typically used:
+
+[greeting] → Used to insert a greeting like “Hello” or “Hi” at the start of a message.
+
+[assistant_first_name] → Inserts the first name of the agent/assistant sending the message.
+
+[assistant_last_name] → Inserts the last name of the agent/assistant sending the message.
+
+[assistant_company_name] → Fills in the assistant’s company name.
+
+[assistant_company_phone] → Displays the assistant company’s phone number.
+
+[assistant_company_email] → Adds the assistant company’s email address.
+
+[assistant_company_website] → Links to the assistant company’s website.
+
+[assistant_company_address] → Shows the assistant company’s physical address.
+
+[assistant_web_site] → Duplicate placeholder for the company website (same as above).
+
+[lead_id] → Internal ID number used to identify the lead in the system.
+
+[lead_vehicles] → Lists the vehicles associated with the lead.
+
+[lead_full_name] → Inserts the customer’s full name.
+
+[lead_phone] → Displays the customer’s phone number.
+
+[lead_origin] → Full pickup location of the vehicle(s).
+
+[lead_destination] → Full drop-off location of the vehicle(s).
+
+[lead_email] → Inserts the customer’s email address.
+
+[lead_first_name] → Displays the customer’s first name.
+
+[lead_last_name] → Displays the customer’s last name.
+
+[lead_origin_city] → City where the vehicle will be picked up.
+
+[lead_origin_zip] → ZIP code for the pickup location.
+
+[lead_origin_state] → State for the pickup location.
+
+[lead_destination_city] → City where the vehicle will be delivered.
+
+[lead_destination_zip] → ZIP code for the delivery location.
+
+[lead_destination_state] → State for the delivery location.
+
+[lead_open_price] → Price offered for open transport.
+
+[lead_enclosed_price] → Price offered for enclosed transport.
+
+[lead_price] → General quoted price for the shipment.
+
+[lead_deposit] → Deposit amount the customer must pay upfront.
+
+[carrier_pay] → The amount that goes to the carrier/driver.
+
+[lead_discount] → Any discount applied to the shipment.
+
+[lead_discount_code] → Code used to apply the discount.
+
+[lead_booking_link] → Link for the customer to confirm/book shipment.
+
+[lead_contract_link] → Link to view or sign the contract.
+
+[lead_driver_contact] → Contact details of the assigned driver.
+
+[lead_drop_off_date] → Expected vehicle delivery date.
+
+[review_link] → Link where the customer can leave a review.
+
+[unsubscribe_link] → Link for the customer to opt out of messages.
+
+[company_logo] → Inserts the company’s logo image.
+
+[company_mc_number] → Company’s Motor Carrier (MC) number.
+
+[company_dot_number] → Company’s U.S. DOT registration number.
+
+[company_terms_and_conditions] → Link to terms and conditions.
+
+[company_website] → Main company website URL.
+
+[company_address] → Company’s business address.
+
+[company_email] → Company’s general email address.
+
+[company_phone] → Company’s main phone number.
+
+[company_name] → Company’s legal or trade name.
+
+[email_body] → The main content/body of the email template.
+
+[today_date] → Automatically inserts today’s date.
+
+[lead_driver_fullname] → Full name of the assigned driver.
+
+[lead_delivery_days] → Estimated number of days for delivery.
+
+[vehicle_is_run] → States whether the vehicle is running or not.
+
+[lead_trailer_type] → Trailer type selected (open/enclosed).
+
+[carrier_name] → Name of the carrier company or driver.
+
+[carrier_phone] → Phone number of the carrier/driver.
+
+[lead_pickup_date] → Scheduled pickup date.
+
+[lead_comment] → Any extra notes or comments from the lead.
+
+[pickup_address] → Exact pickup address.
+
+[dropoff_address] → Exact drop-off address.
+
+[pickup_phone] → Phone number for pickup contact.
+
+[dropoff_phone] → Phone number for drop-off contact.
+
+[pickup_contact] → Name of the person at pickup.
+
+[dropoff_contact] → Name of the person at drop-off.
+
+[last_quote_date] → Date when the last quote was given.
+
+[refund_amount] → Amount refunded if applicable.
+
+[cancellation_fee] → Fee charged for canceling shipment.
+
+## Best Practices
+
+- Keep messages short and clear
+- Include only one call-to-action (e.g., “Click to book” or “Reply YES”)
+- For SMS, include opt-out instructions if required (e.g., “Reply STOP to opt out”)
+- Use multiple versions for better engagement
+
+---
+
+## Troubleshooting
+
+- **Variables didn’t show?** Make sure the variable name is exact and the field exists.
+- **Message not sending?** Check if the template is active and has the right scheduler type.
+- **Same text every time?** Add more versions for rotation.
+
+---

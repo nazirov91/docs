@@ -21,7 +21,8 @@
               "general-settings/add-a-new-lead-source-in-berocker-app",
               "general-settings/choose-your-tools",
               "general-settings/set-up-contact-channels-for-calls-sms-and-email",
-              "general-settings/business-info"
+              "general-settings/business-info",
+              "general-settings/template-variables"
             ]
           }
         ]
