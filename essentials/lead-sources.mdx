@@ -1,0 +1,125 @@
+---
+title: "Adding Lead Source"
+description: "Description of your new file."
+---
+
+# Integration with the BeRocker CRM
+
+This documentation explains how to send POST requests to deliver leads to the BeRocker CRM system. Please follow the instructions below carefully to ensure that your leads are processed correctly.
+
+## 1. Credentials and Endpoint URL
+
+Head over to the **BeRocker CRM Settings -\> BeRocker AI -\> Lead Sources** There you can click on the **Add new source** button and enter your new lead source details. _For example: Name: Main Website_
+
+Once saved, look at the **URLs** column of the table and click on Copy icon of the newly created lead source. 
+
+![Lead Source Copy](/images/lead-source-copy.png)
+
+Keep in mind that when creating a new lead source, the only required field is the name. Everything else is optional. However, I would like to mention what other fields refer to as well. _Plan Name_ - this is for connecting with lead source providers. They usually establish certain plans for sending over leads. That info can be entered in this field _Price_ - also related to lead source providers where there is a price for each incoming lead
+
+## 2. Request Headers
+
+When sending a POST request, make sure to include the following headers:
+
+```json
+Content-Type: application/json
+```
+
+## 3. JSON Data Format
+
+General Format (For CRM Systems like MessagePlan, BATS)
+
+For most lead providers, use the following JSON structure:
+
+```json
+{
+  "first_name": "string",
+  "last_name": "string",
+  "email": "user@example.com",
+  "phone": "5551234567",
+  "origin_city": "string",
+  "origin_state": "string",
+  "origin_postal_code": "12345",
+  "destination_city": "string",
+  "destination_state": "string",
+  "destination_postal_code": "54321",
+  "vehicles": [
+    {
+      "vehicle_model_year": 2020,
+      "vehicle_make": "string",
+      "vehicle_model": "string",
+      "vehicle_inop": true,
+      "vehicle_type": "Car"
+    }
+  ],
+  "ship_date": "2025-03-27",
+  "transport_type": "open",
+  "comment_from_shipper": "string"
+}
+```
+
+## 4. Example Request for General Format
+
+```json
+curl 
+-X POST "https://your-endpoint-url"
+-H "Content-Type: application/json" 
+-d `{
+  "first_name": "string",
+  "last_name": "string",
+  "email": "user@example.com",
+  "phone": "5551234567",
+  "origin_city": "string",
+  "origin_state": "string",
+  "origin_postal_code": "12345",
+  "destination_city": "string",
+  "destination_state": "string",
+  "destination_postal_code": "54321",
+  "vehicles": [
+    {
+      "vehicle_model_year": 2020,
+      "vehicle_make": "string",
+      "vehicle_model": "string",
+      "vehicle_inop": true,
+      "vehicle_type": "Car"
+    }
+  ],
+  "ship_date": "2025-03-27",
+  "transport_type": "open",
+  "comment_from_shipper": "string"
+}`
+```
+
+**5. Server Response**
+
+**Successful Submission:** The server will return an HTTP status 200 OK along with a JSON response confirming the lead receipt.
+
+• **Error Handling:** In case of errors, the server may return:
+
+• 400 Bad Request — Incorrect request format.
+
+• 401 Unauthorized — Authentication issues.
+
+• Other HTTP error codes along with an appropriate error message.
+
+**Vehicle Types**
+
+- `sedan`
+- `Car`
+- `Boat`
+- `Motorcycle`
+- `Pickup`
+- `pickup_2_doors`
+- `SUV`
+- `Van`
+- `RV`
+- `Travel Trailer`
+- `ATV`
+- `Convertible`
+- `Coupe`
+- `Other`
+
+**Transport types**
+
+- `open`
+- `enclosed`
