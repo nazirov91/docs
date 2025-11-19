@@ -71,16 +71,12 @@
         "tab": "Onboarding",
         "groups": [
           {
-            "group": "Layout descriptions",
+            "group": "ONBOARDING STEPS",
             "pages": [
-              "onboarding/layout-descriptions/main-layout",
-              "onboarding/layout-descriptions/chats",
-              "onboarding/layout-descriptions/chat-window",
-              "onboarding/layout-descriptions/lead-panel",
-              "onboarding/layout-descriptions/order-panel-1",
-              "onboarding/layout-descriptions/order-panel-2",
-              "onboarding/layout-descriptions/carrier-before",
-              "onboarding/layout-descriptions/carrier-after"
+              "onboarding/steps/step1",
+              "onboarding/steps/step2",
+              "onboarding/steps/step3",
+              "onboarding/steps/step4"
             ]
           }
         ]
