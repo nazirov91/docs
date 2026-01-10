@@ -22,7 +22,8 @@
               "general-settings/choose-your-tools",
               "general-settings/set-up-contact-channels-for-calls-sms-and-email",
               "general-settings/business-info",
-              "general-settings/manage-templates"
+              "general-settings/manage-templates",
+              "general-settings/notifications-setup"
             ]
           }
         ]
@@ -105,7 +106,11 @@
     }
   },
   "contextual": {
-    "options": ["copy", "view", "chatgpt"]
+    "options": [
+      "copy",
+      "view",
+      "chatgpt"
+    ]
   },
   "footer": {
     "socials": {
