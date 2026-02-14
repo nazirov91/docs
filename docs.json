@@ -63,7 +63,7 @@
             "group": "Loadboards",
             "pages": [
               "integrations/loadboards/configure-central-dispatch",
-              "integrations/loadboards/configure-super-dispatch"
+              "integrations/loadboards/superdispatch"
             ]
           }
         ]
@@ -106,11 +106,7 @@
     }
   },
   "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt"
-    ]
+    "options": ["copy", "view", "chatgpt"]
   },
   "footer": {
     "socials": {
