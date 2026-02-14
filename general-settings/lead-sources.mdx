@@ -1,31 +1,30 @@
 ---
-title: "Adding Lead Source"
-description: "Adding a Lead Source to BeRocker CRM"
+title: "Integrating with Lead Providers & Website"
+description: "Adding a Lead Source to BeRocker CRM and integrating with Lead Providers and your website"
 ---
 
 This guide explains how to connect your lead provider or website form to **BeRocker CRM** by sending `POST` requests. Follow the steps carefully to ensure your leads are captured correctly.
 
 ## 1. Create a Lead Source & Get Endpoint URL
 
+### Step 1 — Settings page
 
-  ### Step 1 — Settings page
-  
-  Go to **Settings → Lead Management → Lead Sources** in your BeRocker CRM.
+Go to **Settings → Lead Management → Lead Sources** in your BeRocker CRM.
 
-  ### Step 2 — Add New Source
+### Step 2 — Add New Source
 
-  Click **Add New Source** and give it a name (e.g., `Main Website`).
+Click **Add New Source** and give it a name (e.g., `Main Website`).
 
-  - **Required:** Name
-  - **Optional:**  (Only when connecting with Lead Source Provider)
-    - **Plan Name** — If your lead provider specifies a plan
-    - **Price** — If your provider charges per lead
+- **Required:** Name
+- **Optional:**  (Only when connecting with Lead Source Provider)
+  - **Plan Name** — If your lead provider specifies a plan
+  - **Price** — If your provider charges per lead
 
-  ### Step 3 — Copy Endpoint URL
+### Step 3 — Copy Endpoint URL
 
-  After saving, copy the **Endpoint URL** from the **URLs** column using the copy icon.
+After saving, copy the **Endpoint URL** from the **URLs** column using the copy icon.
 
-  ![Lead Source Copy](/images/lead-source-copy.png)
+![Lead Source Copy](/images/lead-source-copy.png)
 
 ---
 
@@ -37,7 +36,9 @@ When sending a `POST` request, include the following header:
 Content-Type: application/json
 ```
 
-<Note type="info"> Since your CRM account generates a **unique URL for each lead source**, basic authentication is already built in. You don’t need to provide additional credentials — simply use the provided URL. </Note>
+<info>
+  Since your CRM account generates a **unique URL for each lead source**, basic authentication is already built in. You don’t need to provide additional credentials — simply use the provided URL.
+</info>
 
 ## 3. JSON Payload Structure to follow
 
