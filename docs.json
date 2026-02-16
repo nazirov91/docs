@@ -62,7 +62,7 @@
           {
             "group": "Loadboards",
             "pages": [
-              "integrations/loadboards/configure-central-dispatch",
+              "integrations/loadboards/centraldispatch",
               "integrations/loadboards/superdispatch"
             ]
           }
