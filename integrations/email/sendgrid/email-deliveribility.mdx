@@ -1,0 +1,278 @@
+---
+title: "Email Deliverability"
+---
+
+Email Deliverability Best Practices.
+A clear, universal playbook for improving email deliverability across authentication, list quality, warm-up, sending behavior, and monitoring
+
+# Email Deliverability Best Practices
+
+<Note>
+This guide is written for most businesses and SaaS teams, whether you send through SendGrid, Postmark, Mailgun, Amazon SES, or another provider. The principles stay the same even if the UI changes.
+</Note>
+
+Good deliverability is not one trick. It is the result of five systems working together:
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="shield-check">
+    Prove your mail is legitimate with SPF, DKIM, and DMARC.
+  </Card>
+  <Card title="Consent" icon="user-check">
+    Send only to people who clearly asked to hear from you.
+  </Card>
+  <Card title="Warm-up" icon="flame">
+    Ramp up gradually so mailbox providers learn to trust you.
+  </Card>
+  <Card title="Separation" icon="layers">
+    Keep transactional and promotional mail apart.
+  </Card>
+  <Card title="Monitoring" icon="chart-line">
+    Watch complaints, bounces, and engagement every week.
+  </Card>
+  <Card title="Content" icon="mail">
+    Make emails easy to read, easy to trust, and easy to leave.
+  </Card>
+</CardGroup>
+
+## Why deliverability matters
+
+Inbox placement is mostly about trust. Mailbox providers look at whether your domain is authenticated, whether recipients expect your emails, whether they complain, and whether your sending patterns look stable.
+
+If you skip the basics, even legitimate email can get filtered, rate-limited, or blocked.
+
+<Warning>
+If you send marketing or bulk email without proper authentication, unsubscribe handling, and list discipline, no platform can save you.
+</Warning>
+
+## The five-part playbook
+
+### 1) Authenticate every sending domain
+
+At minimum, every sending domain should have SPF and DKIM. If you send at bulk volume, you should also publish DMARC. In practice, most teams should set up all three from the start.
+
+<Steps>
+  <Step title="Set up SPF">
+    Add an SPF record that includes every service allowed to send email for your domain.
+  </Step>
+  <Step title="Enable DKIM">
+    Turn on DKIM signing for your sending domain and use a strong key length when supported.
+  </Step>
+  <Step title="Publish DMARC">
+    Start with a monitoring policy such as `p=none`, review reports, then tighten later if your alignment is healthy.
+  </Step>
+  <Step title="Brand your links and return-path when possible">
+    Use your own sending domain and branded tracking domain instead of generic provider domains.
+  </Step>
+</Steps>
+
+<Tip>
+A good default pattern is to use a dedicated subdomain for sending, such as `mail.yourdomain.com` or `updates.yourdomain.com`, instead of sending everything from your root domain.
+</Tip>
+
+### 2) Send only to people who expect your email
+
+This is where many teams lose deliverability. A technically perfect setup still performs badly if recipients did not ask for the message.
+
+**Do this:**
+- Use clear opt-in language
+- Keep your send frequency consistent with what people signed up for
+- Remove hard bounces immediately
+- Stop mailing people who never engage
+- Make unsubscribing simple
+
+**Do not do this:**
+- Buy lists
+- Scrape leads
+- Add users through pre-checked boxes
+- Keep blasting inactive contacts forever
+
+<Info>
+The quality of your recipient list has more impact on deliverability than your template design.
+</Info>
+
+### 3) Warm up new domains and new streams gradually
+
+A new domain, subdomain, or dedicated IP has no reputation history. Treat it carefully.
+
+Start small. Send to your best recipients first, the people most likely to open, click, or reply. Increase volume in steady steps instead of sudden spikes.
+
+**Good warm-up behavior:**
+- Low starting volume
+- Stable daily sends
+- Highest-quality recipients first
+- Gradual increases over days and weeks
+- No sudden campaigns to cold lists
+
+**Bad warm-up behavior:**
+- Sending thousands on day one
+- Long silence followed by a spike
+- Mixing low-quality leads into the first sends
+- Changing domains and templates at the same time
+
+### 4) Separate transactional and promotional email
+
+Not all email has the same risk profile.
+
+Transactional mail includes password resets, receipts, booking confirmations, shipping updates, and account alerts. Promotional mail includes newsletters, campaigns, product announcements, and sales sequences.
+
+These should not share the same reputation stream if you can avoid it.
+
+<CardGroup cols={2}>
+  <Card title="Transactional email" icon="bolt">
+    Needs the highest reliability and should be protected from the risk of bulk campaigns.
+  </Card>
+  <Card title="Promotional email" icon="megaphone">
+    Carries more complaint risk and should be isolated from critical product emails.
+  </Card>
+</CardGroup>
+
+A simple setup is:
+- one subdomain for transactional mail
+- one subdomain for promotional mail
+- separate suppression and reporting where possible
+
+<Tip>
+If your platform supports separate streams, pools, or subdomains, use them.
+</Tip>
+
+### 5) Monitor reputation every week
+
+Deliverability is not set-and-forget. You need a simple operating rhythm.
+
+Track:
+- hard bounce rate
+- spam complaint rate
+- unsubscribe rate
+- open and click trends
+- inbox placement issues by provider
+- DMARC reports
+- block, deferral, or rate-limit errors from mailbox providers
+
+If complaint rate rises, do not just keep sending. Pause, identify the segment or campaign causing the damage, and fix the root problem.
+
+<Warning>
+For bulk senders to Gmail, complaint rates above 0.3% are a serious warning sign.
+</Warning>
+
+## What good email sending looks like
+
+A healthy program usually looks boring:
+
+- authenticated domain
+- consistent volume
+- permission-based list
+- clear sender identity
+- obvious unsubscribe path
+- clean segmentation
+- separate streams for different email types
+- weekly review of reputation signals
+
+That is the formula.
+
+## What hurts deliverability fastest
+
+<AccordionGroup>
+  <Accordion title="Sending to old or purchased lists">
+    This creates bounces, complaints, and low engagement. Mailbox providers read that as unwanted mail.
+  </Accordion>
+  <Accordion title="Huge volume spikes">
+    Sudden increases look suspicious, especially from new domains or low-history senders.
+  </Accordion>
+  <Accordion title="Mixing all email on one stream">
+    A bad marketing blast can hurt your critical transactional email if everything shares the same reputation.
+  </Accordion>
+  <Accordion title="Generic tracking and redirect domains">
+    Branded sending domains and branded links usually build more trust than generic provider-hosted domains.
+  </Accordion>
+  <Accordion title="Making unsubscribe hard">
+    If people cannot leave easily, they report spam instead. That is far more damaging.
+  </Accordion>
+</AccordionGroup>
+
+## A simple rollout plan
+
+<Steps>
+  <Step title="Week 1: Fix authentication">
+    Set up SPF, DKIM, and DMARC for every sending domain. Enable branded links and custom return-path if your provider supports them.
+  </Step>
+  <Step title="Week 1: Clean your list">
+    Remove invalid, bounced, and clearly unengaged recipients. Split transactional and promotional audiences.
+  </Step>
+  <Step title="Week 2: Start warm-up">
+    Send low volume to your most engaged recipients first. Keep volume steady and increase gradually.
+  </Step>
+  <Step title="Week 2+: Add monitoring">
+    Review complaints, bounces, unsubscribes, and provider errors every week. Pause bad segments early.
+  </Step>
+  <Step title="Ongoing: Protect your reputation">
+    Keep consent clean, streams separate, and volume predictable.
+  </Step>
+</Steps>
+
+## Best practices by category
+
+### Authentication
+- Set up SPF
+- Enable DKIM
+- Publish DMARC
+- Use a sending subdomain
+- Brand tracking links
+
+### List quality
+- Send only to opted-in recipients
+- Remove bounces immediately
+- Suppress complainers and unsubscribes
+- Sunset inactive contacts
+- Avoid purchased or scraped lists
+
+### Sending patterns
+- Warm up gradually
+- Avoid spikes
+- Send consistently
+- Prioritize engaged recipients first
+- Keep frequency aligned with expectations
+
+### Content and UX
+- Use a clear From name
+- Keep the message readable
+- Avoid misleading subject lines
+- Include a visible unsubscribe option
+- Make the email look like it came from a real business
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Do I need DMARC if I already have SPF and DKIM?">
+    If you send at any meaningful volume, yes. DMARC adds alignment and reporting, and it is part of current bulk sender expectations for major mailbox providers.
+  </Accordion>
+  <Accordion title="Should I use a dedicated IP?">
+    Not always. Dedicated IPs help when you have enough steady volume to build and maintain reputation. Low or inconsistent volume often does better on a healthy shared setup.
+  </Accordion>
+  <Accordion title="Should transactional and marketing email share one domain?">
+    They can, but separate subdomains or streams are safer and easier to manage.
+  </Accordion>
+  <Accordion title="What matters more: template quality or list quality?">
+    List quality. Great design cannot overcome sending to the wrong people.
+  </Accordion>
+</AccordionGroup>
+
+## Final takeaway
+
+Deliverability is not a hack. It is reputation.
+
+If you remember only five things, remember these:
+
+1. Authenticate every sending domain  
+2. Send only to people who asked for it  
+3. Warm up new domains and streams slowly  
+4. Separate transactional and promotional mail  
+5. Monitor complaints, bounces, and engagement every week  
+
+## Sources
+
+- [Google Email sender guidelines](https://support.google.com/a/answer/81126?hl=en)
+- [Google sender guidelines FAQ](https://support.google.com/a/answer/14229414?hl=en)
+- [Yahoo Sender Best Practices](https://senders.yahooinc.com/best-practices/)
+- [Twilio SendGrid Deliverability Guide](https://support.sendgrid.com/hc/en-us/articles/17404397687323-Twilio-SendGrid-Support-Deliverability-Guide)
+- [Twilio SendGrid Domain Authentication](https://www.twilio.com/docs/sendgrid/ui/account-and-settings/how-to-set-up-domain-authentication)
+- [Postmark: How to warm up email/domain for sending email](https://postmarkapp.com/guides/how-to-warm-up-a-domain)

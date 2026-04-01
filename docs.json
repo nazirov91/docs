@@ -36,7 +36,8 @@
             "pages": [
               "integrations/email/sendgrid/sendgrid-setup",
               "integrations/email/sendgrid/configure-sendgrid-key",
-              "integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings"
+              "integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings",
+              "integrations/email/sendgrid/email-deliveribility"
             ]
           },
           {
