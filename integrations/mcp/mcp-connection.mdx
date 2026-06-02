@@ -1,0 +1,126 @@
+---
+title: 'Connecting BeRocker to Claude (MCP)'
+category: 'BeRocker CRM settings'
+published: true
+order: 1
+created_at: '2026-06-02T00:00:00.000+00:00'
+updated_at: '2026-06-02T00:00:00.000+00:00'
+---
+
+BeRocker exposes an **MCP (Model Context Protocol) connection** so you can talk to your CRM directly from [Claude](https://claude.ai). Once connected, you can ask Claude plain-English questions about your leads, analytics, pricing, and load board posts — and Claude pulls the answers straight from your BeRocker account in real time.
+
+<Note>
+  All data is scoped to your organization. Claude can only read and act on the leads and analytics
+  that belong to your company.
+</Note>
+
+## What Is MCP?
+
+MCP (Model Context Protocol) is an open standard that lets AI assistants like Claude securely connect to external tools and data sources. The BeRocker MCP server gives Claude a safe, read-first window into your CRM so you can get instant answers without leaving your chat.
+
+- **No exports, no spreadsheets** — ask a question and get a live answer.
+- **Secure** — every request is scoped to your organization only.
+- **Write actions are protected** — for load board posts, Claude always previews the data and asks for your confirmation before anything is sent.
+
+## Before You Start
+
+- A **Claude** account (Pro, Team, or Enterprise) that supports **custom connectors**.
+- Your BeRocker account login.
+- The BeRocker MCP server URL:
+
+  ```text
+  https://app.berocker.com/mcp/analytics
+  ```
+
+## Connect BeRocker in Claude
+
+<Steps>
+  <Step title='Open Connector Settings in Claude'>
+    In Claude, go to `Settings -> Connectors`.
+
+    Scroll to the bottom and click **Add custom connector**.
+  </Step>
+
+  <Step title='Enter the BeRocker Connection Details'>
+    Fill in the **Add custom connector** dialog:
+
+    - **Name:** `BeRocker`
+    - **URL:** `https://app.berocker.com/mcp/analytics`
+
+    Leave **Advanced settings** at their defaults unless your administrator has given you other instructions.
+
+    <Note>
+      Only add connectors from developers you trust. The BeRocker connector is provided and
+      maintained by the BeRocker team.
+    </Note>
+  </Step>
+
+  <Step title='Add the Connector'>
+    Click **Add**. Claude saves the BeRocker connector to your account.
+  </Step>
+
+  <Step title='Authenticate with BeRocker'>
+    The first time you use the connector, Claude will ask you to sign in to BeRocker and authorize
+    access. Complete the sign-in to link your account.
+
+    Once authorized, BeRocker's tools become available to Claude automatically.
+  </Step>
+</Steps>
+
+## Try It Out
+
+Once connected, here are some things you can ask Claude:
+
+- _"Show me a summary of all leads this month"_
+- _"What are the conversion rates by lead source for Q1 2025?"_
+- _"Find all new leads from California that don't have offers yet"_
+- _"Give me the details for lead #4521"_
+- _"Show me the chat history for lead 892"_
+- _"Compare company performance this month vs last month"_
+- _"What's the estimated price for shipping a sedan from LA to NYC?"_
+- _"Check if lead 350 has any active posts on SuperDispatch"_
+- _"Prepare a post for lead 350 on CentralDispatch and show me what will be sent"_
+
+## Available Tools
+
+The BeRocker MCP server gives Claude access to the following tools, grouped by what they do.
+
+### Analytics & Reporting
+
+| Tool | Description |
+| --- | --- |
+| `get-dashboard-summary` | Get a high-level overview of your leads — total counts by status (new, booked, lost, blocked), conversion rate, average and median first-response times, lead costs, vehicle pricing totals, and top 5 lead sources. Supports date range and broker/source filters. |
+| `get-lead-sources-report` | Break down lead performance by source/provider — lead counts, conversion rates, costs, and offer stats. Great for understanding which lead sources deliver the best ROI. |
+| `get-company-performance` | Comprehensive company-wide analytics for any period — KPIs, revenue, costs, ROI, conversion rates, and response times. Supports period-over-period comparison (e.g. this month vs. last month). |
+
+### Lead Management
+
+| Tool | Description |
+| --- | --- |
+| `search-leads` | Search and filter leads by status, date range, origin/destination state or city, assigned broker, customer name, lead source, and offer status. Returns a paginated list with key details. |
+| `get-lead-details` | Get full details for a specific lead by ID or lead number — customer info, addresses, vehicles with pricing, logistics dates, carrier/driver info, broker assignment, and chat metrics. |
+| `get-lead-communications` | Read chat messages and call transcripts for a lead. Supports filtering by channel (SMS, call, email, WhatsApp) and incremental fetching to get only new messages. |
+
+### Load Board Operations
+
+| Tool | Description |
+| --- | --- |
+| `get-lead-posts` | View all existing load board posts for a lead — status, pricing, dates, payment terms, and dispatch info. Check this before creating new posts. |
+| `prepare-loadboard-post` | Preview what will be posted to SuperDispatch or CentralDispatch — all fields, missing requirements, warnings, and a can-post flag. This is read-only and does not create anything. |
+| `execute-loadboard-action` | Post, repost, or delete load board listings. Create or cancel dispatches on CentralDispatch. Always use `prepare-loadboard-post` first to review the data. |
+
+### Pricing
+
+| Tool | Description |
+| --- | --- |
+| `get-pricing-comparison` | Compare prices from BeRocker AI, SuperDispatch, and CentralDispatch. Works in two modes: by lead ID (uses existing lead data) or by route (origin/destination ZIP + vehicle type, no lead needed). |
+
+## Good to Know
+
+- **Your data is private.** All data is scoped to your organization — you can only access leads and analytics that belong to your company.
+- **Date filters use `YYYY-MM-DD` format.** State filters use abbreviations (`CA`, `NY`, `TX`).
+- **Write actions are always confirmed.** For load board write operations, Claude will always preview the data and ask for your confirmation before executing.
+
+## Need Help?
+
+If you have any questions, contact the BeRocker team through your Slack support channel, call `302-313-0966`, or email `info@berocker.com`.
