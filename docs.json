@@ -66,6 +66,12 @@
               "integrations/loadboards/centraldispatch",
               "integrations/loadboards/superdispatch"
             ]
+          },
+          {
+            "group": "MCP",
+            "pages": [
+              "integrations/mcp/mcp-connection"
+            ]
           }
         ]
       },
