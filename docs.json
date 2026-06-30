@@ -88,6 +88,17 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
+          {
+            "group": "Contact Us",
+            "pages": [
+              "support/contact"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -99,7 +110,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:info@berocker.com"
+        "href": "/support/contact"
       },
       {
         "label": "Website",
