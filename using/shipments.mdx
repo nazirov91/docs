@@ -44,20 +44,22 @@ message that went out, the contract, the payment, the carrier offers — so they
 
 ---
 
-## Work queues
+## Finding what needs doing
 
-Above the table you also get five cross-status counters — the "what needs me" view:
+The sub-filters are the fastest way to answer "what is waiting on me":
 
-- **Needs quote**
-- **Needs contract**
-- **Awaiting payment**
-- **Posted, no offers**
-- **Paid, not dispatched**
+| Question | Where to click |
+| --- | --- |
+| Which new leads has nobody priced? | **New → Not Quoted** |
+| Which orders have no agreement out? | **Order → Needs Contract** |
+| Who has signed but not paid? | **Order → Signed** |
+| Which posted loads are getting no interest? | **Posted → No Offers** |
+| What is paid but has no carrier? | **Order → Paid**, then check the **Carrier** column |
 
-<Warning>
-  Do not add these together. One shipment can sit in several queues at once — a to-do list, not a
-  location.
-</Warning>
+<Tip>
+  The tab bar is sticky — it stays put while the list scrolls, so you can switch status or search a
+  hundred rows down without scrolling back to the top.
+</Tip>
 
 ---
 

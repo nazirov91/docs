@@ -3,48 +3,51 @@ title: "Zelle and manual payments"
 description: "Record payments the customer sends themselves — Zelle, Venmo, PayPal, Cash App and anything else."
 ---
 
-Zelle is a U.S. instant bank-to-bank transfer service. In BeRocker it is a **record-only** method:
-the customer sends the money themselves and an agent records it with a receipt attached. No card is
-ever charged.
+Zelle is a U.S. instant bank-to-bank transfer service. In BeRocker it is a **record-only** method: the customer sends the money themselves and an agent records it with a receipt attached. No card is ever charged.
 
 <Info>
-  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
-  which opens the **Payment Gateways** page. See
-  [Payment gateways](/settings/integrations) for the full picture.
+  All processors are configured in one place: **Settings → Integrations → Payment Gateway →
+  Configure**, which opens the **Payment Gateways** page.
 </Info>
 
 ---
 
-## What BeRocker asks for
+## Set up Zelle
 
-| Field | What it is |
-| --- | --- |
-| **Zelle Email** | The address customers send to. |
-| **Zelle Number** | The phone number customers send to. |
+<Steps>
+  <Step title="Open the Payment Gateways page">
+    **Settings → Integrations → Payment Gateway → Configure**, then find the **Zelle** card.
+  </Step>
+  <Step title="Enter your Zelle Email and Zelle Number">
+    These are the details customers send money to, and they appear on the payment instructions the
+    customer receives.
+  </Step>
+  <Step title="Click Update Info">
+    To save.
+  </Step>
+</Steps>
 
-These appear on the payment instructions the customer receives.
+There is no Payment fee for Zelle — nothing is processed, so there is nothing to surcharge.
 
 ---
 
-## Set the default and the fee
+## The other manual methods
 
-The other record-only methods need no configuration at all. When recording a payment an agent can
-choose **Zelle**, **Venmo**, **PayPal**, **Cash App** or **Other** — the catch-all for a wire,
-check, cash or a regional app.
+The rest need no configuration at all. When recording a payment an agent can choose:
+
+| Method | |
+| --- | --- |
+| **Zelle** | Bank-to-bank transfer. |
+| **Venmo** | |
+| **PayPal** | |
+| **Cash App** | |
+| **Other** | The catch-all — a wire, a check, cash, or a regional app. |
 
 <Warning>
   A recorded payment is a bookkeeping entry, not a charge. Confirm the money actually arrived before
   you record it, and attach the receipt.
 </Warning>
 
-The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
-
-- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
-- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
-
-Only the fee of the processor set as your **default card payment option** is applied — it does not
-depend on which card the customer has. The customer sees the breakdown on the charge screen and on
-the emailed receipt.
 
 ---
 
@@ -58,14 +61,13 @@ the emailed receipt.
   allowfullscreen
 ></iframe>
 
-
 ---
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
-    All processors and the default.
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All processors, and where the Payment Gateways page lives.
   </Card>
   <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
     Every payment, refund and dispute.

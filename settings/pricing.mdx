@@ -56,11 +56,16 @@ At 100% nothing changes. Set 110% and the app spells out the effect for you with
 
 ### Enclosed transport multiplier
 
-Super Dispatch returns one **open**-trailer price. The enclosed quote is derived by multiplying it
-by this coefficient (between 0.1 and 10). There is a sample-price box so you can see what any
-multiplier does before saving.
+Shown when Super Dispatch is your engine. Super Dispatch returns one **open**-trailer price, and the
+enclosed quote is derived by multiplying it by this coefficient (between 0.1 and 10). There is a
+sample-price box so you can see what any multiplier does before saving.
 
 This setting is saved independently of Auto Price.
+
+<Info>
+  The bottom of this tab also shows the **Load boards** cards, so you can connect Super Dispatch or
+  Central Dispatch without leaving the page if their price is showing as **Not available**.
+</Info>
 
 ---
 
@@ -71,6 +76,19 @@ This setting is saved independently of Auto Price.
 </Frame>
 
 The deposit is what the customer pays you at booking. It is set with **brackets** by lead price.
+
+> This page controls the deposit a customer pays to book a lead. Each row is a price bracket. For any
+> lead, the system picks the **first** bracket whose *Lead price from / to* range contains the lead's
+> price, then works out the deposit from that bracket's settings.
+
+The formula for each bracket is:
+
+```text
+deposit = (Percentage deposit × lead price) + Fixed deposit price
+```
+
+The table columns are **ID order · Lead price from · Lead price to · Fixed deposit price ·
+Percentage deposit · Minimum deposit price · Actions**.
 
 Each bracket has:
 

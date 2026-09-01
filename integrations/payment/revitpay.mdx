@@ -3,37 +3,70 @@ title: "RevitPay"
 description: "Connect RevitPay for card payments and invoicing."
 ---
 
-RevitPay is a payment processor for high-risk and specialty merchants, common in auto transport.
+RevitPay is a payment processor common with high-risk and specialty merchants, including auto transport.
 
 <Info>
-  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
-  which opens the **Payment Gateways** page. See
-  [Payment gateways](/settings/integrations) for the full picture.
+  All processors are configured in one place: **Settings → Integrations → Payment Gateway →
+  Configure**, which opens the **Payment Gateways** page.
 </Info>
 
 ---
 
 ## What BeRocker asks for
 
-Enter the credentials RevitPay issued for your merchant account on the **Payment Gateways** page.
+| Field | What it is |
+| --- | --- |
+| **Username** | Your RevitPay account username. |
+| **Password** | Your RevitPay account password. |
+| **Source Key** | The key RevitPay issues for your account. |
 
 ---
 
-## Set the default and the fee
+## Connect it
 
-RevitPay does not report how a card is funded, so a credit-cards-only processing fee cannot be
-honoured with RevitPay as your default — do not promise a debit waiver in customer-facing wording.
+<Steps>
+  <Step title="Open the Payment Gateways page">
+    **Settings → Integrations → Payment Gateway → Configure**, then find the **RevitPay** card.
+  </Step>
+  <Step title="Enter your username, password and Source Key">
+  </Step>
+  <Step title="Set the Payment fee">
+    Type **0** if you do not charge extra for card payments.
+  </Step>
+  <Step title="Tick Set as default card payment option, then Update Info">
+    If RevitPay is the processor charges should run through.
+  </Step>
+</Steps>
+
+---
+
+## Good to know
+
+<Warning>
+  RevitPay does not report how a card is funded, so a credit-cards-only processing fee cannot be
+  honoured with RevitPay as your default. Do not promise a debit or prepaid waiver in
+  customer-facing wording while RevitPay is your default processor.
+</Warning>
 
 RevitPay invoices stay up until they are paid.
 
-The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
+---
 
-- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
-- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+## The payment fee
 
-Only the fee of the processor set as your **default card payment option** is applied — it does not
-depend on which card the customer has. The customer sees the breakdown on the charge screen and on
-the emailed receipt.
+The **Payment fee (%)** is a percentage added on top of the amount you charge a customer:
+
+- Leave it empty or **0** → **no fee is added**. Charging $200 bills the customer exactly **$200.00**.
+- Enter **3** → a **3% fee** is added. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor you set as your **default card payment option** is applied — it does
+not depend on which card the customer has. The customer sees the breakdown on the charge screen and
+on the receipt emailed to them once the payment goes through.
+
+<Tip>
+  Tick **Set as default card payment option** on the processor you actually want charges to run
+  through. That checkbox, not the order of the cards, is what decides.
+</Tip>
 
 ---
 
@@ -47,14 +80,13 @@ the emailed receipt.
   allowfullscreen
 ></iframe>
 
-
 ---
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
-    All processors and the default.
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All processors, and where the Payment Gateways page lives.
   </Card>
   <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
     Every payment, refund and dispute.

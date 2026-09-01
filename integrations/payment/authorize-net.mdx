@@ -3,12 +3,11 @@ title: "Authorize.Net"
 description: "Connect Authorize.Net for card payments through your existing merchant account."
 ---
 
-Authorize.Net is a payment gateway that sits in front of your own merchant account.
+Authorize.Net is a payment gateway that sits in front of your own merchant account. Unlike Stripe and Square there is no OAuth flow — you paste three credentials.
 
 <Info>
-  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
-  which opens the **Payment Gateways** page. See
-  [Payment gateways](/settings/integrations) for the full picture.
+  All processors are configured in one place: **Settings → Integrations → Payment Gateway →
+  Configure**, which opens the **Payment Gateways** page.
 </Info>
 
 ---
@@ -17,14 +16,40 @@ Authorize.Net is a payment gateway that sits in front of your own merchant accou
 
 | Field | Where it is |
 | --- | --- |
-| **Login ID** | Authorize.Net → Account → API Credentials & Keys. |
+| **Login ID** | Authorize.Net → **Account → Settings → API Credentials & Keys**. |
 | **Transaction Key** | Generated on the same screen. |
 | **Signature Key** | Generated on the same screen. |
-| **Source Key** | The Accept.js client key, used for the secure card form. |
+
+<Warning>
+  Authorize.Net shows a Transaction Key and a Signature Key **once**, when you generate them. Copy
+  them straight into BeRocker.
+</Warning>
 
 ---
 
-## Set the default and the fee
+## Connect it
+
+<Steps>
+  <Step title="Open the Payment Gateways page">
+    **Settings → Integrations → Payment Gateway → Configure**, then find the **AuthorizeNet** card.
+  </Step>
+  <Step title="Paste the credentials">
+    Login ID, Transaction Key and Signature Key.
+  </Step>
+  <Step title="Set the Payment fee">
+    Type **0** if you do not charge extra for card payments.
+  </Step>
+  <Step title="Tick Set as default card payment option">
+    If Authorize.Net is the processor charges should run through.
+  </Step>
+  <Step title="Click Update Info">
+    To save.
+  </Step>
+</Steps>
+
+---
+
+## Good to know
 
 Authorize.Net does not report card funding directly, but its Accept.js response exposes the card
 BIN, which BeRocker resolves — so it **can** honour a credit-cards-only processing fee.
@@ -34,14 +59,23 @@ BIN, which BeRocker resolves — so it **can** honour a credit-cards-only proces
   sent half an hour ago is a dead URL — send a fresh one.
 </Warning>
 
-The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
+---
 
-- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
-- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+## The payment fee
 
-Only the fee of the processor set as your **default card payment option** is applied — it does not
-depend on which card the customer has. The customer sees the breakdown on the charge screen and on
-the emailed receipt.
+The **Payment fee (%)** is a percentage added on top of the amount you charge a customer:
+
+- Leave it empty or **0** → **no fee is added**. Charging $200 bills the customer exactly **$200.00**.
+- Enter **3** → a **3% fee** is added. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor you set as your **default card payment option** is applied — it does
+not depend on which card the customer has. The customer sees the breakdown on the charge screen and
+on the receipt emailed to them once the payment goes through.
+
+<Tip>
+  Tick **Set as default card payment option** on the processor you actually want charges to run
+  through. That checkbox, not the order of the cards, is what decides.
+</Tip>
 
 ---
 
@@ -55,14 +89,13 @@ the emailed receipt.
   allowfullscreen
 ></iframe>
 
-
 ---
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
-    All processors and the default.
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All processors, and where the Payment Gateways page lives.
   </Card>
   <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
     Every payment, refund and dispute.

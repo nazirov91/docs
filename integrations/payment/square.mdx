@@ -6,35 +6,59 @@ description: "Connect Square for online and in-person card payments."
 Square is a payment processing solution for both online and in-person transactions, including POS terminals.
 
 <Info>
-  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
-  which opens the **Payment Gateways** page. See
-  [Payment gateways](/settings/integrations) for the full picture.
+  All processors are configured in one place: **Settings → Integrations → Payment Gateway →
+  Configure**, which opens the **Payment Gateways** page.
 </Info>
 
 ---
 
-## What BeRocker asks for
+## Connect it
 
-Connect Square by authorising your Square account. BeRocker stores an **access token** and a
-**refresh token** with their expiry dates, and refreshes them automatically.
+<Steps>
+  <Step title="Open the Payment Gateways page">
+    **Settings → Integrations → Payment Gateway → Configure**, then find the **Square** card.
+  </Step>
+  <Step title="Set the Payment fee">
+    Type **0** if you do not surcharge for card payments.
+  </Step>
+  <Step title="Click Integrate">
+    Continue with the login flow on Square's side.
+  </Step>
+  <Step title="Set it as your default">
+    Tick **Set as default card payment option** if Square is the processor charges should run
+    through.
+  </Step>
+</Steps>
+
+The **Access token**, **Refresh token** and their expiry dates fill in automatically and are
+read-only.
 
 ---
 
-## Set the default and the fee
+## Good to know
 
 **Square reports card funding** (credit, debit or prepaid), so it can honour a credit-cards-only
 processing fee.
 
 Square payment links stay up until they are paid.
 
-The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
+---
 
-- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
-- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+## The payment fee
 
-Only the fee of the processor set as your **default card payment option** is applied — it does not
-depend on which card the customer has. The customer sees the breakdown on the charge screen and on
-the emailed receipt.
+The **Payment fee (%)** is a percentage added on top of the amount you charge a customer:
+
+- Leave it empty or **0** → **no fee is added**. Charging $200 bills the customer exactly **$200.00**.
+- Enter **3** → a **3% fee** is added. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor you set as your **default card payment option** is applied — it does
+not depend on which card the customer has. The customer sees the breakdown on the charge screen and
+on the receipt emailed to them once the payment goes through.
+
+<Tip>
+  Tick **Set as default card payment option** on the processor you actually want charges to run
+  through. That checkbox, not the order of the cards, is what decides.
+</Tip>
 
 ---
 
@@ -48,14 +72,13 @@ the emailed receipt.
   allowfullscreen
 ></iframe>
 
-
 ---
 
 ## Related
 
 <CardGroup cols={2}>
-  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
-    All processors and the default.
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All processors, and where the Payment Gateways page lives.
   </Card>
   <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
     Every payment, refund and dispute.

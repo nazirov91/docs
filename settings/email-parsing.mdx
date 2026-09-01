@@ -18,18 +18,23 @@ the prompt).
 
 ## 1. Connect Gmail
 
-On the **Settings** tab, connect the mailbox that receives the lead emails.
+On the **Settings** tab, under **Gmail connection**, click **Connect with Google** and choose the
+mailbox that receives the lead emails.
 
-- **Connected as** shows which account is linked.
-- **Test connection** checks it still works.
-- **Disconnect** revokes access.
+<Warning>
+  **Leave the broad consent checkbox enabled.** The page says it plainly:
 
-<Info>
-  Google shows two possible permission levels on the consent screen: **"Read your emails"**
-  (read-only) and **"Read, compose, send, and permanently delete all your email from Gmail"**. Grant
-  the narrower one unless BeRocker's setup instructions tell you otherwise — parsing only needs to
-  read.
-</Info>
+  > We need read-only access to your Gmail inbox to monitor incoming emails and turn matches into
+  > leads. On the next screen, please leave the **"Read, compose, send, and permanently delete all
+  > your email from Gmail"** consent checkbox **enabled** (we only use the read permission). Without
+  > it, parsing will not work.
+
+  Google does not offer a narrower scope that still lets BeRocker read the mailbox. Untick it and
+  the connection completes but nothing is ever parsed — you will see **Permission required**.
+</Warning>
+
+Once connected, **Connected as** shows which account is linked, **Test connection** checks it still
+works, and **Disconnect** revokes access.
 
 <Tip>
   Use a dedicated mailbox such as `leads@yourdomain.com` and forward provider emails to it. Pointing
@@ -40,7 +45,10 @@ On the **Settings** tab, connect the mailbox that receives the lead emails.
 
 ## 2. Set up filters
 
-A **filter** decides which emails get parsed. Each one has:
+A **filter** decides which emails get parsed. Until you add one you will see
+*"No filters yet. Add one to start parsing matching emails."*
+
+Click **Add filter**. Each filter has:
 
 | Field | What it does |
 | --- | --- |
@@ -72,20 +80,24 @@ then widen only if you find real leads being missed.
 
 ---
 
-## 3. Turn on automatic processing
+## 3. Set the AI prompt
 
-**Process incoming emails automatically** is the master switch. Leave it off while you tune your
-filters, then turn it on.
+> This prompt is sent to OpenAI together with the cleaned email body. The AI is asked to return
+> strict JSON with the lead fields (`first_name`, `last_name`, `phone`, `email`, `vehicles`,
+> `addresses`, etc.). Every save is recorded as a new version you can roll back to.
+
+**Current prompt (preview)** shows what is in use. If it says **No prompt configured**, nothing will
+be extracted yet — click **Edit prompt**.
+
+The editor keeps a **version history**, with a **What changed (AI)** summary for each version and a
+**Revert to current** action, so a change that makes parsing worse can be undone.
 
 ---
 
-## The AI prompt
+## 4. Turn on automatic processing
 
-The parser uses a prompt to pull structured lead data out of an email. **Current prompt (preview)**
-shows what is in use; if it says **No prompt configured**, nothing will be extracted yet.
-
-The prompt editor keeps a **version history**, with a **What changed (AI)** summary for each
-version and a **Revert to current** action, so a change that makes parsing worse can be undone.
+**Process incoming emails automatically** is the master switch. Leave it off while you tune your
+filters, then turn it on.
 
 <Warning>
   Change the prompt in small steps and watch the **Activity** tab afterwards. A prompt that reads
@@ -129,7 +141,8 @@ exactly which step went wrong.
 | Everything is **Filtered out** | Your rules are too strict, or the sender address is not what you assumed. Open one and read the real email. |
 | Leads are created with wrong fields | Look at the **Parsed JSON** on that row, then adjust the prompt. |
 | Real leads marked **Skipped (reply)** | The email looks like a reply. Provider changed their subject format — widen the filter. |
-| **Permission required** | Gmail access was revoked or narrowed. Reconnect. |
+| **Permission required** | The broad consent checkbox was unticked, or Gmail access was revoked. Reconnect and leave it enabled. |
+| **Connection is disabled until configuration above is completed** | Finish the Gmail connection before turning processing on. |
 
 ---
 
