@@ -11,75 +11,20 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "General Settings",
+        "tab": "Get Started",
         "groups": [
           {
-            "group": "Main",
+            "group": "Start here",
             "pages": [
-              "general-settings/profile-settings-in-berocker-crm",
-              "general-settings/add-and-configure-team-members-in-berocker-crm",
-              "general-settings/lead-sources",
-              "general-settings/choose-your-tools",
-              "general-settings/set-up-contact-channels-for-calls-sms-and-email",
-              "general-settings/business-info",
-              "general-settings/manage-templates",
-              "general-settings/notifications-setup"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Integrations",
-        "groups": [
-          {
-            "group": "Email",
-            "pages": [
-              "integrations/email/sendgrid/sendgrid-setup",
-              "integrations/email/sendgrid/configure-sendgrid-key",
-              "integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings",
-              "integrations/email/sendgrid/email-deliveribility"
+              "index",
+              "quickstart",
+              "get-started/tour",
+              "get-started/lead-journey",
+              "get-started/setup-checklist"
             ]
           },
           {
-            "group": "Phone",
-            "pages": [
-              "integrations/phone/how-to-configure-twilio",
-              "integrations/phone/telnyx/telnyx-account-verification",
-              "integrations/phone/vonage-add-user",
-              "integrations/phone/add-ring-central-phone-numbers"
-            ]
-          },
-          {
-            "group": "Payment",
-            "pages": [
-              "integrations/payment/stripe",
-              "integrations/payment/square",
-              "integrations/payment/revitpay",
-              "integrations/payment/zelle",
-              "integrations/payment/authorize-net",
-              "integrations/payment/quickbooks"
-            ]
-          },
-          {
-            "group": "Loadboards",
-            "pages": [
-              "integrations/loadboards/centraldispatch",
-              "integrations/loadboards/superdispatch"
-            ]
-          },
-          {
-            "group": "MCP",
-            "pages": [
-              "integrations/mcp/mcp-connection"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Onboarding",
-        "groups": [
-          {
-            "group": "ONBOARDING STEPS",
+            "group": "Your first week",
             "pages": [
               "onboarding/steps/step1",
               "onboarding/steps/step2",
@@ -90,18 +35,198 @@
         ]
       },
       {
+        "tab": "Using BeRocker",
+        "groups": [
+          {
+            "group": "Every day",
+            "pages": [
+              "using/inbox",
+              "using/shipments",
+              "using/follow-up",
+              "using/interactions",
+              "using/dispatch"
+            ]
+          },
+          {
+            "group": "Records",
+            "pages": [
+              "using/carriers",
+              "using/customers",
+              "using/terminals"
+            ]
+          },
+          {
+            "group": "Money and numbers",
+            "pages": [
+              "using/accounting",
+              "using/dashboard"
+            ]
+          },
+          {
+            "group": "Help inside the CRM",
+            "pages": [
+              "using/ai-assistant",
+              "using/tickets"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Settings",
+        "groups": [
+          {
+            "group": "Personal",
+            "pages": [
+              "settings/profile"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
+              "settings/business",
+              "settings/booking-page",
+              "settings/team-and-security",
+              "settings/billing"
+            ]
+          },
+          {
+            "group": "CRM settings",
+            "pages": [
+              "settings/integrations",
+              "settings/templates",
+              "settings/messaging-health",
+              "settings/notifications",
+              "settings/lead-sources",
+              "settings/lead-distribution",
+              "settings/pricing",
+              "settings/email-parsing",
+              "settings/carriers-and-loadboards",
+              "settings/reports"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "groups": [
+          {
+            "group": "Phone, SMS and WhatsApp",
+            "pages": [
+              "integrations/phone/how-to-configure-twilio",
+              "integrations/phone/add-ring-central-phone-numbers",
+              "integrations/phone/telnyx/telnyx-setup",
+              "integrations/phone/telnyx/telnyx-account-verification",
+              "integrations/phone/telnyx/telnyx-10dlc-setup",
+              "integrations/phone/vonage-add-user",
+              "integrations/phone/zoom-phone"
+            ]
+          },
+          {
+            "group": "Email",
+            "pages": [
+              "integrations/email/sendgrid/sendgrid-setup",
+              "integrations/email/sendgrid/configure-sendgrid-key",
+              "integrations/email/sendgrid/email-deliveribility",
+              "integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings",
+              "integrations/email/gmail"
+            ]
+          },
+          {
+            "group": "Load boards",
+            "pages": [
+              "integrations/loadboards/centraldispatch",
+              "integrations/loadboards/superdispatch",
+              "integrations/loadboards/longmile"
+            ]
+          },
+          {
+            "group": "Payments",
+            "pages": [
+              "integrations/payment/stripe",
+              "integrations/payment/square",
+              "integrations/payment/authorize-net",
+              "integrations/payment/revitpay",
+              "integrations/payment/quickbooks",
+              "integrations/payment/zelle"
+            ]
+          },
+          {
+            "group": "Leads and AI",
+            "pages": [
+              "integrations/lead-source-api",
+              "integrations/mcp/mcp-connection"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Support",
         "groups": [
           {
-            "group": "Contact Us",
+            "group": "Get help",
             "pages": [
-              "support/contact"
+              "support/contact",
+              "support/troubleshooting"
             ]
           }
         ]
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/general-settings/profile-settings-in-berocker-crm",
+      "destination": "/settings/profile"
+    },
+    {
+      "source": "/general-settings/add-and-configure-team-members-in-berocker-crm",
+      "destination": "/settings/team-and-security"
+    },
+    {
+      "source": "/general-settings/business-info",
+      "destination": "/settings/business"
+    },
+    {
+      "source": "/general-settings/choose-your-tools",
+      "destination": "/settings/integrations"
+    },
+    {
+      "source": "/general-settings/manage-templates",
+      "destination": "/settings/templates"
+    },
+    {
+      "source": "/general-settings/notifications-setup",
+      "destination": "/settings/notifications"
+    },
+    {
+      "source": "/general-settings/lead-sources",
+      "destination": "/integrations/lead-source-api"
+    },
+    {
+      "source": "/general-settings/add-a-new-lead-source-in-berocker-app",
+      "destination": "/settings/lead-sources"
+    },
+    {
+      "source": "/general-settings/set-up-contact-channels-for-calls-sms-and-email",
+      "destination": "/settings/profile"
+    },
+    {
+      "source": "/essentials/lead-source-api",
+      "destination": "/integrations/lead-source-api"
+    },
+    {
+      "source": "/enterprise/add-ring-central-phone-numbers",
+      "destination": "/integrations/phone/add-ring-central-phone-numbers"
+    },
+    {
+      "source": "/workflows/lead-journey",
+      "destination": "/get-started/lead-journey"
+    },
+    {
+      "source": "/onboarding/layout-descriptions/:slug*",
+      "destination": "/get-started/tour"
+    }
+  ],
   "logo": {
     "light": "/logo/light_1.svg",
     "dark": "/logo/dark_1.svg"

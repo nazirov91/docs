@@ -1,0 +1,232 @@
+---
+title: "Troubleshooting"
+description: "The problems that come up most often, and the fix for each — before you open a ticket."
+---
+
+Most support tickets are one of the things below. Try these first.
+
+---
+
+## Messaging
+
+<AccordionGroup>
+  <Accordion title='"No SMS / email sender available" in a conversation'>
+    You have no **default** contact for that channel.
+
+    **Settings → Profile → User Contacts** → add a contact with the right **Channel**, pick the
+    **Provider**, and tick **Is Default?**.
+
+    Remember: one number used for both calls and texts must be added **twice**, once per channel.
+
+    → [Profile](/settings/profile)
+  </Accordion>
+
+  <Accordion title="Texts are queued but not going out">
+    Open **Settings → Templates → Health**.
+
+    - A large **Held for the morning** count means quiet hours are holding them until the morning
+      release.
+    - A low **Texts per number per minute** with a big queue is slow by design — the **Backlog**
+      tile tells you how slow.
+    - A number marked **Needs attention** may be resting, if **Rest a failing number
+      automatically** is on.
+
+    → [Messaging health](/settings/messaging-health)
+  </Accordion>
+
+  <Accordion title="RingCentral calls and texts fail">
+    The number was never registered. **Settings → Profile → User Contacts** → click **Register**
+    next to the RingCentral number and complete the popup.
+
+    → [Profile](/settings/profile)
+  </Accordion>
+
+  <Accordion title="An automatic message never fired">
+    Three things to check, in order:
+
+    1. Is the event actually **Automatic**? Open **Settings → Templates → Events** and look at the
+       badge — many events are **Manual** by design.
+    2. Is at least one template for that event **Active**?
+    3. Is there a **Delay** set that has not elapsed yet?
+
+    → [Templates](/settings/templates)
+  </Accordion>
+
+  <Accordion title="A variable rendered as nothing">
+    The variable name does not match, or the lead has no value for that field. Copy the exact name
+    from the **Variables** tab.
+
+    → [Templates](/settings/templates)
+  </Accordion>
+
+  <Accordion title="Every customer gets the identical text">
+    You have one version of that template. Add three or four — BeRocker picks one at random each
+    time.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Email
+
+<AccordionGroup>
+  <Accordion title="Emails land in spam">
+    Set up **SPF**, **DKIM** and **DMARC** for your sending domain. Nothing else you do matters more.
+
+    → [Email deliverability](/integrations/email/sendgrid/email-deliveribility)
+  </Accordion>
+
+  <Accordion title='Gmail says "some permissions are missing"'>
+    Reconnect and approve **both** consent items: *"Read your email messages"* **and** *"Send email
+    on your behalf"*.
+
+    → [Gmail](/integrations/email/gmail)
+  </Accordion>
+
+  <Accordion title="Gmail worked and then stopped">
+    Google revoked the token — a password change, an admin policy change, or long inactivity.
+    Reconnect the mailbox.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Leads
+
+<AccordionGroup>
+  <Accordion title="A provider says they sent a lead and it is not here">
+    **Settings → Lead Management → Logs** records the raw incoming payload. If it is not there, it
+    never arrived — check the provider is posting to the right endpoint URL.
+
+    → [Lead source API](/integrations/lead-source-api)
+  </Accordion>
+
+  <Accordion title="Leads arrive but nobody is assigned">
+    Either every agent's quota for that day is 0, or the lead arrived outside everyone's shift hours
+    and there is no **after-hours fallback** set.
+
+    → [Lead distribution](/settings/lead-distribution)
+  </Accordion>
+
+  <Accordion title="Leads are not being quoted automatically">
+    Check **Settings → Pricing → Carrier pricing engine**. If it says **Auto Price is OFF**, new
+    leads are quoted by hand on purpose.
+
+    A lead containing a **custom** (off-catalogue) vehicle also skips the automatic quote and is
+    routed to an agent deliberately.
+
+    → [Pricing](/settings/pricing)
+  </Accordion>
+
+  <Accordion title="Every parsed email is Filtered out">
+    Your filter rules are stricter than reality. Open one of the rows on the **Activity** tab and
+    read the actual email — the sender address is usually not what you assumed.
+
+    → [Email parsing](/settings/email-parsing)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Load boards and dispatch
+
+<AccordionGroup>
+  <Accordion title="A load got picked up on both boards">
+    Turn on **Unpost from the other loadboard when dispatched**.
+
+    → [Carriers and Loadboards](/settings/carriers-and-loadboards)
+  </Accordion>
+
+  <Accordion title="Central Dispatch will not connect">
+    The Central Dispatch API requires the **Premium** plan. The Core plan is not enough.
+
+    → [Central Dispatch](/integrations/loadboards/centraldispatch)
+  </Accordion>
+
+  <Accordion title='Dispatch map says "Map unavailable"'>
+    Your organization has no Mapbox access token configured. The queues still work. Ask your admin
+    or [contact support](/support/contact).
+  </Accordion>
+
+  <Accordion title="Loads show an estimated position, not live GPS">
+    Live GPS comes from Super Dispatch once a carrier is secured. Everything else is estimated from
+    the pickup and delivery dates — the map labels which is which.
+
+    → [Dispatch](/using/dispatch)
+  </Accordion>
+
+  <Accordion title="A Super Dispatch order never appeared in the CRM">
+    **Settings → Carriers and Loadboards → Super Dispatch sync** lists orders that could not be
+    imported, with a reason and a retry.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Payments
+
+<AccordionGroup>
+  <Accordion title="A payment link stopped working">
+    Authorize.Net links expire after **15 minutes** and can only be paid once. Stripe Checkout links
+    last 24 hours. Square and RevitPay links stay up until paid. Send a fresh link.
+
+    → [Accounting](/using/accounting)
+  </Accordion>
+
+  <Accordion title="Customers do not recognise the charge on their statement">
+    Set the **descriptor on customer statements** in **Settings → Business → Business details**.
+    An unrecognisable descriptor is the most common cause of chargebacks.
+
+    → [Business](/settings/business)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Access and accounts
+
+<AccordionGroup>
+  <Accordion title="A menu item or button is missing for one user">
+    It is their **role**, not a bug. Roles carry permissions, and permissions are what show or hide
+    screens. An admin can change the role, or **Request a new role** from Team and security.
+
+    → [Team and security](/settings/team-and-security)
+  </Accordion>
+
+  <Accordion title="My own notifications show up in Interactions">
+    Your notification SMS number or email is the same as a customer-facing contact. Use different
+    ones.
+
+    → [Notifications](/settings/notifications)
+  </Accordion>
+
+  <Accordion title="Scheduled messages go out at the wrong hour">
+    The organization **time zone** is wrong. Quiet hours and every schedule are worked out from it.
+
+    → [Business](/settings/business)
+  </Accordion>
+
+  <Accordion title="Billing says Past due">
+    Update the card on file before the grace window closes.
+
+    → [Billing](/settings/billing)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Still stuck?
+
+<CardGroup cols={2}>
+  <Card title="Open a ticket" icon="list-check" href="/using/tickets">
+    From **Tickets** in the CRM sidebar. Attach a screenshot.
+  </Card>
+  <Card title="Contact support" icon="life-ring" href="/support/contact">
+    WhatsApp group, phone or email.
+  </Card>
+</CardGroup>
+
+<Tip>
+  When you report something, include the **lead number** and roughly **when** it happened. It cuts
+  resolution time more than any description.
+</Tip>

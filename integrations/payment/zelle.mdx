@@ -1,11 +1,57 @@
 ---
-title: "Zelle Integration"
-category: "BeRocker CRM settings"
-published: true
-order: 9
-created_at: "2025-06-29T09:17:41.503684+00:00"
-updated_at: "2025-06-29T09:17:41.503684+00:00"
+title: "Zelle and manual payments"
+description: "Record payments the customer sends themselves — Zelle, Venmo, PayPal, Cash App and anything else."
 ---
+
+Zelle is a U.S. instant bank-to-bank transfer service. In BeRocker it is a **record-only** method: the customer sends the money themselves and an agent records it with a receipt attached. No card is ever charged.
+
+<Info>
+  All processors are configured in one place: **Settings → Integrations → Payment Gateway →
+  Configure**, which opens the **Payment Gateways** page.
+</Info>
+
+---
+
+## Set up Zelle
+
+<Steps>
+  <Step title="Open the Payment Gateways page">
+    **Settings → Integrations → Payment Gateway → Configure**, then find the **Zelle** card.
+  </Step>
+  <Step title="Enter your Zelle Email and Zelle Number">
+    These are the details customers send money to, and they appear on the payment instructions the
+    customer receives.
+  </Step>
+  <Step title="Click Update Info">
+    To save.
+  </Step>
+</Steps>
+
+There is no Payment fee for Zelle — nothing is processed, so there is nothing to surcharge.
+
+---
+
+## The other manual methods
+
+The rest need no configuration at all. When recording a payment an agent can choose:
+
+| Method | |
+| --- | --- |
+| **Zelle** | Bank-to-bank transfer. |
+| **Venmo** | |
+| **PayPal** | |
+| **Cash App** | |
+| **Other** | The catch-all — a wire, a check, cash, or a regional app. |
+
+<Warning>
+  A recorded payment is a bookkeeping entry, not a charge. Confirm the money actually arrived before
+  you record it, and attach the receipt.
+</Warning>
+
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/How_to_Set_Up_Zelle_Integration_in_BeRocker__CU4_GeGCSweEhGV1rUfLiw?as=scrollable"
@@ -17,4 +63,19 @@ updated_at: "2025-06-29T09:17:41.503684+00:00"
 
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All processors, and where the Payment Gateways page lives.
+  </Card>
+  <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
+    Every payment, refund and dispute.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Whether the card is charged automatically on booking.
+  </Card>
+  <Card title="Pricing" icon="sliders" href="/settings/pricing">
+    Deposit brackets.
+  </Card>
+</CardGroup>

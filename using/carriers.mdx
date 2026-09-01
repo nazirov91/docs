@@ -1,0 +1,95 @@
+---
+title: "Carriers"
+description: "Your carrier book — MC and DOT numbers, verification, terms, load history, documents and notes."
+---
+
+**Carriers** is the record of every carrier you have worked with. Carriers arrive here
+automatically the first time you dispatch a load to them from a load board, and you can add one
+by hand at any time.
+
+<Frame>
+  <img src="/images/app/carriers.png" alt="The Carriers list with stats across the top and the carrier table below" />
+</Frame>
+
+---
+
+## The list
+
+The stats strip at the top counts your book: total, active, disabled, verified, new this month,
+how many have hauled for you, total loads and the average number of loads per carrier — plus your
+top carriers by load count.
+
+The table itself shows each carrier's name and contact, MC and DOT numbers, status, payment terms
+and how many loads they have run for you. Sort by any column, or search by name, MC, DOT, phone or
+email.
+
+---
+
+## Verification
+
+A carrier can carry a **verification** result from a LongMile check: a status, a score, a band and
+a recommendation, with the date it was checked.
+
+That check looks at federal records — authority, insurance, safety history, bond, and
+chameleon-carrier detection — and gives you a 100-point score so you are not deciding on gut feel.
+See [LongMile](/integrations/loadboards/longmile).
+
+<Info>
+  A carrier that has never been checked shows no verification, which is different from failing one.
+</Info>
+
+---
+
+## The carrier profile
+
+Open a carrier and you get five tabs:
+
+<Tabs>
+  <Tab title="Loads">
+    Every load this carrier has hauled for you, with the rate paid and the outcome. Opens on this
+    tab, because it is the question you usually have.
+  </Tab>
+  <Tab title="Profile">
+    Name, contact person, phone, email, address, website, company type, MC and DOT, DOT certificate
+    and insurance certificate, plus their default **payment terms** in days.
+  </Tab>
+  <Tab title="Documents">
+    The general document shelf — signed carrier agreements, W-9s, anything you keep on file.
+  </Tab>
+  <Tab title="Due diligence">
+    Compliance paperwork kept separately from general documents, and counted separately, so an
+    audit trail stays an audit trail.
+  </Tab>
+  <Tab title="Notes">
+    Free-text notes from your team. Use it for the things that never fit a field — who to ask for,
+    which lanes they actually run, why you stopped using them.
+  </Tab>
+</Tabs>
+
+---
+
+## Payment terms
+
+Each carrier has a **terms** value in days — how long after delivery you pay them. It is set on the
+Profile tab and is used as the default when you post a load with that carrier.
+
+Amounts owed and paid are tracked in [Accounting](/using/accounting).
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Dispatch" icon="map" href="/using/dispatch">
+    Where the loads these carriers are running show up.
+  </Card>
+  <Card title="Carriers and Loadboards" icon="gear" href="/settings/carriers-and-loadboards">
+    Posting, unposting and order import settings.
+  </Card>
+  <Card title="Central Dispatch" icon="plug" href="/integrations/loadboards/centraldispatch">
+    Connect the board.
+  </Card>
+  <Card title="Super Dispatch" icon="plug" href="/integrations/loadboards/superdispatch">
+    Connect the board.
+  </Card>
+</CardGroup>

@@ -1,0 +1,91 @@
+---
+title: "Telnyx — connect it to BeRocker"
+description: "Get the four Telnyx values BeRocker needs and paste them into the integration."
+---
+
+Telnyx is a virtual phone system for calls and SMS. Connecting it to BeRocker takes four values from
+the Telnyx Portal.
+
+<Info>
+  Do the [account verification](/integrations/phone/telnyx/telnyx-account-verification) first.
+  A trial account cannot send production traffic.
+</Info>
+
+---
+
+## What you need from Telnyx
+
+From the [Telnyx Portal](https://portal.telnyx.com/):
+
+| Value | Where it is |
+| --- | --- |
+| **API Key** | API Keys. Create one if you have none. |
+| **Public Key** | The public key that pairs with it — used to verify inbound webhooks. |
+| **Connection ID** | Voice → SIP Connections (or Programmable Voice), on the connection you will call from. |
+| **Messaging Profile ID** | Messaging → Messaging Profiles, on the profile your numbers belong to. |
+
+<Warning>
+  The API key is a credential for your whole Telnyx account. Paste it into BeRocker and nowhere else.
+</Warning>
+
+---
+
+## Connect it
+
+<Steps>
+  <Step title="Open Integrations">
+    **Settings → Integrations → Telnyx → Configure**.
+  </Step>
+  <Step title="Paste the four values">
+    API Key, Public Key, Connection ID and Messaging Profile ID.
+  </Step>
+  <Step title="Set Status to Active and save">
+    The card should show **Status: Active** in green.
+  </Step>
+  <Step title="Point your number at it">
+    **Settings → Profile → User Contacts** → add your Telnyx number with **Provider = Telnyx**, once
+    with **Channel = Call** and once with **Channel = SMS**, and tick **Is Default?**.
+
+    → [Profile](/settings/profile)
+  </Step>
+</Steps>
+
+---
+
+## Before you send at volume
+
+US application-to-person SMS needs **10DLC registration**. Without it, carriers filter your messages
+and they simply stop arriving.
+
+→ [Telnyx 10DLC setup](/integrations/phone/telnyx/telnyx-10dlc-setup)
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Status stays **Not connected** | A wrong or rotated API key. Regenerate it in the Telnyx Portal and paste the new one. |
+| Calls fail, texts work | The **Connection ID** is wrong, or the number is not on that connection. |
+| Texts fail, calls work | The **Messaging Profile ID** is wrong, or the number is not on that profile. |
+| Messages send but never arrive | 10DLC registration, then [Messaging health](/settings/messaging-health). |
+| Inbound messages never appear | The **Public Key** is wrong, so inbound webhooks fail verification. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Account verification" icon="id-card" href="/integrations/phone/telnyx/telnyx-account-verification">
+    Get off the trial account first.
+  </Card>
+  <Card title="10DLC setup" icon="shield" href="/integrations/phone/telnyx/telnyx-10dlc-setup">
+    Register before you send at volume.
+  </Card>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Point your number at Telnyx.
+  </Card>
+  <Card title="Messaging health" icon="heart-pulse" href="/settings/messaging-health">
+    Delivery rates per number.
+  </Card>
+</CardGroup>

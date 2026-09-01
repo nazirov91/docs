@@ -1,11 +1,63 @@
 ---
-title: "Configure SendGrid API Key"
-category: "BeRocker CRM settings"
-published: true
-order: 3
-created_at: "2025-06-29T07:46:46.171496+00:00"
-updated_at: "2025-06-29T07:46:46.171496+00:00"
+title: "SendGrid — connect it to BeRocker"
+description: "Paste your SendGrid API key and sending domain into BeRocker so email starts going out."
 ---
+
+Once your SendGrid account exists and your domain is authenticated, connecting it to BeRocker takes
+two values.
+
+<Info>
+  Not done yet? Start with
+  [SendGrid — account and domain setup](/integrations/email/sendgrid/sendgrid-setup).
+</Info>
+
+---
+
+## What BeRocker asks for
+
+| Field | Where it is |
+| --- | --- |
+| **API Key** | SendGrid → **Settings → API Keys → Create API Key**. Choose **Full Access** or, at minimum, Mail Send. |
+| **Domain** | The sending domain you authenticated, e.g. `mail.yourcompany.com`. |
+
+<Warning>
+  SendGrid shows an API key **once**. Copy it straight into BeRocker — if you lose it you have to
+  create a new one.
+</Warning>
+
+---
+
+## Connect it
+
+<Steps>
+  <Step title="Open Integrations">
+    **Settings → Integrations → SendGrid → Configure**.
+  </Step>
+  <Step title="Paste the API key and domain">
+    Set **Status** to Active.
+  </Step>
+  <Step title="Save">
+    The card should show **Status: Active** in green.
+  </Step>
+  <Step title="Point your email address at it">
+    **Settings → Profile → User Contacts** → add an entry with **Channel = Email**,
+    **Provider = SendGrid**, your sending address, and tick **Is Default?**.
+
+    → [Profile](/settings/profile)
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/sendgrid-key-placement.png" alt="Where the SendGrid API key goes in BeRocker" />
+</Frame>
+
+---
+
+## Step-by-step walkthrough
+
+<Info>
+  The recording predates the **Domain** field. Fill that in too — the steps are otherwise identical.
+</Info>
 
 <iframe
   src="https://scribehow.com/embed/How_To_Configure_SendGrid_API_Key_in_BeRocker_Settings__5jfukj4QRWqrNFT6VYLD7Q?as=scrollable"
@@ -17,4 +69,33 @@ updated_at: "2025-06-29T07:46:46.171496+00:00"
 
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Before you send at volume
+
+Domain authentication alone is not enough. Get **SPF**, **DKIM** and **DMARC** right or your quotes
+end up in spam.
+
+→ [Email deliverability](/integrations/email/sendgrid/email-deliveribility)
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Status stays **Not connected** | The API key was truncated on copy, or it lacks Mail Send permission. |
+| Emails send but land in spam | SPF, DKIM and DMARC on the sending domain. |
+| Emails show "via sendgrid.net" | Domain authentication is not complete in SendGrid. |
+| Cannot pick SendGrid on a contact | The integration is not Active yet. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Email deliverability" icon="shield" href="/integrations/email/sendgrid/email-deliveribility">
+    SPF, DKIM and DMARC.
+  </Card>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Set your default email contact.
+  </Card>
+</CardGroup>

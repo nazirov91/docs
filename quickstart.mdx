@@ -1,76 +1,114 @@
 ---
-title: Quickstart
+title: "Quickstart"
+description: "Get your BeRocker account from empty to taking live leads in about 30 minutes."
 ---
 
-# 🚀 Quickstart Guide
+Work through these seven steps in order. Each one links to the full page if you want the detail.
 
-Welcome to **BeRocker CRM** – your all-in-one platform for managing auto transport leads, dispatches, communications, and payments.  
-Follow this guide to get up and running in just a few minutes.
-
----
-
-## 1. Sign In
-
-- Go to [app.berocker.com](https://app.berocker.com)
-- Log in with your BeRocker account credentials
+<Info>
+  Steps 1–3 are for **every user**. Steps 4–7 need an admin or manager role.
+</Info>
 
 ---
 
-## 2. Set Up Your Profile
+## 1. Sign in
 
-- Complete your [Profile Settings](/general-settings/profile-settings-in-berocker-crm)
-- Add your [Business Info](/general-settings/business-info)
+Go to [app.berocker.com](https://app.berocker.com) and sign in with the email and password your
+admin gave you.
 
----
-
-## 3. Add Your Team
-
-- Invite and configure [Team Members](/general-settings/add-and-configure-team-members-in-berocker-crm)
-- Assign roles and permissions
+If your company requires two-factor authentication you will be asked for a code the first time.
+See [Team and security](/settings/team-and-security).
 
 ---
 
-## 4. Connect Your Communication Tools
+## 2. Set up your profile
 
-- Pick your preferred phone and messaging providers:
-  - [Twilio](/integrations/phone/how-to-configure-twilio)
-  - [RingCentral](/integrations/phone//add-ring-central-phone-numbers)
-- Set up [SMS/Email Channels](/general-settings/set-up-contact-channels-for-calls-sms-and-email)
+**Settings → Profile.**
 
----
+Add the phone number and email address you will use to talk to customers, and mark one of each as
+default. If you use RingCentral, click **Register** next to the number to authorise it.
 
-## 5. Connect Your Email
+<Warning>
+  Until you add a default SMS/call contact you cannot text or call customers from a chat.
+</Warning>
 
-- [Mailgun](/integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings)
-- [SendGrid](/integrations/phone/sendgrid/how-to-configure-sendgrid-api-key-in-berocker-settings)
-
----
-
-## 6. Connect Your Load Boards
-
-- [Central Dispatch](/integrations/loadboards/centraldispatch)
-- [Super Dispatch](/integrations/loadboards/how-to-configure-super-dispatch-api-integration-settings)
+Full page: [Profile](/settings/profile)
 
 ---
 
-## 7. Set Up Payments
+## 3. Learn the layout
 
-- Choose your payment method:
-  - [Stripe](/integrations/payment/how-to-set-up-stripe-integration)
-  - [Square](/integrations/payment/how-to-set-square-integration)
-  - [Zelle](/integrations/payment/how-to-set-up-zelle-integration-in-berocker)
-  - [Authorize.Net](/integrations/payment/set-up-authorize-net-integration-in-berocker)
-  - [RevitPay](/integrations/payment/how-to-configure-revitpay-settings-in-berocker)
+Five minutes here saves hours later — [Tour the CRM](/get-started/tour).
+
+The short version: **Inbox** is where you talk to customers, **Shipments** is the table of every
+lead, **Follow up** tells you who needs you today, and **Dispatch** is the live map of loads on the
+road.
 
 ---
 
-## 🎉 You’re Ready!
+## 4. Fill in your company details
 
-Once your tools are connected, you can:
+**Settings → Business.**
 
-- Start importing leads
-- Manage quotes and dispatches
-- Track communications in one place
-- Collect payments seamlessly
+Account name, address, time zone, MC and DOT numbers, logo and brand colours. These appear on every
+quote, contract, invoice and email you send.
 
-👉 Explore the rest of the docs to master every feature.
+Full page: [Business](/settings/business)
+
+---
+
+## 5. Connect your tools
+
+**Settings → Integrations.**
+
+Connect at least one from each row you need:
+
+| What for | Options |
+| --- | --- |
+| Calls and SMS | Twilio, RingCentral, Telnyx, Vonage, Quo, Zoom Phone |
+| Email | SendGrid, Mailgun, Gmail |
+| Load boards | Central Dispatch, Super Dispatch, LongMile |
+| Payments | Stripe, Square, Authorize.Net, RevitPay, QuickBooks |
+
+Full page: [Integrations](/settings/integrations)
+
+---
+
+## 6. Point your leads at BeRocker
+
+**Settings → Lead Management → Lead sources.**
+
+Create one lead source per website or provider, then copy its endpoint URL and give it to that
+provider — or POST your website form to it.
+
+Full pages: [Lead sources](/settings/lead-sources) · [Lead source API](/integrations/lead-source-api)
+
+---
+
+## 7. Add your team and split the leads
+
+**Settings → Team and security → People** to invite agents, then
+**Settings → Lead Management → Lead distribution** to set how many leads each agent gets per day.
+
+Full pages: [Team and security](/settings/team-and-security) · [Lead distribution](/settings/lead-distribution)
+
+---
+
+## Then check these before you go live
+
+<CardGroup cols={2}>
+  <Card title="Templates" icon="message" href="/settings/templates">
+    Read every quote and follow-up message that will go out in your name.
+  </Card>
+  <Card title="Pricing" icon="dollar-sign" href="/settings/pricing">
+    Choose the pricing engine, set your correction factor and your deposit.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Colours, wording and whether the card is charged automatically.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/settings/notifications">
+    Decide what pings you and where.
+  </Card>
+</CardGroup>
+
+Or use the full [setup checklist](/get-started/setup-checklist).

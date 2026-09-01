@@ -1,10 +1,6 @@
 ---
-title: 'Integrating with Central Dispatch'
-category: 'BeRocker CRM settings'
-published: true
-order: 1
-created_at: '2025-06-29T06:53:03.017357+00:00'
-updated_at: '2026-02-16T00:00:00.000+00:00'
+title: "Central Dispatch"
+description: "Connect Central Dispatch so your team can post loads and dispatch carriers without leaving the CRM."
 ---
 
 ![Central Dispatch Integration Banner](/images/cd/berocker_cd_.jpeg)
@@ -57,6 +53,30 @@ Make sure your Central Dispatch account is on the **Premium** plan.
   </Step>
 </Steps>
 
+---
+
+## What you get once it is connected
+
+| Capability | Where you see it |
+| --- | --- |
+| Post loads without leaving the CRM | The **Carrier** tab of a shipment |
+| Create and cancel dispatches | The same tab |
+| Pickup and delivery statuses | They move the shipment to **Picked Up** and **Delivered** |
+| Central Dispatch price as your pricing engine | [Pricing](/settings/pricing) |
+
+---
+
+## Then configure the behaviour
+
+In [Carriers and Loadboards](/settings/carriers-and-loadboards):
+
+- **Unpost from the other loadboard when dispatched** — recommended on, so a load covered on Central
+  Dispatch does not stay live on Super Dispatch.
+- **Apply Central Dispatch price updates** — off by default. Either way, a price change on the board
+  is recorded on the lead's timeline with the old and new price.
+
+---
+
 ## Central Dispatch Support
 
 If you encounter any issues with Central Dispatch or are interested in an Enterprise solution, contact the Central Dispatch team directly:
@@ -67,3 +87,12 @@ If you encounter any issues with Central Dispatch or are interested in an Enterp
 ## Need Help?
 
 If you have any questions, contact the BeRocker team through your Slack support channel, call `302-313-0966`, or email `info@berocker.com`.
+
+<CardGroup cols={2}>
+  <Card title="Carriers and Loadboards" icon="gear" href="/settings/carriers-and-loadboards">
+    Unposting and price updates.
+  </Card>
+  <Card title="Dispatch" icon="map" href="/using/dispatch">
+    Loads on the road.
+  </Card>
+</CardGroup>

@@ -1,0 +1,108 @@
+---
+title: "Gmail"
+description: "Send and receive customer emails through each agent's own Gmail or Google Workspace mailbox."
+---
+
+The Gmail integration lets each team member send and receive chat emails through **their own** Gmail
+or Google Workspace mailbox — so replies come from a real, familiar address rather than a shared
+system sender.
+
+<Info>
+  This is different from [email parsing](/settings/email-parsing), which reads a mailbox to create
+  leads. Gmail here is about *conversations*: sending and receiving customer email in the
+  [Inbox](/using/inbox).
+</Info>
+
+---
+
+## Connecting your mailbox
+
+<Steps>
+  <Step title="Open the Gmail integration">
+    **Settings → Integrations → Gmail → Configure**, or connect your own mailbox from
+    **Settings → Profile → Gmail connection**.
+  </Step>
+  <Step title="Sign in with Google">
+    Choose the account you want to send and receive from.
+  </Step>
+  <Step title="Approve BOTH permissions">
+    <Warning>
+      On Google's consent screen you must approve **both**:
+
+      - **"Read your email messages"**
+      - **"Send email on your behalf"**
+
+      Without both, the connection cannot complete. Google's screen lets you untick one — if you do,
+      BeRocker will tell you permissions are missing and you will have to reconnect.
+    </Warning>
+  </Step>
+  <Step title="Test the connection">
+    **Test connection** confirms Gmail is reachable and that both permissions were granted.
+  </Step>
+</Steps>
+
+---
+
+## Connected accounts
+
+The Gmail modal lists every connected mailbox in your organization, with a test and a disconnect
+action for each.
+
+If you see **"Some accounts need to be reconnected"**, one or more mailboxes lost their
+authorisation — Google revokes tokens when a password changes, when a Workspace admin changes
+policy, or after long inactivity. Reconnect them; those agents cannot send email until you do.
+
+---
+
+## Using it
+
+Once connected, add an email contact in **Settings → Profile → User Contacts** with
+**Provider = Gmail** and tick **Is Default?**. See [Profile](/settings/profile).
+
+Outbound emails then go through your mailbox, and replies come back into the conversation thread.
+
+---
+
+## Gmail vs SendGrid and Mailgun
+
+| | Gmail | SendGrid / Mailgun |
+| --- | --- | --- |
+| **Sends as** | Your personal mailbox | Your domain, through a sending service |
+| **Best for** | One-to-one replies from a named agent | Volume: quotes, follow-ups, notifications |
+| **Deliverability** | Google's, on your account | Yours to configure — SPF, DKIM, DMARC |
+| **Daily limits** | Google's sending limits apply | Much higher |
+
+<Tip>
+  Most brokerages use both: a bulk provider for automated messages, and Gmail for the agent's own
+  replies. They coexist — each user contact picks its own provider.
+</Tip>
+
+---
+
+## Troubleshooting
+
+| Symptom | Fix |
+| --- | --- |
+| **"Gmail is reachable, but some permissions are missing"** | Reconnect and approve **both** consent items. |
+| Emails stop sending after weeks of working | The token was revoked. Reconnect. |
+| Replies do not appear in the conversation | The read permission was not granted, or the mailbox is not the one the customer replied to. |
+| Hitting a sending limit | Move automated messages to SendGrid or Mailgun and keep Gmail for personal replies. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Email parsing" icon="envelope-open-text" href="/settings/email-parsing">
+    Turning inbound lead emails into shipments.
+  </Card>
+  <Card title="Email deliverability" icon="shield" href="/integrations/email/sendgrid/email-deliveribility">
+    SPF, DKIM and DMARC for your domain.
+  </Card>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Set Gmail as your default email contact.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All email providers.
+  </Card>
+</CardGroup>

@@ -1,0 +1,158 @@
+---
+title: "Integrations"
+description: "Connect the phone, email, load board and payment services your business already uses — one card at a time."
+---
+
+**Settings → Integrations** is where BeRocker plugs into the outside world. Nothing goes out — no
+text, no email, no load board post — until something here is connected.
+
+<Frame>
+  <img src="/images/settings/integrations.png" alt="The Integrations page grouped into Communications, Email, Load boards and Other" />
+</Frame>
+
+Every card shows the provider, a one-line description, its **Status** (**Active** or
+**Not connected**), and a **Configure** or **Integrate** button.
+
+<Info>
+  You only need the services you actually use. For a working CRM you need at least **one
+  communication provider** and **one email provider**.
+</Info>
+
+---
+
+## Communications
+
+| Provider | What it does |
+| --- | --- |
+| **Twilio** | A cloud platform for SMS, voice and WhatsApp API, automating customer interactions. |
+| **Vonage** | A cloud communications platform for voice, SMS and video APIs. |
+| **Telnyx** | A virtual phone system with CRM and team chat integration, for businesses handling calls and SMS. |
+| **RingCentral** | Cloud telephony, video conferencing, team messaging and faxing. |
+| **Quo** | Sending and receiving SMS, plus call history and call recordings. |
+| **Zoom Phone** | Send and receive SMS/MMS and sync call history from Zoom Phone. Place calls in BeRocker or hand them off to the Zoom app. |
+
+<Warning>
+  **RingCentral is always shown as Active.** There is nothing to configure on this page — instead,
+  add your RingCentral number in **Settings → Profile → User Contacts** and click **Register**
+  next to it. See [Profile](/settings/profile).
+</Warning>
+
+Setup guides: [Twilio](/integrations/phone/how-to-configure-twilio) ·
+[RingCentral](/integrations/phone/add-ring-central-phone-numbers) ·
+[Telnyx](/integrations/phone/telnyx/telnyx-setup) ·
+[Vonage](/integrations/phone/vonage-add-user) ·
+[Zoom Phone](/integrations/phone/zoom-phone)
+
+---
+
+## Email
+
+| Provider | What it does |
+| --- | --- |
+| **SendGrid** | An email service by Twilio for bulk campaigns and transactional email automation. |
+| **Gmail** | Send and receive chat emails through each team member's own Gmail or Google Workspace mailbox. |
+| **Mailgun** | A developer-friendly API platform for transactional and marketing email deliverability. |
+
+Setup guides: [SendGrid](/integrations/email/sendgrid/sendgrid-setup) ·
+[Mailgun](/integrations/email/mailgun/how-to-configure-mailgun-in-berocker-settings) ·
+[Gmail](/integrations/email/gmail)
+
+<Tip>
+  Before you send a single campaign, read
+  [Email deliverability](/integrations/email/sendgrid/email-deliveribility). Getting SPF, DKIM and
+  DMARC right is the difference between the inbox and the spam folder.
+</Tip>
+
+---
+
+## Load boards
+
+| Provider | What it does |
+| --- | --- |
+| **CentralDispatch** | Coordinating auto transport — connecting brokers and logistics companies with carriers. |
+| **SuperDispatch** | A CRM and TMS for vehicle logistics, managing documents, tracking and payments. |
+| **LongMile** | Carrier and broker intelligence built on federal records: 100-point scoring, authority and insurance checks, safety analysis, bond checks and chameleon carrier detection. |
+
+Setup guides: [Central Dispatch](/integrations/loadboards/centraldispatch) ·
+[Super Dispatch](/integrations/loadboards/superdispatch) ·
+[LongMile](/integrations/loadboards/longmile)
+
+Posting behaviour — auto-unposting, order import and price updates — is configured separately in
+[Carriers and Loadboards](/settings/carriers-and-loadboards).
+
+---
+
+## Payment Gateway
+
+> Expand your business by accepting payments from customers.
+
+**Configure** opens **Settings → Integrations → Payment Gateways**, where you connect the
+processors and choose your default.
+
+<Frame>
+  <img src="/images/settings/payment-gateways.png" alt="The Payment Gateways page" />
+</Frame>
+
+| Processor | Type |
+| --- | --- |
+| [Stripe](/integrations/payment/stripe) | Charges the card |
+| [Square](/integrations/payment/square) | Charges the card |
+| [Authorize.Net](/integrations/payment/authorize-net) | Charges the card |
+| [RevitPay](/integrations/payment/revitpay) | Charges the card |
+| [QuickBooks](/integrations/payment/quickbooks) | Charges the card, plus accounting sync |
+| [Zelle and other manual methods](/integrations/payment/zelle) | Record-only — Zelle, Venmo, PayPal, Cash App, Other |
+
+<Info>
+  Only **Stripe**, **Square** and **Authorize.Net** can tell whether a saved card is credit, debit or
+  prepaid. If you pass card processing fees on to customers and waive them for debit, your default
+  processor has to be one of those three. See [Accounting](/using/accounting).
+</Info>
+
+---
+
+## Reconnecting
+
+OAuth connections expire or get revoked. When one does, BeRocker shows a banner asking you to
+reconnect. Reconnect it rather than dismissing the banner — a disconnected load board silently stops
+posting.
+
+---
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What happens if I skip integrations?">
+    The CRM cannot send messages, place calls or post to load boards. Integrations are not optional
+    extras — they are what makes the CRM do anything.
+  </Accordion>
+  <Accordion title="Can I change providers later?">
+    Yes. Disconnect and connect a different one from this page at any time. Remember to update your
+    team's **User Contacts** to point at the new provider.
+  </Accordion>
+  <Accordion title="How do I know it worked?">
+    The card shows **Status: Active** in green.
+  </Accordion>
+  <Accordion title="Can I use two providers at once?">
+    Yes. RingCentral for calls and Twilio for SMS is a common setup. Each user contact picks its own
+    provider.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Point your own number at a connected provider.
+  </Card>
+  <Card title="Carriers and Loadboards" icon="truck" href="/settings/carriers-and-loadboards">
+    How posting behaves once the boards are connected.
+  </Card>
+  <Card title="MCP connection" icon="plug" href="/integrations/mcp/mcp-connection">
+    Use BeRocker from Claude.
+  </Card>
+  <Card title="Email parsing" icon="envelope" href="/settings/email-parsing">
+    Turn provider emails into leads.
+  </Card>
+</CardGroup>

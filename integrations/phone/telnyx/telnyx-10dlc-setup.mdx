@@ -1,0 +1,124 @@
+---
+title: "Telnyx — 10DLC registration"
+description: "Register your brand and campaign so US carriers actually deliver your SMS."
+---
+
+**10DLC** (10-digit long code) is how US carriers approve business SMS sent from ordinary phone
+numbers. Registration is not optional.
+
+<Warning>
+  Unregistered traffic is filtered **by the carriers**, not by Telnyx. Your messages will look sent
+  in BeRocker and never arrive on the phone. This is the single most common cause of
+  "our texts stopped working".
+</Warning>
+
+---
+
+## The order of operations
+
+<Steps>
+  <Step title="Verify your Telnyx account">
+    KYC and the upgrade off trial come first.
+
+    → [Telnyx account verification](/integrations/phone/telnyx/telnyx-account-verification)
+  </Step>
+  <Step title="Register your Brand">
+    In the Telnyx Portal, **Messaging → 10DLC → Brands**. You need your legal business name, EIN /
+    Tax ID, business address, website and a contact.
+
+    <Info>
+      The details must match your public filings exactly. A mismatch between your EIN and your legal
+      name is the usual reason a brand is rejected.
+    </Info>
+  </Step>
+  <Step title="Register a Campaign">
+    A campaign describes what you actually send. For a broker that is normally
+    **Customer Care** or **Mixed**.
+
+    You will be asked for **sample messages** and to confirm your opt-in and opt-out handling.
+  </Step>
+  <Step title="Attach your numbers">
+    Assign the campaign to the **Messaging Profile** your numbers belong to — the same profile whose
+    ID you pasted into BeRocker.
+  </Step>
+  <Step title="Wait for approval">
+    Brand vetting is usually quick; campaign approval can take a few business days.
+  </Step>
+</Steps>
+
+---
+
+## Sample messages that get approved
+
+Use real templates from your account, with variables filled in. For example:
+
+```text
+Hi John, your quote to ship a 2020 Toyota Camry from Miami, FL to Austin, TX
+is $985. Book here: https://book.example/24817 — Rocket Auto Transport.
+Reply STOP to opt out.
+```
+
+Two things reviewers look for:
+
+- The **business name** in the message.
+- A working **opt-out instruction**.
+
+<Tip>
+  Set the **Opt-out line** in
+  [**Settings → Templates → Health**](/settings/messaging-health) before you submit your samples,
+  and quote the footer text in the campaign application.
+</Tip>
+
+---
+
+## Opt-in
+
+You must be able to describe how customers consented to be texted. For a broker that is usually the
+quote form on your website — make sure the form says messages may be sent to the number given, and
+keep a screenshot of it for the application.
+
+---
+
+## After approval
+
+<Steps>
+  <Step title="Confirm the campaign is attached">
+    To the right Messaging Profile in the Telnyx Portal.
+  </Step>
+  <Step title="Send a test">
+    To your own phone from a conversation in BeRocker.
+  </Step>
+  <Step title="Watch the delivery numbers">
+    **Settings → Templates → Health** shows attempts, delivered, failed and the failure rate per
+    sending number.
+
+    → [Messaging health](/settings/messaging-health)
+  </Step>
+</Steps>
+
+---
+
+## Staying compliant
+
+- Keep the **Opt-out line** set, and honour STOP immediately — BeRocker records opt-outs automatically.
+- Keep **quiet hours** on so nobody gets a 3am text.
+- Keep your pacing sane. A burst from one number looks like spam to a carrier.
+- Watch the opt-out rate on the Health tab. A rising rate is your earliest warning.
+
+<Warning>
+  If your messaging changes materially — a new use case, a different kind of message — update your
+  campaign. Sending traffic that does not match your registered campaign gets numbers blocked.
+</Warning>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Connect Telnyx" icon="plug" href="/integrations/phone/telnyx/telnyx-setup">
+    The four values BeRocker needs.
+  </Card>
+  <Card title="Messaging health" icon="heart-pulse" href="/settings/messaging-health">
+    Delivery, opt-outs, quiet hours and pacing.
+  </Card>
+</CardGroup>

@@ -1,0 +1,140 @@
+---
+title: "Lead sources"
+description: "Create a source for each website or lead provider, get its endpoint URL, track what it costs, and import data."
+---
+
+A **lead source** is one place leads come from: your website, a paid provider, a referral programme.
+Creating one gives you a unique endpoint URL to hand to that provider, and lets BeRocker attribute
+leads and cost correctly.
+
+**Settings → Lead Management** has five tabs: **Lead sources**, **Lead distribution**, **Logs**,
+**Settings** and **Import data**.
+
+<Frame>
+  <img src="/images/settings/lead-sources.png" alt="The Lead sources table with the endpoint URL copy buttons" />
+</Frame>
+
+---
+
+## Adding a source
+
+<Steps>
+  <Step title="Click + Add new source">
+    On the **Lead sources** tab.
+  </Step>
+  <Step title="Fill it in">
+    | Field | Required | Notes |
+    | --- | --- | --- |
+    | **Lead source name** | Yes | e.g. `Main Website`. |
+    | **Plan name** | No | If your provider sells by plan. |
+    | **Per Lead Price ($)** | No | What one lead from this source costs you. |
+    | **Description** | No | Anything your team should know. |
+    | **Organization name**, **Website** | No | The provider's details. |
+    | **Upload logo** | No | Shown next to the source. |
+    | **Status** | Yes | Active, Inactive or Blocked. |
+  </Step>
+  <Step title="Save, then copy the endpoint URL">
+    The **URLs** column has a **Lead save URL** with a copy icon. That URL is what receives leads.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/lead-source-copy.png" alt="Copying a lead source endpoint URL" />
+</Frame>
+
+<Info>
+  Each source has its own unique URL, so authentication is built in — there is no separate API key
+  to send. Some sources also expose a separate **hot lead** URL for providers that flag urgent
+  leads.
+</Info>
+
+<Warning>
+  Treat the endpoint URL like a password. Anyone who has it can create leads in your account.
+</Warning>
+
+Give the URL to your provider, or POST your own website form to it. The exact payload format is
+documented in [Lead source API](/integrations/lead-source-api).
+
+---
+
+## Why per-lead price matters
+
+The **Per Lead Price** feeds every cost figure in the product:
+
+- **Lead Cost** and **Return on Lead Spend** on the [Dashboard](/using/dashboard)
+- **Cost / Booked Load**
+- The **Lead Sources** [report](/settings/reports) — total charges, average charge and ROI
+
+Leave it at 0 for free sources like your own website; that is correct, not lazy.
+
+---
+
+## Status
+
+| Status | Effect |
+| --- | --- |
+| **Active** | Leads are accepted. |
+| **Inactive** | Paused. |
+| **Blocked** | Rejected. |
+
+Use **Inactive** while you are between contracts rather than deleting the source — deleting loses
+the history behind your reports.
+
+---
+
+## Logs
+
+The **Logs** tab shows raw incoming lead payloads with source, customer, broker, events and the last
+replay. When a provider says "we sent it", this is where you check.
+
+---
+
+## Settings
+
+**Lead numbering** — the highest lead number used so far, so you can continue an existing numbering
+scheme when migrating from another CRM.
+
+**Status mapping** and **Trailer type mapping** translate a provider's own values into BeRocker's,
+so a provider that says `enclosed_trailer` lands as Enclosed rather than as nothing.
+
+---
+
+## Import data
+
+Bulk import from a **CSV file**. Choose what you are importing — **leads**, **customers** or
+**terminals** — upload, and import another file when it finishes.
+
+<Tip>
+  Import a handful of rows first and check the result before running the whole file.
+</Tip>
+
+---
+
+## Video walkthrough
+
+<iframe
+  src="https://scribehow.com/embed/Add_a_New_Lead_Source_in_Berocker_App__n8ftmf6BQb2imH8rqLcrJA?as=scrollable"
+  width="100%"
+  height="800"
+  frameborder="0"
+  allowfullscreen
+></iframe>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Lead source API" icon="code" href="/integrations/lead-source-api">
+    The payload format to POST.
+  </Card>
+  <Card title="Lead distribution" icon="share-nodes" href="/settings/lead-distribution">
+    Who gets these leads.
+  </Card>
+  <Card title="Email parsing" icon="envelope" href="/settings/email-parsing">
+    For providers that email instead of POST.
+  </Card>
+  <Card title="Reports" icon="file-lines" href="/settings/reports">
+    ROI per source.
+  </Card>
+</CardGroup>

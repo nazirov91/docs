@@ -1,11 +1,69 @@
 ---
-title: "Stripe Integration"
-category: "BeRocker CRM settings"
-published: true
-order: 5
-created_at: "2025-06-29T09:05:12.209632+00:00"
-updated_at: "2025-06-29T09:05:12.209632+00:00"
+title: "Stripe"
+description: "Connect Stripe so BeRocker can charge cards, issue payment links and process refunds."
 ---
+
+Stripe is a global payment platform for online payments, invoicing and subscription management.
+
+<Info>
+  All processors are configured in one place: **Settings → Integrations → Payment Gateway →
+  Configure**, which opens the **Payment Gateways** page.
+</Info>
+
+---
+
+## Connect it
+
+<Steps>
+  <Step title="Open the Payment Gateways page">
+    **Settings → Integrations → Payment Gateway → Configure**, then find the **Stripe** card.
+  </Step>
+  <Step title="Set the Payment fee">
+    Type **0** if you do not surcharge for card payments.
+  </Step>
+  <Step title="Click Integrate">
+    You are sent to Stripe to authorise the connection. Sign in with your Stripe admin account and
+    complete the OAuth flow.
+  </Step>
+  <Step title="Set it as your default">
+    Tick **Set as default card payment option** if Stripe is the processor charges should run
+    through.
+  </Step>
+</Steps>
+
+The **Access token**, **Refresh token** and their expiry dates fill in automatically and are
+read-only — BeRocker refreshes them for you. There are no keys to copy and paste.
+
+---
+
+## Good to know
+
+**Stripe reports card funding** (credit, debit or prepaid), so it can honour a credit-cards-only
+processing fee and waive it for debit and prepaid cards.
+
+Stripe Checkout payment links stay valid for **24 hours**.
+
+---
+
+## The payment fee
+
+The **Payment fee (%)** is a percentage added on top of the amount you charge a customer:
+
+- Leave it empty or **0** → **no fee is added**. Charging $200 bills the customer exactly **$200.00**.
+- Enter **3** → a **3% fee** is added. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor you set as your **default card payment option** is applied — it does
+not depend on which card the customer has. The customer sees the breakdown on the charge screen and
+on the receipt emailed to them once the payment goes through.
+
+<Tip>
+  Tick **Set as default card payment option** on the processor you actually want charges to run
+  through. That checkbox, not the order of the cards, is what decides.
+</Tip>
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/How_to_Set_Up_Stripe_Integration__wEepy7woQpizsnci9G20Yg?as=scrollable"
@@ -17,4 +75,19 @@ updated_at: "2025-06-29T09:05:12.209632+00:00"
 
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All processors, and where the Payment Gateways page lives.
+  </Card>
+  <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
+    Every payment, refund and dispute.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Whether the card is charged automatically on booking.
+  </Card>
+  <Card title="Pricing" icon="sliders" href="/settings/pricing">
+    Deposit brackets.
+  </Card>
+</CardGroup>

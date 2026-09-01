@@ -1,0 +1,184 @@
+---
+title: "Setup checklist"
+description: "Everything to configure before you go live, in the order that works."
+---
+
+Work top to bottom. Each item links to the page that explains it.
+
+---
+
+## Day one — the account
+
+<Steps>
+  <Step title="Company details">
+    **Settings → Business → Account details**: account name, address and — importantly — the correct
+    **time zone**. Everything scheduled runs off it.
+
+    → [Business](/settings/business)
+  </Step>
+  <Step title="Public and legal info">
+    **Business details**: legal name, website, privacy policy, support phone and email, MC and DOT
+    numbers, and the **descriptor on customer statements**.
+  </Step>
+  <Step title="Branding">
+    Logo, icon, brand colour and accent colour. They appear on every document and email.
+  </Step>
+  <Step title="Terms & Conditions">
+    The shipper and carrier agreement templates.
+  </Step>
+</Steps>
+
+---
+
+## Day one — connections
+
+<Steps>
+  <Step title="Phone and SMS">
+    Connect at least one of Twilio, RingCentral, Telnyx, Vonage, Quo or Zoom Phone.
+
+    → [Integrations](/settings/integrations)
+  </Step>
+  <Step title="Email">
+    Connect SendGrid, Mailgun or Gmail — and set up SPF, DKIM and DMARC before you send anything.
+
+    → [Email deliverability](/integrations/email/sendgrid/email-deliveribility)
+  </Step>
+  <Step title="Load boards">
+    Central Dispatch and/or Super Dispatch. Central Dispatch needs the **Premium** plan for API
+    access.
+
+    → [Central Dispatch](/integrations/loadboards/centraldispatch) ·
+    [Super Dispatch](/integrations/loadboards/superdispatch)
+  </Step>
+  <Step title="Payments">
+    Connect a processor and pick your default.
+
+    → [Payment gateways](/settings/integrations)
+  </Step>
+</Steps>
+
+---
+
+## Day two — leads in
+
+<Steps>
+  <Step title="Create your lead sources">
+    One per website or provider, each with its **per-lead price** so your ROI numbers work.
+
+    → [Lead sources](/settings/lead-sources)
+  </Step>
+  <Step title="Hand out the endpoint URLs">
+    Or point your own website form at one.
+
+    → [Lead source API](/integrations/lead-source-api)
+  </Step>
+  <Step title="Set up email parsing (if a provider emails you)">
+    Connect the mailbox, build a narrow filter, watch the Activity tab before turning automatic
+    processing on.
+
+    → [Email parsing](/settings/email-parsing)
+  </Step>
+</Steps>
+
+---
+
+## Day two — the team
+
+<Steps>
+  <Step title="Add your users">
+    Role, team, payout and contacts, in one flow.
+
+    → [Team and security](/settings/team-and-security)
+  </Step>
+  <Step title="Each agent sets up their own profile">
+    Their number and email, **Is Default?** ticked, and RingCentral **registered** if used.
+
+    → [Profile](/settings/profile)
+  </Step>
+  <Step title="Set lead distribution">
+    Quotas per agent per day, shift hours, and an **after-hours fallback**.
+
+    → [Lead distribution](/settings/lead-distribution)
+  </Step>
+  <Step title="Decide on two-factor">
+    Require it organization-wide, or per user.
+  </Step>
+</Steps>
+
+---
+
+## Before you turn it on — what customers will see
+
+<Steps>
+  <Step title="Read every template">
+    Out loud. Every quote, follow-up and status message goes out with your name on it.
+
+    → [Templates](/settings/templates)
+  </Step>
+  <Step title="Write three versions of each message you send often">
+    So repeat customers do not get identical texts.
+  </Step>
+  <Step title="Build your follow-up sequence">
+    First step within the hour; spread the rest; give it an end.
+  </Step>
+  <Step title="Set pricing">
+    Choose the engine, set the correction factor, set your deposit brackets. Decide whether Auto
+    Price is on.
+
+    → [Pricing](/settings/pricing)
+  </Step>
+  <Step title="Customise the booking page">
+    Wording, colours, and — carefully — whether the card is charged automatically.
+
+    → [Booking page](/settings/booking-page)
+  </Step>
+  <Step title="Check messaging health settings">
+    Quiet hours, the per-minute pace and the opt-out line.
+
+    → [Messaging health](/settings/messaging-health)
+  </Step>
+</Steps>
+
+---
+
+## Personal, per agent
+
+<Steps>
+  <Step title="Notifications">
+    Use a **different** number and email than your customer-facing contacts, then pick your events.
+
+    → [Notifications](/settings/notifications)
+  </Step>
+  <Step title="Set up your Shipments columns">
+    Once, for how your desk actually works.
+
+    → [Shipments](/using/shipments)
+  </Step>
+</Steps>
+
+---
+
+## Quick audit
+
+| Check | Where |
+| --- | --- |
+| Every agent has a **default SMS** and **default email** contact | [Team and security → User contacts](/settings/team-and-security) |
+| Time zone is right | [Business](/settings/business) |
+| At least one email and one phone provider is **Active** | [Integrations](/settings/integrations) |
+| Every lead source has a per-lead price | [Lead sources](/settings/lead-sources) |
+| Somebody is named as after-hours fallback | [Lead distribution](/settings/lead-distribution) |
+| Quote templates read like a person wrote them | [Templates](/settings/templates) |
+| A test lead makes it all the way to a quote | Send one to your own endpoint |
+
+---
+
+## Then
+
+<CardGroup cols={2}>
+  <Card title="Tour the CRM" icon="compass" href="/get-started/tour">
+    Show your team around.
+  </Card>
+  <Card title="How a lead becomes a load" icon="route" href="/get-started/lead-journey">
+    The workflow everyone should know.
+  </Card>
+</CardGroup>
