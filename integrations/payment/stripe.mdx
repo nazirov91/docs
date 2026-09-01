@@ -1,11 +1,44 @@
 ---
-title: "Stripe Integration"
-category: "BeRocker CRM settings"
-published: true
-order: 5
-created_at: "2025-06-29T09:05:12.209632+00:00"
-updated_at: "2025-06-29T09:05:12.209632+00:00"
+title: "Stripe"
+description: "Connect Stripe so BeRocker can charge cards, issue payment links and process refunds."
 ---
+
+Stripe is a global payment platform for online payments, invoicing and subscription management. It is the most common choice for BeRocker.
+
+<Info>
+  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
+  which opens the **Payment Gateways** page. See
+  [Payment gateways](/settings/integrations) for the full picture.
+</Info>
+
+---
+
+## What BeRocker asks for
+
+BeRocker connects to Stripe through Stripe Connect — click **Connect** on the Stripe card and
+authorise the account. There are no keys to copy and paste.
+
+---
+
+## Set the default and the fee
+
+**Stripe reports card funding** (credit, debit or prepaid), so it can honour a credit-cards-only
+processing fee and waive it for debit and prepaid cards.
+
+Stripe Checkout payment links stay valid for **24 hours**.
+
+The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
+
+- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
+- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor set as your **default card payment option** is applied — it does not
+depend on which card the customer has. The customer sees the breakdown on the charge screen and on
+the emailed receipt.
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/How_to_Set_Up_Stripe_Integration__wEepy7woQpizsnci9G20Yg?as=scrollable"
@@ -15,6 +48,22 @@ updated_at: "2025-06-29T09:05:12.209632+00:00"
   allowfullscreen
 ></iframe>
 
+
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
+    All processors and the default.
+  </Card>
+  <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
+    Every payment, refund and dispute.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Whether the card is charged automatically on booking.
+  </Card>
+  <Card title="Pricing" icon="sliders" href="/settings/pricing">
+    Deposit brackets.
+  </Card>
+</CardGroup>

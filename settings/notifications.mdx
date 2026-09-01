@@ -1,0 +1,125 @@
+---
+title: "Notifications"
+description: "Choose which events ping you, and where — by SMS and email, per user."
+---
+
+**Settings → Notifications** controls what BeRocker tells *you* about. It is per-user: your settings
+do not affect anyone else on your team.
+
+<Frame>
+  <img src="/images/settings/notifications.png" alt="The Notifications settings page with delivery details and the event list" />
+</Frame>
+
+<Info>
+  Notifications only fire for **leads assigned to you**. No assigned leads, no notifications.
+</Info>
+
+---
+
+## Step 1 — where they go
+
+Two fields at the top: an **SMS** number and an **Email** address. Enter them and click **Save**.
+There is a **test** action so you can confirm the destination actually receives something.
+
+<Warning>
+  Do **not** use the same number or email you already use as a customer-facing contact in
+  [Profile → User Contacts](/settings/profile).
+
+  If you do, your own notifications arrive as messages from an unrecognised number and pile up in
+  [Interactions](/using/interactions).
+</Warning>
+
+<Info>
+  SMS notifications are sent through **your own** phone number, so they count toward usage and
+  charges on your VoIP provider account.
+</Info>
+
+---
+
+## Step 2 — which events
+
+Below that is the **Events** section, split into four categories. Tick the ones you want.
+
+<Tabs>
+  <Tab title="Leads">
+    - **New Lead** — a lead was assigned to you.
+    - **New Hot Lead** — a lead the source marked hot.
+    - **Price Issue** — the pricing engine could not produce a price.
+    - **Lead Assigned** — one of your leads was reassigned.
+    - **Custom Vehicle Lead** — a lead with a vehicle that is not in the catalogue.
+  </Tab>
+  <Tab title="Chats">
+    - **New Message** — a customer replied.
+    - **User Agree** — a customer accepted the quote.
+    - **User Opt Out** — a customer replied STOP.
+    - **User Wants Call** — a customer asked to be called.
+    - **Empty AI Response** / **AI Final Price Request** — the AI needs a human.
+  </Tab>
+  <Tab title="Payments">
+    - **Payment Success**, **Payment Failed**, **Payment Refund**
+    - **Payment Dispute**, and its **Won** / **Lost** outcomes
+  </Tab>
+  <Tab title="Orders">
+    - **New Order**
+    - **New Offer**, **Offer Accepted**, **Offer Declined**, **Offer Cancelled**
+    - **Load Board Order Cancelled**, **Contract Cancelled**
+    - **Picked Up**, **Delivered**
+  </Tab>
+</Tabs>
+
+Changes apply as soon as you save.
+
+---
+
+## What to turn on
+
+Start narrow and add rather than starting wide and drowning:
+
+| If you are | Turn on |
+| --- | --- |
+| A broker working leads | New Lead, New Hot Lead, New Message, User Wants Call, User Agree |
+| Handling money | Payment Failed, Payment Dispute, Payment Refund |
+| Doing dispatch | New Offer, Offer Accepted, Picked Up, Delivered |
+
+<Tip>
+  If you find yourself ignoring notifications, that is the signal to turn some off — not to try
+  harder. An alert you ignore is worse than no alert.
+</Tip>
+
+---
+
+## Troubleshooting
+
+| Symptom | Fix |
+| --- | --- |
+| Nothing arrives | Confirm SMS/email works on your account at all, then re-check the saved number and address. |
+| Notifications land in **Interactions** | Your notification contact details match your customer-facing ones. Change them. |
+| Too many | Untick event types. Payments and Orders are usually the noisy ones for a broker. |
+| Only some events arrive | Those events are unticked, or the lead is not assigned to you. |
+
+---
+
+## Video walkthrough
+
+<iframe
+  width="100%"
+  height="420"
+  src="https://www.youtube.com/embed/Kn3khwr8TSQ"
+  title="BeRocker Notifications Setup"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Your customer-facing contacts — keep them separate from these.
+  </Card>
+  <Card title="Templates" icon="message" href="/settings/templates">
+    Messages to customers, not alerts to you.
+  </Card>
+</CardGroup>

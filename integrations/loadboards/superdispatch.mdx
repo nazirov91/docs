@@ -1,10 +1,6 @@
 ---
-title: 'Integrating with Super Dispatch'
-category: 'BeRocker CRM settings'
-published: true
-order: 2
-created_at: '2025-06-29T07:37:21.344345+00:00'
-updated_at: '2025-06-29T07:38:17.699+00:00'
+title: "Super Dispatch"
+description: "Connect Super Dispatch to post loads, receive carrier offers, and get live driver GPS and ETA."
 ---
 
 ![Super Dispatch Integration Banner](/images/berocker_sd.jpeg)
@@ -63,6 +59,44 @@ If you have this subscription (or want to request it), contact Super Dispatch us
   platform.
 </Note>
 
+---
+
+## What you get once it is connected
+
+| Capability | Where you see it |
+| --- | --- |
+| Post loads without leaving the CRM | The **Carrier** tab of a shipment |
+| Carrier offers come back into the CRM | The same tab, and the **SD Requests** queue on [Dispatch](/using/dispatch) |
+| **Live driver GPS** and pickup / delivery **ETA** | The [Dispatch](/using/dispatch) map |
+| Pickup and delivery statuses | They move the shipment automatically to **Picked Up** and **Delivered** |
+| Recommended price as your pricing engine | [Pricing](/settings/pricing) |
+
+---
+
+## Then configure the behaviour
+
+Posting behaviour is separate from the connection. In
+[Carriers and Loadboards](/settings/carriers-and-loadboards) you decide:
+
+- Whether to **unpost from the other loadboard** once a carrier is secured (recommended on).
+- Whether to **auto-import Super Dispatch orders** worked outside the CRM (off by default — it can
+  add a lot of orders).
+- Whether **Super Dispatch price updates** are applied to the CRM (off by default; either way the
+  change is recorded on the lead's timeline).
+
+Orders that could not be imported are listed under **Super Dispatch sync** with a retry.
+
+---
+
 ## Need Help?
 
 If you have any questions, contact the BeRocker team through your Slack support channel, call `302-313-0966`, or email `info@berocker.com`.
+
+<CardGroup cols={2}>
+  <Card title="Carriers and Loadboards" icon="gear" href="/settings/carriers-and-loadboards">
+    Unposting, order import and price updates.
+  </Card>
+  <Card title="Dispatch" icon="map" href="/using/dispatch">
+    Live GPS and the SD Requests queue.
+  </Card>
+</CardGroup>

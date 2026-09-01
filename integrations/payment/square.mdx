@@ -1,11 +1,44 @@
 ---
-title: "Square Integration"
-category: "BeRocker CRM settings"
-published: true
-order: 6
-created_at: "2025-06-29T09:07:59.45168+00:00"
-updated_at: "2025-06-29T09:07:59.45168+00:00"
+title: "Square"
+description: "Connect Square for online and in-person card payments."
 ---
+
+Square is a payment processing solution for both online and in-person transactions, including POS terminals.
+
+<Info>
+  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
+  which opens the **Payment Gateways** page. See
+  [Payment gateways](/settings/integrations) for the full picture.
+</Info>
+
+---
+
+## What BeRocker asks for
+
+Connect Square by authorising your Square account. BeRocker stores an **access token** and a
+**refresh token** with their expiry dates, and refreshes them automatically.
+
+---
+
+## Set the default and the fee
+
+**Square reports card funding** (credit, debit or prepaid), so it can honour a credit-cards-only
+processing fee.
+
+Square payment links stay up until they are paid.
+
+The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
+
+- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
+- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor set as your **default card payment option** is applied — it does not
+depend on which card the customer has. The customer sees the breakdown on the charge screen and on
+the emailed receipt.
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/How_To_Set_Square_Integration__X22N4NuFQHGRLI6gZofCdg?as=scrollable"
@@ -15,6 +48,22 @@ updated_at: "2025-06-29T09:07:59.45168+00:00"
   allowfullscreen
 ></iframe>
 
+
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
+    All processors and the default.
+  </Card>
+  <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
+    Every payment, refund and dispute.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Whether the card is charged automatically on booking.
+  </Card>
+  <Card title="Pricing" icon="sliders" href="/settings/pricing">
+    Deposit brackets.
+  </Card>
+</CardGroup>

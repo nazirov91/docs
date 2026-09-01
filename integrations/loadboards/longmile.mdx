@@ -1,0 +1,89 @@
+---
+title: "LongMile carrier verification"
+description: "Check a carrier against live federal records before you dispatch — authority, insurance, safety and chameleon-carrier detection."
+---
+
+LongMile is BeRocker's carrier and broker intelligence service. It checks a carrier against **live
+federal records** and gives you a signed report you can keep.
+
+<Info>
+  LongMile is not a load board. It sits in the **Load boards** group on the Integrations page because
+  that is where carrier tools live, but its job is deciding *whether* to hand a carrier your load.
+</Info>
+
+---
+
+## What a check gives you
+
+| | |
+| --- | --- |
+| **100-point risk score** | Safety 55% · Authority 25% · Identity 20% — with **chameleon-carrier detection** that catches a revoked operator trading under a new name. |
+| **Authority and insurance, as filed today** | Live FMCSA authority and insurance filings, BASIC alerts, inspection history and crash records — not a badge someone self-reported. |
+| **Proof you can hand to a claim** | Every check leaves a timestamped, signed PDF on the carrier profile, naming what was screened and when. |
+
+A report also covers: operating status and out-of-service flags, authority types (common / contract
+/ broker), BASICs in alert, fatalities and injuries, fleet and driver counts, trucks and tractors,
+annual mileage, when MCS-150 was last updated, federal exclusions, cargo types, and **shared
+contacts** — other entities using this carrier's phone or address.
+
+---
+
+## Connecting
+
+<Steps>
+  <Step title="Open Integrations">
+    **Settings → Integrations**, find the **LongMile** card in **Load boards**.
+  </Step>
+  <Step title="Connect LongMile">
+    Click **Connect LongMile** and complete the authorisation.
+  </Step>
+  <Step title="Test Connection">
+    The **Test Connection** dialog shows the **Connected Account**, **Connection Tests**, your
+    **Lookup Allowance** and how much is **left this period**, the **Granted Access**, the
+    **Webhook Status**, and when the access token renews.
+  </Step>
+</Steps>
+
+If the card says **Reconnect LongMile**, the authorisation lapsed — reconnect it.
+
+---
+
+## Without connecting
+
+Lookups still work on the **LongMile free allowance**. Connecting your own account uses your account
+quota instead, which is what you want if you check carriers all day.
+
+<Info>
+  Disconnecting does not switch verification off. *"Lookups keep working on the LongMile free
+  allowance, but your account quota will no longer be used until you reconnect."*
+</Info>
+
+---
+
+## Using it on a carrier
+
+Open any carrier from [Carriers](/using/carriers) and use the verification panel to run a check. The
+result — status, score, band and recommendation, with the date it was checked — is stored on the
+carrier record, so anyone on your team can see what was screened and when.
+
+<Tip>
+  Check a carrier **before** you accept their offer, not after the vehicle is on their truck.
+</Tip>
+
+<Warning>
+  A carrier with no verification is not the same as a carrier that failed one. An unchecked carrier
+  simply has not been looked at.
+</Warning>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Carriers" icon="truck" href="/using/carriers">
+    Where verification results live.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    Connect it here.
+  </Card>
+</CardGroup>

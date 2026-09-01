@@ -1,11 +1,59 @@
 ---
-title: "Add Ring Central Phone Numbers"
-category: "Personal Settings"
-published: true
-order: 1
-created_at: "2025-06-29T10:16:49.555415+00:00"
-updated_at: "2025-06-29T10:16:49.555415+00:00"
+title: "RingCentral"
+description: "Add and register your RingCentral numbers so BeRocker can call and text from them."
 ---
+
+RingCentral gives you cloud telephony, messaging and faxing. It works differently from the other
+providers in one important way.
+
+<Warning>
+  **RingCentral has nothing to configure on the Integrations page.** The card always shows
+  **Status: Active**:
+
+  > *"RingCentral is always active. To use it, add your number in your user profile and register
+  > it."*
+
+  The real setup happens per user, in **Settings → Profile**.
+</Warning>
+
+---
+
+## Add and register your number
+
+<Steps>
+  <Step title="Open your profile">
+    **Settings → Profile → User Contacts**.
+  </Step>
+  <Step title="Add the number">
+    **+ Add user contact** →
+
+    - **Channel** — Call
+    - **Provider** — RingCentral
+    - **Contact** — your RingCentral number
+    - **Is Default?** — tick it if this is your main line
+
+    Then add the **same number again** with **Channel = SMS** if you text from it.
+  </Step>
+  <Step title="Click Register">
+    A **Register** button appears next to a RingCentral contact. Click it — a popup opens for you to
+    authorise the number on the RingCentral side.
+
+    ![The Register button next to a RingCentral number](/images/steps/rc-register.png)
+  </Step>
+  <Step title="Check it took">
+    The contact should no longer prompt you to register.
+  </Step>
+</Steps>
+
+<Warning>
+  **If you skip Register, outbound calls and texts through RingCentral will fail.** This is the
+  single most common RingCentral support ticket. Every agent has to do it for their own number —
+  an admin cannot do it for them.
+</Warning>
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/Add_Ring_Central_Phone_Numbers__Cze78hLRTa-sA5TK2mxXnw?as=scrollable"
@@ -17,4 +65,43 @@ updated_at: "2025-06-29T10:16:49.555415+00:00"
 
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## If it stops working
+
+RingCentral authorisation can lapse. If calls or texts start failing for one agent:
+
+<Steps>
+  <Step title="Check the number is still there">
+    **Settings → Profile → User Contacts**.
+  </Step>
+  <Step title="Register it again">
+    Click **Register** and complete the popup.
+  </Step>
+  <Step title="If the popup is blocked">
+    Allow popups for `app.berocker.com` and try again.
+  </Step>
+</Steps>
+
+<Info>
+  An admin can see which agents have which contacts — and spot a missing one — from
+  **Settings → Team and security → User contacts**.
+</Info>
+
+---
+
+## Mixing providers
+
+You can use RingCentral for calls and something else for SMS. Each user contact picks its own
+provider, so this is a normal setup, not a workaround.
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Where your contacts live.
+  </Card>
+  <Card title="Team and security" icon="users" href="/settings/team-and-security">
+    See every agent's contacts at once.
+  </Card>
+</CardGroup>

@@ -1,0 +1,151 @@
+---
+title: "Email parsing"
+description: "Connect Gmail, filter incoming emails, and let AI turn lead emails into shipments automatically."
+---
+
+Some lead providers do not POST to an endpoint — they email you. **Settings → Email Parsing**
+connects a Gmail mailbox, filters what comes in, and has AI read the matching emails and create
+leads from them.
+
+<Frame>
+  <img src="/images/settings/email-parsing.png" alt="The Email Parsing screen with the Activity and Settings tabs" />
+</Frame>
+
+Two tabs: **Activity** (what has been processed) and **Settings** (the connection, the filters and
+the prompt).
+
+---
+
+## 1. Connect Gmail
+
+On the **Settings** tab, connect the mailbox that receives the lead emails.
+
+- **Connected as** shows which account is linked.
+- **Test connection** checks it still works.
+- **Disconnect** revokes access.
+
+<Info>
+  Google shows two possible permission levels on the consent screen: **"Read your emails"**
+  (read-only) and **"Read, compose, send, and permanently delete all your email from Gmail"**. Grant
+  the narrower one unless BeRocker's setup instructions tell you otherwise — parsing only needs to
+  read.
+</Info>
+
+<Tip>
+  Use a dedicated mailbox such as `leads@yourdomain.com` and forward provider emails to it. Pointing
+  this at a personal inbox means the parser sifts through everything you receive.
+</Tip>
+
+---
+
+## 2. Set up filters
+
+A **filter** decides which emails get parsed. Each one has:
+
+| Field | What it does |
+| --- | --- |
+| **Name** | For you, e.g. *"New leads from main forwarder"*. |
+| **Match** | **All rules must match** or **Any rule can match**. |
+| **Rules** | One or more conditions. |
+| **Enabled** | Turn it off without deleting it. |
+
+Each rule is a **field**, an **operator** and a **value**:
+
+| Field | Operators |
+| --- | --- |
+| **From**, **To**, **Subject**, **Body** | Contains · Does not contain · Equals · Not equals · Matches regex |
+| **Has attachment** | Is true · Is false |
+
+<Info>
+  An email that matches no filter is recorded as **No filter matched** and nothing is created. That
+  is on purpose — it is how you keep the rest of your mail out.
+</Info>
+
+### A filter that works
+
+Start narrow:
+
+- **From** contains `@leadprovider.com`
+- **AND Subject** contains `New Lead`
+
+then widen only if you find real leads being missed.
+
+---
+
+## 3. Turn on automatic processing
+
+**Process incoming emails automatically** is the master switch. Leave it off while you tune your
+filters, then turn it on.
+
+---
+
+## The AI prompt
+
+The parser uses a prompt to pull structured lead data out of an email. **Current prompt (preview)**
+shows what is in use; if it says **No prompt configured**, nothing will be extracted yet.
+
+The prompt editor keeps a **version history**, with a **What changed (AI)** summary for each
+version and a **Revert to current** action, so a change that makes parsing worse can be undone.
+
+<Warning>
+  Change the prompt in small steps and watch the **Activity** tab afterwards. A prompt that reads
+  well can still extract the wrong ZIP code.
+</Warning>
+
+---
+
+## The Activity tab
+
+Every email the parser has seen, with:
+
+**Received · Subject · Filter · Status · Failure reason · Lead**
+
+Search by subject, sender or body, filter by status, and narrow by date.
+
+### Statuses
+
+| Status | Meaning |
+| --- | --- |
+| **Received** | Arrived, not processed yet. |
+| **Processing** | Being read now. |
+| **Parsed** | Data extracted. |
+| **Lead created** | A shipment was created — the **Lead** column links to it. |
+| **Filtered out** | No filter matched, so it was ignored. |
+| **Skipped (duplicate)** | The same lead already exists. |
+| **Skipped (reply)** | It was a reply or inquiry, not a new lead. |
+| **Failed** | Something went wrong; **Failure reason** says what. |
+
+Open a row and the detail drawer shows the **forwarded email**, the **prompt used**, the **OpenAI
+response**, the **parsed JSON** and any attachments — so when a lead comes out wrong you can see
+exactly which step went wrong.
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Nothing is processed | Is **Process incoming emails automatically** on? Is Gmail still connected — click **Test connection**. |
+| Everything is **Filtered out** | Your rules are too strict, or the sender address is not what you assumed. Open one and read the real email. |
+| Leads are created with wrong fields | Look at the **Parsed JSON** on that row, then adjust the prompt. |
+| Real leads marked **Skipped (reply)** | The email looks like a reply. Provider changed their subject format — widen the filter. |
+| **Permission required** | Gmail access was revoked or narrowed. Reconnect. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Lead sources" icon="filter" href="/settings/lead-sources">
+    The API way of receiving leads.
+  </Card>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Your personal Gmail connection.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/settings/notifications">
+    Alerts for parse successes and failures.
+  </Card>
+  <Card title="Shipments" icon="table" href="/using/shipments">
+    Where the created leads land.
+  </Card>
+</CardGroup>

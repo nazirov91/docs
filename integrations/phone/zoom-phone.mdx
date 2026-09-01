@@ -1,0 +1,126 @@
+---
+title: "Zoom Phone"
+description: "Send and receive SMS/MMS and sync call history from Zoom Phone, and place calls from inside BeRocker."
+---
+
+The Zoom Phone integration lets BeRocker **send and receive SMS/MMS**, **sync call history and
+recordings**, and **place calls** — either in the browser or by handing the call off to the Zoom
+desktop app.
+
+<Info>
+  You need a **Zoom Phone** licence, not just a Zoom meetings account.
+</Info>
+
+---
+
+## Two ways to connect
+
+Go to **Settings → Integrations → Zoom Phone**.
+
+<Tabs>
+  <Tab title="Connect Zoom (recommended)">
+    Click **Connect Zoom**. You are sent to Zoom to authorise BeRocker, and back again when it is
+    done. Nothing to copy and paste.
+  </Tab>
+  <Tab title="Manual setup">
+    Click **Manual setup** to connect using your **own** Zoom app instead of the Marketplace
+    authorisation. Use this when your Zoom admin requires an internal app.
+  </Tab>
+</Tabs>
+
+---
+
+## Manual setup, step by step
+
+<Steps>
+  <Step title="Create a Server-to-Server OAuth app">
+    In the [Zoom App Marketplace](https://marketplace.zoom.us/develop/create), create a
+    **Server-to-Server OAuth** app.
+  </Step>
+  <Step title="Grant the Zoom Phone scopes">
+    Phone and phone SMS, **read and write**.
+  </Step>
+  <Step title="Activate the app and copy its credentials">
+    You need the **Account ID**, **Client ID** and **Client Secret**.
+  </Step>
+  <Step title="Paste them into BeRocker">
+    **Settings → Integrations → Zoom Phone → Manual setup**. Set **Status** to Active.
+
+    Credentials are verified with Zoom before they are saved, so a typo fails immediately rather
+    than silently.
+  </Step>
+  <Step title="Add the Webhook Secret Token">
+    From your Zoom app's **Feature** tab. Without it, BeRocker cannot receive SMS and call events.
+
+    <Warning>
+      Save the Webhook Secret Token in BeRocker **before** validating the subscription in Zoom, or
+      Zoom's validation will fail.
+    </Warning>
+  </Step>
+  <Step title="Add the event subscription in Zoom">
+    In your Zoom app, open **Feature → Event Subscriptions**, add a subscription using the webhook
+    URL that BeRocker shows on this modal, and validate it.
+
+    Subscribe to the Zoom Phone **SMS**, **call history**, **recording** and **voicemail** events.
+  </Step>
+  <Step title="Save & Verify">
+    Back in BeRocker.
+  </Step>
+</Steps>
+
+---
+
+## Using it
+
+Once the integration is Active, each agent adds their Zoom Phone number in
+**Settings → Profile → User Contacts**:
+
+- One entry with **Channel = Call**
+- One entry with **Channel = SMS** (the same number added a second time)
+- **Provider = Zoom**
+- Tick **Is Default?** on the ones that should be their main line
+
+See [Profile](/settings/profile).
+
+### In-browser calling
+
+If your organization has the **Zoom Phone Smart Embed** softphone enabled, calls can be placed
+directly inside BeRocker. If it is not enabled, BeRocker hands the call off to the Zoom desktop app
+instead — the call still gets recorded against the conversation either way.
+
+---
+
+## Disconnecting
+
+**Disconnect** on the Zoom Phone card removes the connection and requires re-authorisation to use
+it again.
+
+<Warning>
+  Disconnecting stops SMS and call sync for everyone on the account, and any agent whose default
+  contact is a Zoom number will not be able to message customers until they switch provider.
+</Warning>
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Credentials rejected on save | The app must be **activated** in the Zoom Marketplace and have the phone + phone SMS scopes. |
+| Zoom webhook validation fails | Save the Webhook Secret Token in BeRocker first, then validate in Zoom. |
+| Calls happen but nothing appears in the conversation | The call-history and recording events are not subscribed. |
+| Inbound SMS goes to Interactions | The number is not registered as a user contact for the agent. |
+| Cannot call from the browser | Zoom Phone Smart Embed is not enabled for the organization — calls hand off to the Zoom app. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All providers in one place.
+  </Card>
+  <Card title="Profile" icon="user" href="/settings/profile">
+    Point your number at Zoom.
+  </Card>
+</CardGroup>

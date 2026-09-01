@@ -1,0 +1,133 @@
+---
+title: "Messaging health"
+description: "What your automated messaging is actually doing — sending numbers, delivery rates, the queue, quiet hours, pacing and opt-outs."
+---
+
+**Settings → Templates → Health** answers the question every other messaging screen dodges:
+*what is actually happening right now?*
+
+Every guard around sending — the per-number pace, the quiet window, the number check — makes a burst
+impossible. None of them tells you whether a customer is waiting two minutes or two hours. This tab
+does.
+
+<Frame>
+  <img src="/images/settings/templates-health.png" alt="The Messaging health tab showing sending numbers, the queue and the messaging settings" />
+</Frame>
+
+---
+
+## Sending numbers
+
+One row per number you send from:
+
+| Column | What it is |
+| --- | --- |
+| **Attempts** | Messages sent from this number. |
+| **Delivered** | Confirmed delivered. |
+| **In flight** | Sent, no outcome yet. |
+| **Failed** | Confirmed failures. |
+| **Failure rate** | Failures as a share of **confirmed outcomes** — not of everything attempted. |
+| **Confirmed coverage** | How much of this number's traffic reached a definitive outcome at all. |
+| **Needs attention** | Flagged as unhealthy. |
+
+<Info>
+  Read the failure rate *next to* the confirmed coverage. Most texts never get a carrier receipt, so
+  a failure rate calculated over everything attempted would be a receipt-coverage score wearing a
+  health score's clothes. That is why both numbers are shown.
+</Info>
+
+<Warning>
+  A number marked **needs attention** is on its way to being blocked by carriers. Rest it, check
+  what you have been sending from it, and make sure your opt-out footer is on.
+</Warning>
+
+---
+
+## The queue
+
+| Figure | What it is |
+| --- | --- |
+| **Waiting** | Messages scheduled but not sent. |
+| **Due now** | Ready to go this minute. |
+| **Due within the hour** | Coming up. |
+| **Waiting for morning** | Held by quiet hours until the window opens — tomorrow's wave, visible today. |
+| **Next due at** | When the next message goes out. |
+| **Minutes to drain** | How long the overdue backlog takes to clear at the current pace. |
+
+<Tip>
+  A big **waiting for morning** number is normal, not a fault. It is the overnight follow-ups queued
+  up for the release window.
+</Tip>
+
+---
+
+## Opt-outs
+
+How many customers replied STOP in the last 7 and 30 days. A climbing opt-out rate is the earliest
+warning that your messaging is too aggressive — well before a carrier blocks a number.
+
+---
+
+## The settings
+
+| Setting | What it controls |
+| --- | --- |
+| **SMS per number per minute** | The pacing ceiling for each sending number. |
+| **Quiet hours enabled** | Whether messages are held overnight. |
+| **Quiet hours start / end** | First and last **open** hour, in the customer's local time. `8` and `21` means 08:00 up to 21:59. |
+| **Release window (minutes)** | Messages held overnight are spread across this window in the morning instead of all firing at once. |
+| **Exempt events from quiet hours** | Let event messages (like a dispatch notice) through the quiet window. |
+| **Opt-out footer enabled** | Append an opt-out line to SMS. |
+| **Opt-out footer text** | The wording, e.g. *"Reply STOP to opt out."* |
+| **Failure rate threshold** | The failure rate at which a number is flagged. |
+| **Auto-pause unhealthy numbers** | Stop sending from a number that crosses the threshold. |
+
+Leaving a field blank uses the default, and the defaults are shown next to each field — so you do
+not have to type a number to find out what it currently does.
+
+<Warning>
+  Quiet hours are worked out in the **customer's** local time, using your organization's time zone
+  as the base. If your time zone in [Business settings](/settings/business) is wrong, this is wrong
+  too.
+</Warning>
+
+---
+
+## "The texts are not going out"
+
+Work down this list:
+
+<Steps>
+  <Step title="Is it queued or is it stuck?">
+    Check **Waiting** and **Next due at**. If the queue is draining, it is going out — just not yet.
+  </Step>
+  <Step title="Is it the quiet window?">
+    A large **waiting for morning** number means quiet hours are holding it.
+  </Step>
+  <Step title="Is a number paused?">
+    Look for **needs attention** and check whether auto-pause has kicked in.
+  </Step>
+  <Step title="Is it pacing?">
+    A low per-number-per-minute setting with a big backlog is slow by design. **Minutes to drain**
+    tells you how slow.
+  </Step>
+  <Step title="Is the template even active?">
+    Back to [Templates](/settings/templates) — an inactive template never sends.
+  </Step>
+  <Step title="Does the sender exist?">
+    No default SMS contact means nothing sends at all. See [Profile](/settings/profile).
+  </Step>
+</Steps>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Templates" icon="message" href="/settings/templates">
+    The messages themselves.
+  </Card>
+  <Card title="Email deliverability" icon="envelope" href="/integrations/email/sendgrid/email-deliveribility">
+    The same problem, for email.
+  </Card>
+</CardGroup>

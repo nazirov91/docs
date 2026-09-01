@@ -1,11 +1,54 @@
 ---
-title: "Twilio - How to configure"
-category: "BeRocker CRM settings"
-published: true
-order: 10
-created_at: "2025-06-29T10:06:04.194921+00:00"
-updated_at: "2025-06-29T10:06:04.194921+00:00"
+title: "Twilio"
+description: "Connect Twilio so BeRocker can send SMS and WhatsApp messages and place calls."
 ---
+
+Twilio is a cloud platform for SMS, voice and WhatsApp. It is the most common choice for BeRocker
+because one account covers texting, calling and WhatsApp.
+
+---
+
+## What you need from Twilio
+
+Have these three values open before you start, from your
+[Twilio Console](https://console.twilio.com):
+
+| Value | Where it is |
+| --- | --- |
+| **Account SID** | The Twilio Console dashboard. |
+| **Auth Token** | Next to the Account SID — reveal it to copy. |
+| **Message Service ID** | Messaging → Services. Create a Messaging Service if you do not have one. |
+
+<Warning>
+  Your Auth Token is a password for your whole Twilio account. Paste it into BeRocker and nowhere
+  else.
+</Warning>
+
+---
+
+## Connect it
+
+<Steps>
+  <Step title="Open Integrations">
+    **Settings → Integrations → Twilio → Configure**.
+  </Step>
+  <Step title="Paste the three values">
+    Account SID, Auth Token and Message Service ID.
+  </Step>
+  <Step title="Set Status to Active and save">
+    The card should show **Status: Active** in green.
+  </Step>
+  <Step title="Point your number at it">
+    **Settings → Profile → User Contacts** → add your Twilio number with **Provider = Twilio**, once
+    with **Channel = Call** and once with **Channel = SMS**, and tick **Is Default?**.
+
+    → [Profile](/settings/profile)
+  </Step>
+</Steps>
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/How_To_Configure_Twilio__gmDkepfUQTmsMkEnSOBWow?as=scrollable"
@@ -17,4 +60,39 @@ updated_at: "2025-06-29T10:06:04.194921+00:00"
 
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Before you send at volume
+
+Twilio requires **10DLC registration** for application-to-person SMS to US numbers. Unregistered
+traffic gets filtered by the carriers, not by Twilio — so messages simply stop arriving with no
+obvious error.
+
+Register your brand and campaign in the Twilio Console before you turn on follow-up sequences, and
+keep an eye on [Messaging health](/settings/messaging-health) afterwards.
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Status stays **Not connected** | The Account SID or Auth Token has a typo, or the token was rotated in Twilio. |
+| Messages send but never arrive | 10DLC registration, and the failure rate on [Messaging health](/settings/messaging-health). |
+| Cannot select Twilio when adding a contact | The integration is not Active yet. |
+| Calls fail but texts work | You added the number for SMS only. Add it again with Channel = Call. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All providers.
+  </Card>
+  <Card title="Messaging health" icon="heart-pulse" href="/settings/messaging-health">
+    Delivery rates and sending numbers.
+  </Card>
+</CardGroup>
+
+---
+
+_Need a hand? Reach out to [support](/support/contact) — we set this up with customers every week._

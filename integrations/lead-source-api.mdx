@@ -1,0 +1,200 @@
+---
+title: "Lead source API"
+description: "POST leads into BeRocker from your website or a lead provider, using the endpoint URL each lead source gives you."
+---
+
+Every [lead source](/settings/lead-sources) you create in BeRocker gets its own **endpoint URL**.
+POST a lead to that URL and it lands in the CRM, attributed to that source, and gets distributed to
+an agent.
+
+---
+
+## 1. Get your endpoint URL
+
+<Steps>
+  <Step title="Create the source">
+    **Settings → Lead Management → Lead sources → + Add new source**. Give it a name; optionally a
+    plan name and per-lead price.
+  </Step>
+  <Step title="Copy the URL">
+    In the **URLs** column, click the copy icon next to **Lead save URL**.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/lead-source-copy.png" alt="Copying a lead source endpoint URL from the URLs column" />
+</Frame>
+
+The URL looks like:
+
+```text
+https://app.berocker.com/api/v1/client/webhooks/lead/<your-api-key>/save
+```
+
+<Info>
+  The key is embedded in the URL, so authentication is built in — there is no separate token to send.
+  Some sources also expose a **hot lead** URL for providers that flag urgent leads.
+</Info>
+
+<Warning>
+  Treat the URL like a password. Anyone who has it can create leads in your account. If it leaks,
+  delete the source and create a new one.
+</Warning>
+
+---
+
+## 2. Request
+
+```http
+POST /api/v1/client/webhooks/lead/<api-key>/save
+Content-Type: application/json
+```
+
+---
+
+## 3. Payload
+
+### Required
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `first_name` | string | Must not be empty. |
+| `phone` | string | Normalised on arrival; any common US format is fine. |
+| `vehicles` | array | At least one vehicle. |
+
+### Customer and route
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `last_name` | string | |
+| `email` | string | |
+| `additional_phone` | string | A second number for the customer. |
+| `origin_city`, `origin_state` | string | Optional if you send a ZIP — BeRocker back-fills city and state from it. |
+| `origin_postal_code` | string | |
+| `origin_address` | string | Full street address, or just a ZIP. |
+| `destination_city`, `destination_state` | string | |
+| `destination_postal_code` | string | |
+| `destination_address` | string | |
+| `origin_country`, `destination_country` | string | Default `US`. |
+
+### The shipment
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `ship_date` | date | The requested pickup date. |
+| `drop_off_date` | date | |
+| `transport_type` | string | `open` (default) or `enclosed`. |
+| `comment_from_shipper` | string | Free text from the customer. |
+| `customer_comments` | string | |
+| `secondary_id` | string | Your own reference — shown as **Secondary ID** in the CRM. |
+| `booking_number` | string | |
+| `lead_cost` | integer | What this particular lead cost you, if it varies per lead. |
+| `customer_id_type` | string | `passport`, `driver_license` or `national_id`. |
+| `customer_id_number` | string | |
+
+### Each vehicle
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `vehicle_model_year` | integer | |
+| `vehicle_make` | string | Also accepted as `make`. |
+| `vehicle_model` | string | Also accepted as `model`. |
+| `vehicle_type` | string | See the list below. |
+| `vehicle_inop` | boolean | `true` if the vehicle does not run. |
+| `vin` | string | |
+| `is_custom` | boolean | `true` for a free-text vehicle that is not in the catalogue. |
+
+**Vehicle types:** `Car`, `sedan`, `Coupe`, `Convertible`, `SUV`, `Van`, `Pickup`,
+`pickup_2_doors`, `pickup_4_doors`, `Motorcycle`, `ATV`, `Boat`, `RV`, `Travel Trailer`, `Other`.
+
+<Info>
+  A lead containing a **custom** vehicle skips the automatic quote and is routed to an agent for
+  manual pricing instead — a travel trailer should not be auto-quoted like a sedan.
+</Info>
+
+---
+
+## 4. Example
+
+```bash
+curl -X POST "https://app.berocker.com/api/v1/client/webhooks/lead/<api-key>/save" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "user@example.com",
+    "phone": "5551234567",
+    "origin_city": "Los Angeles",
+    "origin_state": "CA",
+    "origin_postal_code": "90001",
+    "destination_city": "Miami",
+    "destination_state": "FL",
+    "destination_postal_code": "33101",
+    "ship_date": "2026-09-27",
+    "transport_type": "open",
+    "comment_from_shipper": "Please call after 5 PM",
+    "secondary_id": "WEB-10482",
+    "vehicles": [
+      {
+        "vehicle_model_year": 2020,
+        "vehicle_make": "Toyota",
+        "vehicle_model": "Camry",
+        "vehicle_type": "Car",
+        "vehicle_inop": false
+      }
+    ]
+  }'
+```
+
+---
+
+## 5. What happens next
+
+<Steps>
+  <Step title="The lead is created">
+    Attributed to the source whose URL you posted to.
+  </Step>
+  <Step title="It is assigned">
+    Per your [lead distribution](/settings/lead-distribution) rota — quotas, shift hours, and the
+    after-hours fallback.
+  </Step>
+  <Step title="It may be quoted automatically">
+    If **Auto Price** is on in [Pricing](/settings/pricing), and no vehicle is custom.
+  </Step>
+  <Step title="It shows up everywhere">
+    In [Inbox](/using/inbox) as a conversation and in [Shipments](/using/shipments) as a row.
+  </Step>
+</Steps>
+
+---
+
+## Testing and troubleshooting
+
+Send one lead with your own name and phone number and watch it arrive.
+
+| Symptom | Check |
+| --- | --- |
+| 404 | The URL, including the key and the trailing `/save`. |
+| Validation error | `first_name`, `phone` and at least one vehicle are all required. |
+| Lead arrives but is not assigned | Distribution quotas are 0, or you are outside shift hours with no fallback. |
+| Vehicle type is wrong | `vehicle_type` is not one of the listed values — BeRocker matches loosely, but exact values are safest. |
+| City and state are empty | Send `origin_postal_code` / `destination_postal_code` and they will be filled in. |
+| Nothing arrived at all | Check **Settings → Lead Management → Logs** — the raw payload is recorded there. |
+
+<Tip>
+  If your provider emails leads instead of posting them, use
+  [Email parsing](/settings/email-parsing) rather than this API.
+</Tip>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Lead sources" icon="filter" href="/settings/lead-sources">
+    Create the source and get the URL.
+  </Card>
+  <Card title="Lead distribution" icon="share-nodes" href="/settings/lead-distribution">
+    Who receives these leads.
+  </Card>
+</CardGroup>

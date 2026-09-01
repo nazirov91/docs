@@ -1,17 +1,82 @@
 ---
-title: "Add user in Vonage API dashboard"
+title: "Vonage"
+description: "Connect Vonage for voice and SMS, and invite a developer to your Vonage account."
 ---
 
-# How to add a developer to Vonage account
+Vonage is a cloud communications platform for voice, SMS and video. Connecting it to BeRocker takes
+three values from the Vonage dashboard.
 
-## 1. Login to your Vonage account - Communications APIs
+---
 
-![enter image description here](/images/vonage/vonage-1.png)
+## What BeRocker asks for
 
-## 2. Go to Home page and click on "Invite your team"
+| Field | Where it is |
+| --- | --- |
+| **Api key** | The Vonage dashboard home page. |
+| **Secret key** | Next to the API key. |
+| **Application id** | Applications → your voice/messaging application. |
 
-![enter image description here](/images/vonage/vonage-2.png)
+<Warning>
+  The secret key is a credential for your whole Vonage account.
+</Warning>
 
-## 3. Add a user with the following permissions
+---
 
-![enter image description here](/images/vonage/vonage-3.png)
+## Connect it
+
+<Steps>
+  <Step title="Open Integrations">
+    **Settings → Integrations → Vonage → Configure**.
+  </Step>
+  <Step title="Paste the three values">
+    Set **Status** to Active and save.
+  </Step>
+  <Step title="Point your number at it">
+    **Settings → Profile → User Contacts** → add your Vonage number with **Provider = Vonage**, once
+    with **Channel = Call** and once with **Channel = SMS**, and tick **Is Default?**.
+
+    → [Profile](/settings/profile)
+  </Step>
+</Steps>
+
+---
+
+## Adding a developer to your Vonage account
+
+If the BeRocker team or your own developer needs access to set this up, invite them rather than
+sharing your login.
+
+<Steps>
+  <Step title="Log in to Vonage — Communications APIs">
+    ![The Vonage Communications APIs dashboard](/images/vonage/vonage-1.png)
+  </Step>
+  <Step title='Go to the Home page and click "Invite your team"'>
+    ![Inviting your team in Vonage](/images/vonage/vonage-2.png)
+  </Step>
+  <Step title="Add the user with these permissions">
+    ![The permissions to grant the invited user](/images/vonage/vonage-3.png)
+  </Step>
+</Steps>
+
+---
+
+## Before you send at volume
+
+US application-to-person SMS needs **10DLC registration** with Vonage, exactly as it does with every
+other provider. Unregistered traffic is filtered by the carriers, not by Vonage — the messages look
+sent and never arrive.
+
+Watch [Messaging health](/settings/messaging-health) after you start sending.
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All communication providers.
+  </Card>
+  <Card title="Messaging health" icon="heart-pulse" href="/settings/messaging-health">
+    Delivery rates per sending number.
+  </Card>
+</CardGroup>

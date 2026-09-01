@@ -1,11 +1,43 @@
 ---
-title: "RevitPay Integration"
-category: "BeRocker CRM settings"
-published: true
-order: 7
-created_at: "2025-06-29T09:11:39.388234+00:00"
-updated_at: "2025-06-29T09:11:39.388234+00:00"
+title: "RevitPay"
+description: "Connect RevitPay for card payments and invoicing."
 ---
+
+RevitPay is a payment processor for high-risk and specialty merchants, common in auto transport.
+
+<Info>
+  Payment processors are configured in **Settings → Integrations → Payment Gateway → Configure**,
+  which opens the **Payment Gateways** page. See
+  [Payment gateways](/settings/integrations) for the full picture.
+</Info>
+
+---
+
+## What BeRocker asks for
+
+Enter the credentials RevitPay issued for your merchant account on the **Payment Gateways** page.
+
+---
+
+## Set the default and the fee
+
+RevitPay does not report how a card is funded, so a credit-cards-only processing fee cannot be
+honoured with RevitPay as your default — do not promise a debit waiver in customer-facing wording.
+
+RevitPay invoices stay up until they are paid.
+
+The **Payment fee (%)** on the Payment Gateways page is added on top of what you charge:
+
+- Empty or **0** → no fee. Charging $200 bills the customer exactly **$200.00**.
+- **3** → a 3% fee. Charging $200 bills the customer **$206.00** ($200 + $6 fee).
+
+Only the fee of the processor set as your **default card payment option** is applied — it does not
+depend on which card the customer has. The customer sees the breakdown on the charge screen and on
+the emailed receipt.
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/How_To_Configure_RevitPay_Settings_in_BeRocker__nk40j8fkQAejFzRqB3U2Dg?as=scrollable"
@@ -15,6 +47,22 @@ updated_at: "2025-06-29T09:11:39.388234+00:00"
   allowfullscreen
 ></iframe>
 
+
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Payment gateways" icon="credit-card" href="/settings/integrations">
+    All processors and the default.
+  </Card>
+  <Card title="Accounting" icon="dollar-sign" href="/using/accounting">
+    Every payment, refund and dispute.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Whether the card is charged automatically on booking.
+  </Card>
+  <Card title="Pricing" icon="sliders" href="/settings/pricing">
+    Deposit brackets.
+  </Card>
+</CardGroup>

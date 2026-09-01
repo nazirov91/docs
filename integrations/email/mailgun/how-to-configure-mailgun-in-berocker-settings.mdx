@@ -1,11 +1,47 @@
 ---
-title: "Mailgun - How to configure"
-category: "BeRocker CRM settings"
-published: true
-order: 4
-created_at: "2025-06-29T07:54:53.797705+00:00"
-updated_at: "2025-06-29T07:55:40.938+00:00"
+title: "Mailgun"
+description: "Connect Mailgun so BeRocker can send transactional email from your own domain."
 ---
+
+Mailgun is a developer-friendly email API with strong deliverability for transactional and marketing
+email. It is the main alternative to SendGrid.
+
+---
+
+## What BeRocker asks for
+
+| Field | Where it is |
+| --- | --- |
+| **Domain** | Mailgun → **Sending → Domains**. Use the domain you have verified, e.g. `mail.yourcompany.com`. |
+| **Secret** | The private API key for that domain, from **Sending → Domain settings → API keys**. |
+
+<Warning>
+  Verify your domain in Mailgun **before** connecting. An unverified domain will connect and then
+  silently fail to deliver.
+</Warning>
+
+---
+
+## Connect it
+
+<Steps>
+  <Step title="Open Integrations">
+    **Settings → Integrations → Mailgun → Configure**.
+  </Step>
+  <Step title="Paste the domain and secret">
+    Set **Status** to Active and save.
+  </Step>
+  <Step title="Point your email address at it">
+    **Settings → Profile → User Contacts** → add an entry with **Channel = Email**,
+    **Provider = Mailgun**, your sending address, and tick **Is Default?**.
+
+    → [Profile](/settings/profile)
+  </Step>
+</Steps>
+
+---
+
+## Step-by-step walkthrough
 
 <iframe
   src="https://scribehow.com/embed/Configure_MailGun_in_BeRocker_Settings__dhKw_afzRHaa9TYoUAhTNg?as=scrollable"
@@ -17,4 +53,32 @@ updated_at: "2025-06-29T07:55:40.938+00:00"
 
 ---
 
-_This article provides essential information about the topic. For additional details or clarification, please feel free to reach out to our support team._
+## Before you send at volume
+
+Set up **SPF**, **DKIM** and **DMARC** for the sending domain. The
+[Email deliverability](/integrations/email/sendgrid/email-deliveribility) guide is written around
+SendGrid but the DNS records and the reasoning are identical for Mailgun.
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Status stays **Not connected** | Wrong secret, or the key belongs to a different domain. |
+| Emails accepted but never delivered | The domain is not verified in Mailgun. |
+| Emails land in spam | SPF, DKIM and DMARC on the sending domain. |
+| Cannot pick Mailgun on a contact | The integration is not Active yet. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Email deliverability" icon="shield" href="/integrations/email/sendgrid/email-deliveribility">
+    SPF, DKIM and DMARC.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/settings/integrations">
+    All email providers.
+  </Card>
+</CardGroup>
