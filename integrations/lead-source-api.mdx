@@ -1,6 +1,6 @@
 ---
 title: "Lead source API"
-description: "POST leads into BeRocker from your website or a lead provider, using the endpoint URL each lead source gives you."
+description: "POST leads into BeRocker from your website, your own quote form or a lead provider, using the endpoint URL each lead source gives you — including pickup windows and timeframes."
 ---
 
 Every [lead source](/settings/lead-sources) you create in BeRocker gets its own **endpoint URL**.
@@ -28,13 +28,18 @@ an agent.
 The URL looks like:
 
 ```text
-https://app.berocker.com/api/v1/client/webhooks/lead/<your-api-key>/save
+https://app.berocker.com/api/v1/auto-logistics/client/webhooks/lead/<your-api-key>/save
 ```
 
 <Info>
   The key is embedded in the URL, so authentication is built in — there is no separate token to send.
   Some sources also expose a **hot lead** URL for providers that flag urgent leads.
 </Info>
+
+<Note>
+  Always copy the URL from the CRM rather than typing it. Every endpoint on this page lives under the
+  same prefix as the Lead save URL — replace the trailing `/save` with the path shown for each one.
+</Note>
 
 <Warning>
   Treat the URL like a password. Anyone who has it can create leads in your account. If it leaks,
@@ -46,7 +51,7 @@ https://app.berocker.com/api/v1/client/webhooks/lead/<your-api-key>/save
 ## 2. Request
 
 ```http
-POST /api/v1/client/webhooks/lead/<api-key>/save
+POST /api/v1/auto-logistics/client/webhooks/lead/<api-key>/save
 Content-Type: application/json
 ```
 
@@ -81,7 +86,7 @@ Content-Type: application/json
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `ship_date` | date | The requested pickup date. |
+| `ship_date` | date | The requested pickup date. Also accepted as `pickup_date`. |
 | `drop_off_date` | date | |
 | `transport_type` | string | `open` (default) or `enclosed`. |
 | `comment_from_shipper` | string | Free text from the customer. |
@@ -91,6 +96,32 @@ Content-Type: application/json
 | `lead_cost` | integer | What this particular lead cost you, if it varies per lead. |
 | `customer_id_type` | string | `passport`, `driver_license` or `national_id`. |
 | `customer_id_number` | string | |
+
+### Pickup timing
+
+A form can say when the customer needs the car in three ways. The plain `ship_date` above always
+works. The other two depend on switches in **Settings → Feature Flags**, and each is simply ignored
+— never an error — for an account that has its switch off, so the same form works for every account.
+
+| Field | Type | Needs | Notes |
+| --- | --- | --- | --- |
+| `pickup_timeframe` | string | **Timeframe pricing** on | How soon the customer needs the car. One of `asap`, `within_1_week`, `within_2_weeks`, `beyond_2_weeks`. The option's label ("Within 1 week") is accepted too, in any case, with spaces or hyphens. Anything that names no option is rejected with a validation error. The deposit is quoted from that timeframe's own schedule in [Pricing](/settings/pricing). |
+| `pickup_window_start` | date | **Pickup windows** on | First day the car is available for pickup. Also accepted as `pickupWindowStart`. |
+| `pickup_window_end` | date | **Pickup windows** on | Last day the customer is promised pickup by. Also accepted as `pickupWindowEnd`. Leave it out and BeRocker fills in the account's default window length after the start. The same date twice is a one-day pickup. |
+
+When a window is recorded it becomes the lead's pickup window — the same thing a rep enters on
+**Add Shipment** or the customer picks on the [booking page](/settings/booking-page) — it is logged
+on the lead as set by the customer, and `ship_date` is set to the window's first day.
+
+<Warning>
+  A window is checked **before** the lead is created. Both dates must be today or later on your
+  account's calendar, the end may not be before the start, and an end without a start is refused.
+  Any of those returns a `422` naming the field under `errors`, and no lead is saved — so a form with a
+  broken date picker cannot fill your CRM with promises nobody can keep.
+</Warning>
+
+Use [`quote-config`](#quote-config) to find out which of these your account currently asks for, so
+your form only shows fields that will be kept.
 
 ### Each vehicle
 
@@ -117,7 +148,7 @@ Content-Type: application/json
 ## 4. Example
 
 ```bash
-curl -X POST "https://app.berocker.com/api/v1/client/webhooks/lead/<api-key>/save" \
+curl -X POST "https://app.berocker.com/api/v1/auto-logistics/client/webhooks/lead/<api-key>/save" \
   -H "Content-Type: application/json" \
   -d '{
     "first_name": "John",
@@ -146,9 +177,114 @@ curl -X POST "https://app.berocker.com/api/v1/client/webhooks/lead/<api-key>/sav
   }'
 ```
 
+With a pickup window instead of a single date (account has **Pickup windows** on):
+
+```json
+{
+  "first_name": "John",
+  "phone": "5551234567",
+  "origin_postal_code": "90001",
+  "destination_postal_code": "33101",
+  "pickup_window_start": "2026-09-27",
+  "pickup_window_end": "2026-09-29",
+  "vehicles": [{ "vehicle_model_year": 2020, "vehicle_make": "Toyota", "vehicle_model": "Camry" }]
+}
+```
+
+With a timeframe (account has **Timeframe pricing** on):
+
+```json
+{
+  "first_name": "John",
+  "phone": "5551234567",
+  "origin_postal_code": "90001",
+  "destination_postal_code": "33101",
+  "pickup_timeframe": "within_1_week",
+  "vehicles": [{ "vehicle_model_year": 2020, "vehicle_make": "Toyota", "vehicle_model": "Camry" }]
+}
+```
+
 ---
 
-## 5. What happens next
+## 5. Response
+
+A successful save answers `200` with the lead as created. The fields worth reading:
+
+| Field | Notes |
+| --- | --- |
+| `id` | The lead's id in BeRocker. |
+| `bookingLink` | The customer's booking page for this lead. |
+| `price` | Usually `null` at this point — pricing runs in the background. Poll [`booking-status`](#booking-status) if you need it. |
+| `pickupTimeframe` | What was recorded: the value, or `null` when none was sent or the account has timeframe pricing off. |
+| `pickupWindowStart`, `pickupWindowEnd` | The recorded window as `YYYY-MM-DD`, or `null` when none was sent or the account has pickup windows off. |
+| `leadProvider` | The name of the lead source the URL belongs to. |
+
+A validation failure answers `422`:
+
+```json
+{ "message": "Validation error", "errors": { "pickup_window_end": "The last pickup date cannot be before the first available date." } }
+```
+
+---
+
+## 6. Companion endpoints
+
+Two read-only endpoints sit next to the save URL, under the same key. Your own quote form uses them
+to know what to ask and when the quote is ready; the walkthrough is in
+[Build your own quote form](/integrations/custom-quote-form).
+
+### `quote-config`
+
+```http
+GET /api/v1/auto-logistics/client/webhooks/lead/<api-key>/quote-config
+```
+
+Answers which pickup question this account asks. Each key is `null` when the account does not ask
+that question — meaning the matching fields would be dropped on save, so there is no point showing
+them.
+
+```json
+{
+  "pickupTimeframes": [
+    { "value": "asap",           "label": "As soon as possible", "isDefault": true  },
+    { "value": "within_1_week",  "label": "Within 1 week",       "isDefault": false },
+    { "value": "within_2_weeks", "label": "Within 2 weeks",      "isDefault": false },
+    { "value": "beyond_2_weeks", "label": "More than 2 weeks",   "isDefault": false }
+  ],
+  "pickupWindow": {
+    "earliestDate": "2026-09-16",
+    "defaultWindowDays": 1,
+    "timezone": "America/New_York"
+  }
+}
+```
+
+| Key | Present when | Use it for |
+| --- | --- | --- |
+| `pickupTimeframes` | **Timeframe pricing** is on | Render these options verbatim — value, label and which is pre-selected. Never invent your own. |
+| `pickupWindow` | **Pickup windows** is on | `earliestDate` is today on the account's calendar — the earliest date the save will accept, so use it as the date picker's minimum. `defaultWindowDays` is how long a window becomes when only the start is sent. |
+
+### `booking-status`
+
+```http
+GET /api/v1/auto-logistics/client/webhooks/lead/<api-key>/<lead-id>/booking-status
+```
+
+Whether the automatic quote for a lead you just saved is ready.
+
+```json
+{ "id": 123, "price": 1250, "priceReady": true, "priceFailed": false, "manualReview": false, "bookingLink": "https://…" }
+```
+
+| Field | Meaning |
+| --- | --- |
+| `priceReady` | A usable price exists. Safe to send the customer to `bookingLink`. |
+| `priceFailed` | Pricing gave up. No price will appear; show your own follow-up message. |
+| `manualReview` | The lead has a custom vehicle and an agent will price it by hand. Stop polling. |
+
+---
+
+## 7. What happens next
 
 <Steps>
   <Step title="The lead is created">
@@ -175,7 +311,8 @@ Send one lead with your own name and phone number and watch it arrive.
 | Symptom | Check |
 | --- | --- |
 | 404 | The URL, including the key and the trailing `/save`. |
-| Validation error | `first_name`, `phone` and at least one vehicle are all required. |
+| Validation error | `first_name`, `phone` and at least one vehicle are all required. A `422` naming `pickup_window_start` or `pickup_window_end` means the dates are in the past, out of order, or the end came without a start. |
+| Timeframe or window not saved | The account's switch is off in **Settings → Feature Flags**; the field is ignored on purpose. Check `quote-config`. |
 | Lead arrives but is not assigned | Distribution quotas are 0, or you are outside shift hours with no fallback. |
 | Vehicle type is wrong | `vehicle_type` is not one of the listed values — BeRocker matches loosely, but exact values are safest. |
 | City and state are empty | Send `origin_postal_code` / `destination_postal_code` and they will be filled in. |
@@ -191,10 +328,16 @@ Send one lead with your own name and phone number and watch it arrive.
 ## Related
 
 <CardGroup cols={2}>
+  <Card title="Build your own quote form" icon="wand-magic-sparkles" href="/integrations/custom-quote-form">
+    The full flow: ask what to show, save, wait for the price, hand off to booking.
+  </Card>
   <Card title="Lead sources" icon="filter" href="/settings/lead-sources">
     Create the source and get the URL.
   </Card>
   <Card title="Lead distribution" icon="share-nodes" href="/settings/lead-distribution">
     Who receives these leads.
+  </Card>
+  <Card title="Pricing" icon="tags" href="/settings/pricing">
+    Where the per-timeframe deposit schedules live.
   </Card>
 </CardGroup>
