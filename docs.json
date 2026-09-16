@@ -154,6 +154,7 @@
             "group": "Leads and AI",
             "pages": [
               "integrations/lead-source-api",
+              "integrations/custom-quote-form",
               "integrations/mcp/mcp-connection"
             ]
           }
