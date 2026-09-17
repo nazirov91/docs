@@ -19,8 +19,27 @@ reference lists every optional field the save endpoint accepts if you need more 
 
 ## 1. Your endpoint URLs
 
-Every lead source you create in **Settings → Lead Management → Lead sources** has a **Lead save
-URL** in the **URLs** column. Copy it from the CRM. It looks like:
+<Steps>
+  <Step title="Create a lead source for the form">
+    **Settings → Lead Management → Lead sources → + Add new source**. Only the name is required.
+    Set **Per Lead Price** to 0 for your own website. One source per form or page if you want
+    their leads and cost tracked separately.
+
+    <Frame>
+      <img src="/images/pickup-windows/add-source.png" alt="The Add new source dialog in Settings → Lead Management" />
+    </Frame>
+  </Step>
+  <Step title="Copy its Lead save URL">
+    Back on the **Lead sources** tab, click the copy icon next to **Lead save URL** in the
+    **URLs** column. The tooltip says **Copied!** — that URL is the whole credential.
+
+    <Frame>
+      <img src="/images/pickup-windows/lead-sources-copy.png" alt="Copying the Lead save URL from the URLs column of the Lead sources table" />
+    </Frame>
+  </Step>
+</Steps>
+
+The URL looks like:
 
 ```text
 https://app.berocker.com/api/v1/auto-logistics/client/webhooks/lead/<your-api-key>/save
@@ -79,6 +98,14 @@ Each key is `null` when the account does not ask that question, so the rendering
 The switches behind these are **Settings → Feature Flags → Pickup windows** and **Timeframe
 pricing** (which needs Pickup windows on). They are account-wide, so every form and lead source of
 one account gets the same answer.
+
+<Frame caption="Feature Flags and Pickup SOP live under Finance on the Settings page.">
+  <img src="/images/pickup-windows/settings-hub.png" alt="The Settings page with the Finance group showing Pricing, Feature Flags and Pickup SOP" />
+</Frame>
+
+<Frame caption="Both switches on. Timeframe pricing is greyed out until Pickup windows is on.">
+  <img src="/images/pickup-windows/feature-flags.png" alt="The Feature Flags page with Pickup windows and Timeframe pricing switched on" />
+</Frame>
 
 <Tip>
   Render the single date field by default and only swap it out after `quote-config` answers. A
@@ -264,6 +291,10 @@ On the booking page:
 
 Whatever the customer confirms there — dates, signature, payment — flows into the lead exactly as
 it would for a widget lead.
+
+<Frame caption="Settings → Pickup SOP → Timeframes &amp; Expedite: the seed days behind each timeframe.">
+  <img src="/images/pickup-windows/pickup-sop-timeframes.png" alt="The Timeframes and Expedite tab of Pickup SOP, with the seed days for each of the four timeframes" />
+</Frame>
 
 ---
 
