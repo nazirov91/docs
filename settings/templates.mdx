@@ -62,7 +62,8 @@ Once you pick an event:
 | **Preview** | The message rendered with sample data. |
 | **Variables** | The placeholders you can drop in, grouped by subject. |
 | **Edit** | The editor itself. |
-| **+ Create new template** | Add another version. |
+| **+ Create new template** | Add another version. It joins the event's sends by itself. |
+| **Sends for this event** | Whether the version you are looking at is one of the versions the event sends. New versions are on by default; switch one off to keep it without sending it. |
 | **Status** | Active or Inactive. Inactive templates are never used. |
 
 ### Keep several versions of each
@@ -71,11 +72,38 @@ Write three or four versions of every message you send often. BeRocker picks one
 time, so a customer who gets quoted twice does not get word-for-word identical texts, and your
 numbers do not start looking like a bot.
 
+A version you create for an event starts sending as soon as you save it — same delay as the
+versions already there, no extra step. The line under the version picker tells you how many
+versions send for the event and how the pick is made. To keep a version without sending it,
+switch **Sends for this event** off, or set its status to Inactive.
+
 Example follow-ups:
 
 - *"Just checking in about your transport — still interested?"*
 - *"Quick follow-up on your quote. Want me to lock it in?"*
 - *"Hi [lead_first_name], did you want to move forward with booking?"*
+
+Follow-up messages are the one exception: their versions live in the Follow-up inventory and are
+placed on the sequence by hand, on the Follow-up tab.
+
+### One version per location
+
+Some messages should depend on where the customer is — a review request that links to the Google
+listing nearest them, for example. Give each version a **Location** (city and state, or a ZIP) in
+the template editor, and the event sends each customer the version nearest to their pickup or
+delivery address, whichever is closer. No radius to configure: the nearest one simply wins.
+
+- A version with no location is the general wording. It is used for customers whose addresses
+  cannot be placed on the map.
+- If every version has a location and the customer cannot be placed, one is sent at random rather
+  than nothing.
+- The version picker shows each version's location, and the note under it switches from *at
+  random* to *nearest their pickup or delivery* once any sending version has one.
+
+<Tip>
+  Name the versions after the place — *Google review – Tampa*, *Google review – Phoenix* — so the
+  picker reads like a map.
+</Tip>
 
 ### Version history
 
@@ -179,7 +207,8 @@ actually doing right now: sending numbers, delivery rates, the queue, quiet hour
 | --- | --- |
 | Variables render empty | The exact spelling in the **Variables** tab, and that the lead has that field filled in. |
 | Message never sent | The template's **Status** is Active, and the event is the one you think it is. |
-| Every customer gets identical text | Add more versions of that template. |
+| Every customer gets identical text | Add more versions of that template. New ones send automatically; check **Sends for this event** on any older version that shows *not sending*. |
+| Customers get the wrong city's version | The versions' **Location** in the template editor, and that the customer's pickup or delivery has a real ZIP or city and state. |
 | Automatic message did not fire | The event's badge — is it actually **Automatic**? |
 | Texts queued but not going out | [Messaging health](/settings/messaging-health) — quiet hours, the per-minute pace, or a rested number. |
 
