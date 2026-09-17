@@ -1,0 +1,184 @@
+---
+title: "Pickup windows and timeframes"
+description: "Optional pickup fields for the lead source API — a first-and-last-day pickup window, or a how-soon timeframe — for BeRocker editions that have the Pickup windows feature."
+---
+
+<Warning>
+  **This page applies only to editions with the Pickup windows feature.** Check your CRM for
+  **Settings → Feature Flags** with a **Pickup windows** switch. If that page is not there, your
+  edition takes the single `ship_date` documented on the [Lead source API](/integrations/lead-source-api)
+  page, the fields below are silently ignored, and the `quote-config` endpoint answers `404`.
+  Nothing here is required — every field on this page is optional everywhere.
+</Warning>
+
+On editions that have it, a form can say when the customer needs the car in three ways. The plain
+`ship_date` always works. The other two depend on switches in **Settings → Feature Flags**, and each
+is simply ignored — never an error — for an account that has its switch off, so one form works for
+every account.
+
+| Question | Field(s) | Switch | What the customer gets |
+| --- | --- | --- | --- |
+| **A single date** — "when do you want it picked up?" | `ship_date` | none, always accepted | A requested date on the lead. |
+| **A pickup window** — "first available day, and the last day you need it picked up by" | `pickup_window_start`, `pickup_window_end` | **Pickup windows** | The window is the promise: dispatch works to the last day, the rep sees who set it, and the booking page opens on it. |
+| **A timeframe** — "how soon do you need it?" | `pickup_timeframe` | **Timeframe pricing** (needs Pickup windows on) | The deposit is quoted from that timeframe's own schedule in [Pricing](/settings/pricing) — sooner costs more, the carrier's pay is the same either way. The customer picks real dates on the booking page. |
+
+<Tip>
+  Because a field for a switch that is off is ignored rather than rejected, your form should **ask**
+  which question to show rather than assume — that is what `quote-config` is for.
+</Tip>
+
+---
+
+## 1. Ask what to show — `quote-config`
+
+Call this once when the form loads.
+
+```http
+GET /api/v1/auto-logistics/client/webhooks/lead/<api-key>/quote-config
+```
+
+```json
+{
+  "pickupTimeframes": [
+    { "value": "asap",           "label": "As soon as possible", "isDefault": true  },
+    { "value": "within_1_week",  "label": "Within 1 week",       "isDefault": false },
+    { "value": "within_2_weeks", "label": "Within 2 weeks",      "isDefault": false },
+    { "value": "beyond_2_weeks", "label": "More than 2 weeks",   "isDefault": false }
+  ],
+  "pickupWindow": {
+    "earliestDate": "2026-09-16",
+    "defaultWindowDays": 1,
+    "timezone": "America/New_York"
+  }
+}
+```
+
+Each key is `null` when the account does not ask that question, so the rendering rule is simple:
+
+- **`pickupTimeframes` is a list** → show a dropdown built from it, verbatim. Pre-select the option
+  with `isDefault: true`. Do not add, rename or reorder options — the values are what pricing keys
+  off, and the labels are what the account configured.
+- **`pickupWindow` is an object** → you may show two date fields. Set the picker's minimum to
+  `earliestDate` (today on the account's own calendar, which may not be today where the visitor is).
+  If you only ask for one date, send it as `pickup_window_start` and BeRocker adds
+  `defaultWindowDays` to make the window.
+- **Both are `null`, or the request fails** (including a `404` on an edition without the feature)
+  → show the single pickup date field.
+
+<Tip>
+  Render the single date field by default and only swap it out after `quote-config` answers. A
+  form that waits for this call before rendering anything is blank while your API request is slow,
+  and a form that treats a failed call as an error breaks on every edition without the feature.
+</Tip>
+
+---
+
+## 2. The fields on `save`
+
+| Field | Type | Needs | Notes |
+| --- | --- | --- | --- |
+| `pickup_timeframe` | string | **Timeframe pricing** on | One of `asap`, `within_1_week`, `within_2_weeks`, `beyond_2_weeks`. The option's label ("Within 1 week") is accepted too, in any case, with spaces or hyphens. Anything that names no option is rejected with a validation error. |
+| `pickup_window_start` | date | **Pickup windows** on | First day the car is available for pickup. Also accepted as `pickupWindowStart`. |
+| `pickup_window_end` | date | **Pickup windows** on | Last day the customer is promised pickup by. Also accepted as `pickupWindowEnd`. Leave it out and BeRocker fills in the account's default window length after the start. The same date twice is a one-day pickup. |
+
+When a window is recorded it becomes the lead's pickup window — the same thing a rep enters on
+**Add Shipment** or the customer picks on the [booking page](/settings/booking-page) — it is logged
+on the lead as set by the customer, and `ship_date` is set to the window's first day.
+
+A window-based form posts:
+
+```json
+{
+  "first_name": "Dana",
+  "phone": "3055550101",
+  "origin_postal_code": "33101",
+  "destination_postal_code": "75201",
+  "pickup_window_start": "2026-09-23",
+  "pickup_window_end": "2026-09-25",
+  "vehicles": [{ "vehicle_model_year": 2021, "vehicle_make": "Honda", "vehicle_model": "Civic" }]
+}
+```
+
+A timeframe-based form posts `"pickup_timeframe": "within_1_week"` instead of the two dates.
+
+### Window rules
+
+A window is checked **before** the lead is created, so a broken date picker cannot fill your CRM:
+
+| Rule | Error field |
+| --- | --- |
+| Both dates today or later on the account's calendar | the offending date |
+| End on or after the start (the same date twice is a one-day pickup) | `pickup_window_end` |
+| An end needs a start | `pickup_window_start` |
+| A value that is not a date | the offending date |
+
+Any breach answers `422` with `errors` naming the field and a message you can show under it, and
+**no lead is saved**:
+
+```json
+{ "message": "Validation error", "errors": { "pickup_window_end": "The last pickup date cannot be before the first available date." } }
+```
+
+<Warning>
+  If your form shows the timeframe dropdown, treat the selection as required and refuse to submit
+  without one. Never fall back to "as soon as possible" silently — it is the highest deposit, and a
+  customer who did not choose it should not be quoted it.
+</Warning>
+
+---
+
+## 3. What comes back
+
+The save response carries two extra fields on these editions, so a form can confirm what was kept:
+
+| Field | Notes |
+| --- | --- |
+| `pickupTimeframe` | The recorded value, or `null` when none was sent or the account has timeframe pricing off. |
+| `pickupWindowStart`, `pickupWindowEnd` | The recorded window as `YYYY-MM-DD`, or `null` when none was sent or the account has pickup windows off. |
+
+`null` back for a field you sent is how you tell it was dropped rather than saved.
+
+---
+
+## 4. On the booking page
+
+- a lead saved with a **window** opens with that window already filled in;
+- a lead saved with a **timeframe** opens on the first available date that timeframe implies
+  (as soon as possible → today, or tomorrow once the account's day has closed; within 1 week → a
+  week out, and so on — the offsets are set in **Settings → Pickup SOP**), and the customer
+  confirms real dates there;
+- a lead saved with a **single date** opens on it.
+
+Whatever the customer confirms on the booking page becomes the pickup window, exactly as it would
+for a widget lead.
+
+---
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| `quote-config` answers `404` | Your edition does not have the feature. Show the single date field. |
+| Both keys come back `null` | The switches are off in **Settings → Feature Flags**. Show the single date field. |
+| Window or timeframe not saved (`null` in the response) | The matching switch is off; the field was ignored on purpose. |
+| `422` naming `pickup_window_start` or `pickup_window_end` | Dates in the past, out of order, an end without a start, or not a date. |
+| `422` naming `pickup_timeframe` | The value names none of the four options. Use the `value` from `quote-config`. |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Build your own quote form" icon="wand-magic-sparkles" href="/integrations/custom-quote-form">
+    The universal flow: save, wait for the price, hand off to booking.
+  </Card>
+  <Card title="Lead source API" icon="code" href="/integrations/lead-source-api">
+    Every field the save endpoint accepts.
+  </Card>
+  <Card title="Pricing" icon="tags" href="/settings/pricing">
+    Deposit schedules, including the per-timeframe ones.
+  </Card>
+  <Card title="Booking page" icon="browser" href="/settings/booking-page">
+    Where the customer confirms dates, signs and pays.
+  </Card>
+</CardGroup>
