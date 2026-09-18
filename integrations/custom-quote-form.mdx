@@ -44,6 +44,12 @@ Content-Type: application/json
 Only `first_name`, `phone` and one vehicle are required. A ZIP on each end is enough for the route;
 BeRocker fills in the city and state.
 
+<Tip>
+  Want year / make / model pickers instead of free-text fields? The
+  [Vehicle database API](/integrations/vehicle-database-api) serves the same catalogue the widget
+  uses, and the names it returns drop straight into `vehicle_make` and `vehicle_model`.
+</Tip>
+
 The response gives you the lead's id and the booking page:
 
 ```json
@@ -133,6 +139,9 @@ takes the single `ship_date` above and nothing on that page applies.
 <CardGroup cols={2}>
   <Card title="Lead source API" icon="code" href="/integrations/lead-source-api">
     Every field the save endpoint accepts.
+  </Card>
+  <Card title="Vehicle database API" icon="car" href="/integrations/vehicle-database-api">
+    Year, make and model pickers backed by the widget's catalogue.
   </Card>
   <Card title="Lead sources" icon="filter" href="/settings/lead-sources">
     Create the source and get the URL.
