@@ -1,0 +1,268 @@
+---
+title: "Vehicle database API"
+description: "Power the year, make and model pickers of your own quote form with the same vehicle catalogue the BeRocker widget uses — read-only, one API key, three requests."
+---
+
+The BeRocker quoting widget offers visitors a **year → make → model** picker backed by a curated
+vehicle catalogue. If you are [building your own quote form](/integrations/custom-quote-form), you
+can use that same catalogue instead of maintaining a list of your own: three small `GET` requests,
+authenticated by an API key BeRocker issues to you, and the names you get back are exactly what the
+[Lead source API](/integrations/lead-source-api) expects in `vehicle_make` and `vehicle_model`.
+
+<Info>
+  **Getting a key.** Vehicle API keys are issued by BeRocker — ask [support](/support/contact) for
+  one and tell us which website it will live on. You get a key that starts with `bvk_`, shown once;
+  store it where your form can read it. We can suspend, replace or delete it at any time, and we
+  can see how much it is used, so tell us if you expect a lot of traffic.
+</Info>
+
+---
+
+## 1. Authenticate
+
+Every request needs the key. Send it in a header (preferred):
+
+```http
+GET /api/v1/vehicles/years
+X-Api-Key: bvk_your_key_here
+```
+
+`Authorization: Bearer bvk_your_key_here` works too, and so does an `?api_key=bvk_…` query
+parameter for the simplest forms — though a header keeps the key out of browser history and
+server logs.
+
+All endpoints live under:
+
+```text
+https://app.berocker.com/api/v1/vehicles/
+```
+
+They are read-only `GET`s, answer JSON, and allow cross-origin requests, so a plain `fetch()` from
+your page works.
+
+<Warning>
+  The key is visible to anyone who reads your page's source, exactly like the widget's own key.
+  That is fine — it can only *read* a public catalogue and it is rate-limited — but tell us the
+  domain(s) your form runs on and we will **pin the key to them**. A pinned key refuses requests
+  from any other website, so a copied key is useless elsewhere.
+</Warning>
+
+---
+
+## 2. The three pickers
+
+A form fills its pickers in order: years first, makes once a year is chosen, models once a make is
+chosen. Each call returns the **complete** list — there is no paging.
+
+### Years
+
+```http
+GET /api/v1/vehicles/years
+```
+
+```json
+{ "data": [2027, 2026, 2025, 2024, "…", 1950] }
+```
+
+Newest first.
+
+### Makes for a year
+
+```http
+GET /api/v1/vehicles/makes?year=2021
+```
+
+```json
+{
+  "data": [
+    { "id": 12, "name": "Acura" },
+    { "id": 31, "name": "Honda" },
+    { "id": 58, "name": "Toyota" }
+  ],
+  "meta": { "year": 2021 }
+}
+```
+
+Alphabetical. `id` is stable across years — the same make has the same `id` in 2021 and 1998 —
+but you do not need it: the next call takes the make by **name**.
+
+### Models for a make and year
+
+```http
+GET /api/v1/vehicles/models?year=2021&make=Honda
+```
+
+```json
+{
+  "data": [
+    { "id": 9911, "name": "Accord",  "type": "Car", "body_type": "Sedan" },
+    { "id": 9917, "name": "CR-V",    "type": "SUV", "body_type": null },
+    { "id": 9920, "name": "Civic",   "type": "Car", "body_type": "Sedan" }
+  ],
+  "meta": { "year": 2021, "make": "Honda" }
+}
+```
+
+`make` accepts the name (case and spaces do not matter — `honda` and `HON DA` both work) or the
+`id` from the makes call. `type` is the vehicle type BeRocker prices by; pass it along as
+`vehicle_type` when you save the lead and the quote is exact.
+
+An unknown make answers `422` with `"code": "unknown_make"`. A real make that simply has no models
+in that year answers `200` with an empty `data`.
+
+<Tip>
+  Both `makes` and `models` take an optional `q` parameter that filters by substring — handy for a
+  type-ahead field: `GET /api/v1/vehicles/models?year=2021&make=Honda&q=civ`.
+</Tip>
+
+---
+
+## 3. Two helpers
+
+### Vehicle types
+
+```http
+GET /api/v1/vehicles/types
+```
+
+```json
+{ "data": ["sedan", "Car", "Boat", "Motorcycle", "Pickup", "pickup_2_doors", "pickup_4_doors", "SUV", "Van", "RV", "Travel Trailer", "ATV", "Convertible", "Coupe", "Other"] }
+```
+
+The values the Lead source API accepts in `vehicle_type`. Useful for the "Other — enter manually"
+path of your form, where the visitor types a vehicle that is not in the catalogue and you still
+want to ask what kind of thing it is.
+
+### Look up one vehicle
+
+```http
+GET /api/v1/vehicles/lookup?year=2021&make=honda&model=cr-v
+```
+
+```json
+{
+  "found": true,
+  "data": { "id": 9917, "year": 2021, "make": "Honda", "model": "CR-V", "type": "SUV", "body_type": null }
+}
+```
+
+Resolves one exact vehicle, forgiving case and spacing, and hands back the canonical spelling and
+type. `found: false` (with `data: null`) means it is not in the catalogue — treat that vehicle as
+**custom** when you save the lead (`"is_custom": true`), and it will be priced by an agent.
+
+---
+
+## 4. Put it in a form
+
+A minimal cascading picker. Swap the key, wire the `<select>`s to your markup, and post the result
+to your [Lead save URL](/integrations/custom-quote-form):
+
+```html
+<select id="year"></select>
+<select id="make" disabled></select>
+<select id="model" disabled></select>
+
+<script>
+  const API = 'https://app.berocker.com/api/v1/vehicles';
+  const KEY = 'bvk_your_key_here';
+
+  async function get(path, params = {}) {
+    const url = new URL(API + path);
+    Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+    const res = await fetch(url, { headers: { 'X-Api-Key': KEY } });
+    if (!res.ok) throw new Error((await res.json()).message || res.statusText);
+    return (await res.json()).data;
+  }
+
+  const fill = (select, items, label = x => x, value = x => x) => {
+    select.innerHTML = '<option value="">Select…</option>' +
+      items.map(i => `<option value="${value(i)}">${label(i)}</option>`).join('');
+    select.disabled = items.length === 0;
+  };
+
+  const year = document.getElementById('year');
+  const make = document.getElementById('make');
+  const model = document.getElementById('model');
+
+  get('/years').then(years => fill(year, years));
+
+  year.addEventListener('change', async () => {
+    fill(make, []); fill(model, []);
+    if (year.value) fill(make, await get('/makes', { year: year.value }), m => m.name, m => m.name);
+  });
+
+  make.addEventListener('change', async () => {
+    fill(model, []);
+    if (make.value) fill(model, await get('/models', { year: year.value, make: make.value }), m => m.name, m => m.name);
+  });
+
+  // When the visitor submits, the vehicle for the Lead source API is simply:
+  // { vehicle_model_year: +year.value, vehicle_make: make.value, vehicle_model: model.value }
+</script>
+```
+
+The lists come back with an `ETag` and a `Cache-Control: max-age`, so the browser reuses them for
+the next visitor without another request; you do not need to cache anything yourself.
+
+---
+
+## 5. Errors and limits
+
+Every error is JSON with a human `message` and a stable `code`:
+
+| Status | `code` | Meaning |
+| --- | --- | --- |
+| `401` | `missing_api_key` | No key in the header, bearer token or `api_key` parameter. |
+| `401` | `invalid_api_key` | The key does not exist. Repeated guesses from one IP are throttled. |
+| `401` | `api_key_expired` / `api_key_revoked` | The key is no longer valid — ask for a new one. |
+| `403` | `api_key_suspended` | We paused the key. Contact support. |
+| `403` | `origin_not_allowed` | The key is pinned to other domain(s). Tell us the new one. |
+| `422` | `unknown_make`, or `errors` naming the field | A parameter is missing or wrong. |
+| `429` | `rate_limited` | Too many requests this minute. Wait `Retry-After` seconds. |
+| `429` | `daily_limit_exceeded` | The key's daily cap is reached; resets at midnight UTC. |
+
+Each key has a **per-minute rate limit** (300 by default — a form makes three requests per visitor,
+so that is a busy site) and, if we agreed one, a daily cap. Successful responses carry
+`X-RateLimit-Limit` and `X-RateLimit-Remaining`. If your traffic is genuinely bigger, ask — limits
+are per key and we raise them; the point of the limit is to notice a runaway script, not to slow
+a real form down.
+
+<Warning>
+  Do not call the API from a loop, a cron job or a build step to "download the whole catalogue".
+  Ask each list when the visitor needs it, let the browser cache it, and the numbers stay tiny.
+  A key that fetches every make and model for every year gets suspended.
+</Warning>
+
+---
+
+## Checklist
+
+<Steps>
+  <Step title="Get a key">
+    Ask [support](/support/contact) for a Vehicle API key and tell us your form's domain.
+  </Step>
+  <Step title="Cascade the three calls">
+    `years` → `makes?year=` → `models?year=&make=`. Send the key in `X-Api-Key`.
+  </Step>
+  <Step title="Save the lead with the names you got back">
+    `vehicle_model_year`, `vehicle_make`, `vehicle_model` (and `vehicle_type` from the model) go
+    straight into the [Lead source API](/integrations/lead-source-api) payload.
+  </Step>
+  <Step title="Handle 'Other'">
+    Let the visitor type a vehicle that is not listed, send it with `is_custom: true`, and an agent
+    prices it by hand.
+  </Step>
+</Steps>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Build your own quote form" icon="wand-magic-sparkles" href="/integrations/custom-quote-form">
+    Save the lead, wait for the price, hand off to the booking page.
+  </Card>
+  <Card title="Lead source API" icon="code" href="/integrations/lead-source-api">
+    Every field the save endpoint accepts, including each vehicle.
+  </Card>
+</CardGroup>

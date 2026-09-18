@@ -155,6 +155,7 @@
             "pages": [
               "integrations/lead-source-api",
               "integrations/custom-quote-form",
+              "integrations/vehicle-database-api",
               "integrations/pickup-windows-api",
               "integrations/mcp/mcp-connection"
             ]
