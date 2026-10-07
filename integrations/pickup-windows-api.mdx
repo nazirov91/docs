@@ -251,8 +251,12 @@ A successful save answers `200` with the lead as created:
 A validation failure answers `422`:
 
 ```json
-{ "message": "Validation error", "errors": { "pickup_window_end": "The last pickup date cannot be before the first available date." } }
+{ "message": "The last pickup date cannot be before the first available date.", "errors": { "pickup_window_end": "The last pickup date cannot be before the first available date." } }
 ```
+
+`message` is the first few field messages joined together; `errors` maps each field to its own.
+A key that does not exist, or whose lead source is Disabled, answers `403` with
+`"message": "Invalid credentials"`.
 
 ---
 
@@ -267,14 +271,15 @@ GET /api/v1/auto-logistics/client/webhooks/lead/<api-key>/<lead-id>/booking-stat
 ```
 
 ```json
-{ "id": 48213, "price": 1250, "priceReady": true, "priceFailed": false, "manualReview": false, "bookingLink": "https://…" }
+{ "id": 48213, "price": 1250, "priceReady": true, "priceFailed": false, "manualReview": false, "autoPriceEnabled": true, "bookingLink": "https://…" }
 ```
 
 | Field | Meaning |
 | --- | --- |
 | `priceReady` | A usable price exists. Send the customer to `bookingLink`. |
 | `manualReview` | The lead has a custom vehicle; an agent prices it by hand. Stop polling and show your own "we'll be in touch with your quote" message. |
-| `priceFailed` | Pricing gave up. Stop polling and show a message. |
+| `priceFailed` | No price is coming — pricing gave up, or the account does not auto-quote. Stop polling and show a message. |
+| `autoPriceEnabled` | Whether a price was ever going to be computed for this lead. `false` means the account does not auto-quote — skip the wait. |
 | `bookingLink` | The same link the save returned. |
 
 Poll every couple of seconds for up to a minute or so, then give up gracefully — the lead is already

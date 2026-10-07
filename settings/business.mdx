@@ -21,8 +21,10 @@ The tabs are **Account details**, **Business details**, **Branding**, **Terms & 
 | --- | --- |
 | **Account name** | Your business or brand name. |
 | **ID** | Your organization ID — read-only, with a copy button. Support will ask for it. |
-| **Business address** | Street 1, Street 2, City, State, ZIP. |
+| **Business address** | Street 1, Street 2, City, State, Zip. |
 | **Time zone** | The one your office works in. |
+
+Click **Save** (or **Cancel**) under the form.
 
 <Warning>
   Get the **time zone** right before you build any follow-up sequences. Quiet hours, scheduled
@@ -34,24 +36,24 @@ The tabs are **Account details**, **Business details**, **Branding**, **Terms & 
 
 ## Business details
 
-Two groups: what the business *is*, and what the public sees.
+Two blocks, each with its own **Edit** button that turns into **Cancel** / **Save**.
 
-**Business**
+**Business details**
 
-- Legal name
-- Website
-- Address
-- Privacy policy URL
+- **URL** — your website.
+- **Address**
+- **Privacy Policy URL** — shown in the consent notice on the public quote widget; leave it
+  empty and the widget omits the privacy-policy sentence.
 
-**Public info**
+**Public details** — under the heading *Customer support information*:
 
 | Field | Where it shows up |
 | --- | --- |
 | **Business name** | Customer-facing documents and emails. |
-| **Support address**, **support phone**, **support email** | Invoices, payment pages, message footers. |
+| **Support address**, **Support phone**, **Support email** | Invoices, payment pages, message footers. |
 | **Descriptor on customer statements** | What appears on the customer's card statement. |
 | **Also provided** | A short description of what you do. |
-| **MC number** and **DOT number** | Contracts and load board posts. |
+| **M.C number** and **US DOT number** | Contracts and load board posts. |
 
 <Tip>
   The **statement descriptor** is worth getting right. A charge that shows an unrecognisable name on
@@ -66,17 +68,21 @@ Two groups: what the business *is*, and what the public sees.
   <img src="/images/branding-tab.png" alt="The Branding tab" />
 </Frame>
 
-- **Logo** — used on documents and email templates.
+Under **Brand elements**:
+
 - **Icon** — used in compact places. A square image works best.
-- **Brand colour** and **accent colour** — buttons and links in emails and on the booking page.
-- **Prefer logo over icon** — turn this on if your logo already contains your business name.
+- **Logo** — a PNG, used on documents and email templates.
+- **Prefer logo over icon** — tick this if your logo already contains your business name.
+- **Brand color** and **Accent color** — buttons and links in emails and on the booking page.
+
+There is no Save button on this tab: each change is saved as soon as you make it.
 
 ---
 
 ## Terms & Conditions
 
-The document templates that go to shippers and carriers. Edit the text here, and it is what gets
-generated when a contract goes out for signature.
+One rich-text document: the terms that go out with your contracts. Edit the text in the editor
+and click **Save** — *"Terms and Conditions saved successfully"* confirms it.
 
 Message templates are a different thing and live in [Templates](/settings/templates).
 
@@ -84,18 +90,35 @@ Message templates are a different thing and live in [Templates](/settings/templa
 
 ## Widget
 
-The quote widget you embed on your own website. Configure it here, then copy the embed snippet onto
-your site.
+The quote form you put in front of customers. Three cards sit next to a live **Preview**
+(**Desktop** / **Phone**):
 
-Leads from the widget arrive through a [lead source](/settings/lead-sources) like any other, so
-they get distributed, quoted and followed up the same way.
+- **Your quote form** — pick a **Style** (theme) and the **Lead source** the form posts to. Every
+  setting on the tab is saved against that lead source, so each site or campaign can have its own
+  form.
+- **Put it in front of your customers** — three install routes: **Share a link** (a hosted page,
+  nothing to install — copy the link), **Add to your site** (choose your site builder, follow the
+  steps, **Copy the code**) or **Ask someone** (enter your web developer's email and click **Write
+  the email**; it opens in your own mail program, nothing is sent from BeRocker).
+- **After someone submits** — the switch **Send them straight to the booking page** sends
+  visitors to your booking page as soon as their price is ready; off, they stay on the form and see
+  a confirmation. Under **Advanced — website conversion tracking**, **Send conversion events to my
+  website** lets the embedding page record a lead as a conversion, optionally restricted to the
+  **Allowed website origins** you list (**Save origins**), with a **Copy the listener** snippet for
+  GA4.
+
+Leads from the widget arrive through the chosen [lead source](/settings/lead-sources) like any
+other, so they get distributed, quoted and followed up the same way.
 
 ---
 
 ## Ports and Port Route
 
-Only shown when ocean shipping is enabled for your organization. Define the ports you use and how
-routes combine them — port-to-port, port-to-door and door-to-port.
+Only shown when ocean shipping is enabled for your organization.
+
+- **Ports** — the ports you use (**Add Port**): name, address and whether it is enabled.
+- **Port Route** — the lanes between them (**Add Route**): **Origin port**, **Destination port**,
+  carrier (**Matson** or **Pasha**), **Base fee**, **Transit days** and **Notes**.
 
 ---
 

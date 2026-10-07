@@ -67,11 +67,16 @@ The palettes are pre-matched sets — if colour is not your thing, pick one and 
 
 ## Payments
 
-On the **Payments** tab: **Automatic payments** — *Charge the card automatically on booking.*
+On the **Payments** tab, under **Automatic payments**, one switch: **Charge the card
+automatically on booking**.
 
-- **On**: the customer's card is charged as soon as they book. The shipment goes straight to
-  **Paid**.
-- **Off**: the card is collected and an agent takes the payment later.
+- **Off** (the default): the customer's card is saved at the booking payment step and you charge
+  it manually later.
+- **On**: completing the booking payment step charges the card right away, and the customer
+  chooses **Full payment** or **Reservation fee only** on the booking page. Existing bookings are
+  unaffected until this is enabled.
+
+Flipping the switch needs the *switch organization automatic payments* permission.
 
 Which processor is used comes from
 [Settings → Integrations → Payment Gateways](/settings/integrations).

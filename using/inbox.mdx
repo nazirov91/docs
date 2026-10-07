@@ -22,8 +22,8 @@ WhatsApp message, call and recording for that lead lives in it.
 | --- | --- |
 | **Broker / AI chats** | Switches between conversations a person is handling and conversations the AI is handling. |
 | **All / Unread** | Shows everything, or only threads with unread customer messages. |
-| **Search** | Finds a conversation by name, phone, email or lead number. |
-| **Filter** | Narrows by status, agent, channel and more. |
+| **Search** | The magnifier opens a **Search conversations…** box. |
+| **Filter** | Narrows the list to **Awaiting reply**, or to one lead status — **New leads**, **Order**, **Signed**, **Paid**, **Posted**, **Picked Up**, **Dispatched**, **Completed** or **Archived**. **Clear Filter** removes it. |
 
 Each row shows the lead number, the customer's name and number, the last message, and a blue badge
 with the count of unread messages.
@@ -52,8 +52,10 @@ The middle column is the thread itself, newest at the bottom. It carries everyth
 - **Files** — photos, PDFs, documents — with previews.
 - **Quotes and templates** that were sent, and which template version went out.
 
-Above the thread you get **Conversation summary** — an AI read of what is going on, what is
-blocking, and a suggested reply — so you do not have to re-read forty messages before answering.
+Above the thread sits the **conversation summary** bar — the deal stage and an AI headline of what
+is going on. **Details** opens the full **Conversation summary**: the timeline of key beats, the
+customer's **vibe**, what is blocking, and a **suggested reply** — so you do not have to re-read
+forty messages before answering. It updates on its own as new messages arrive.
 
 ---
 
@@ -64,14 +66,26 @@ blocking, and a suggested reply — so you do not have to re-read forty messages
 </Frame>
 
 **Along the top:** the lead number and the broker's name, the customer's contact details (with a
-pencil to edit them), the phone number you are calling from, a **call** button, an **AI call**
-button, the **AI** toggle that hands the conversation to the AI agent, and the **Reminder** toggle
-that lets the AI set automatic reminders.
+pencil to edit them), the **Interested / Not Interested** button (marking **Not Interested** stops
+all further automated messages to that customer), the phone number you are calling from, a
+**call** button, and the controls:
 
-**Along the bottom:** send a **template**, have **AI generate** a reply from the chat history, type
-a custom message, attach a file, switch between **email** and **SMS**, and send.
+| Control | What it does |
+| --- | --- |
+| **AI** toggle | When on, the AI Agent replies to this customer automatically. Turn it off to take over and handle the chat yourself. |
+| **AI Call** | Have the AI agent place a call. |
+| **Reminder** toggle | When on, the AI Agent sends follow-up reminders automatically if the customer stops responding. |
+| **Follow-up messages** toggle | When on, your configured follow-up sequence is sent to this customer over time. Turn it off to stop it; turn it back on to resume where it left off. |
+| **Refresh conversation** | Reloads the thread. |
+| **Lifecycle logs** | The record of everything that happened to this lead. |
 
-You can also **Send quote**, which builds the quote from your [pricing](/settings/pricing) settings.
+Some of these are permission-gated, so not every role sees all of them.
+
+**Along the bottom:** **Select template**, **Send quote**, **Generate response** (AI drafts a reply
+from the chat history), type a custom message, attach a file, switch between **SMS** and
+**Email**, and send.
+
+**Send quote** builds the quote from your [pricing](/settings/pricing) settings.
 
 <Warning>
   If you see **"No SMS / email sender available"**, you have not set a default contact yet.
