@@ -10,8 +10,10 @@ text, no email, no load board post — until something here is connected.
   <img src="/images/settings/integrations.png" alt="The Integrations page grouped into Communications, Email, Load boards and Other" />
 </Frame>
 
-Every card shows the provider, a one-line description, its **Status** (**Active** or
-**Not connected**), and a **Configure** or **Integrate** button.
+Every card shows the provider, a one-line description, its **Status** (**Active**, **Disabled**
+or **Not connected**), and a button — usually **Configure**; **Integrate** / **Reconnect** /
+**Disconnect** for Central Dispatch, **Connect LongMile** / **Reconnect LongMile** / **Disconnect**
+for LongMile, and **Configure** plus **Disconnect** for Zoom Phone.
 
 <Info>
   You only need the services you actually use. For a working CRM you need at least **one
@@ -32,9 +34,10 @@ Every card shows the provider, a one-line description, its **Status** (**Active*
 | **Zoom Phone** | Send and receive SMS/MMS and sync call history from Zoom Phone. Place calls in BeRocker or hand them off to the Zoom app. |
 
 <Warning>
-  **RingCentral is always shown as Active.** There is nothing to configure on this page — instead,
-  add your RingCentral number in **Settings → Profile → User Contacts** and click **Register**
-  next to it. See [Profile](/settings/profile).
+  **RingCentral is always shown as Active** — the card says *"RingCentral is always active. To use
+  it, add your number in your user profile and register it."* There is nothing to configure on this
+  page: add your RingCentral number in **Settings → Profile → User Contacts** and click
+  **Register** next to it. See [Profile](/settings/profile).
 </Warning>
 
 Setup guides: [Twilio](/integrations/phone/how-to-configure-twilio) ·
@@ -73,6 +76,8 @@ Setup guides: [SendGrid](/integrations/email/sendgrid/sendgrid-setup) ·
 | **SuperDispatch** | A CRM and TMS for vehicle logistics, managing documents, tracking and payments. |
 | **LongMile** | Carrier and broker intelligence built on federal records: 100-point scoring, authority and insurance checks, safety analysis, bond checks and chameleon carrier detection. |
 
+The SuperDispatch card also has **Test Connection** and, once connected, **Webhook Status**.
+
 Setup guides: [Central Dispatch](/integrations/loadboards/centraldispatch) ·
 [Super Dispatch](/integrations/loadboards/superdispatch) ·
 [LongMile](/integrations/loadboards/longmile)
@@ -84,23 +89,26 @@ Posting behaviour — auto-unposting, order import and price updates — is conf
 
 ## Payment Gateway
 
-> Expand your business by accepting payments from customers.
+> Expand your business by accepting payments from customers! You can connect any of the following
+> payment gateways: Stripe, Square and Zelle
 
 **Configure** opens **Settings → Integrations → Payment Gateways**, where you connect the
-processors and choose your default.
+processors. Each card has a **Set as default card payment option** radio and a **Payment fee
+(%)** field — the fee is a percentage added on top of what you charge, and only the default
+processor's fee is applied.
 
 <Frame>
   <img src="/images/settings/payment-gateways.png" alt="The Payment Gateways page" />
 </Frame>
 
-| Processor | Type |
+| Card (in page order) | Type |
 | --- | --- |
 | [Stripe](/integrations/payment/stripe) | Charges the card |
 | [Square](/integrations/payment/square) | Charges the card |
-| [Authorize.Net](/integrations/payment/authorize-net) | Charges the card |
-| [RevitPay](/integrations/payment/revitpay) | Charges the card |
-| [QuickBooks](/integrations/payment/quickbooks) | Charges the card, plus accounting sync |
-| [Zelle and other manual methods](/integrations/payment/zelle) | Record-only — Zelle, Venmo, PayPal, Cash App, Other |
+| [Quickbooks](/integrations/payment/quickbooks) | Charges the card, plus accounting sync |
+| [RevitPay](/integrations/payment/revitpay) | Charges the card — Username, Password, Source Key |
+| [AuthorizeNet](/integrations/payment/authorize-net) | Charges the card |
+| [Zelle](/integrations/payment/zelle) | Record-only bank transfer — **Zelle Email** and **Zelle Number** |
 
 <Info>
   Only **Stripe**, **Square** and **Authorize.Net** can tell whether a saved card is credit, debit or
@@ -112,9 +120,11 @@ processors and choose your default.
 
 ## Reconnecting
 
-OAuth connections expire or get revoked. When one does, BeRocker shows a banner asking you to
-reconnect. Reconnect it rather than dismissing the banner — a disconnected load board silently stops
-posting.
+OAuth connections expire or get revoked. When Central Dispatch's does, its card shows
+**"Central Dispatch disconnected — its token could no longer be refreshed, so messages and payments
+are paused. Reconnect to restore the integration."** with a **Reconnect** button; LongMile's button
+turns into **Reconnect LongMile**. Reconnect rather than ignoring it — a disconnected load board
+silently stops posting.
 
 ---
 
@@ -130,7 +140,7 @@ posting.
     team's **User Contacts** to point at the new provider.
   </Accordion>
   <Accordion title="How do I know it worked?">
-    The card shows **Status: Active** in green.
+    The card shows **Status: Active** in green (**Disabled** or **Not connected** otherwise).
   </Accordion>
   <Accordion title="Can I use two providers at once?">
     Yes. RingCentral for calls and Twilio for SMS is a common setup. Each user contact picks its own

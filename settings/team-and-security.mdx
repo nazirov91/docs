@@ -1,79 +1,91 @@
 ---
 title: "Team and security"
-description: "Add and configure users, build teams, set roles and payouts, require two-factor authentication and review sign-in history."
+description: "Add and configure users, build teams, set roles and pay, require two-step verification and review sign-in history."
 ---
 
 **Settings → Team and security** is where you run your team.
 
 <Frame>
-  <img src="/images/settings/team-and-security.png" alt="Team and security with the People, Teams, User authentication, Security history and User contacts tabs" />
+  <img src="/images/settings/team-and-security.png" alt="Team and security with the People, Teams, Two-step verification, Sign-in history and User contacts tabs" />
 </Frame>
 
-Five tabs: **People**, **Teams**, **User authentication**, **Security history** and
-**User contacts**.
+Five tabs: **People**, **Teams**, **Two-step verification**, **Sign-in history** and
+**User contacts**. Each one is shown only to roles with the matching permission.
 
 ---
 
 ## People
 
-Every user, with their team, role, created date, last activity and status. The **Leads** toggle on
-each row turns lead assignment on or off for that person without deactivating their account — use
-it when someone is on holiday.
+One row per user with the columns **Member** (name, email and a *Deactivated* / *Blocked* chip
+when they are not active), **Role**, **Team**, **Ready to work**, **Receives leads**, **Last
+active**, **Added** and an **Edit** button.
 
-Search by name or email, or filter by status and role.
+**Ready to work** says what, if anything, stops the person from working, in the order you would
+fix it: *Deactivated*, *Blocked*, *No phone number*, *No call number*, *No SMS number*, *Leads
+off*, *Not signed in yet* or *Ready*. Hover it for the fix.
+
+The **Receives leads** switch turns lead assignment on or off for that person without
+deactivating their account — use it when someone is on holiday. It can only be switched on for
+someone who already has a lead distribution rule.
+
+**Search by name or email**, or filter by **Any status** and **Any role**. **Add user** opens the
+creation flow.
 
 ---
 
 ## Adding a user
 
-**Add user** walks through five steps. You cannot skip ahead; each one has to be valid first.
+**Add user** opens the **Add a user** page. Nothing is saved until you press **Create user** on
+the last step. The steps depend on the role: a **Broker** or **Dispatcher** gets three —
+**Account**, **Phone and SMS**, **Leads and pay** — and every other role gets two — **Account**
+and **Pay**. **Continue** moves forward, **Back** goes back, and a summary panel on the right
+counts what is still missing before the person can sign in or take leads.
 
 <Steps>
-  <Step title="User">
-    - **Email** — their login.
-    - **Name** and **Profile name** — the profile name is what customers see on messages.
-    - **Profile password** — their first password.
-    - **Team** — pick one or create one.
-    - **Role** — Admin, Manager, Team lead, Broker or Dispatcher.
-    - **Timezone**.
-    - **Is 2FA** — require two-factor for this person.
+  <Step title="Account">
+    *Who they are and what they can do in BeRocker.*
+
+    - **Full name**.
+    - **Work email** — their login.
+    - **Role** — Admin, Manager, Team lead, Broker or Dispatcher (see below).
+    - **Team** — pick one.
+    - **Display name** — the name customers see on messages.
+    - **Password** — at least 8 characters (when editing: **New password**, blank keeps the
+      current one).
+    - **Require two-step verification when they sign in**.
   </Step>
 
-  <Step title="Salary">
-    How this user gets paid:
+  <Step title="Phone and SMS">
+    Brokers and dispatchers only. *Brokers need a call and SMS number to work leads* — for a
+    broker the numbers are required; for a dispatcher you can add them later.
 
-    - **Fixed amount** — a base salary or monthly fee. Leave it at 0 if they are commission-only.
-    - **Percent amount** — straight commission percentage.
-    - **Shareholding fee (%)**.
-    - **Ranged commission** — tiered payouts, entered as **Range from** / **Range to** rows.
-
-    > For example: up to \$2,000 → 20%, \$2,001–\$3,000 → 22.5%, above \$3,000 → 25%.
-
-    Add as many ranges as your commission plan needs.
-  </Step>
-
-  <Step title="Contacts">
-    The numbers and addresses this agent will work from — the same shape as
-    [Profile → User Contacts](/settings/profile):
-
-    **Channel** (Call, SMS, WhatsApp, Email), **Provider**, **Contact**, and
-    **Default for this channel**.
-
-    <Warning>
-      The same number used for calls *and* texts has to be added twice — once per channel.
-    </Warning>
+    - **Calls** — **Provider** and **Phone number**.
+    - **Texts (SMS)** — tick **Same number as calls**, or give a separate provider and number.
+    - **Add WhatsApp or email** adds another channel row (**Channel** WhatsApp or Email,
+      **Provider**, and the number or email).
 
     A RingCentral number still has to be **registered** by the agent from their own Profile page
     before it works.
   </Step>
 
-  <Step title="Lead distribution">
-    **Leads per day** for this agent, Monday to Sunday. See
-    [Lead distribution](/settings/lead-distribution) for filtering by lead source.
+  <Step title="Leads and pay (or Pay)">
+    For brokers and dispatchers, **Lead distribution** first: the **Receives new leads** switch,
+    then **Leads per day** and **Working hours timezone**. A user who already has a custom
+    schedule is changed in [Lead distribution](/settings/lead-distribution) instead.
+
+    Then **Set pay and commission** — optional, used for salary and commission reports:
+
+    - **Fixed salary ($)** — leave it at 0 if they are commission-only.
+    - **Shareholding fee (%)**.
+    - **Commission tiers** — **From ($)** / **To ($)** / **Commission (%)** rows; **Add a tier**
+      for each range of revenue.
+
+    > For example: up to \$2,000 → 20%, \$2,001–\$3,000 → 22.5%, above \$3,000 → 25%.
   </Step>
 
-  <Step title="Summary">
-    Review and finish.
+  <Step title="Create user">
+    The last step's button reads **Create user** (or **Save changes** when editing). If the
+    account was created but a later part failed, the page says so and offers **Save the rest**.
   </Step>
 </Steps>
 
@@ -84,34 +96,37 @@ number.
 
 ## Roles
 
-| Role | Typically |
+| Role | As the app describes it |
 | --- | --- |
-| **Admin** | Everything, including billing and integrations. |
-| **Manager** | Runs the team — reports, accounting, all leads. |
-| **Team lead** | A squad and its leads. |
-| **Broker** | Their own leads and conversations. |
-| **Dispatcher** | The dispatch and carrier side. |
+| **Admin** | Full access, including settings, billing and the team. |
+| **Manager** | Oversees leads, dispatch and the team day to day. |
+| **Team lead** | Leads a team of brokers and follows their work. |
+| **Broker** | Works leads by phone, text and email. Needs a phone number. |
+| **Dispatcher** | Moves booked loads to carriers. Needs a phone number. |
 
 Roles carry a set of permissions, and permissions are what actually hide or show menu items and
-buttons. If someone cannot see a screen, that is why.
-
-**Request a new role** sends a support ticket describing what the role should do and which
-permissions it needs — the BeRocker team sets it up for you.
+buttons. If someone cannot see a screen, that is why. Roles are not edited in the app — ask
+support if you need a different one.
 
 ---
 
 ## Teams
 
-Group users into squads. Create a team, **Assign people** to it, and **Edit Members** later.
+> Group people into teams to organize leads, reports and lead distribution.
+
+Every user belongs to a team. **Create a team** opens a dialog with **Team name** and a
+**Members** list (search users and tick them); finish with **Create team**. Each row shows the
+team and its member count, and **Edit** reopens the same dialog (**Save changes**).
 
 Teams are what the Dashboard's team filter and per-team reporting run on.
 
 ---
 
-## User authentication
+## Two-step verification
 
-**Require two-step authentication for your team** — an organization-wide switch that forces every
-user to set up 2FA.
+Under **Two-step authentication**, one switch: **Require two-step authentication for your team** —
+*this will require any team member without two-step authentication to enable it the next time they
+sign in.*
 
 <Warning>
   Turning this on affects everyone who signs in afterwards. Tell your team before you flip it, or
@@ -120,10 +135,11 @@ user to set up 2FA.
 
 ---
 
-## Security history
+## Sign-in history
 
-Sign-in sessions across the whole organization: who, from where, on what device, and when. Check it
-after any suspicion of a shared or leaked password.
+Sign-in sessions across the whole organization — **Id**, **Member**, **Team**, **Role**,
+**Device**, **Last activity** and **IP** — with **Search by name or email** and a **User Role**
+filter. Check it after any suspicion of a shared or leaked password.
 
 Individual users see their own sessions on their [Profile](/settings/profile) page.
 
@@ -131,8 +147,10 @@ Individual users see their own sessions on their [Profile](/settings/profile) pa
 
 ## User contacts
 
-Every contact channel for every user in one table, so you can see at a glance who has no default
-SMS number and therefore cannot text anyone.
+Every contact channel for every user in one table (the same **Channel / Provider / Contact /
+Default / Status** columns as the Profile page, filterable by **Contact**, **Channel**,
+**Provider**, **Status** and **Default**), so you can see at a glance who has no default SMS
+number and therefore cannot text anyone. You can edit or delete entries here too.
 
 <Tip>
   This is the fastest way to diagnose "my agent's messages are not sending". Nine times out of ten

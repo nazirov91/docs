@@ -33,8 +33,10 @@ mailbox that receives the lead emails.
   the connection completes but nothing is ever parsed — you will see **Permission required**.
 </Warning>
 
-Once connected, **Connected as** shows which account is linked, **Test connection** checks it still
-works, and **Disconnect** revokes access.
+Once connected, the card's tag reads **Connected** (or **Needs reauthorization** /
+**Error** / **Disconnected**), **Connected as** shows which account is linked and when it last
+synced, **Test connection** checks it still works, and **Disconnect** revokes access. If read
+access was not granted the button becomes **Reconnect Gmail**.
 
 <Tip>
   Use a dedicated mailbox such as `leads@yourdomain.com` and forward provider emails to it. Pointing
@@ -48,7 +50,7 @@ works, and **Disconnect** revokes access.
 A **filter** decides which emails get parsed. Until you add one you will see
 *"No filters yet. Add one to start parsing matching emails."*
 
-Click **Add filter**. Each filter has:
+Click **Add filter** (the dialog is titled **New filter**). Each filter has:
 
 | Field | What it does |
 | --- | --- |
@@ -89,8 +91,10 @@ then widen only if you find real leads being missed.
 **Current prompt (preview)** shows what is in use. If it says **No prompt configured**, nothing will
 be extracted yet — click **Edit prompt**.
 
-The editor keeps a **version history**, with a **What changed (AI)** summary for each version and a
-**Revert to current** action, so a change that makes parsing worse can be undone.
+The **Email parsing prompt** editor has three tabs — **Edit** (the prompt, an optional *What did
+you change?* note, **Revert to current** and Save), **Summary**, and **Version history**, where
+each version carries a **What changed (AI)** summary and your editor note, and **Restore** rolls
+back to it. A change that makes parsing worse can always be undone.
 
 ---
 
@@ -98,6 +102,13 @@ The editor keeps a **version history**, with a **What changed (AI)** summary for
 
 **Process incoming emails automatically** is the master switch. Leave it off while you tune your
 filters, then turn it on.
+
+Next to it, **Create parsed leads in status** decides what a parsed email becomes:
+
+- **New** — *a regular New lead that goes through your normal quoting flow, just like any other
+  incoming inquiry.*
+- **Order** — *treated as an already-booked shipment: the lead is placed in the Order stage, the
+  chat is handed to a broker and automated outreach is turned off.*
 
 <Warning>
   Change the prompt in small steps and watch the **Activity** tab afterwards. A prompt that reads
@@ -112,24 +123,29 @@ Every email the parser has seen, with:
 
 **Received · Subject · Filter · Status · Failure reason · Lead**
 
-Search by subject, sender or body, filter by status, and narrow by date.
+**Search subject, sender, body…**, filter by **Status** (Received, Processing, Parsed, Lead
+created, Failed, Reply / inquiry), narrow by date range, and **Refresh**.
 
 ### Statuses
 
+Status tags are shown in lower case, exactly as below:
+
 | Status | Meaning |
 | --- | --- |
-| **Received** | Arrived, not processed yet. |
-| **Processing** | Being read now. |
-| **Parsed** | Data extracted. |
-| **Lead created** | A shipment was created — the **Lead** column links to it. |
-| **Filtered out** | No filter matched, so it was ignored. |
-| **Skipped (duplicate)** | The same lead already exists. |
-| **Skipped (reply)** | It was a reply or inquiry, not a new lead. |
-| **Failed** | Something went wrong; **Failure reason** says what. |
+| **received** | Arrived, not processed yet. |
+| **processing** | Being read now. |
+| **parsed** | Data extracted. |
+| **lead created** | A shipment was created — the **Lead** column links to it. |
+| **filtered out** | No filter matched, so it was ignored. |
+| **skipped duplicate** | The same lead already exists. |
+| **Reply / inquiry** | It was a reply or inquiry, not a new lead. |
+| **failed** | Something went wrong; **Failure reason** says what. |
 
-Open a row and the detail drawer shows the **forwarded email**, the **prompt used**, the **OpenAI
-response**, the **parsed JSON** and any attachments — so when a lead comes out wrong you can see
-exactly which step went wrong.
+Open a row and the detail drawer shows **From**, **To**, whether it was **Forwarded** or a
+**Reply**, an **Email preview** (**Cleaned content (sent to AI)** and **Original email**),
+**Attachments** with download links, the **Filter match**, the **Prompt used**, the **Parsed
+JSON**, the **OpenAI response** and a **Lifecycle** log — so when a lead comes out wrong you can
+see exactly which step went wrong.
 
 ---
 
@@ -138,9 +154,9 @@ exactly which step went wrong.
 | Symptom | Check |
 | --- | --- |
 | Nothing is processed | Is **Process incoming emails automatically** on? Is Gmail still connected — click **Test connection**. |
-| Everything is **Filtered out** | Your rules are too strict, or the sender address is not what you assumed. Open one and read the real email. |
+| Everything is **filtered out** | Your rules are too strict, or the sender address is not what you assumed. Open one and read the real email. |
 | Leads are created with wrong fields | Look at the **Parsed JSON** on that row, then adjust the prompt. |
-| Real leads marked **Skipped (reply)** | The email looks like a reply. Provider changed their subject format — widen the filter. |
+| Real leads marked **Reply / inquiry** | The email looks like a reply. Provider changed their subject format — widen the filter. |
 | **Permission required** | The broad consent checkbox was unticked, or Gmail access was revoked. Reconnect and leave it enabled. |
 | **Connection is disabled until configuration above is completed** | Finish the Gmail connection before turning processing on. |
 

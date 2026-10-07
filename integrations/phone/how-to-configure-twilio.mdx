@@ -30,17 +30,28 @@ Have these three values open before you start, from your
 
 <Steps>
   <Step title="Open Integrations">
-    **Settings → Integrations → Twilio → Configure**.
+    **Settings → Integrations** → **Communications** → **Twilio → Configure**. The dialog is called
+    **Update Twilio settings**.
   </Step>
-  <Step title="Paste the three values">
-    Account SID, Auth Token and Message Service ID.
+  <Step title="Paste the Account SID and Auth Token, set Status to Active, click Apply">
+    BeRocker verifies the credentials with Twilio, creates the TwiML app and API key it needs on
+    your account, and registers its webhooks — nothing to configure on the Twilio side.
   </Step>
-  <Step title="Set Status to Active and save">
-    The card should show **Status: Active** in green.
+  <Step title="Pick the Message Service ID and click Apply again">
+    If your account has Messaging Services, a **Message Service ID** dropdown appears listing them.
+    Choose the one your numbers belong to and click **Apply** again. If the account has no
+    Messaging Service, the first Apply saves everything and this step is skipped.
+
+    When you reopen a saved configuration, Message Service ID is shown as a text field you can edit.
+  </Step>
+  <Step title="Check the card">
+    It should show **Status: Active** in green.
   </Step>
   <Step title="Point your number at it">
-    **Settings → Profile → User Contacts** → add your Twilio number with **Provider = Twilio**, once
-    with **Channel = Call** and once with **Channel = SMS**, and tick **Is Default?**.
+    **Settings → Profile → User Contacts → Add user contact** → your Twilio number with
+    **Provider = Twilio**, **Channel = Call/SMS (same number)** (this saves one Call and one SMS
+    contact in one go), **Status = Active**, and tick **Is Default?**. For WhatsApp add the number
+    again with **Channel = WhatsApp**.
 
     → [Profile](/settings/profile)
   </Step>
@@ -80,7 +91,8 @@ keep an eye on [Messaging health](/settings/messaging-health) afterwards.
 
 | Symptom | Check |
 | --- | --- |
-| Status stays **Not connected** | The Account SID or Auth Token has a typo, or the token was rotated in Twilio. |
+| Apply fails with "Could not setup Twilio, please check your credentials." | The Account SID or Auth Token has a typo, or the token was rotated in Twilio. |
+| Status stays **Not connected** | The configuration was never saved — Apply was not completed. |
 | Messages send but never arrive | 10DLC registration, and the failure rate on [Messaging health](/settings/messaging-health). |
 | Cannot select Twilio when adding a contact | The integration is not Active yet. |
 | Calls fail but texts work | You added the number for SMS only. Add it again with Channel = Call. |

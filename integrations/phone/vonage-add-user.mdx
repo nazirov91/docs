@@ -4,7 +4,7 @@ description: "Connect Vonage for voice and SMS, and invite a developer to your V
 ---
 
 Vonage is a cloud communications platform for voice, SMS and video. Connecting it to BeRocker takes
-three values from the Vonage dashboard.
+three values and one key file from the Vonage dashboard.
 
 ---
 
@@ -15,6 +15,7 @@ three values from the Vonage dashboard.
 | **Api key** | The Vonage dashboard home page. |
 | **Secret key** | Next to the API key. |
 | **Application id** | Applications → your voice/messaging application. |
+| **Upload public key (\*.key)** | The `.key` file Vonage gave you when you generated the key pair for that application (the application's private key). The upload accepts `.key` files only and is required. |
 
 <Warning>
   The secret key is a credential for your whole Vonage account.
@@ -26,14 +27,17 @@ three values from the Vonage dashboard.
 
 <Steps>
   <Step title="Open Integrations">
-    **Settings → Integrations → Vonage → Configure**.
+    **Settings → Integrations** → **Communications** → **Vonage → Configure**. The dialog is called
+    **Update Vonage settings**.
   </Step>
-  <Step title="Paste the three values">
-    Set **Status** to Active and save.
+  <Step title="Paste the three values and upload the key file">
+    Api key, Secret key, Application id, then **Upload** the `.key` file. Set **Status** to Active
+    and click **Apply**.
   </Step>
   <Step title="Point your number at it">
-    **Settings → Profile → User Contacts** → add your Vonage number with **Provider = Vonage**, once
-    with **Channel = Call** and once with **Channel = SMS**, and tick **Is Default?**.
+    **Settings → Profile → User Contacts → Add user contact** → your Vonage number with
+    **Provider = Vonage**, **Channel = Call/SMS (same number)** (saves one Call and one SMS contact
+    in one go), **Status = Active**, and tick **Is Default?**.
 
     → [Profile](/settings/profile)
   </Step>

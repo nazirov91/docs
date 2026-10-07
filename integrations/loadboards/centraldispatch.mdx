@@ -26,7 +26,7 @@ Make sure your Central Dispatch account is on the **Premium** plan.
   <Step title='Open Integrations in BeRocker'>
     In BeRocker CRM, go to `Settings -> Integrations`.
 
-    In the **Central Dispatch** section, click **Integrate**.
+    In the **Load boards** section, on the **CentralDispatch** card, click **Integrate**.
 
   </Step>
 </Steps>
@@ -52,6 +52,21 @@ Make sure your Central Dispatch account is on the **Premium** plan.
 
   </Step>
 </Steps>
+
+---
+
+## Checking and resetting the connection
+
+Once connected, the card shows **Status: Active** with two buttons:
+
+- **Test Connection** opens the **Central Dispatch Connection** dialog: the connected account
+  (name, email, company, Marketplace ID), **Token Health** with the access and refresh token
+  expiry, live **API Tests**, and whether the email configuration is set.
+- **Disconnect** removes the connection; you will have to run the OAuth sign-in again to use it.
+
+If the card shows **Status: Needs reconnection** with the alert *Central Dispatch disconnected — its
+token could no longer be refreshed, so messages and payments are paused*, click **Reconnect** and
+sign in to Central Dispatch again.
 
 ---
 

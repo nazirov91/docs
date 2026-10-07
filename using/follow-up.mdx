@@ -44,11 +44,14 @@ message — enough to act without opening the thread.
 | --- | --- |
 | **Take over** | You are handling this one personally. Records that you stepped in and clears the card from the queue. |
 | **Send draft** | Sends the AI-suggested reply as-is, straight to the customer — the fastest way to clear a Waiting or Close card. |
-| **Snooze** | Hides the conversation for a while and brings it back later, so the queue only shows what needs you now. |
-| **Resolve** | Marks it handled and removes it from the queue. |
+| **Snooze** | Hides the conversation for **1 hour**, **4 hours** or **1 day** and brings it back after, so the queue only shows what needs you now. |
+| **Resolve** | Marks it handled and removes it from the queue. Use it once the conversation no longer needs attention. |
 
 Selecting a card opens the live conversation on the right, so you can read the thread and reply
-without leaving the page.
+without leaving the page. From the chat header you can also mark the lead **Interested** or
+**Not Interested** — **Not Interested** stops all further automated messages to that customer.
+
+When nothing is left, the screen says **You're all caught up**.
 
 <Tip>
   The **?** icon in the Triage header opens **How Triage works** inside the CRM — the same
@@ -57,11 +60,18 @@ without leaving the page.
 
 ### Triage settings
 
-The gear icon opens Triage settings:
+The gear icon opens **Triage settings**:
 
-- **Sensitivity** — how eagerly conversations get pulled into the queues.
-- **Visible queues** — hide queues your desk does not use.
-- **Autopilot** — let the AI keep handling the conversations it is already on.
+- **Rescue precision** — a slider. Higher precision surfaces only the conversations the AI is most
+  confident are at risk (fewer, surer alerts).
+- **Waiting SLA (hours)** — flag conversations the customer is waiting on after this many hours.
+- **Going cold after (hours)** — mark a conversation as going cold after this much silence.
+- **Minimum deal value** — only surface deals worth at least this amount.
+- **Surface these queues** — switches for **Rescue**, **Close**, **Waiting** and **Going cold**, so
+  you can hide queues your desk does not use.
+- **Autopilot** — when on, AI drafts only fire for rescue-surfaced conversations.
+
+Admins can set organization-wide defaults; your own choices override them for your view.
 
 ---
 

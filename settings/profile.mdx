@@ -1,6 +1,6 @@
 ---
 title: "Profile"
-description: "Your personal settings: name and password, two-factor authentication, the numbers and addresses you talk to customers from, Gmail, and your active sessions."
+description: "Your personal settings: name and password, two-factor authentication, your own Gmail mailbox, the numbers and addresses you talk to customers from, and your active sessions."
 ---
 
 **Settings → Profile** is your own account. Everything on this page affects only you, not the rest
@@ -10,8 +10,8 @@ of the team.
   <img src="/images/settings/profile.png" alt="The Profile settings page with User Info, Two Step authentication, User Contacts and Login Sessions" />
 </Frame>
 
-The page has five blocks: **User Info**, **Two Step authentication**, **Gmail connection**,
-**User Contacts** and **Login Sessions**.
+The page has five blocks, in this order: **User Info**, **Two Step authentication**,
+**Gmail connection**, **User Contacts** and **Login Sessions**.
 
 ---
 
@@ -45,27 +45,36 @@ Adds a second step to your sign-in.
 This is the block that makes messaging work at all. Each contact is one **channel** on one
 **provider**.
 
+The table lists each contact's **Channel**, **Provider**, **Contact**, **Default** (Yes / No),
+**Status** and **Actions** (edit, delete).
+
 <Steps>
-  <Step title="Click + Add user contact">
-    A dialog opens.
+  <Step title="Click Add user contact">
+    The **Add new user contact** dialog opens.
   </Step>
   <Step title="Fill it in">
-    - **Channel** — SMS, Call, WhatsApp or Email.
-    - **Provider** — Twilio, RingCentral, Telnyx, Vonage, Quo, Zoom Phone, SendGrid, Mailgun…
-    - **Contact** — the phone number or email address.
-    - **Status**.
+    - **Channel** — **Call/SMS (same number)**, **SMS**, **Call**, **WhatsApp** or **Email**.
+      *Call/SMS (same number)* is a shortcut: enter one number once and it is saved as two
+      contacts, one for calls and one for texts.
+    - **Provider** — depends on the channel. Call or SMS: Twilio, RingCentral, Telnyx, Vonage,
+      Quo or Zoom Phone. WhatsApp: Twilio. Email: Mailgun, SendGrid or Gmail.
+    - **Contact** — the phone number (for Email the field is labelled **Email**). With Provider =
+      Gmail the field becomes a **Gmail mailbox** picker listing the mailboxes connected in the
+      Gmail connection block above.
+    - **Status** — Active or Disabled.
     - **Is Default?** — tick it to make this your main line for that channel.
   </Step>
   <Step title="Apply">
-    Save it.
+    Click **Apply** to save.
   </Step>
 </Steps>
 
 ### The rules that trip people up
 
 <Warning>
-  **One number used for both calls and SMS must be added twice** — once with Channel = Call and once
-  with Channel = SMS. One entry only covers one channel.
+  **One entry covers one channel.** A number you use for both calls and texts needs a Call entry
+  *and* an SMS entry — pick **Call/SMS (same number)** when you add it and both are created for
+  you. Editing an existing contact only offers the single channels.
 </Warning>
 
 - You can have **one default per channel**: one default call number, one default SMS number, one
@@ -89,26 +98,37 @@ calls and texts through RingCentral will fail.
 
 ## Gmail connection
 
-Connect your own Gmail mailbox so BeRocker can read incoming email for
-[email parsing](/settings/email-parsing). **Test connection** checks it is still working, and
-**Disconnect** revokes it.
+> Connect your own Gmail or Google Workspace mailbox to send and receive chat emails as yourself.
+
+This block only appears when the Gmail integration is enabled for your organization. Click
+**Connect Gmail** and complete the Google sign-in. Once linked, the block shows the mailbox address
+with a status tag — **Connected**, **Needs reauthorization**, **Error** or **Disconnected** — plus
+**Test connection**, **Disconnect**, and **Reconnect Gmail** when the status is not Connected.
+
+After connecting, add the mailbox as an **Email** user contact with **Provider = Gmail** (below) so
+chat emails go out from it.
 
 <Warning>
-  On Google's consent screen, **leave the permission checkbox enabled**. Google does not offer a
-  narrower scope that still lets BeRocker read the mailbox — untick it and the connection completes
-  but nothing is ever read. See [Email parsing](/settings/email-parsing).
+  On Google's consent screen, make sure **both** permissions are checked — **"Read your email
+  messages"** and **"Send email on your behalf"**. Without both, the connection cannot complete and
+  the page asks you to reconnect and approve both.
 </Warning>
+
+<Info>
+  This is your personal mailbox for chat email. The mailbox that feeds
+  [email parsing](/settings/email-parsing) is connected separately on that page.
+</Info>
 
 ---
 
 ## Login Sessions
 
-Every device signed in as you: country, device, IP address and last activity. Check it if you
-suspect someone else has your password, and change your password immediately if anything looks
-wrong.
+Every device signed in as you: **Country**, **Device**, **Last activity** and **IP**. Check it if
+you suspect someone else has your password, and change your password immediately if anything looks
+wrong. The block is only shown if your role can view login sessions.
 
 Organization-wide session history for admins lives in
-[Team and security → Security history](/settings/team-and-security).
+[Team and security → Sign-in history](/settings/team-and-security).
 
 ---
 
@@ -117,7 +137,7 @@ Organization-wide session history for admins lives in
 | Task | Required? | Notes |
 | --- | --- | --- |
 | Add a call number | Yes, to call | From any connected voice provider |
-| Add an SMS number | Yes, to text | Add the same number again if it is also your call line |
+| Add an SMS number | Yes, to text | Pick **Call/SMS (same number)** if it is also your call line |
 | Add an email | Yes, to email | From SendGrid, Mailgun or Gmail |
 | Tick **Is Default?** | Yes | One per channel |
 | Register RingCentral | If you use RingCentral | Otherwise calls and texts fail |

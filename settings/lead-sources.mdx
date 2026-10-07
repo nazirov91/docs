@@ -19,8 +19,8 @@ leads and cost correctly.
 ## Adding a source
 
 <Steps>
-  <Step title="Click + Add new source">
-    On the **Lead sources** tab.
+  <Step title="Click Add new source">
+    On the **Lead sources** tab. The **Add new source** dialog opens.
   </Step>
   <Step title="Fill it in">
     | Field | Required | Notes |
@@ -28,13 +28,15 @@ leads and cost correctly.
     | **Lead source name** | Yes | e.g. `Main Website`. |
     | **Plan name** | No | If your provider sells by plan. |
     | **Per Lead Price ($)** | No | What one lead from this source costs you. |
+    | **Organization name**, **Website** | No | The provider's official name and site. |
+    | **Status** | No | Active, Inactive or Blocked. |
+    | **Logo (optional)** | No | Shown next to the source and, optionally, on the booking page. |
     | **Description** | No | Anything your team should know. |
-    | **Organization name**, **Website** | No | The provider's details. |
-    | **Upload logo** | No | Shown next to the source. |
-    | **Status** | Yes | Active, Inactive or Blocked. |
   </Step>
-  <Step title="Save, then copy the endpoint URL">
-    The **URLs** column has a **Lead save URL** with a copy icon. That URL is what receives leads.
+  <Step title="Apply, then copy the endpoint URL">
+    The table lists **Id**, **Name**, **Plan name**, **Price**, **Description**, **URLs**,
+    **Status** and **Actions**. The **URLs** column has a **Lead save URL** with a copy icon. That
+    URL is what receives leads.
   </Step>
 </Steps>
 
@@ -44,8 +46,7 @@ leads and cost correctly.
 
 <Info>
   Each source has its own unique URL, so authentication is built in — there is no separate API key
-  to send. Some sources also expose a separate **hot lead** URL for providers that flag urgent
-  leads.
+  to send.
 </Info>
 
 <Warning>
@@ -86,25 +87,38 @@ the history behind your reports.
 
 ## Logs
 
-The **Logs** tab shows raw incoming lead payloads with source, customer, broker, events and the last
-replay. When a provider says "we sent it", this is where you check.
+The **Logs** tab (**Lead logs**) is the lifecycle log of every lead: one row per lead with
+**Lead #**, **Customer**, **Source**, **Lead status**, **Events**, **Failures** and **Last
+activity**. **Search by lead # or customer**, filter by **Category** and **Status**, or tick
+**Only with failures**. **View** opens the lead's full log, filterable by who was involved (All,
+Customer, Team, System, Webhook), including every message it sent or has scheduled. When a
+provider says "we sent it", this is where you check.
 
 ---
 
 ## Settings
 
-**Lead numbering** — the highest lead number used so far, so you can continue an existing numbering
-scheme when migrating from another CRM.
-
-**Status mapping** and **Trailer type mapping** translate a provider's own values into BeRocker's,
-so a provider that says `enclosed_trailer` lands as Enclosed rather than as nothing.
+**Lead numbering** — *set the number your next lead will receive. It takes effect immediately and
+then keeps counting up on its own.* The tab shows the **highest lead number used so far**; enter the
+next number (e.g. `4501`) and **Save**, or click **Continue sequentially (#N)** to carry on from
+the highest. You can move it up or down; already-used numbers are skipped automatically so lead
+numbers never collide. Useful when migrating from another CRM.
 
 ---
 
 ## Import data
 
-Bulk import from a **CSV file**. Choose what you are importing — **leads**, **customers** or
-**terminals** — upload, and import another file when it finishes.
+Bulk import from a CSV in three steps: **Upload file**, **Map columns**, **Import**.
+
+1. **Upload file** — *What do you want to import?* **Leads**, **Customers** or **Terminals**; for
+   leads, the **Lead source** they are attributed to; then **Choose file** for the **CSV file**.
+2. **Map columns** — match each CSV header to a BeRocker field (unmapped columns show *Not
+   imported*). For leads you also get **Status mapping** (a provider's status → BeRocker's, default
+   *Import as New*) and **Trailer type mapping** (default *Guess automatically (Open by default)*),
+   so a file that says `enclosed_trailer` lands as Enclosed rather than as nothing. Required
+   fields must be mapped before you can continue.
+3. **Import** — rows that fail are listed with a **Reason**. **Import another file** starts
+   over.
 
 <Tip>
   Import a handful of rows first and check the result before running the whole file.

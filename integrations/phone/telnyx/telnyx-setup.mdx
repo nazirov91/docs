@@ -20,9 +20,9 @@ From the [Telnyx Portal](https://portal.telnyx.com/):
 | Value | Where it is |
 | --- | --- |
 | **API Key** | API Keys. Create one if you have none. |
-| **Public Key** | The public key that pairs with it — used to verify inbound webhooks. |
-| **Connection ID** | Voice → SIP Connections (or Programmable Voice), on the connection you will call from. |
-| **Messaging Profile ID** | Messaging → Messaging Profiles, on the profile your numbers belong to. |
+| **Public Key** | The account's public key — used to verify inbound webhooks. |
+| **Messaging Profile ID** | Messaging → Messaging Profiles, on the profile your numbers belong to. BeRocker can list these for you once the API Key is accepted. |
+| **Connection ID** | Voice → SIP Connections, on the connection you will call from. BeRocker can list these for you too. |
 
 <Warning>
   The API key is a credential for your whole Telnyx account. Paste it into BeRocker and nowhere else.
@@ -34,17 +34,30 @@ From the [Telnyx Portal](https://portal.telnyx.com/):
 
 <Steps>
   <Step title="Open Integrations">
-    **Settings → Integrations → Telnyx → Configure**.
+    **Settings → Integrations** → **Communications** → **Telnyx → Configure**. The dialog is called
+    **Update Telnyx settings**.
   </Step>
-  <Step title="Paste the four values">
-    API Key, Public Key, Connection ID and Messaging Profile ID.
+  <Step title="Paste the API Key and Public Key, set Status to Active, click Apply">
+    **Messaging Profile ID** and **Connection ID** can be left empty at this point — or pasted in
+    now if you already know them, in which case the next two steps are skipped.
   </Step>
-  <Step title="Set Status to Active and save">
-    The card should show **Status: Active** in green.
+  <Step title="Select the Messaging Profile ID and click Apply">
+    Once the API Key is accepted, **Messaging Profile ID** turns into a dropdown
+    (**Select Messaging Profile ID**) listing the profiles on your account. Pick the one your
+    numbers belong to and click **Apply** again.
+  </Step>
+  <Step title="Select the Connection ID and click Apply">
+    **Connection ID** now becomes a dropdown (**Select Connection ID**) of your SIP connections.
+    Pick the one you call from and click **Apply** a third time. BeRocker registers its webhooks on
+    the account automatically.
+  </Step>
+  <Step title="Check the card">
+    It should show **Status: Active** in green.
   </Step>
   <Step title="Point your number at it">
-    **Settings → Profile → User Contacts** → add your Telnyx number with **Provider = Telnyx**, once
-    with **Channel = Call** and once with **Channel = SMS**, and tick **Is Default?**.
+    **Settings → Profile → User Contacts → Add user contact** → your Telnyx number with
+    **Provider = Telnyx**, **Channel = Call/SMS (same number)** (saves one Call and one SMS contact
+    in one go), **Status = Active**, and tick **Is Default?**.
 
     → [Profile](/settings/profile)
   </Step>
@@ -65,7 +78,8 @@ and they simply stop arriving.
 
 | Symptom | Check |
 | --- | --- |
-| Status stays **Not connected** | A wrong or rotated API key. Regenerate it in the Telnyx Portal and paste the new one. |
+| Apply fails with "Could not setup Telnyx, please check your credentials." | A wrong or rotated API key, or the wrong Public Key. Regenerate the key in the Telnyx Portal and paste the new one. |
+| Status stays **Not connected** | The configuration was never saved — the last Apply was not completed. |
 | Calls fail, texts work | The **Connection ID** is wrong, or the number is not on that connection. |
 | Texts fail, calls work | The **Messaging Profile ID** is wrong, or the number is not on that profile. |
 | Messages send but never arrive | 10DLC registration, then [Messaging health](/settings/messaging-health). |

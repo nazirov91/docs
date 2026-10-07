@@ -15,7 +15,7 @@ desktop app.
 
 ## Two ways to connect
 
-Go to **Settings → Integrations → Zoom Phone**.
+Go to **Settings → Integrations** → **Communications** → **Zoom Phone**.
 
 <Tabs>
   <Tab title="Connect Zoom (recommended)">
@@ -24,9 +24,13 @@ Go to **Settings → Integrations → Zoom Phone**.
   </Tab>
   <Tab title="Manual setup">
     Click **Manual setup** to connect using your **own** Zoom app instead of the Marketplace
-    authorisation. Use this when your Zoom admin requires an internal app.
+    authorisation. Use this when your Zoom admin requires an internal app. The dialog is called
+    **Zoom Server-to-Server setup**.
   </Tab>
 </Tabs>
+
+Once connected, the card shows **Disconnect** and **Configure** (which opens the same
+Server-to-Server dialog).
 
 ---
 
@@ -44,13 +48,18 @@ Go to **Settings → Integrations → Zoom Phone**.
     You need the **Account ID**, **Client ID** and **Client Secret**.
   </Step>
   <Step title="Paste them into BeRocker">
-    **Settings → Integrations → Zoom Phone → Manual setup**. Set **Status** to Active.
-
-    Credentials are verified with Zoom before they are saved, so a typo fails immediately rather
-    than silently.
+    **Settings → Integrations → Zoom Phone → Manual setup**: **Account ID**, **Client ID**,
+    **Client Secret**. Set **Status** to Active.
   </Step>
   <Step title="Add the Webhook Secret Token">
-    From your Zoom app's **Feature** tab. Without it, BeRocker cannot receive SMS and call events.
+    Paste the **Webhook Secret Token** from your Zoom app's **Feature** tab. Without it, BeRocker
+    cannot receive SMS and call events. (When a secret is already saved the field says
+    *Leave blank to keep the saved secret*.)
+  </Step>
+  <Step title="Click Save & Verify">
+    Credentials are verified with Zoom before they are saved, so a typo fails immediately rather
+    than silently. On success you see *Zoom credentials verified and saved.* and the dialog shows
+    an **Event notifications (webhooks)** section with your webhook URL and a copy button.
 
     <Warning>
       Save the Webhook Secret Token in BeRocker **before** validating the subscription in Zoom, or
@@ -59,12 +68,9 @@ Go to **Settings → Integrations → Zoom Phone**.
   </Step>
   <Step title="Add the event subscription in Zoom">
     In your Zoom app, open **Feature → Event Subscriptions**, add a subscription using the webhook
-    URL that BeRocker shows on this modal, and validate it.
+    URL that BeRocker shows in the dialog, and validate it.
 
     Subscribe to the Zoom Phone **SMS**, **call history**, **recording** and **voicemail** events.
-  </Step>
-  <Step title="Save & Verify">
-    Back in BeRocker.
   </Step>
 </Steps>
 
@@ -73,11 +79,12 @@ Go to **Settings → Integrations → Zoom Phone**.
 ## Using it
 
 Once the integration is Active, each agent adds their Zoom Phone number in
-**Settings → Profile → User Contacts**:
+**Settings → Profile → User Contacts → Add user contact**:
 
-- One entry with **Channel = Call**
-- One entry with **Channel = SMS** (the same number added a second time)
-- **Provider = Zoom**
+- **Channel = Call/SMS (same number)** — saves one Call and one SMS contact in one go (or add the
+  number twice, once with **Channel = Call** and once with **Channel = SMS**)
+- **Provider = Zoom Phone**
+- **Status = Active**
 - Tick **Is Default?** on the ones that should be their main line
 
 See [Profile](/settings/profile).

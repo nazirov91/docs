@@ -32,6 +32,9 @@ The page tells you plainly which mode you are in:
 
 ### Choosing an engine
 
+Under **Select auto price type** — shown whether or not Auto Price is on, because the engine also
+drives the manual add-vehicle / add-shipment estimates:
+
 | Engine | Notes |
 | --- | --- |
 | **BeRocker AI Price** | Always available. The default. |
@@ -42,11 +45,14 @@ Connect them in [Integrations](/settings/integrations).
 
 ### Correction factor
 
+Under **Lead Auto Price**, the **Correction factor** (%):
+
 > Percentage applied to the recommended price. 100% uses it as-is; lower reduces the quote, higher
 > increases it.
 
-At 100% nothing changes. Set 110% and the app spells out the effect for you with a worked example
-— a \$1,000 recommendation becomes \$1,100.
+At 100% nothing changes. Set anything else and the app spells out the effect with a worked example
+(*"Auto-priced quotes will be 10% above the … — e.g. a … recommendation is quoted at …"*). Click
+**Save** (shown only to roles that can set the auto price).
 
 <Tip>
   Change the correction factor in small steps and watch your booking rate on the
@@ -56,9 +62,11 @@ At 100% nothing changes. Set 110% and the app spells out the effect for you with
 
 ### Enclosed transport multiplier
 
-Shown when Super Dispatch is your engine. Super Dispatch returns one **open**-trailer price, and the
-enclosed quote is derived by multiplying it by this coefficient (between 0.1 and 10). There is a
-sample-price box so you can see what any multiplier does before saving.
+Shown when Super Dispatch is configured. Super Dispatch returns one **open**-trailer price, and the
+enclosed quote is derived by multiplying it by the **Enclosed multiplier** (between 0.1 and 10;
+1.00 makes enclosed equal to open, 1.40 marks it up). Type a **Preview open price** and the
+*Open price → derived enclosed quote* line shows the result before you commit with **Save
+multiplier**.
 
 This setting is saved independently of Auto Price.
 
@@ -145,8 +153,12 @@ When enabled:
   </Step>
 </Steps>
 
-Each tier has a **name**, **description**, **subtext**, **price markup %**, and its own **deposit
-mode and value**. A live preview shows how the three tiers will look on the booking page.
+Each tier card has a **Name** (e.g. *Standard*), **Subtext** (e.g. *Refundable until pickup*),
+**Description** (shown to the customer on the booking page), **Price markup** (%) and **Deposit
+increase** — as a **%** over the Tier 1 deposit or a fixed **$** amount per vehicle. On Tier 1 the
+markup and deposit controls are locked: it always starts from the auto-calculated price and keeps
+the deposit from the deposit price table. A live preview shows how the three tiers will look on
+the booking page; click **Save**.
 
 <Warning>
   New leads always start on Tier 1, and **changing markups here does not reprice existing leads.**

@@ -19,11 +19,19 @@ system sender.
 
 <Steps>
   <Step title="Open the Gmail integration">
-    **Settings → Integrations → Gmail → Configure**, or connect your own mailbox from
-    **Settings → Profile → Gmail connection**.
+    **Settings → Integrations** → **Email** → **Gmail → Configure** opens the **Gmail accounts**
+    dialog; click **Connect my Gmail**. Or connect your own mailbox from
+    **Settings → Profile → Gmail connection → Connect Gmail**.
+
+    <Info>
+      The Gmail card and the profile section only appear when Gmail is enabled for your
+      organization. If you cannot see them, ask [support](/support/contact).
+    </Info>
   </Step>
   <Step title="Sign in with Google">
-    Choose the account you want to send and receive from.
+    Choose the account you want to send and receive from. A Gmail address can be connected by one
+    BeRocker user only — if it is already linked to a colleague you get
+    *"This Gmail address is already connected by another user."*
   </Step>
   <Step title="Approve BOTH permissions">
     <Warning>
@@ -37,7 +45,8 @@ system sender.
     </Warning>
   </Step>
   <Step title="Test the connection">
-    **Test connection** confirms Gmail is reachable and that both permissions were granted.
+    **Test** (next to the account in the Gmail accounts dialog) or **Test connection** (on your
+    profile) confirms Gmail is reachable and that both permissions were granted.
   </Step>
 </Steps>
 
@@ -45,8 +54,10 @@ system sender.
 
 ## Connected accounts
 
-The Gmail modal lists every connected mailbox in your organization, with a test and a disconnect
-action for each.
+The **Gmail accounts** dialog lists every connected mailbox in your organization with its status —
+**Connected**, **Needs reauthorization**, **Error** or **Disconnected** — and a **Test** and
+**Disconnect** action for each. You can manage your own mailbox; admins can manage everyone's.
+A **Reconnect** button appears on your own account when it needs reauthorization.
 
 If you see **"Some accounts need to be reconnected"**, one or more mailboxes lost their
 authorisation — Google revokes tokens when a password changes, when a Workspace admin changes
@@ -56,8 +67,12 @@ policy, or after long inactivity. Reconnect them; those agents cannot send email
 
 ## Using it
 
-Once connected, add an email contact in **Settings → Profile → User Contacts** with
-**Provider = Gmail** and tick **Is Default?**. See [Profile](/settings/profile).
+Once connected, add a contact in **Settings → Profile → User Contacts → Add user contact** with
+**Channel = Email**, **Provider = Gmail**, pick your address in the **Gmail mailbox** dropdown
+(only your connected mailboxes are offered), set **Status = Active** and tick **Is Default?**.
+See [Profile](/settings/profile).
+
+Disconnecting a mailbox also disables its user contact and hands the default to another contact.
 
 Outbound emails then go through your mailbox, and replies come back into the conversation thread.
 

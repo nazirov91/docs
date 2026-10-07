@@ -61,8 +61,9 @@ The response gives you the lead's id and the booking page:
 }
 ```
 
-A `422` means a field was rejected; `errors` names it with a message you can show under the field,
-and no lead is saved.
+A `422` means a field was rejected; `errors` names it with a message you can show under the field
+(`message` is those messages joined, ready to show as one line), and no lead is saved. A `403`
+with `"Invalid credentials"` means the key is wrong or the lead source is Disabled.
 
 <Warning>
   Show the visitor a clear error and keep their input on a `422`, a `500` or a dropped connection.
@@ -82,13 +83,16 @@ GET /api/v1/auto-logistics/client/webhooks/lead/<api-key>/<lead-id>/booking-stat
 ```
 
 ```json
-{ "id": 48213, "price": 1250, "priceReady": true, "priceFailed": false, "manualReview": false, "bookingLink": "https://…" }
+{ "id": 48213, "price": 1250, "priceReady": true, "priceFailed": false, "manualReview": false, "autoPriceEnabled": true, "bookingLink": "https://…" }
 ```
 
 - `priceReady: true` — send them to `bookingLink`.
 - `manualReview: true` — the lead has a custom vehicle; an agent prices it by hand. Stop polling
   and show your own "we'll be in touch with your quote" message.
-- `priceFailed: true` — pricing gave up. Same: stop and show a message.
+- `priceFailed: true` — no price is coming (pricing gave up, or the account does not auto-quote).
+  Same: stop and show a message.
+- `autoPriceEnabled: false` — this account does not auto-quote at all. Skip the wait and send them
+  to `bookingLink` straight away.
 
 Poll every couple of seconds for up to a minute or so, then give up gracefully — the lead is already
 in the CRM and assigned either way.

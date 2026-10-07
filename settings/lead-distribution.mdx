@@ -76,15 +76,18 @@ Pick a user, or leave it as **No fallback (hold)** and leads wait until someone 
 If you buy leads from several providers and want them to go to different people:
 
 <Steps>
-  <Step title="Filter by lead source">
-    Use the **Lead source** filter above the table to switch to one provider.
+  <Step title="Add the source">
+    Above the table is a row of tags starting with **LP Not specified** — the general rota used
+    for every source without its own. Click **Add specified lead provider**, pick the source in
+    the **Add custom distribution for** dialog and **Apply**. It appears as a new tag.
   </Step>
   <Step title="Set quotas for that source only">
-    Set 0 for the agents who should never get that provider's leads, and a real quota for the ones
-    who should.
+    Click the tag to switch the table to that source. Set 0 for the agents who should never get
+    that provider's leads, and a real quota for the ones who should.
   </Step>
   <Step title="Repeat per source">
-    Each source keeps its own rota.
+    Each source keeps its own rota. The **×** on a tag removes that source's custom rota and it
+    falls back to **LP Not specified**.
   </Step>
 </Steps>
 
@@ -98,15 +101,16 @@ across the team.
 The per-row status switch turns distribution on or off for that agent without touching their
 quotas — useful for holidays.
 
-The **Leads** toggle on the People list in
+The **Receives leads** switch on the People list in
 [Team and security](/settings/team-and-security) does the same thing from the other screen.
 
 ---
 
 ## Setting it up for a new agent
 
-Distribution is step 4 of the **Add user** flow, so a new agent gets a rota at the moment you create
-them. See [Team and security](/settings/team-and-security).
+For brokers and dispatchers, the **Leads and pay** step of the **Add user** flow has a
+**Receives new leads** switch with **Leads per day** and **Working hours timezone**, so a new agent
+gets a rota at the moment you create them. See [Team and security](/settings/team-and-security).
 
 ---
 

@@ -31,12 +31,16 @@ To get access to the **Super Dispatch API**, first ensure API access is included
 
 <Steps>
   <Step title='Open Super Dispatch Integration Settings'>
-    In BeRocker, go to `Settings -> Integrations -> Super Dispatch`.
+    In BeRocker, go to `Settings -> Integrations`, and on the **SuperDispatch** card under
+    **Load boards** click **Configure**. The dialog is called **Update SuperDispatch settings**.
   </Step>
   <Step title='Enter API Credentials'>
     Map the fields as follows:
-    - **Username**: Enter your `ClientID`
-    - **Password**: Enter your `ClientSecret`
+    - **Username** (*Username for Shipper API*): Enter your `ClientID`
+    - **Password** (*Password for Shipper API*): Enter your `ClientSecret`
+
+    Set **Status** to **Active** and click **Apply**. When you reopen the dialog later the saved
+    password is masked; click the eye icon to reveal or edit it.
   </Step>
 </Steps>
 
@@ -49,6 +53,18 @@ To get access to the **Super Dispatch API**, first ensure API access is included
 `X-API-KEY` is used for Super Dispatch Pricing Insights service.
 
 If you have this subscription (or want to request it), contact Super Dispatch using the same support channels above, then enter your key in the `X-API-KEY` field.
+
+### Test the connection and the webhooks
+
+Once a configuration is saved, two more buttons appear on the card:
+
+- **Test Connection** opens the **Super Dispatch Connection** dialog — **Connection Tests**
+  against the Shipper API and whether the **Pricing API key** is configured. **Re-test** runs it
+  again.
+- **Webhook Status** opens **Super Dispatch Webhooks**, listing each webhook action with its health
+  (**Working**, **No deliveries yet**, or an error). Webhooks are what bring carrier offers, GPS
+  and status updates back into the CRM; if any are disconnected, click **Re-register webhooks**
+  (or **Register webhooks** when none exist yet).
 
 ### Integration Walkthrough
 

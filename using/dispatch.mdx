@@ -4,7 +4,9 @@ description: "A live map of every load on the road, plus the overdue, upcoming a
 ---
 
 **Dispatch** is the operations view: one map of everything currently moving, with four queues around
-it. It refreshes itself and shows the time of the last update.
+it. It refreshes itself, shows **Updated** *x ago* in the map header, and the refresh button at
+the top reloads it on demand. A stat bar above the map counts **In transit**, **Overdue pickup**,
+**Upcoming** and **SD Requests**.
 
 <Frame>
   <img src="/images/app/dispatch.png" alt="The Dispatch map with the in-transit, overdue, upcoming and SD Requests queues" />
@@ -14,21 +16,23 @@ it. It refreshes itself and shows the time of the last update.
 
 ## The map
 
-Each pin is a load. Click one to see the lane, the carrier, the pickup and delivery, and to jump
-into the conversation.
+Each pin is a load. Click one to see the lane, **Pickup**, **Delivery**, **Price** and **Carrier**,
+and **View load** to jump into the conversation.
 
-Positions come from two places, and the map tells you which:
+Positions come from two places, and the popup tells you which:
 
-| Badge | What it means |
+| Note on the popup | What it means |
 | --- | --- |
-| **Live GPS** | The driver's real position, reported by Super Dispatch. |
-| **estimated** | Worked out from the pickup and delivery dates — *not* live GPS. |
+| **Live GPS · updated** *x ago* | The driver's real position, reported by Super Dispatch, with the place name where known. |
+| **Estimated position from pickup & delivery dates — not live GPS** | Worked out from the dates. |
 
-**Re-center** puts the map back over your loads after you have panned away.
+The **Live GPS** switch in the map header shows only the loads with a real GPS position. Turn it
+off to see estimated positions for every load. **Re-center** puts the map back over your loads
+after you have panned away.
 
 <Warning>
-  If you see **"Map unavailable — add a Mapbox token to see live loads"**, your organization has not
-  configured a Mapbox access token yet. The queues below still work. Contact your admin or
+  If you see **"Mapbox access token not configured"**, the app has no Mapbox key and cannot draw
+  the map. The dispatch queues below still work without it. Contact
   [BeRocker support](/support/contact).
 </Warning>
 
@@ -51,15 +55,16 @@ Positions come from two places, and the map tells you which:
   </Card>
 </Columns>
 
-Clicking a load in **SD Requests** opens it straight on its **Drivers** tab, because that is where
-you accept or decline the offer. Clicking a load in any other queue opens the conversation.
+Clicking a load in **SD Requests** opens its conversation straight on the **Carrier** tab, because
+that is where you accept or decline the offer. Clicking a load in any other queue opens the
+conversation on the default **Details** tab.
 
 ---
 
 ## Filters
 
-The filter bar at the top is the same one the Dashboard uses: date range, agent, and email-leads-only.
-Narrow it to one agent to see just their loads.
+The filter bar at the top is the same one the Dashboard uses: a **date range** and a **Teams /
+Users** picker (**Search team…**). Narrow it to one agent to see just their loads.
 
 ---
 

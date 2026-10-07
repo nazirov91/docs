@@ -67,27 +67,39 @@ The sub-filters are the fastest way to answer "what is waiting on me":
 
 | Control | What it does |
 | --- | --- |
-| **Search** | By name, phone, email, lead number or secondary ID. |
-| **Owner** | Show only one agent's shipments — or everyone's. |
-| **Filter** | Status, dates, lead source, origin/destination state, tags, offers and more. |
+| **Search** | By name, phone, email, lead #, VIN or location. |
+| **Filter by tags** | Narrow to shipments carrying one or more tags (shown if your role can read tags). |
+| **Owner** | Show only one agent's shipments — or everyone's (shown if your role can view other people's leads). |
+| **Filter** | Opens the filter form: **Lead status**, **Lead Provider**, **Tags**, **PU from date** / **PU to date**, **From (zip, state)**, **To (zip, state)**, **Created at**, plus two switches — **Email leads only** (leads created from parsed emails) and **Unaccepted carrier offers** (a carrier offer still waiting to be accepted). |
 | **+ Add Shipment** | Create a shipment by hand. |
-| **Columns** (list icon) | Choose which columns the table shows. Your choice is remembered. |
-| **Settings** (gear) | Table preferences. |
+| **Manage columns** (list icon) | Choose which columns the table shows and in what order. Your choice is remembered. |
+| **Table settings** (gear) | **Compact view** (one field per column) on or off, your **Default user view** (which owner the table opens on — **Myself**, a named user, or **No User Filter** for admins), **Select rows** for bulk actions, and **Export…**. |
+
+**Select rows** puts a checkbox on every row. A bar appears at the bottom with the count selected,
+a **Select status** box with **Apply** to change the status of every selected shipment, and
+**Reassign** to move them to another owner.
 
 ---
 
 ## The table
 
-Default columns include the lead number, status with milestone chips, secondary ID, customer name
-and phone, origin, destination, vehicle and created date. **Open** takes you to the conversation;
-the eye icon gives a quick preview without leaving the table.
+In the default compact view the columns are **Lead #**, **Status** (with milestone chips),
+**Secondary ID**, **Name**, **Phone**, **Origin**, **Destination**, **Vehicle**, **Created At**,
+**Pickup Date** and **Total Price**. With compact view off, the table folds those into wider
+cells — **Origin & Destination**, **Contact**, **Vehicle & Shipping Type**, **Created & Pickup
+Date**, **Pricing**. **Open** takes you to the conversation; the eye icon (**Quick view**) gives a
+preview without leaving the table.
 
 The milestone chips — **✓ Quoted**, **✓ Signed**, **✓ Paid** — accumulate and never go backwards,
 so a Dispatched shipment still shows all three.
 
 <Tip>
-  You can add columns for VIN, trailer type, carrier, payment method, lead source, tags, distance,
-  price, deposit and carrier pay. Set the table up once for how your desk actually works.
+  You can add columns for **Booking #**, **Shipping Type**, **Trailer Type**, **Broker Fee**,
+  **Carrier Fee**, **Lead Source**, **Tags**, **Email**, **Additional Phone**, **First Name** /
+  **Last Name**, **Comment**, **Drop-off Date**, **Open Trailer Price** / **Enclosed Trailer
+  Price**, **Distance**, **Driver Location**, **User Agreement**, **Not interested / opted out**,
+  **Customer ID #** / **Customer ID Type**, **Vehicle Year**, **Vehicle VIN**, **Vehicle Runs?**,
+  **Internal ID** and **Chat ID**. Set the table up once for how your desk actually works.
 </Tip>
 
 ---
@@ -97,15 +109,18 @@ so a Dispatched shipment still shows all three.
 **+ Add Shipment** opens the form: customer, origin and destination, vehicles, dates, trailer type
 and price.
 
-- Phone is required unless your organization allows phone-less leads.
-- A half-filled form is saved as a draft on your machine so a reload does not lose it — and it is
-  cleared when you sign out, since brokerages share workstations.
+- Phone is required unless your organization allows phone-less leads (email is always required,
+  and a phone is always required when you create an order rather than a lead).
+- A half-filled form is saved as a draft on your machine so a reload does not lose it — you see a
+  **Draft restored** note when it comes back — and it is cleared when you sign out, since
+  brokerages share workstations.
 
 ---
 
 ## Exporting
 
-Shipments can be exported from **Settings → Reports → Overview**, where you can filter first and
+Open the gear on the Shipments toolbar and choose **Export…** to export the current list with its
+filters. Shipments can also be exported from **Settings → Reports**, where you can filter first and
 save the export configuration for next time. See [Reports](/settings/reports).
 
 ---

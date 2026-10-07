@@ -28,16 +28,19 @@ BeRocker does **not** store or handle transactions. Instead, payment details are
 
 ### 2. Configure Payment Gateway
 
-- In the **Settings** page, click **Configure** under **Payment Gateway**.
-- Scroll down to the **QuickBooks** option.
+- Go to **Settings → Integrations** and, under **Other**, click **Configure** on the
+  **Payment Gateway** card. This opens the **Payment Gateways** page.
+- Scroll down to the **Quickbooks** card.
   ![qb](/images/quickbooks/qb-2.png)
 
 ### 3. Set QuickBooks Preferences
 
 - Select **Set as default card payment option**.
-- Enter a value in the **Payment Fee** input.
+- Enter a value in the **Payment fee (%)** input.
   - Example: If QuickBooks charges a 2% processing fee, enter `2`.
-  - The system will automatically add this fee to each transaction to cover your expenses.
+  - The system will automatically add this fee to each transaction to cover your expenses. Leave it
+    empty or `0` for no fee.
+- Click **Update Info** at the top of the page to save the fee and the default choice.
 - Click **Integrate**.
   ![qb](/images/quickbooks/qb-3.png)
 
@@ -59,4 +62,6 @@ Your QuickBooks account is now integrated with BeRocker. All charges made throug
 
 - BeRocker never stores payment details—it simply passes them to QuickBooks securely.
 - Processing fees are set by QuickBooks, not BeRocker.
-- You can change or disconnect the integration anytime in **Settings > Payment Gateway**.
+- You can change the integration anytime in **Settings → Integrations → Payment Gateway →
+  Configure**. The **Access token**, **Refresh token** and their expiry dates shown there are
+  read-only — BeRocker refreshes them for you.
