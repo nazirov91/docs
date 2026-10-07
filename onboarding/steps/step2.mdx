@@ -15,17 +15,18 @@ Every user does this for themselves. Until it is done you cannot message anyone.
     customers see on messages.
   </Step>
   <Step title="Add your contact channels">
-    Under **User Contacts**, click **+ Add user contact** and add one entry per channel:
+    Under **User Contacts**, click **Add user contact** and add one entry per channel:
 
-    - **Channel** — Call, SMS, WhatsApp or Email
-    - **Provider** — Twilio, RingCentral, Telnyx, Vonage, Quo, Zoom Phone, SendGrid, Mailgun, Gmail
+    - **Channel** — **Call/SMS (same number)**, Call, SMS, WhatsApp or Email
+    - **Provider** — Twilio, RingCentral, Telnyx, Vonage, Quo, OpenPhone, Zoom Phone, SendGrid, Mailgun,
+      Gmail
     - **Contact** — the number or address
     - **Is Default?** — tick it for your main line on that channel
 
-    <Warning>
-      A single number used for both **calls and texts** has to be added **twice**, once with
-      Channel = Call and once with Channel = SMS.
-    </Warning>
+    <Tip>
+      A single number used for both **calls and texts** needs a Call contact *and* an SMS contact.
+      Pick **Call/SMS (same number)** and it is saved as both in one go.
+    </Tip>
   </Step>
   <Step title="Register RingCentral numbers">
     If your provider is RingCentral, click **Register** next to the number and complete the popup.
@@ -33,8 +34,9 @@ Every user does this for themselves. Until it is done you cannot message anyone.
 
     ![The Register button next to a RingCentral number](/images/steps/rc-register.png)
   </Step>
-  <Step title="Enable two-factor authentication">
-    Optional unless your company requires it — but recommended.
+  <Step title="Enable two-step authentication">
+    **Two Step authentication → Add authentication method**. Optional unless your company requires
+    it — but recommended. **Login Sessions** below it lists where you are signed in.
   </Step>
 </Steps>
 

@@ -16,8 +16,10 @@ do not affect anyone else on your team.
 
 ---
 
-The page has two views: **Overview** (the settings below) and **Templates** (the wording of the
-alerts themselves).
+The page has two tabs: **Overview** (the settings below) and **Templates** — *edit the email & SMS
+messages your team receives for internal events (new lead, new offer, payments, orders…). Changes
+apply to your organization.* The Templates tab works like [Templates → Events](/settings/templates):
+pick an event, switch **Email / SMS**, edit and **Save changes**.
 
 ---
 
@@ -26,8 +28,8 @@ alerts themselves).
 Under **Notifications channels** there are two fields: an **SMS** number and an **Email address**.
 Fill them in and click **Save**.
 
-Then use **Send test SMS** and **Send test email** to confirm the destination actually receives
-something.
+Then use **Send test SMS** and **Send test email** (*send yourself a test to confirm a channel
+works*) to confirm the destination actually receives something.
 
 <Warning>
   Until you save both, a yellow banner sits at the top of the page:
@@ -40,10 +42,10 @@ something.
 </Warning>
 
 <Warning>
-  Do **not** use the same number or email you already use as a customer-facing contact in
-  [Profile → User Contacts](/settings/profile).
-
-  If you do, your own notifications arrive as messages from an unrecognised number and pile up in
+  You cannot use the same number or email you already use as a customer-facing contact in
+  [Profile → User Contacts](/settings/profile). The page refuses it — *"This number is already used
+  as a contact. Pick a different one or leave it empty."* — because your own notifications would
+  otherwise arrive as messages from an unrecognised number and pile up in
   [Interactions](/using/interactions).
 </Warning>
 
@@ -59,8 +61,10 @@ something.
 Below that is **Notifications events**, split into five tabs: **Leads**, **Chats**, **Payments**,
 **Orders** and **Email Parsing**.
 
-Each row is one event, and each has a tick box per channel — **Email**, **SMS** and **Slack**. Tick
-the combinations you want.
+Each row is one event (its name and description under **Options**), and each has a tick box per
+channel — **Email**, **SMS** and **Slack**. Tick the combinations you want; each tick is saved
+immediately. A channel whose contact detail is not saved yet shows a greyed box — hovering says
+why, and clicking it offers to jump to the fields above.
 
 <Tabs>
   <Tab title="Leads">
@@ -70,6 +74,9 @@ the combinations you want.
     | **New Hot Lead** | A high-priority lead is created. These require immediate attention and faster response times. |
     | **Price Issue** | There is a problem with pricing in the BeRocker AI Pricing system. Manual price entry is required for this lead. |
     | **Lead Status Trigger** | A lead's status changes — for example from *New* to *Order* to *Signed*. |
+
+    *Custom Vehicle Lead* (a lead with an off-dictionary vehicle, which gets no automatic quote) is
+    an in-app alert only; it does not appear in this table.
   </Tab>
   <Tab title="Chats">
     | Event | Fires when |
@@ -100,10 +107,10 @@ the combinations you want.
     | **Offer Accepted** | A carrier accepts your Super Dispatch offer — the load is now covered. |
     | **Offer Declined** | A carrier declines your Super Dispatch offer. Declining a carrier's request yourself does not fire it — that is your own action, not news. |
     | **Offer Cancelled** | A carrier cancels their offer or withdraws the request it sent you. |
-    | **LB Order Cancelled** | An order posted to a load board is cancelled, affecting carrier assignments. |
+    | **Lb Order Cancelled** | An order posted to a load board is cancelled, affecting carrier assignments. |
     | **Contract Cancelled** | A signed contract is cancelled on the load board. |
-    | **Picked Up** | The vehicle has been picked up from the origin location by the carrier. |
-    | **Delivered** | The vehicle has been successfully delivered to the destination. |
+    | **Picked Up Sys Notification** | The vehicle has been picked up from the origin location by the carrier. |
+    | **Delivered Sys Notification** | The vehicle has been successfully delivered to the destination. |
   </Tab>
   <Tab title="Email Parsing">
     | Event | Fires when |
@@ -115,7 +122,7 @@ the combinations you want.
   </Tab>
 </Tabs>
 
-Changes apply as soon as you save.
+There is no Save button for events — a tick applies as soon as you make it.
 
 ---
 
@@ -127,7 +134,7 @@ Start narrow and add rather than starting wide and drowning:
 | --- | --- |
 | A broker working leads | New Lead, New Hot Lead, New Message, User Wants Call, User Agree |
 | Handling money | Payment Failed, Payment Dispute, Payment Refund |
-| Doing dispatch | New Offer, Offer Accepted, Picked Up, Delivered |
+| Doing dispatch | New Offer, Offer Accepted, Picked Up Sys Notification, Delivered Sys Notification |
 | Watching the AI | Empty AI Response, AI Final Price Request, Price Issue |
 
 <Tip>
@@ -142,7 +149,7 @@ Start narrow and add rather than starting wide and drowning:
 | Symptom | Fix |
 | --- | --- |
 | Nothing arrives | Did you **Save** your SMS number and email address? Ticking events alone does nothing. Then use **Send test SMS** / **Send test email**. |
-| Notifications land in **Interactions** | Your notification contact details match your customer-facing ones. Change them. |
+| A channel box is greyed out | That channel's number or email is not saved yet. Hover it for the reason; click it to jump to the fields. |
 | Too many | Untick event types. Payments and Orders are usually the noisy ones for a broker. |
 | Only some events arrive | Those events are unticked on that channel, or the lead is not assigned to you. |
 | Slack column does nothing | Slack has to be connected for your organization first. |
