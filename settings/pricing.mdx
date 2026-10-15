@@ -179,8 +179,11 @@ any lead, so leads that are being booked, signed or paid are not affected.
   the customer already chose. The booking page shows one price again.
 - **Turning tiers on:** every lead's current price becomes its Tier 1, and Tiers 2 and 3 are
   calculated from it with your markups. A lead that was on a tier before keeps that tier if its
-  price has not changed since. A customer who still has the old page open keeps the lead's
-  current price when they continue.
+  price has not changed since.
+- **A customer with the booking page already open:** if the price they chose is no longer the
+  price — because you switched tiers or edited a tier price — the booking page says *Your price
+  was updated since this page was opened*, shows the current prices and lets them choose again.
+  Nothing is saved at the old price.
 
 ### Tiers on the lead
 
@@ -188,11 +191,14 @@ any lead, so leads that are being booked, signed or paid are not affected.
   tier; a tier at $0 cannot be selected.
 - **Update Price** lets you edit each tier's price and deposit. The tier marked **Selected** is the
   lead's price. **Recalculate Tiers 2–3 from Tier 1** rebuilds Tiers 2 and 3 from Tier 1 with the
-  current markups; the lead stays on its selected tier.
-- **Add new vehicle** on a lead that is on Tier 2 or 3: enter the Tier 1 (base) price — that tier's
-  markup is added automatically.
+  current markups; the lead stays on its selected tier, so on Tier 2 or 3 the lead's price changes
+  to the recalculated value (the confirmation says so).
+- **Add new vehicle** (or **Edit vehicle** on a vehicle with no price yet) on a lead that is on
+  Tier 2 or 3: enter the Tier 1 (base) price — that tier's markup is added automatically.
+- **Edit vehicle** on a priced vehicle of a lead on Tier 2 or 3: the prices you enter are that
+  tier's prices; the other tiers stay as they are.
 - **Apply prices to lead** in the pricing engine sets a new Tier 1 and recalculates Tiers 2 and 3;
-  the lead stays on its selected tier.
+  the lead stays on its selected tier, so its price is that tier's markup over the estimate.
 
 ---
 
