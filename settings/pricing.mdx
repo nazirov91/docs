@@ -149,7 +149,9 @@ When enabled:
     You can edit each tier's price and deposit on the lead without affecting the others.
   </Step>
   <Step title="The customer picks one">
-    On the booking page. The lead then keeps exactly one effective price — the selected tier's.
+    On the booking page. The lead's price is always the selected tier's price, and that is the
+    price on the contract and the payment. A tier left at $0 is not shown to the customer and
+    cannot be selected.
   </Step>
 </Steps>
 
@@ -157,13 +159,40 @@ Each tier card has a **Name** (e.g. *Standard*), **Subtext** (e.g. *Refundable u
 **Description** (shown to the customer on the booking page), **Price markup** (%) and **Deposit
 increase** — as a **%** over the Tier 1 deposit or a fixed **$** amount per vehicle. On Tier 1 the
 markup and deposit controls are locked: it always starts from the auto-calculated price and keeps
-the deposit from the deposit price table. A live preview shows how the three tiers will look on
-the booking page; click **Save**.
+the deposit from the deposit price table. The ocean fee is never marked up. A live preview shows
+how the three tiers will look on the booking page, with each tier's deposit listed under the
+cards; click **Save**. Only users who can change pricing settings see **Save**.
 
 <Warning>
-  New leads always start on Tier 1, and **changing markups here does not reprice existing leads.**
-  Every tier needs a name before you can save.
+  New leads start on Tier 1. Markup changes apply to leads priced from now on and to leads whose
+  tiers were never set. A lead whose tiers are set (it was priced with tiers on, or a tier was
+  chosen or edited) keeps them until it is re-priced or you use **Recalculate Tiers 2–3 from
+  Tier 1**. Every tier needs a name before you can save.
 </Warning>
+
+### Turning tiers on or off
+
+Switching the **Price tiers** toggle asks you to confirm, then saves. It never changes the price of
+any lead, so leads that are being booked, signed or paid are not affected.
+
+- **Turning tiers off:** every lead keeps its current price as its single price — including a tier
+  the customer already chose. The booking page shows one price again.
+- **Turning tiers on:** every lead's current price becomes its Tier 1, and Tiers 2 and 3 are
+  calculated from it with your markups. A lead that was on a tier before keeps that tier if its
+  price has not changed since. A customer who still has the old page open keeps the lead's
+  current price when they continue.
+
+### Tiers on the lead
+
+- **Price tier** in the lead view shows the selected tier. Click it to move the lead to another
+  tier; a tier at $0 cannot be selected.
+- **Update Price** lets you edit each tier's price and deposit. The tier marked **Selected** is the
+  lead's price. **Recalculate Tiers 2–3 from Tier 1** rebuilds Tiers 2 and 3 from Tier 1 with the
+  current markups; the lead stays on its selected tier.
+- **Add new vehicle** on a lead that is on Tier 2 or 3: enter the Tier 1 (base) price — that tier's
+  markup is added automatically.
+- **Apply prices to lead** in the pricing engine sets a new Tier 1 and recalculates Tiers 2 and 3;
+  the lead stays on its selected tier.
 
 ---
 
