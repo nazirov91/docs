@@ -1,10 +1,10 @@
 ---
 title: "Vonage"
-description: "Connect Vonage for voice and SMS, and invite a developer to your Vonage account."
+description: "Connect Vonage for voice and SMS, test calls and texts, set up voicemail, and invite a developer to your Vonage account."
 ---
 
 Vonage is a cloud communications platform for voice, SMS and video. Connecting it to BeRocker takes
-three values and one key file from the Vonage dashboard.
+three values and one key file from the Vonage dashboard, plus an optional signature secret.
 
 ---
 
@@ -12,14 +12,22 @@ three values and one key file from the Vonage dashboard.
 
 | Field | Where it is |
 | --- | --- |
-| **Api key** | The Vonage dashboard home page. |
-| **Secret key** | Next to the API key. |
-| **Application id** | Applications → your voice/messaging application. |
-| **Upload public key (\*.key)** | The `.key` file Vonage gave you when you generated the key pair for that application (the application's private key). The upload accepts `.key` files only and is required. |
+| **API key** | The Vonage dashboard home page. |
+| **API secret** | Next to the API key. |
+| **Application ID** | Applications → your voice/messaging application. |
+| **Application private key (private.key)** | The `private.key` file Vonage downloaded when you generated the key pair for that application. It is stored encrypted. |
+| **Signature secret** | Optional but recommended. **API Settings** in the Vonage dashboard. With it saved, BeRocker refuses webhooks that did not come from your Vonage account. |
 
 <Warning>
-  The secret key is a credential for your whole Vonage account.
+  The API secret is a credential for your whole Vonage account. BeRocker never shows a saved secret
+  or key again: the fields read **Saved. Type a new one to replace it**. Leave them empty to keep
+  what is saved.
 </Warning>
+
+<Note>
+  BeRocker checks the API key, secret, application ID and key with Vonage before saving them. If
+  Vonage rejects them, the dialog says which one and nothing is saved.
+</Note>
 
 ---
 
@@ -28,11 +36,11 @@ three values and one key file from the Vonage dashboard.
 <Steps>
   <Step title="Open Integrations">
     **Settings → Integrations** → **Communications** → **Vonage → Configure**. The dialog is called
-    **Update Vonage settings**.
+    **Vonage settings**.
   </Step>
-  <Step title="Paste the three values and upload the key file">
-    Api key, Secret key, Application id, then **Upload** the `.key` file. Set **Status** to Active
-    and click **Apply**.
+  <Step title="Paste the values and upload the key file">
+    API key, API secret, Application ID, then **Upload** the `private.key` file. Paste the
+    **Signature secret** if you have one. Set **Status** to Active and click **Save**.
   </Step>
   <Step title="Point your number at it">
     **Settings → Profile → User Contacts → Add user contact** → your Vonage number with
@@ -41,7 +49,68 @@ three values and one key file from the Vonage dashboard.
 
     → [Profile](/settings/profile)
   </Step>
+  <Step title="Test the connection">
+    Back on the Vonage card, click **Test Connection**. Fix anything marked in red, then use
+    **Register webhooks** and **Provision users** in the same dialog if the checks ask for them.
+  </Step>
 </Steps>
+
+<Warning>
+  A **Signature secret** can only be saved when the Vonage application signs its call webhooks.
+  If the dialog refuses it, open the application in the Vonage dashboard, turn on
+  **Use signed webhooks** under **Voice**, save, and try again.
+</Warning>
+
+---
+
+## Check that it works
+
+The Vonage card has three test buttons once Vonage is connected.
+
+| Button | What it does |
+| --- | --- |
+| **Test Connection** | Runs every check and shows each one as passed, a warning, or a problem with what to do: **API key and secret**, **Application and private key**, **Voice webhooks**, **Texting webhooks**, **Phone numbers**, **Calling users**, **Webhook security** and **Account balance**. |
+| **Test SMS** | Sends a short text from your Vonage number to the number you type and shows when the phone receives it. |
+| **Test Call** | **Call me in this browser** rings your BeRocker phone; **Call a phone number** calls the number you type. Vonage reads a short test message and hangs up. |
+
+Inside **Test Connection**:
+
+- **Register webhooks** points the Vonage application's call and text webhooks, and the account's
+  SMS webhooks, at BeRocker. It asks you to confirm first, because anything else using those
+  addresses stops receiving them.
+- **Provision users** sets up every user who has a Vonage calling number so calls can ring in their
+  browser.
+
+---
+
+## Backup ring and voicemail
+
+In **Vonage settings**, turn on **Backup ring and voicemail** to change what happens on an incoming
+call:
+
+1. The lead owner's BeRocker phone rings for 25 seconds.
+2. If nobody answers, the owner of the line rings next.
+3. If still nobody answers, the caller hears the **Voicemail greeting** and can leave a message.
+
+The message appears in the conversation as a call marked **Voicemail**, with the recording attached.
+Leave **Voicemail greeting** empty to use the standard greeting.
+
+---
+
+## Sending texts with the Messages API
+
+Turn on **Send texts with the Messages API** when your Vonage account's default SMS setting is the
+Messages API. Picture messages always use the Messages API. Incoming texts work either way.
+
+---
+
+## Calls in the browser
+
+- Your BeRocker phone stays connected for as long as the app is open, including after sleep or a
+  network drop.
+- If BeRocker is open in more than one tab, calls ring in one of them. The other tabs show
+  **Calls are open in another tab** with a **Use this tab** button.
+- The first call asks for microphone access. If the browser blocks it, BeRocker says so.
 
 ---
 
