@@ -36,7 +36,8 @@ refunds follow. Nothing to type twice.
   </Step>
 </Steps>
 
-The card's **Status** reads **Connected, finish setup** until you save, then **Sending orders**.
+The card's **Status** reads **Connected, finish setup** until you save, then **Sending orders**. If
+you pause later, it reads **Paused**.
 
 ---
 
@@ -75,7 +76,7 @@ Click **Configure** on the QuickBooks card (it says **Finish setup** until you f
 | Option | What it does |
 | --- | --- |
 | **Booked orders, as invoices** | Creates the customer and the invoice for each booked order. |
-| **Payments and refunds** | Sends each payment and refund on those orders. |
+| **Payments and refunds** | Sends each payment and refund on those orders. A payment is applied to the order's invoice, so this needs **Booked orders, as invoices** on; turning invoices off turns payments off too. |
 | **Void the invoice when an order is canceled before anything was paid** | A canceled order that was never paid has its invoice voided. A canceled order that was paid keeps an invoice for what was paid, and any refunds come off it, so nothing is left owed. |
 | **Carrier pay, as bills** | Sends what you owe the carrier as a bill, for full-payment orders only. |
 
@@ -88,7 +89,10 @@ Click **Configure** on the QuickBooks card (it says **Finish setup** until you f
 | **Carrier pay expense account** | Shown when **Carrier pay, as bills** is on. Pick the account your carrier costs go to. |
 
 The buttons under the choices are **Save**, **Test connection** and **Pause**. **Pause** stops
-sending without disconnecting; click **Save** to start again.
+sending without disconnecting; the card then says **Paused**, and clicking **Save** starts it again.
+
+If the window cannot load your items and accounts (QuickBooks was briefly unreachable, for
+example), it says so with a **Try again** button; the choices are read-only until it can.
 
 ---
 
