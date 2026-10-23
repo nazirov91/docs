@@ -146,8 +146,13 @@
               "integrations/payment/square",
               "integrations/payment/authorize-net",
               "integrations/payment/revitpay",
-              "integrations/payment/quickbooks",
               "integrations/payment/zelle"
+            ]
+          },
+          {
+            "group": "Accounting",
+            "pages": [
+              "integrations/accounting/quickbooks"
             ]
           },
           {
@@ -177,6 +182,10 @@
     ]
   },
   "redirects": [
+    {
+      "source": "/integrations/payment/quickbooks",
+      "destination": "/integrations/accounting/quickbooks"
+    },
     {
       "source": "/general-settings/profile-settings-in-berocker-crm",
       "destination": "/settings/profile"

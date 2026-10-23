@@ -1,0 +1,129 @@
+---
+title: QuickBooks Integration
+description: Connect QuickBooks Online so your booked orders, payments and refunds go into your books on their own.
+---
+
+Connect your **QuickBooks Online** company and BeRocker writes your orders into your books for you:
+every booked order becomes an **invoice**, every payment you take or record is applied to it, and
+refunds follow. Nothing to type twice.
+
+<Info>
+  QuickBooks is for **accounting** in BeRocker. It is not a card processor: customers are charged
+  through Stripe, Square, Authorize.Net or RevitPay, or you record a Zelle, Venmo, PayPal, Cash App
+  or other payment. Those payments are what BeRocker then sends to QuickBooks.
+</Info>
+
+---
+
+## Connecting
+
+<Note>
+  QuickBooks is turned on account by account. If you do not see the **QuickBooks** card under
+  **Accounting** on the Integrations page, contact BeRocker support and we will turn it on for you.
+</Note>
+
+<Steps>
+  <Step title="Open Integrations">
+    Go to **Settings → Integrations** and find the **QuickBooks** card under **Accounting**.
+  </Step>
+  <Step title="Connect">
+    Click **Connect**. QuickBooks opens: sign in, choose your company and allow access. You come back
+    to the Integrations page and the **QuickBooks** window opens.
+  </Step>
+  <Step title="Check the choices and Save">
+    The window is filled in with sensible defaults. Change anything you want, then click **Save and
+    start sending**. Nothing is sent to QuickBooks before you do.
+  </Step>
+</Steps>
+
+The card's **Status** reads **Connected, finish setup** until you save, then **Sending orders**.
+
+---
+
+## What gets sent
+
+| In BeRocker | In QuickBooks |
+| --- | --- |
+| The customer | A **customer**. If one with the same email is already in QuickBooks, that one is used. |
+| A booked order | An **invoice**, numbered with the order number. |
+| A card payment or a recorded payment | A **payment**, applied to the order's invoice. |
+| A refund | A **refund receipt**. |
+| What you owe the carrier (optional) | A **bill** to the carrier. |
+
+**How much the invoice is for** depends on the order's payment plan:
+
+- **Full payment**: the whole price. You collect everything and pay the carrier yourself.
+- **Reservation only**: what you collect, which is the reservation fee plus any ocean freight. Your
+  customer pays the carrier the rest on delivery, so it is not your income.
+
+If your customer paid a card processing fee, it is added to the invoice as its own **Card
+processing fee** line, so payments always match the invoice.
+An **Additional charge** taken later (for example, items left in the vehicle) is added as its own
+line too.
+
+When an order changes in BeRocker (a new price, a refund, a different carrier), its records in
+QuickBooks are updated within a minute. They are never duplicated.
+
+---
+
+## The QuickBooks window
+
+Click **Configure** on the QuickBooks card (it says **Finish setup** until you first save).
+
+**What to send**
+
+| Option | What it does |
+| --- | --- |
+| **Booked orders, as invoices** | Creates the customer and the invoice for each booked order. |
+| **Payments and refunds** | Sends each payment and refund on those orders. |
+| **Void the invoice when an order is canceled before anything was paid** | A canceled order that was never paid has its invoice voided. A canceled order that was paid keeps an invoice for what was paid, and any refunds come off it, so nothing is left owed. |
+| **Carrier pay, as bills** | Sends what you owe the carrier as a bill, for full-payment orders only. |
+
+**Where it goes in your books**
+
+| Field | Default |
+| --- | --- |
+| **Product or service on invoices** | **Auto Transport**. If your company has no item with that name, BeRocker creates it when you save. |
+| **Put payments into** | **Undeposited Funds**, so you can group them into bank deposits in QuickBooks as usual. |
+| **Carrier pay expense account** | Shown when **Carrier pay, as bills** is on. Pick the account your carrier costs go to. |
+
+The buttons under the choices are **Save**, **Test connection** and **Pause**. **Pause** stops
+sending without disconnecting; click **Save** to start again.
+
+---
+
+## Past orders
+
+Orders are sent from the day you first click **Save**. To send older ones, open **Past orders**
+in the QuickBooks window, pick a date in **Send orders since…**, and click **Send**. The button shows
+how many orders that covers. They are sent in the background; orders already in QuickBooks are
+updated, never doubled.
+
+---
+
+## When something could not be sent
+
+Orders QuickBooks refused are listed under **Needs attention** in the QuickBooks window, with the
+reason QuickBooks gave. Fix the cause in QuickBooks if needed (for example, an item or account that
+was deleted, or a closed accounting period), then click **Retry** next to the order.
+
+If the card's Status says **Turned off**, QuickBooks has been switched off for your account and
+nothing is sent. Contact BeRocker support, or click **Disconnect** if you no longer need it.
+
+If the card's Status says **Reconnect needed**, QuickBooks no longer accepts the connection. Click
+**Reconnect** and sign in again; nothing is lost.
+
+---
+
+## Disconnecting
+
+Click **Disconnect** on the QuickBooks card. Nothing more is sent, and everything already in
+QuickBooks stays there. Reconnecting the same company later carries on where it stopped.
+
+---
+
+## Notes
+
+- Only QuickBooks Online companies in the **United States** are supported for now.
+- BeRocker only writes to QuickBooks. Changes you make in QuickBooks are not copied back into
+  BeRocker.
