@@ -58,6 +58,8 @@ The card's **Status** reads **Connected, finish setup** until you save, then **S
 
 If your customer paid a card processing fee, it is added to the invoice as its own **Card
 processing fee** line, so payments always match the invoice.
+An **Additional charge** taken later (for example, items left in the vehicle) is added as its own
+line too.
 
 When an order changes in BeRocker (a new price, a refund, a different carrier), its records in
 QuickBooks are updated within a minute. They are never duplicated.
@@ -74,7 +76,7 @@ Click **Configure** on the QuickBooks card (it says **Finish setup** until you f
 | --- | --- |
 | **Booked orders, as invoices** | Creates the customer and the invoice for each booked order. |
 | **Payments and refunds** | Sends each payment and refund on those orders. |
-| **Void the invoice when an order is canceled and no money was kept** | A canceled order whose payments were all refunded has its invoice voided. If you kept a deposit, the invoice stays. |
+| **Void the invoice when an order is canceled before anything was paid** | A canceled order that was never paid has its invoice voided. A canceled order that was paid keeps an invoice for what was paid, and any refunds come off it, so nothing is left owed. |
 | **Carrier pay, as bills** | Sends what you owe the carrier as a bill, for full-payment orders only. |
 
 **Where it goes in your books**
