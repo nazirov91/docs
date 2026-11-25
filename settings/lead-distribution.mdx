@@ -16,9 +16,10 @@ arrives is assigned to an agent according to what you set here.
 
 One row per **Team / Broker**, one column per day:
 
-**Mon · Tue · Wed · Thu · Fri · Sat · Sun · Timezone · Can exceed limit · Total leads · Status**
+**Mon · Tue · Wed · Thu · Fri · Sat · Sun · Timezone · Can exceed limit · Status**
 
-Each day cell is that agent's **leads per day** quota.
+People are grouped under their team. Each day cell is that agent's **leads per day** quota, and a
+**Total leads** row at the bottom adds up each day.
 
 <Info>
   A quota of **0** means that agent gets no leads that day. That is how you exclude someone without
@@ -35,14 +36,14 @@ Click a day cell and you get a small panel with:
 | --- | --- |
 | **Available 24 hours** | On by default. Leads can arrive for this agent at any hour. |
 | **Start / End** | Turn the switch off to set a shift window instead. |
-| **Apply M-F** | Copy this cell to Monday–Friday. |
+| **Apply M-F** | Copy this cell to Monday to Friday. |
 | **Apply to all** | Copy this cell to every day of the week. |
 
 Under each cell you will see either `24h` or the window you set, so the rota is readable at a
 glance.
 
-**Timezone** is per agent — someone working from another state gets leads during *their* hours.
-Leave it blank to use the organization default.
+**Timezone** is per agent, so someone working from another state gets leads during *their* hours.
+Leave it on **Org default** to use your company's time zone.
 
 ---
 
@@ -63,6 +64,7 @@ available. Unticked, the quota is a hard ceiling.
 > Leads that arrive when no agent is on shift are assigned to this person.
 
 Pick a user, or leave it as **No fallback (hold)** and leads wait until someone comes on shift.
+Only people whose role can change lead distribution can change it.
 
 <Warning>
   If you set shift windows but no fallback, a lead arriving at 2am sits unassigned until morning. If
@@ -77,7 +79,7 @@ If you buy leads from several providers and want them to go to different people:
 
 <Steps>
   <Step title="Add the source">
-    Above the table is a row of tags starting with **LP Not specified** — the general rota used
+    Above the table is a row of tags starting with **LP Not specified**: the general rota used
     for every source without its own. Click **Add specified lead provider**, pick the source in
     the **Add custom distribution for** dialog and **Apply**. It appears as a new tag.
   </Step>
@@ -86,8 +88,8 @@ If you buy leads from several providers and want them to go to different people:
     that provider's leads, and a real quota for the ones who should.
   </Step>
   <Step title="Repeat per source">
-    Each source keeps its own rota. The **×** on a tag removes that source's custom rota and it
-    falls back to **LP Not specified**.
+    Each source keeps its own rota. The **×** on a tag removes that source's custom rota after you
+    confirm *Are you sure delete this provider?*, and the source falls back to **LP Not specified**.
   </Step>
 </Steps>
 
@@ -99,7 +101,7 @@ across the team.
 ## Status
 
 The per-row status switch turns distribution on or off for that agent without touching their
-quotas — useful for holidays.
+quotas. Useful for holidays.
 
 The **Receives leads** switch on the People list in
 [Team and security](/settings/team-and-security) does the same thing from the other screen.

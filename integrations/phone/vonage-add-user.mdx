@@ -65,19 +65,19 @@ three values and one key file from the Vonage dashboard, plus an optional signat
 
 ## Check that it works
 
-The Vonage card has three test buttons once Vonage is connected.
+Once Vonage is connected, the Vonage card on **Settings → Integrations** shows **Test Connection**, **Test SMS** and **Test Call** next to **Configure**. **Test SMS**, **Test Call**, **Register webhooks** and **Provision users** are shown only to people whose role can change the phone provider settings.
 
 | Button | What it does |
 | --- | --- |
-| **Test Connection** | Runs every check and shows each one as passed, a warning, or a problem with what to do: **API key and secret**, **Application and private key**, **Voice webhooks**, **Texting webhooks**, **Phone numbers**, **Calling users**, **Webhook security** and **Account balance**. |
-| **Test SMS** | Sends a short text from your Vonage number to the number you type and shows when the phone receives it. |
-| **Test Call** | **Call me in this browser** rings your BeRocker phone; **Call a phone number** calls the number you type. Vonage reads a short test message and hangs up. |
+| **Test Connection** | Opens **Vonage connection**: a summary (**Everything works**, **Working, with warnings** or **Needs attention**) and the **Checks** list. It runs every check and shows each one as passed, a warning, or a problem with what to do: **API key and secret**, **Application and private key**, **Voice webhooks**, **Texting webhooks**, **Phone numbers**, **Calling users**, **Webhook security** and **Account balance**. |
+| **Test SMS** | Opens **Send a test text**. Type a number in **Send to** and click **Send test text**. It sends a short text from your Vonage number and shows when the phone receives it. |
+| **Test Call** | Opens **Place a test call**. Choose **Call me in this browser** (checks that incoming calls ring in BeRocker) or **Call a phone number** (checks outbound calling and caller ID), then click **Place test call**. Vonage reads a short test message and hangs up. |
 
-Inside **Test Connection**:
+Inside **Vonage connection**, **Re-test** runs the checks again, and:
 
 - **Register webhooks** points the Vonage application's call and text webhooks, and the account's
-  SMS webhooks, at BeRocker. It asks you to confirm first, because anything else using those
-  addresses stops receiving them.
+  SMS webhooks, at BeRocker. It asks you to confirm first (*Point Vonage at BeRocker?*), because
+  anything else using those addresses stops receiving them. Click **Register**.
 - **Provision users** sets up every user who has a Vonage calling number so calls can ring in their
   browser.
 
@@ -93,7 +93,8 @@ call:
 3. If still nobody answers, the caller hears the **Voicemail greeting** and can leave a message.
 
 The message appears in the conversation as a call marked **Voicemail**, with the recording attached.
-Leave **Voicemail greeting** empty to use the standard greeting.
+The **Voicemail greeting** field appears once the switch is on (up to 500 characters). Leave it
+empty to use the standard greeting. Click **Save** in the dialog.
 
 ---
 
@@ -108,9 +109,10 @@ Messages API. Picture messages always use the Messages API. Incoming texts work 
 
 - Your BeRocker phone stays connected for as long as the app is open, including after sleep or a
   network drop.
-- If BeRocker is open in more than one tab, calls ring in one of them. The other tabs show
-  **Calls are open in another tab** with a **Use this tab** button.
-- The first call asks for microphone access. If the browser blocks it, BeRocker says so.
+- If BeRocker is open in more than one tab, calls ring in one of them. The other tabs say
+  **Calls are open in another tab**.
+- The first call asks for microphone access. If the browser blocks it, BeRocker asks you to allow
+  microphone access for the site in your browser settings.
 
 ---
 
@@ -120,7 +122,7 @@ If the BeRocker team or your own developer needs access to set this up, invite t
 sharing your login.
 
 <Steps>
-  <Step title="Log in to Vonage — Communications APIs">
+  <Step title="Log in to Vonage Communications APIs">
     ![The Vonage Communications APIs dashboard](/images/vonage/vonage-1.png)
   </Step>
   <Step title='Go to the Home page and click "Invite your team"'>
@@ -136,7 +138,7 @@ sharing your login.
 ## Before you send at volume
 
 US application-to-person SMS needs **10DLC registration** with Vonage, exactly as it does with every
-other provider. Unregistered traffic is filtered by the carriers, not by Vonage — the messages look
+other provider. Unregistered traffic is filtered by the carriers, not by Vonage. The messages look
 sent and never arrive.
 
 Watch [Messaging health](/settings/messaging-health) after you start sending.

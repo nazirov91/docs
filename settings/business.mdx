@@ -1,17 +1,17 @@
 ---
 title: "Business"
-description: "Your company's details, branding, terms and conditions and website widget — everything that appears on documents you send."
+description: "Your company's details, branding, terms and conditions, website widget and Hawaii shipping: everything that appears on documents you send."
 ---
 
 **Settings → Business** is your company as customers and carriers see it. Fill it in before you send
 a single quote, because every one of these fields shows up on documents that go out under your name.
 
 <Frame>
-  <img src="/images/settings/business.png" alt="The Business settings page showing the Account details, Business details, Branding, Terms & Conditions and Widget tabs" />
+  <img src="/images/settings/business.png" alt="The Business settings page showing the Account details tab" />
 </Frame>
 
-The tabs are **Account details**, **Business details**, **Branding**, **Terms & Conditions** and
-**Widget**. Organizations with ocean shipping enabled also get **Ports** and **Port Route**.
+The tabs are **Account details**, **Business details**, **Branding**, **Terms & Conditions**,
+**Widget** and **Hawaii shipping**. Each tab is shown only to people whose role allows it.
 
 ---
 
@@ -20,7 +20,7 @@ The tabs are **Account details**, **Business details**, **Branding**, **Terms & 
 | Field | Notes |
 | --- | --- |
 | **Account name** | Your business or brand name. |
-| **ID** | Your organization ID — read-only, with a copy button. Support will ask for it. |
+| **ID** | Your organization ID: read-only, with a copy button. Support will ask for it. |
 | **Business address** | Street 1, Street 2, City, State, Zip. |
 | **Time zone** | The one your office works in. |
 
@@ -40,12 +40,12 @@ Two blocks, each with its own **Edit** button that turns into **Cancel** / **Sav
 
 **Business details**
 
-- **URL** — your website.
+- **URL**: your website.
 - **Address**
-- **Privacy Policy URL** — shown in the consent notice on the public quote widget; leave it
+- **Privacy Policy URL**: shown in the consent notice on the public quote widget; leave it
   empty and the widget omits the privacy-policy sentence.
 
-**Public details** — under the heading *Customer support information*:
+**Public details**, under the heading *Customer support information*:
 
 | Field | Where it shows up |
 | --- | --- |
@@ -70,10 +70,10 @@ Two blocks, each with its own **Edit** button that turns into **Cancel** / **Sav
 
 Under **Brand elements**:
 
-- **Icon** — used in compact places. A square image works best.
-- **Logo** — a PNG, used on documents and email templates.
-- **Prefer logo over icon** — tick this if your logo already contains your business name.
-- **Brand color** and **Accent color** — buttons and links in emails and on the booking page.
+- **Icon**: used in compact places. A square image works best.
+- **Logo**: a PNG, used on documents and email templates.
+- **Prefer logo over icon**: tick this if your logo already contains your business name.
+- **Brand color** and **Accent color**: buttons and links in emails and on the booking page.
 
 There is no Save button on this tab: each change is saved as soon as you make it.
 
@@ -82,7 +82,7 @@ There is no Save button on this tab: each change is saved as soon as you make it
 ## Terms & Conditions
 
 One rich-text document: the terms that go out with your contracts. Edit the text in the editor
-and click **Save** — *"Terms and Conditions saved successfully"* confirms it.
+and click **Save**. *"Terms and Conditions saved successfully"* confirms it.
 
 Message templates are a different thing and live in [Templates](/settings/templates).
 
@@ -93,16 +93,16 @@ Message templates are a different thing and live in [Templates](/settings/templa
 The quote form you put in front of customers. Three cards sit next to a live **Preview**
 (**Desktop** / **Phone**):
 
-- **Your quote form** — pick a **Style** (theme) and the **Lead source** the form posts to. Every
+- **Your quote form**: pick a **Style** (theme) and the **Lead source** the form posts to. Every
   setting on the tab is saved against that lead source, so each site or campaign can have its own
   form.
-- **Put it in front of your customers** — three install routes: **Share a link** (a hosted page,
-  nothing to install — copy the link), **Add to your site** (choose your site builder, follow the
+- **Put it in front of your customers**: three install routes: **Share a link** (a hosted page,
+  nothing to install; copy the link), **Add to your site** (choose your site builder, follow the
   steps, **Copy the code**) or **Ask someone** (enter your web developer's email and click **Write
   the email**; it opens in your own mail program, nothing is sent from BeRocker).
-- **After someone submits** — the switch **Send them straight to the booking page** sends
+- **After someone submits**: the switch **Send them straight to the booking page** sends
   visitors to your booking page as soon as their price is ready; off, they stay on the form and see
-  a confirmation. Under **Advanced — website conversion tracking**, **Send conversion events to my
+  a confirmation. Under the **Advanced** section for website conversion tracking, **Send conversion events to my
   website** lets the embedding page record a lead as a conversion, optionally restricted to the
   **Allowed website origins** you list (**Save origins**), with a **Copy the listener** snippet for
   GA4.
@@ -112,13 +112,51 @@ other, so they get distributed, quoted and followed up the same way.
 
 ---
 
-## Ports and Port Route
+## Hawaii shipping
 
-Only shown when ocean shipping is enabled for your organization.
+**Where:** **Settings → Business → Hawaii shipping**.
 
-- **Ports** — the ports you use (**Add Port**): name, address and whether it is enabled.
-- **Port Route** — the lanes between them (**Add Route**): **Origin port**, **Destination port**,
-  carrier (**Matson** or **Pasha**), **Base fee**, **Transit days** and **Notes**.
+Cars reach Hawaii by ship, through a port. Turn on **Ship cars to and from Hawaii** and Hawaii
+requests are handled that way everywhere, automatically. A tag beside the title shows **On** or
+**Off**.
+
+What turning it on does:
+
+- **Your website form.** When a customer enters a Hawaii address, the form shows the island's port,
+  already selected.
+- **Your quotes.** A Hawaii request is priced as the mainland trip to the West Coast port plus your
+  ocean freight.
+- **Your booking page.** The customer sees the port, its address and its hours instead of being
+  asked for a street address.
+
+### Set the islands and ocean freight prices
+
+Once Hawaii shipping is on, **Ports and ocean freight** lists each Hawaii port with its island and
+address.
+
+1. Untick any island you do not ship to. You must keep at least one; otherwise turn Hawaii shipping
+   off.
+2. Enter the ocean freight price for each port, in dollars **per vehicle**. It is added to the price
+   of the mainland trip. The starting prices are estimates, so check them against your ocean
+   carrier's rates.
+3. Under **Deposit on Hawaii shipments**, set what you take per vehicle when the customer books:
+   **One end at a port** and **Both ends at ports**. Leave a box empty to use the standard amount
+   shown in it.
+4. Click **Save changes**, or **Discard** to undo your edits.
+
+If some islands have no price yet, a warning says quotes to those islands will leave the ocean leg
+out. Click **Use starting prices** to fill them in.
+
+On the mainland, cars go through the West Coast ports listed at the bottom of the tab. The closest
+one is chosen from the customer's state, and the same ocean freight price applies whichever it is.
+
+### Turn Hawaii shipping off
+
+Switch **Ship cars to and from Hawaii** off and confirm **Turn off**. New Hawaii requests then come
+in as ordinary door-to-door shipments, with no port and no ocean freight. Shipments you already have
+keep their port, and your ports and prices are kept for when you turn it back on.
+
+Only people whose role can change business settings can use this tab's switch and fields.
 
 ---
 

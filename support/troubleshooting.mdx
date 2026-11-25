@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting"
-description: "The problems that come up most often, and the fix for each — before you open a ticket."
+description: "The problems that come up most often, and the fix for each, before you open a ticket."
 ---
 
 Most support tickets are one of the things below. Try these first.
@@ -16,8 +16,8 @@ Most support tickets are one of the things below. Try these first.
     **Settings → Profile → User Contacts** → add a contact with the right **Channel**, pick the
     **Provider**, and tick **Is Default?**.
 
-    Remember: one number used for both calls and texts needs a Call contact *and* an SMS contact —
-    choose **Call/SMS (same number)** when adding it and both are created.
+    Remember: one number used for both calls and texts needs a Call contact *and* an SMS contact.
+    Choose **Call/SMS (same number)** when adding it and both are created.
 
     → [Profile](/settings/profile)
   </Accordion>
@@ -27,7 +27,7 @@ Most support tickets are one of the things below. Try these first.
 
     - A large **Held for the morning** count means quiet hours are holding them until the morning
       release.
-    - A low **Texts per number per minute** with a big queue is slow by design — the **Backlog**
+    - A low **Texts per number per minute** with a big queue is slow by design. The **Backlog**
       tile tells you how slow.
     - A number marked **Needs attention** may be resting, if **Rest a failing number
       automatically** is on.
@@ -46,7 +46,7 @@ Most support tickets are one of the things below. Try these first.
     Three things to check, in order:
 
     1. Is the event actually **Automatic**? Open **Settings → Templates → Events** and look at the
-       badge — many events are **Manual** by design.
+       badge. Many events are **Manual** by design.
     2. Is at least one template for that event **Active**?
     3. Is there a **Delay** set that has not elapsed yet?
 
@@ -61,7 +61,7 @@ Most support tickets are one of the things below. Try these first.
   </Accordion>
 
   <Accordion title="Every customer gets the identical text">
-    You have one version of that template. Add three or four — BeRocker picks one at random each
+    You have one version of that template. Add three or four. BeRocker picks one at random each
     time.
   </Accordion>
 </AccordionGroup>
@@ -85,7 +85,7 @@ Most support tickets are one of the things below. Try these first.
   </Accordion>
 
   <Accordion title="Gmail worked and then stopped">
-    Google revoked the token — a password change, an admin policy change, or long inactivity.
+    Google revoked the token: a password change, an admin policy change, or long inactivity.
     Reconnect the mailbox.
   </Accordion>
 </AccordionGroup>
@@ -97,7 +97,7 @@ Most support tickets are one of the things below. Try these first.
 <AccordionGroup>
   <Accordion title="A provider says they sent a lead and it is not here">
     **Settings → Lead Management → Logs** records the raw incoming payload. If it is not there, it
-    never arrived — check the provider is posting to the right endpoint URL.
+    never arrived. Check the provider is posting to the right endpoint URL.
 
     → [Lead source API](/integrations/lead-source-api)
   </Accordion>
@@ -121,7 +121,7 @@ Most support tickets are one of the things below. Try these first.
 
   <Accordion title="Every parsed email is Filtered out">
     Your filter rules are stricter than reality. Open one of the rows on the **Activity** tab and
-    read the actual email — the sender address is usually not what you assumed.
+    read the actual email. The sender address is usually not what you assumed.
 
     → [Email parsing](/settings/email-parsing)
   </Accordion>
@@ -151,7 +151,7 @@ Most support tickets are one of the things below. Try these first.
 
   <Accordion title="Loads show an estimated position, not live GPS">
     Live GPS comes from Super Dispatch once a carrier is secured. Everything else is estimated from
-    the pickup and delivery dates — the map labels which is which.
+    the pickup and delivery dates. The map labels which is which.
 
     → [Dispatch](/using/dispatch)
   </Accordion>
@@ -216,11 +216,70 @@ Most support tickets are one of the things below. Try these first.
 
 ---
 
+## Ask AI and voice typing
+
+<AccordionGroup>
+  <Accordion title='Ask AI says "The assistant could not be reached."'>
+    The AI service did not respond to that question. Nothing was saved for it. Click **Try again**
+    under the message; it asks the same question once more. If it keeps happening for several
+    minutes, open a support ticket.
+
+    → [AI Assistant](/using/ai-assistant)
+  </Accordion>
+
+  <Accordion title='Ask AI says "The assistant took too long to answer."'>
+    The answer was not finished in time, which usually happens with a big report or a question that
+    asks for several things. Click **Try again**, or ask for one thing at a time.
+  </Accordion>
+
+  <Accordion title='Ask AI says "The assistant came back with nothing."'>
+    The AI returned an empty answer, even after one automatic retry. Click **Try again**. Rewording
+    the question can help.
+  </Accordion>
+
+  <Accordion title='Ask AI says "That took too many steps to answer."'>
+    The question needed too much work in one go. Split it into smaller questions, one thing at a
+    time.
+  </Accordion>
+
+  <Accordion title="There is no microphone button in Ask AI or AI Team">
+    Your browser does not offer speech recognition, so the button is hidden. Type instead, or try
+    another browser.
+  </Accordion>
+
+  <Accordion title='Voice typing says "The microphone is blocked."'>
+    Your browser has not been allowed to use the microphone for BeRocker. Allow it in the browser's
+    site settings, then tap the microphone again.
+
+    On an iPhone, also turn on **Dictation** in **Settings → General → Keyboard**, and allow the
+    microphone for the site in Safari.
+  </Accordion>
+
+  <Accordion title='Voice typing says "Nothing was heard."'>
+    It stops by itself after 12 seconds without a word. Check that the right microphone is selected
+    and not muted, then tap the microphone and speak straight away.
+  </Accordion>
+
+  <Accordion title="Voice typing stops or says it needs an internet connection">
+    - *The microphone did not start. Tap it to try again.*: tap the microphone again.
+    - *Voice typing needs an internet connection. Check it and try again.*: your browser's speech
+      service works online; check your connection.
+    - *No microphone was found.*: connect or enable a microphone.
+    - *Voice typing is not available in this language on this device.*: type instead, or change the
+      device language.
+    - *Voice typing stopped unexpectedly. Tap the microphone to try again.*: tap it again.
+
+    Voice typing also stops when you switch to another tab or app, and after 3 minutes in one go.
+  </Accordion>
+</AccordionGroup>
+
+---
+
 ## Still stuck?
 
 <CardGroup cols={2}>
   <Card title="Open a ticket" icon="list-check" href="/using/tickets">
-    From **Tickets** in the CRM sidebar. Attach a screenshot.
+    From **Help → Support tickets** at the bottom of the CRM sidebar. Attach a screenshot.
   </Card>
   <Card title="Contact support" icon="life-ring" href="/support/contact">
     WhatsApp group, phone or email.

@@ -19,7 +19,7 @@ The page has five blocks, in this order: **User Info**, **Two Step authenticatio
 
 Your full name, display name, email, password and role.
 
-**Display name** is what customers see when a message goes out under your name — use the name you
+**Display name** is what customers see when a message goes out under your name. Use the name you
 actually introduce yourself with, not your legal name.
 
 Click **Edit Profile** to change any of it, including your password.
@@ -30,17 +30,17 @@ Click **Edit Profile** to change any of it, including your password.
 
 Adds a second step to your sign-in.
 
-- Click **Enable**, then confirm.
+- Click **Enable**, then confirm. **Disable** turns it off again.
 - Use **Add authentication method** to register how you receive the code.
 
 <Tip>
   Strongly recommended for admins and anyone who can see customer payment data. Your company can
-  also require it for everyone — see [Team and security](/settings/team-and-security).
+  also require it for everyone; see [Team and security](/settings/team-and-security).
 </Tip>
 
 ---
 
-## User Contacts — the numbers you work from
+## User Contacts: the numbers you work from
 
 This is the block that makes messaging work at all. Each contact is one **channel** on one
 **provider**.
@@ -53,16 +53,17 @@ The table lists each contact's **Channel**, **Provider**, **Contact**, **Default
     The **Add new user contact** dialog opens.
   </Step>
   <Step title="Fill it in">
-    - **Channel** — **Call/SMS (same number)**, **SMS**, **Call**, **WhatsApp** or **Email**.
+    - **Channel**: **Call/SMS (same number)**, **SMS**, **Call**, **WhatsApp** or **Email**.
       *Call/SMS (same number)* is a shortcut: enter one number once and it is saved as two
       contacts, one for calls and one for texts.
-    - **Provider** — depends on the channel. Call or SMS: Twilio, RingCentral, Telnyx, Vonage,
-      Quo or Zoom Phone. WhatsApp: Twilio. Email: Mailgun, SendGrid or Gmail.
-    - **Contact** — the phone number (for Email the field is labelled **Email**). With Provider =
+    - **Provider**: depends on the channel. Call or SMS: Twilio, RingCentral, Telnyx, Vonage,
+      Quo, Zoom Phone or Dialpad. WhatsApp: Twilio. Email: Mailgun, SendGrid or Gmail.
+    - **Contact**: the phone number (for Email the field is labelled **Email**). With Provider =
       Gmail the field becomes a **Gmail mailbox** picker listing the mailboxes connected in the
-      Gmail connection block above.
-    - **Status** — Active or Disabled.
-    - **Is Default?** — tick it to make this your main line for that channel.
+      Gmail connection block above. With Provider = Dialpad it becomes a **Dialpad number** picker
+      listing the numbers in your company's Dialpad account.
+    - **Status**: Active or Disabled.
+    - **Is Default?**: tick it to make this your main line for that channel.
   </Step>
   <Step title="Apply">
     Click **Apply** to save.
@@ -73,13 +74,13 @@ The table lists each contact's **Channel**, **Provider**, **Contact**, **Default
 
 <Warning>
   **One entry covers one channel.** A number you use for both calls and texts needs a Call entry
-  *and* an SMS entry — pick **Call/SMS (same number)** when you add it and both are created for
+  *and* an SMS entry. Pick **Call/SMS (same number)** when you add it and both are created for
   you. Editing an existing contact only offers the single channels.
 </Warning>
 
 - You can have **one default per channel**: one default call number, one default SMS number, one
   default email.
-- You can mix providers freely — RingCentral for calls, Twilio for SMS, SendGrid for email.
+- You can mix providers freely: RingCentral for calls, Twilio for SMS, SendGrid for email.
 - Without a default SMS or email contact you will see
   **"No SMS / email sender available"** in the [Inbox](/using/inbox) and cannot message anyone.
 
@@ -102,14 +103,14 @@ calls and texts through RingCentral will fail.
 
 This block only appears when the Gmail integration is enabled for your organization. Click
 **Connect Gmail** and complete the Google sign-in. Once linked, the block shows the mailbox address
-with a status tag — **Connected**, **Needs reauthorization**, **Error** or **Disconnected** — plus
+with a status tag (**Connected**, **Needs reauthorization**, **Error** or **Disconnected**), plus
 **Test connection**, **Disconnect**, and **Reconnect Gmail** when the status is not Connected.
 
 After connecting, add the mailbox as an **Email** user contact with **Provider = Gmail** (below) so
 chat emails go out from it.
 
 <Warning>
-  On Google's consent screen, make sure **both** permissions are checked — **"Read your email
+  On Google's consent screen, make sure **both** permissions are checked: **"Read your email
   messages"** and **"Send email on your behalf"**. Without both, the connection cannot complete and
   the page asks you to reconnect and approve both.
 </Warning>
@@ -149,7 +150,7 @@ Organization-wide session history for admins lives in
 
 <CardGroup cols={2}>
   <Card title="Notifications" icon="bell" href="/settings/notifications">
-    Where *your* alerts go — use different contact details than these.
+    Where *your* alerts go. Use different contact details than these.
   </Card>
   <Card title="Team and security" icon="shield-halved" href="/settings/team-and-security">
     Roles, teams and organization-wide security.

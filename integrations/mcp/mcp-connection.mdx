@@ -1,74 +1,113 @@
 ---
 title: "Connecting BeRocker to Claude (MCP)"
-description: "Ask Claude plain-English questions about your own CRM data — leads, analytics, pricing and load board posts."
+description: "Connect Claude, ChatGPT or another AI tool to your CRM, choose who may use it on the MCP tab, and ask plain-English questions about your own data."
 ---
 
-BeRocker exposes an **MCP (Model Context Protocol) connection** so you can talk to your CRM directly from [Claude](https://claude.ai). Once connected, you can ask Claude plain-English questions about your leads, analytics, pricing, and load board posts — and Claude pulls the answers straight from your BeRocker account in real time.
+BeRocker offers an **MCP (Model Context Protocol) connection** so you can talk to your CRM from
+[Claude](https://claude.ai), ChatGPT, Claude Code, Cursor or another AI tool. Once connected, you
+can ask plain-English questions about your leads, analytics, pricing and load board posts, and the
+answers come straight from your BeRocker account.
 
 <Note>
-  All data is scoped to your organization. Claude can only read and act on the leads and analytics
-  that belong to your company.
+  Everything is scoped to your company, and each person sees only what their role allows on screen.
 </Note>
 
-## What Is MCP?
+## What is MCP?
 
-MCP (Model Context Protocol) is an open standard that lets AI assistants like Claude securely connect to external tools and data sources. The BeRocker MCP server gives Claude a safe, read-first window into your CRM so you can get instant answers without leaving your chat.
+MCP is an open standard that lets AI assistants connect to outside tools and data. The BeRocker MCP
+connection gives your AI tool a read-first window into your CRM.
 
-- **No exports, no spreadsheets** — ask a question and get a live answer.
-- **Secure** — every request is scoped to your organization only.
-- **Write actions are protected** — for load board posts, Claude always previews the data and asks for your confirmation before anything is sent.
+- **No exports, no spreadsheets.** Ask a question and get a live answer.
+- **Your role decides what it sees.** Each person signs in with their own CRM account.
+- **Changes are always confirmed.** Anything that would change something, such as posting a load,
+  first shows exactly what will change and only goes ahead after you confirm.
 
-## Before You Start
+---
 
-- A **Claude** account (Pro, Team, or Enterprise) that supports **custom connectors**.
-- Your BeRocker account login.
-- The BeRocker MCP server URL:
+## Turn on MCP and choose who can use it
 
-  ```text
-  https://app.berocker.com/mcp/analytics
-  ```
-
-## Connect BeRocker in Claude
+Access is managed in **Settings → Team and security → MCP**. The tab is shown only to people whose
+role may manage MCP access (administrators by default). Everyone else can still connect if their
+role allows it; they just cannot change these settings.
 
 <Steps>
-  <Step title='Open Connector Settings in Claude'>
-    In Claude, go to `Settings -> Connectors`.
-
-    Scroll to the bottom and click **Add custom connector**.
+  <Step title="Turn on MCP for the company">
+    At the top, the **MCP** switch (*Lets your team connect Claude, ChatGPT and other AI tools.*)
+    turns the connection on or off for everyone. Off means nobody can connect, administrators
+    included, and the tab says *MCP is off for everyone. The settings below are kept for when you
+    turn it back on.*
   </Step>
+  <Step title="Decide whether MCP may change things">
+    Two more company switches start off:
 
-  <Step title='Enter the BeRocker Connection Details'>
-    Fill in the **Add custom connector** dialog:
-
-    - **Name:** `BeRocker`
-    - **URL:** `https://app.berocker.com/mcp/analytics`
-
-    Leave **Advanced settings** at their defaults unless your administrator has given you other instructions.
-
-    <Note>
-      Only add connectors from developers you trust. The BeRocker connector is provided and
-      maintained by the BeRocker team.
-    </Note>
+    - **Allow changes**: lets roles with the matching permission change lead sources and lead
+      distribution through MCP, each change confirmed first. Turning it on asks
+      **Allow changes through MCP?**
+    - **Full CRM access**: lets roles with the matching permission do what they can do on screen
+      through MCP, each change confirmed first. Turning it on asks **Turn on full CRM access?**
   </Step>
-
-  <Step title='Add the Connector'>
-    Click **Add**. Claude saves the BeRocker connector to your account.
+  <Step title="Set what each role can do">
+    **What each role can do through MCP** is a table with one row per role and one switch per
+    permission (hover a column name to see what it allows). Every role can connect and read what it
+    sees on screen. Without the first permission in the table, a role cannot use MCP at all.
+    Administrators are marked **Always on**. A column that needs a company switch that is off shows
+    *Company switch off*.
   </Step>
-
-  <Step title='Authenticate with BeRocker'>
-    The first time you use the connector, Claude will ask you to sign in to BeRocker and authorize
-    access. Complete the sign-in to link your account.
-
-    Once authorized, BeRocker's tools become available to Claude automatically.
+  <Step title="Check the people">
+    **People** lists everyone with their role, an **MCP** switch and status (**Allowed**,
+    **No access**, **Blocked** or **Off for the company**), and whether they are **Connected**.
+    Switch a person off to block them and end their connection; blocking overrides their role.
+    **End connection** disconnects someone now (and revokes their access keys); they can connect
+    again unless blocked. People with no role cannot connect.
   </Step>
 </Steps>
 
-## Try It Out
+### Access keys for scripts
 
-Once connected, here are some things you can ask Claude:
+Where your company has access keys, the MCP tab also has **Access keys** with **Create key**. A key
+lets a script call MCP as one person and see what their login sees. Keys are read-only unless you
+give them **Powers**, which must expire within 90 days and apply at most a set number of
+**Changes per hour**. Only an administrator can create a key that acts as someone else. The key is
+shown once (*Copy this key now. It won't be shown again.*) and is sent as
+`Authorization: Bearer <key>`. Every key a person holds and their own chat share 600 calls a minute.
+Use **Revoke** to stop a key; this cannot be undone.
+
+---
+
+## Connect your AI tool
+
+Copy the connection address from **Your MCP address** on the MCP tab (it ends in `/mcp`), then open
+**How to connect** for ready-to-copy steps. Connections made on the older address keep working.
+
+<Steps>
+  <Step title="Claude (web, desktop or phone)">
+    In Claude, go to **Settings → Connectors → Add custom connector**. Name it `BeRocker` and paste
+    the address. Click **Connect**, sign in with your CRM email and password, and allow.
+  </Step>
+  <Step title="ChatGPT">
+    **Settings → Apps & Connectors → Advanced** and turn on **Developer mode**. Then **Create**, name
+    it `BeRocker`, paste the address and choose OAuth authentication. Sign in with your CRM email and
+    password, and allow.
+  </Step>
+  <Step title="Claude Code, Cursor and other MCP clients">
+    The MCP tab gives you the exact command for Claude Code and the settings block for Cursor and
+    other clients. Add it, then sign in when asked.
+  </Step>
+</Steps>
+
+<Note>
+  Only add connectors from developers you trust. The BeRocker connector is provided and maintained
+  by the BeRocker team.
+</Note>
+
+To check it works, ask *"What time is it for me in the CRM?"*, then *"Show my 5 newest leads."*
+
+---
+
+## Things to ask
 
 - _"Show me a summary of all leads this month"_
-- _"What are the conversion rates by lead source for Q1 2025?"_
+- _"What are the conversion rates by lead source for Q1?"_
 - _"Find all new leads from California that don't have offers yet"_
 - _"Give me the details for lead #4521"_
 - _"Show me the chat history for lead 892"_
@@ -79,68 +118,76 @@ Once connected, here are some things you can ask Claude:
 - _"Check if lead 350 has any active posts on SuperDispatch"_
 - _"Prepare a post for lead 350 on CentralDispatch and show me what will be sent"_
 
-## Available Tools
+---
 
-The BeRocker MCP server gives Claude access to the following tools, grouped by what they do.
+## Some of the tools it uses
 
-### Analytics & Reporting
+The tools your AI tool is offered depend on what your role has been given on the MCP tab. A tool
+that is missing is not broken; an administrator can grant it there. These are some of the most used.
 
-| Tool | Description |
-| --- | --- |
-| `get-dashboard-summary` | Get a high-level overview of your leads — total counts by status (new, booked, lost, blocked), conversion rate, average and median first-response times, lead costs, vehicle pricing totals, and top 5 lead sources. Supports date range and broker/source filters. |
-| `get-lead-sources-report` | Break down lead performance by source/provider — lead counts, conversion rates, costs, and offer stats. Great for understanding which lead sources deliver the best ROI. |
-| `get-company-performance` | Comprehensive company-wide analytics for any period — KPIs, revenue, costs, ROI, conversion rates, and response times. Supports period-over-period comparison (e.g. this month vs. last month). |
-
-### Lead Management
+### Analytics and reporting
 
 | Tool | Description |
 | --- | --- |
-| `search-leads` | Search and filter leads by status, date range, origin/destination state or city, assigned broker, customer name, lead source, and offer status. Returns a paginated list with key details. |
-| `get-lead-details` | Get full details for a specific lead by ID or lead number — customer info, addresses, vehicles with pricing, logistics dates, carrier/driver info, broker assignment, and chat metrics. |
-| `get-lead-communications` | Read chat messages and call transcripts for one lead. Supports filtering by channel (SMS, call, email, WhatsApp) and incremental fetching to get only new messages. |
+| `get-dashboard-summary` | Lead counts by status, conversion rate, response times, lead costs and top sources. |
+| `get-lead-sources-report` | Lead performance by source: counts, conversion rates, costs and offer stats. |
+| `get-company-performance` | Company-wide KPIs, revenue, costs and response times, with period-over-period comparison. |
 
-### Conversations, in bulk
+### Leads
 
 | Tool | Description |
 | --- | --- |
-| `get-conversation-stats` | How much history matches a set of filters **before** you export it — conversation and message counts, the period covered, a breakdown by channel, direction and sender, and a sampled size estimate. Call this first for any range you have not exported before. |
-| `search-conversations` | Find individual messages across every lead — message bodies, email subjects **and** call transcripts — with each hit carrying its own lead context. Newest first. Use it for "how often do customers ask about X" or "find the message where Y happened". |
-| `export-conversations` | Every lead's conversations in one call, chat messages and call transcripts together, filtered by lead, status, channel, sender, direction or date. Returned inline, or written to a downloadable file as JSON, JSONL or CSV. Paging is exact — no duplicates, no gaps, safe while new messages arrive. |
+| `search-leads` | Search leads by status, dates, location, broker, customer name, source and offer status. |
+| `get-lead-details` | Full details for one lead by ID or lead number. |
+| `get-lead-communications` | Chat messages and call transcripts for one lead. |
+
+### Conversations in bulk
+
+| Tool | Description |
+| --- | --- |
+| `get-conversation-stats` | How much history matches a set of filters before you export it. |
+| `search-conversations` | Find individual messages and call transcripts across every lead, newest first. |
+| `export-conversations` | Every lead's conversations in one call, inline or as a JSON, JSONL or CSV file. |
 
 <Tip>
-  Ask `get-conversation-stats` before `export-conversations` on any large range. It tells Claude how
-  big the job is so it can page through it properly instead of truncating.
+  Ask for `get-conversation-stats` before `export-conversations` on any large range, so the AI tool
+  knows how big the job is.
 </Tip>
 
-### Load Board Operations
+### Load boards
 
 | Tool | Description |
 | --- | --- |
-| `get-lead-posts` | View all existing load board posts for a lead — status, pricing, dates, payment terms, and dispatch info. Check this before creating new posts. |
-| `prepare-loadboard-post` | Preview what will be posted to SuperDispatch or CentralDispatch — all fields, missing requirements, warnings, and a can-post flag. This is read-only and does not create anything. |
-| `execute-loadboard-action` | Post, repost, or delete load board listings. Create or cancel dispatches on CentralDispatch. Always use `prepare-loadboard-post` first to review the data. |
+| `get-lead-posts` | Existing load board posts for a lead. |
+| `prepare-loadboard-post` | A read-only preview of what would be posted to SuperDispatch or CentralDispatch. |
+| `execute-loadboard-action` | Post, repost or delete listings, or create or cancel a dispatch, after you confirm the preview. Needs your role's load board permission. |
 
 ### Pricing
 
 | Tool | Description |
 | --- | --- |
-| `get-pricing-comparison` | Compare prices from BeRocker AI, SuperDispatch, and CentralDispatch. Works in two modes: by lead ID (uses existing lead data) or by route (origin/destination ZIP + vehicle type, no lead needed). |
-
-## Good to Know
-
-- **Your data is private.** All data is scoped to your organization — you can only access leads and analytics that belong to your company.
-- **Date filters use `YYYY-MM-DD` format.** State filters use abbreviations (`CA`, `NY`, `TX`).
-- **Write actions are always confirmed.** For load board write operations, Claude will always preview the data and ask for your confirmation before executing.
-
-## The same thing inside the CRM
-
-If you would rather not leave BeRocker, the built-in **AI Assistant** (the purple **Ai** button in
-the top bar) uses the same tools and answers the same questions.
-
-→ [AI Assistant](/using/ai-assistant)
+| `get-pricing-comparison` | Compare BeRocker AI, SuperDispatch and CentralDispatch prices, by lead or by route. |
 
 ---
 
-## Need Help?
+## Good to know
 
-If you have any questions, contact the BeRocker team through your Slack support channel, call `302-313-0966`, or email `info@berocker.com`.
+- **Your data is private.** Everything is scoped to your company, and a person limited to their own
+  shipments sees only those.
+- **Date filters use `YYYY-MM-DD`.** State filters use abbreviations (`CA`, `NY`, `TX`).
+- **Changes are always confirmed.** The AI tool shows a preview first and needs your yes.
+- **Rate limit:** 600 calls a minute per person.
+
+## The same thing inside the CRM
+
+If you would rather not leave BeRocker, the built-in assistant (the **Ask AI** button in the top
+bar) answers the same kind of questions.
+
+[AI Assistant](/using/ai-assistant)
+
+---
+
+## Need help?
+
+Contact the BeRocker team through your Slack support channel, call `302-313-0966`, or email
+`info@berocker.com`.

@@ -1,70 +1,115 @@
 ---
 title: "Dispatch"
-description: "A live map of every load on the road, plus the overdue, upcoming and offer queues that need a decision."
+description: "The dispatcher's work list: loads to post, carrier offers, pickups, loads on the road and drivers to call, with a map you can hide."
 ---
 
-**Dispatch** is the operations view: one map of everything currently moving, with four queues around
-it. It refreshes itself, shows **Updated** *x ago* in the map header, and the refresh button at
-the top reloads it on demand. A stat bar above the map counts **In transit**, **Overdue pickup**,
-**Upcoming** and **SD Requests**.
-
-<Frame>
-  <img src="/images/app/dispatch.png" alt="The Dispatch map with the in-transit, overdue, upcoming and SD Requests queues" />
-</Frame>
+**Dispatch** is where you move paid loads onto trucks and keep them moving. The screen has a small
+**Dispatch Map** at the top and five tabs underneath, one for each job a dispatcher does. You open
+it from **Dispatch** in the sidebar. Anyone who can see the Shipments list can open it.
 
 ---
 
-## The map
+## The Dispatch tabs
 
-Each pin is a load. Click one to see the lane, **Pickup**, **Delivery**, **Price** and **Carrier**,
-and **View load** to jump into the conversation.
+Each tab shows a count. The count turns red when at least one load in the tab is late or needs a
+decision now. A line under the tabs says what the list is.
 
-Positions come from two places, and the popup tells you which:
+| Tab | What is in it | The date column |
+| --- | --- | --- |
+| **Offers** | Loads where carriers are waiting on your answer on Super Dispatch. Loads with the most offers come first. | **Offers**, for example *3 offers · 1 counter sent · 1 awaiting carrier* |
+| **To post** | Paid loads that are not on a load board yet. Canceled loads picking up soon come first, so you can decide whether to re-post them. | **Pickup** |
+| **Pickups** | Loads waiting on a truck. Overdue pickups first, then the soonest pickup in the next two weeks. | **Pickup**, for example *3 days overdue*, *Today*, *Tomorrow*, *In 4 days* |
+| **On the road** | Loads with a carrier, dispatched or picked up. These are the trucks on the map. Soonest delivery first. | **Delivery**, for example *2 days late* |
+| **Call the driver** | Loads whose pickup or delivery date passed and nobody marked the load. | **Was due**, for example *Delivery, 3 days ago* |
 
-| Note on the popup | What it means |
-| --- | --- |
-| **Live GPS · updated** *x ago* | The driver's real position, reported by Super Dispatch, with the place name where known. |
-| **Estimated position from pickup & delivery dates — not live GPS** | Worked out from the dates. |
+Each row shows **Load**, **Customer**, **Route**, **Vehicle** (or **Carrier** on **On the road**
+and **Call the driver**), the date column, **Status** and **Price**, plus a chat button.
 
-The **Live GPS** switch in the map header shows only the loads with a real GPS position. Turn it
-off to see estimated positions for every load. **Re-center** puts the map back over your loads
-after you have panned away.
+A tab shows its first 10 loads. Click **Show all** to see the rest of what was loaded. When a tab
+holds more loads than the page carries, it says *Showing X of Y. The rest are on the Shipments
+page.*
+
+When a tab is empty it says so, for example **No carrier offers waiting on you right now.** or
+**No pickups in the next two weeks.**
+
+---
+
+## Open a load from Dispatch
+
+- **Click a row** to open the load quick view (see below) without leaving the page.
+- **Click the load number**, or Ctrl-click (Cmd-click on a Mac) or middle-click a row, to open the
+  load in a new browser tab. Loads from the **Offers** tab open on their **Carrier** tab, where the
+  offers are.
+- **Click the chat button** at the end of the row to open the load's conversation.
+
+---
+
+## The load quick view
+
+Clicking a row on any Dispatch tab opens a quick view of that load. Across the top it shows the
+load number, its status, the tab it came from and the customer's name, then one line that says
+what the load needs, in the words of that tab. For example: *Paid but not on a load board, and the
+pickup is 2 days overdue. Post it now.*
+
+The quick view has two tabs:
+
+- **Overview**: **Pickup** and **Delivery** places and dates, the distance, where the driver was
+  last seen (when known), the **Carrier** card (name, contact, phone, email, MC number and agreed
+  price), the **Customer** card (phone and email, with a copy button on each), **Money**
+  (**Price**, **Broker fee**, **Carrier pay**), the **Vehicle** list with the trailer type, and
+  **Notes**.
+- **Conversation**: the customer conversation, read in place.
+
+Use the arrows in the header, or the Left and Right arrow keys, to step to the previous or next
+load in the same tab. Press Esc or **Close** to close it.
+
+The buttons at the bottom:
+
+- **Open full view** opens the whole load.
+- **Review offers** (loads from the **Offers** tab) opens the load straight on its carrier offers.
+  **Open full view** is next to it.
+- **Schedule a follow-up call** opens the **Schedule follow-up call** window for this load. Shown
+  only if your role can schedule follow-up calls.
+
+If the load moves to another tab while the quick view is open, a note says *This load has moved
+out of [tab] since you opened it. It may have been updated.*
+
+---
+
+## The Dispatch Map
+
+The **Dispatch Map** at the top shows the trucks on the **On the road** tab. Its header shows
+**LIVE**, the number of loads on the road, and **Updated** with the time the board was last read.
+
+- Click a truck to see its route, pickup, delivery, price and carrier, and to open the load.
+- **Live GPS** shows only the trucks sharing a live driver location through Super Dispatch. With
+  it off, positions are estimated from the pickup and delivery dates.
+- **Re-center** puts the map back over your loads.
+- **Hide map** folds the map away and **Show map** brings it back. Your choice is remembered in
+  this browser. The tabs and the **Updated** time keep working with the map hidden.
+
+When nothing can be drawn, the map says why, for example **No live GPS positions yet** (turn off
+**Live GPS** to see estimated positions) or **No loads on the road right now**.
 
 <Warning>
-  If you see **"Mapbox access token not configured"**, the app has no Mapbox key and cannot draw
-  the map. The dispatch queues below still work without it. Contact
+  If the map shows *The map needs a Mapbox key, which isn't set up yet. The tabs below work without
+  it.*, the map cannot be drawn on your account. Everything else on the page still works. Contact
   [BeRocker support](/support/contact).
 </Warning>
 
----
-
-## The queues
-
-<Columns cols={2}>
-  <Card title="On the road" icon="truck">
-    Every load currently in transit. Empty until carriers start picking up.
-  </Card>
-  <Card title="Overdue pickups" icon="circle-exclamation">
-    Loads whose pickup date has passed with no pickup reported. Work these first.
-  </Card>
-  <Card title="Coming up soon" icon="calendar">
-    Pickups scheduled in the next two weeks.
-  </Card>
-  <Card title="SD Requests" icon="inbox">
-    Posted loads with open Super Dispatch offers waiting on a yes or no.
-  </Card>
-</Columns>
-
-Clicking a load in **SD Requests** opens its conversation straight on the **Carrier** tab, because
-that is where you accept or decline the offer. Clicking a load in any other queue opens the
-conversation on the default **Details** tab.
+On a phone, the tabs and the list come first and the map comes after them.
 
 ---
 
-## Filters
+## Filter and refresh Dispatch
 
-The filter bar at the top is the same one the Dashboard uses: a **date range** and a **Teams /
-Users** picker (**Search team…**). Narrow it to one agent to see just their loads.
+The filter bar at the top is the same one the Dashboard uses: a date range and a team or user
+picker (**Search team...**). Pick one agent to see only their loads, or a team to see that team's
+loads.
+
+The board refreshes on its own while the page is open and pauses when you leave it. The refresh
+button at the top right reloads it now. If a refresh fails, a red bar says *Couldn't refresh the
+board. Showing what it looked like at [time].* with **Try again**.
 
 ---
 
@@ -74,11 +119,11 @@ Users** picker (**Search team…**). Narrow it to one agent to see just their lo
   <Card title="Shipments" icon="table" href="/using/shipments">
     The same loads as a filterable table.
   </Card>
-  <Card title="Carriers and Loadboards" icon="truck" href="/settings/carriers-and-loadboards">
-    Auto-unposting, order import and price updates.
+  <Card title="Inbox" icon="comments" href="/using/inbox">
+    Post, dispatch and handle carrier offers on a load's Carrier tab.
   </Card>
   <Card title="Super Dispatch" icon="plug" href="/integrations/loadboards/superdispatch">
-    Connect the board that supplies live GPS.
+    Connect the board that supplies offers and live GPS.
   </Card>
   <Card title="Carriers" icon="address-book" href="/using/carriers">
     Who is hauling for you.

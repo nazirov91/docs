@@ -1,99 +1,186 @@
 ---
-title: "Follow up and Triage"
-description: "Triage reads every live conversation and tells you who needs a human today, why, and what to say."
+title: "Follow up"
+description: "The work list of customers waiting on a reply and calls that are due, and the calendar of follow-up calls."
 ---
 
-The **Follow up** screen has two tabs: **Triage** and **Call list**.
+**Follow up** is where you see who to call or answer next. It has two views, switched with
+**List** and **Calendar** at the top of the page:
 
-<Frame>
-  <img src="/images/app/follow-up.png" alt="The Follow up screen showing the Triage queues on the left and the conversation pane on the right" />
-</Frame>
+- **List** is the work list: everything waiting on you in one list, with the lead open beside it.
+- **Calendar** shows follow-up calls, calling-schedule calls and tasks by time.
+
+You open it from **Follow up** in the sidebar. Your role needs access to scheduled calls to see it.
 
 ---
 
-## Triage
+## The Follow up work list
 
-Triage reads every active conversation with AI and sorts them into queues, so you always know
-**who needs you right now, why, and what to do next** — without scrolling through dozens of threads.
+The left side of the **List** view is the work list. At the top:
 
-The header shows how many conversations need you and the **dollar value of pipeline at risk**, so
-you can prioritise by impact. It refreshes on its own every minute.
+- A big number with **things need you** (or **thing needs you**), and a refresh button.
+- Three tiles: **waiting** (customers waiting on a reply, missed calls included), **due today**
+  (calls you scheduled for today, and calling-schedule calls that are due) and **done today**
+  (calls, texts and outcomes logged today). Click **waiting** or **due today** to jump to that part
+  of the list.
+- A progress bar, *X done, Y left today*.
+- A search box, **Name or lead #**.
+- Three filters: **All**, **Reply** and **Calls**, each with a count.
 
-### The five queues
+The list is grouped. Click a group heading to fold it or open it.
 
-| Queue | What is in it |
+| Group | What is in it |
 | --- | --- |
-| 🔴 **Rescue** | Trust is breaking — anger, a scam worry, an explicit "let me talk to a human", or the AI is visibly looping. Jump on these first. |
-| 🟢 **Close** | Warm and near a decision — accepted the price, asking how to pay, ready to book. A nudge here turns into revenue. |
-| 🟠 **Waiting** | The ball is in your court — the customer asked something that has not been answered yet. |
-| 🔵 **Cold** | Gone quiet. Worth a nudge before the lead goes stale. |
-| ⚪ **Healthy** | Handled and on track — nothing for you to do. Collapsed by default so it stays out of the way. |
+| **Needs driver ASAP** | Leads you pinned with the **Driver ASAP** outcome. Always on top. |
+| **Reply now** | Customers whose last message is newer than yours, newest first. Missed calls with no call back sit under them, counted as **Call back**. |
+| **Scheduled by me** | Follow-up calls you set: today by time, then the coming days. |
+| **Calls due** | The calling schedule's calls that are due now, oldest first. Log what happened and the schedule moves on. |
+| **Not set** | Your new leads with nothing else on them, nearest pickup date first, grouped by pickup date (for example **Pickup in the next 7 days**, **No pickup date**). |
 
-Cards are sorted by priority — deal value × how much a human can move it × recency — so the top of
-each queue is always the best use of your time. Work each queue top-down.
+Each row shows the customer's name, the lead number, a chip for its group, a **Rescue** or **Ready
+to close** chip when the AI flagged the conversation, and a short reason such as *texted 2h ago*
+or *missed call 3:10 PM*. When a group has more rows, **Show N more** loads them.
 
-### What each card tells you
+When new work arrives while you are working, a **N new · Refresh** button appears instead of the
+list jumping. The list also refreshes on its own about once a minute while the tab is open.
 
-Customer, lane and vehicle, quote amount, the deal **stage**, the customer's **sentiment** with a
-trend arrow (improving / steady / slipping), a one-line reason it was flagged, and the latest
-message — enough to act without opening the thread.
+When everything is handled you see **All done**, with the time of your next call and **Open the
+calendar**.
 
-### Actions on a conversation
+---
 
-| Action | What it does |
+## Work a lead from the Follow up list
+
+Click a row to open it. The lead opens on the right with its conversation and its details (the
+same **Details**, **Booking** and **Carrier** panel as the Inbox). On narrow screens a **Show**
+switch flips between **Conversation** and **Details**.
+
+The open row shows a strip of actions:
+
+1. **Reply** (or press R) puts you in the conversation on the right. On a call row this button is
+   the call result instead: pick **Talked**, **No answer** or **Left message**.
+2. **Call** calls the customer, when calling is set up and the lead has a phone number. If the
+   phone system logged the call, the row asks **How did it go?** with the three call results.
+3. **Follow up** (the calendar button, or press N) sets when to follow up next: **In 2 hours**,
+   **Tomorrow 9 AM**, **In 3 days**, **Next Monday 9 AM**, **Pick a date…**, or **No date** to
+   clear it.
+4. **Done, next** (or Enter) saves what you picked and opens the next lead.
+
+The **More** menu (three dots) holds the rest:
+
+- **Log a call**: **Talked**, **No answer**, **Left message** (on a call row, **Text instead**).
+- **Mark as**: **Wrong number** (archives the lead), **Price up on CD**, **Driver ASAP** (pins the
+  lead on top until it books) and **Not interested** (archives the lead).
+- **Add a note**: a line for the lead's timeline.
+- **Tomorrow** (or T): nothing to log, takes the lead off today's list and brings it back
+  tomorrow.
+- **Unpin**, on a pinned lead.
+- **Mark dead**: archives the lead. Shown only to people allowed to archive, and only on leads
+  still in sales.
+
+After every action a bar at the bottom offers **Undo** for ten seconds (or press U).
+
+---
+
+## Follow up keyboard shortcuts
+
+Press **?** or click the keyboard button on the **List** view to see them.
+
+| Key | What it does |
 | --- | --- |
-| **Take over** | You are handling this one personally. Records that you stepped in and clears the card from the queue. |
-| **Send draft** | Sends the AI-suggested reply as-is, straight to the customer — the fastest way to clear a Waiting or Close card. |
-| **Snooze** | Hides the conversation for **1 hour**, **4 hours** or **1 day** and brings it back after, so the queue only shows what needs you now. |
-| **Resolve** | Marks it handled and removes it from the queue. Use it once the conversation no longer needs attention. |
-
-Selecting a card opens the live conversation on the right, so you can read the thread and reply
-without leaving the page. From the chat header you can also mark the lead **Interested** or
-**Not Interested** — **Not Interested** stops all further automated messages to that customer.
-
-When nothing is left, the screen says **You're all caught up**.
-
-<Tip>
-  The **?** icon in the Triage header opens **How Triage works** inside the CRM — the same
-  explanation, always current.
-</Tip>
-
-### Triage settings
-
-The gear icon opens **Triage settings**:
-
-- **Rescue precision** — a slider. Higher precision surfaces only the conversations the AI is most
-  confident are at risk (fewer, surer alerts).
-- **Waiting SLA (hours)** — flag conversations the customer is waiting on after this many hours.
-- **Going cold after (hours)** — mark a conversation as going cold after this much silence.
-- **Minimum deal value** — only surface deals worth at least this amount.
-- **Surface these queues** — switches for **Rescue**, **Close**, **Waiting** and **Going cold**, so
-  you can hide queues your desk does not use.
-- **Autopilot** — when on, AI drafts only fire for rescue-surfaced conversations.
-
-Admins can set organization-wide defaults; your own choices override them for your view.
+| J or ↓ | Next lead |
+| K or ↑ | Previous lead |
+| 1 / 2 / 3 | Talked / No answer / Left message |
+| N | Pick when to follow up |
+| Enter | Done, next lead |
+| D | Done, stay on this lead |
+| T | Tomorrow |
+| R | Reply in the conversation |
+| U | Undo the last action |
+| / | Search |
+| Esc | Close the lead, back to the list |
+| ? | Show these shortcuts |
 
 ---
 
-## Call list
+## See a teammate's Follow up list
 
-The second tab is your scheduled calls: customers you or the system set a callback time for. Work
-it top-down, and open the conversation straight from a row.
-
-Calls get scheduled when a customer asks to be called, when you set a reminder on a conversation
-in the [Inbox](/using/inbox), or from an automated follow-up step.
+If your role can see other people's follow-ups, a row of people appears at the top of the **List**
+view: **Everyone**, then **Me**, then each teammate with a count of what is waiting and due on
+them. Pick a person to see their list, or **Everyone** for the whole team's. With **Everyone**
+picked, each row shows who owns it.
 
 ---
 
-## Triage vs follow-up sequences
+## Your day: the Today button
 
-They solve different halves of the same problem, and you want both:
+**Today** at the top of the **List** view opens a side panel of today's calls and tasks in time
+order, with a red **Now** line. Click an item with a lead to open that lead. With **Everyone**
+picked, the panel still shows your own day (**Your day**).
 
-| | [Follow-up sequences](/settings/templates) | Triage |
+---
+
+## The Follow up calendar
+
+Click **Calendar** at the top of Follow up. It shows follow-up calls, the calling schedule's calls
+and tasks by time. It is the CRM's own calendar and does not connect to Google or Outlook.
+
+- **Today**, the arrows, and **Day**, **Week**, **Month** or **Agenda** move around. The view you
+  pick is remembered.
+- The legend says what the colours mean: **Follow-up call**, **Calling schedule** and **Task**.
+- If calls are overdue, a red chip shows *N overdue* (and how many have no time). Click it to go
+  back to the list.
+- Times are your local time. Hover a call to see the customer's time.
+- If your role can see other people's follow-ups, the **Just me** box lets you add colleagues'
+  calendars. Each person then gets their own colour.
+
+Click an item to see **When**, **Who**, **Source** and **Note**, with these buttons:
+
+- **Open lead** opens the lead.
+- **Reschedule** opens the **Schedule follow-up call** window (calls only).
+- **Back to calling schedule** removes a follow-up call you set, so the lead follows the calling
+  schedule again.
+
+If your role can schedule follow-up calls, you can also drag a call to another time, or select it
+and use Alt plus the arrow keys.
+
+Calendar keys: **T** for today, **N** and **P** (or J and K) for the next or previous period, and
+**D**, **W**, **M**, **A** for day, week, month or agenda.
+
+---
+
+## Schedule a follow-up call
+
+A follow-up call is a call for your team to make at a set time. It does not change your automated
+follow-up texts and emails, which are a separate schedule.
+
+You can schedule one from the calendar button in the conversation header in the Inbox (its tooltip
+reads **Schedule a follow-up call**, or **Next call:** with the time once one is set), from the
+Dispatch quick view, and from **Reschedule** on the calendar. Your role needs permission to
+schedule follow-up calls.
+
+1. Open **Schedule follow-up call**. If the lead already has a call, the window shows it (**Set
+   for…** or **Calling schedule: next call…**).
+2. Pick a **Quick pick**: **In 1 hour**, **In 3 hours**, **Tomorrow 9 AM**, **In 2 days** or **In 1
+   week**. Each shows the exact time it sets, and the one you used last comes first. Or pick a
+   **Date and time** yourself. Past days cannot be picked.
+3. Check the line under the date. It shows what time it will be for the customer, warns when that
+   is *outside 8 AM to 9 PM for them*, and warns when you already have several calls around that
+   hour.
+4. Add a **Comment** if you like. It shows on the lead timeline.
+5. Click **Save**. You see **Follow-up call scheduled**.
+
+To remove a call you set and let the lead follow the calling schedule again, click **Back to
+calling schedule** in the same window.
+
+---
+
+## Follow-up calls vs follow-up messages
+
+| | [Follow-up messages](/settings/templates) | Follow up work list |
 | --- | --- | --- |
-| **What** | Timed messages that go out on their own | A ranked list of conversations for a human |
-| **When** | Fixed intervals after a quote | Continuously, as the conversation changes |
-| **Best at** | Chasing people who never replied | Rescuing and closing people who did |
+| **What** | Timed texts and emails that go out on their own | A list of people a human should answer or call |
+| **When** | Fixed intervals after a quote | As customers reply, calls are missed and calls come due |
+| **Best at** | Chasing people who never replied | Answering and closing people who did |
 
 ---
 
