@@ -44,7 +44,8 @@
               "using/shipments",
               "using/follow-up",
               "using/interactions",
-              "using/dispatch"
+              "using/dispatch",
+              "using/marketing"
             ]
           },
           {
@@ -66,7 +67,8 @@
             "group": "Help inside the CRM",
             "pages": [
               "using/ai-assistant",
-              "using/tickets"
+              "using/tickets",
+              "using/ai-team"
             ]
           }
         ]
@@ -77,7 +79,8 @@
           {
             "group": "Personal",
             "pages": [
-              "settings/profile"
+              "settings/profile",
+              "settings/whats-new"
             ]
           },
           {
@@ -98,10 +101,13 @@
               "settings/notifications",
               "settings/lead-sources",
               "settings/lead-distribution",
+              "settings/lead-management",
               "settings/pricing",
               "settings/email-parsing",
               "settings/carriers-and-loadboards",
-              "settings/reports"
+              "settings/reports",
+              "settings/automations",
+              "settings/developer"
             ]
           }
         ]

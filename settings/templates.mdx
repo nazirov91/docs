@@ -1,6 +1,6 @@
 ---
 title: "Templates"
-description: "Every message BeRocker sends in your name — event messages, follow-up sequences, and the variables that personalise them."
+description: "Every message BeRocker sends in your name: event messages, the automatic review request, the shipping date reminder, follow-up sequences and the variables that personalise them."
 ---
 
 **Settings → Templates** is where every automated and semi-automated message lives. Three tabs:
@@ -14,9 +14,9 @@ description: "Every message BeRocker sends in your name — event messages, foll
 
 ## Events
 
-> Events are the moments that send a message — a new quote, an order confirmation, and more. Each
+> Events are the moments that send a message: a new quote, an order confirmation, and more. Each
 > one is tagged **Automatic** (it sends on its own when the event fires) or **Manual** (you send it
-> from the chat). Pick an event to preview, edit its message, and — for automatic events — set how
+> from the chat). Pick an event to preview, edit its message and, for automatic events, set how
 > long after the event it should send.
 
 The left column lists every event with its badge and how many **Email** and **SMS** templates it
@@ -40,14 +40,16 @@ holds. Pick one and the right side opens.
 | **Shipping Delayed** | Manual | Telling the customer about a delay. |
 | **Delivered Follow Up** | Manual | Post-delivery follow-up. |
 | **Reminder** | Automatic | Sent on schedule once reminders are on for the lead. |
-| **Review Client** | Manual | Asking the customer for a review. |
+| **Review Client** | Manual, or Automatic when you turn on the review request | Asking the customer for a review. See [Send a review request automatically after delivery](#send-a-review-request-automatically-after-delivery). |
 | **Review Driver** | Manual | Asking the carrier for a review. |
+| **Quote Reminder** | Manual, or Automatic when you turn on the shipping date reminder | A quote reminder sent when the shipping date is getting close. See [Remind customers before their shipping date](#remind-customers-before-their-shipping-date). |
 | **Lead Reassigned** | Manual | Telling the customer their agent changed. |
-| **Follow Up** | Automatic | The follow-up sequence — it has its own tab. |
+
+Follow-up messages are not in this list; they have their own **Follow-up** tab.
 
 <Info>
-  **Automatic** has to be earned by a real wired-up trigger. Everything else is Manual, because an
-  agent can always send any template by hand from the chat.
+  An event is **Automatic** only when something in BeRocker sends it on its own. Everything else is
+  Manual, because an agent can always send any template by hand from the chat.
 </Info>
 
 ### Editing a template
@@ -58,11 +60,11 @@ then:
 | Control | What it does |
 | --- | --- |
 | **Email / SMS** | Which channel you are editing. Each has its own templates. |
-| Clock button → **Send delay** | Automatic events only: how long after the event the message goes out, as **Days / Hours / Minutes**. Each channel has its own delay, and a readout under the tabs sums it up (*Email: After 1h · SMS: Immediately*). |
+| Clock button → **Send delay** | Automatic events only (not Review Client, which has its own timing): how long after the event the message goes out, as **Days / Hours / Minutes**. Each channel has its own delay, and **Send delay by channel:** under the tabs sums it up. |
 | Template dropdown | Which template you are looking at, with *"N templates"* beside it. Inactive ones are suffixed *(inactive)*. Under it: *Used by N schedules* and *Last updated*. |
-| **Edit history** | Opens **Template history** — every saved version, viewable *With sample data* or *With variables*, with **Restore this version**. |
+| **Edit history** | Opens **Template history**: every saved version, viewable *With sample data* or *With variables*, with **Restore this version**. |
 | **Create new template** | Adds another template for this event and channel. |
-| Settings menu → **Delete this version** | Removes the selected template. |
+| Settings menu → **Delete this version** | Removes the selected template after you confirm. |
 | **Preview** tab | The message rendered with sample data. |
 | **Variables** tab | The raw template with its placeholders shown as-is. |
 | **Edit** tab | The editor: **Name**, an **Active / Inactive** switch, **Subject** (email only), the variable pickers, the **Body**, and **Save changes**. Inactive templates are never used. |
@@ -74,7 +76,7 @@ Useful when a change to a quote message coincides with a drop in replies.
 
 Example follow-ups:
 
-- *"Just checking in about your transport — still interested?"*
+- *"Just checking in about your transport. Still interested?"*
 - *"Quick follow-up on your quote. Want me to lock it in?"*
 - *"Hi [lead_first_name], did you want to move forward with booking?"*
 
@@ -83,12 +85,46 @@ and are placed on the sequence by hand in its **Schedule**.
 
 ---
 
+## Send a review request automatically after delivery
+
+**Where:** **Settings → Templates → Events → Review Client**.
+
+Out of the box, the review request is Manual: an agent sends it from the chat. You can have
+BeRocker send it on its own once a lead is delivered. A panel at the top of the Review Client event
+reads *Auto-send when lead is **Delivered**, after* followed by a wait time.
+
+1. Paste your review page address into the **Review link** field (for example your Google review
+   link) and click **Save**. The open-link button next to it lets you check the link works.
+2. Turn on the switch at the start of the panel. If no link is saved yet, the app asks you to paste
+   your review link first.
+3. Choose the wait time: **Right away**, **1 hour**, **3 hours**, **6 hours**, **12 hours**,
+   **1 day (recommended)**, **2 days**, **3 days** or **1 week**. New setups start at 1 day so the
+   request does not land on top of the delivered message.
+
+What happens afterwards:
+
+- The Review Client event's badge changes to **Automatic**.
+- If your Review Client email or SMS template does not include the review link yet, BeRocker adds
+  it for you and says so.
+- Chips on the right show each channel's state: **SMS ✓** / **Email ✓** (will send with the link),
+  **· no link**, **· off** or **· no template**. Click a chip to open that channel's template. If a
+  template lost the link after you edited it, click **Add link** to put it back.
+
+Rules (hover the info icon): it is sent once per order. It is not sent if the lead is no longer
+Delivered by then, someone already asked for a review, or the customer opted out or replied. It
+waits for quiet hours.
+
+Only people whose role can change automatic messages can use the switch, the wait time and the
+link. To stop it, turn the switch off.
+
+---
+
 ## Variables
 
 Variables are placeholders in square brackets that get filled in when the message is sent. On the
 **Edit** tab, the pickers above the body list every variable available for that event with a
 sample value, grouped by subject (General, Organization, Lead Source, Assistant, Lead, Vehicle,
-Origin, Destination, Payment, Contract, Booking) — click one to insert it. The live list in the
+Origin, Destination, Payment, Contract, Booking). Click one to insert it. The live list in the
 app is always the authoritative one; the set differs per event.
 
 The most-used ones:
@@ -144,15 +180,15 @@ The most-used ones:
 </Frame>
 
 > Follow-up re-engages leads with a series of messages over time. Manage your reusable follow-up
-> templates in **Inventory**, then arrange them into a timed sequence — with delays and per-step
-> rotation — in **Schedule**.
+> templates in **Inventory**, then arrange them into a timed sequence, with delays and per-step
+> rotation, in **Schedule**.
 
 Two sub-tabs:
 
-- **Inventory** — the **Follow-up templates** themselves. **New** creates one; each has the same
+- **Inventory**: the **Follow-up templates** themselves. **New** creates one; each has the same
   **Preview / Variables / Edit** tabs, **Edit history** and **Delete template** as an event
   template.
-- **Schedule** — the ladder of timed steps. **Follow-up for** picks a lead source: *pick a lead
+- **Schedule**: the ladder of timed steps. **Follow-up for** picks a lead source: *pick a lead
   source to give it its own sequence, or edit the General one used by every source* (a source
   shows **General**, **Using General** or **Custom**). Steps start at **Sequence start**; the
   **+** button adds a step, and each step card is either **Send immediately** or **Send N days,
@@ -161,11 +197,11 @@ Two sub-tabs:
 
 How the delays work, as the panel on the tab says: each step's delay is measured from when the
 lead enters the sequence, **not** from the previous step, so give each step a larger delay than
-the one before. Put **multiple templates on a single step** to rotate — one of them is picked at
+the one before. Put **multiple templates on a single step** to rotate: one of them is picked at
 random each time, so customers don't all get the same wording.
 
-Leads from a paid provider often need a different cadence than leads from your own website —
-that is what the per-source sequence is for.
+Leads from a paid provider often need a different cadence than leads from your own website,
+and that is what the per-source sequence is for.
 
 <Info>
   When you save a changed sequence, BeRocker tells you what it did to leads already part-way
@@ -177,7 +213,7 @@ that is what the per-source sequence is for.
 
 - **First step within the hour.** Response time is the single biggest lever on conversion.
 - **Spread the rest out.** Something like 1 hour, 1 day, 3 days, 7 days.
-- **One ask per message.** "Click to book" or "reply YES" — never both.
+- **One ask per message.** "Click to book" or "reply YES", never both.
 - **Give SMS an opt-out.** The **Opt-out line** on the
   [Health](/settings/messaging-health) tab is added to the first automated text of a conversation,
   and again once a month.
@@ -185,9 +221,32 @@ that is what the per-source sequence is for.
 
 ---
 
+## Remind customers before their shipping date
+
+**Where:** **Settings → Templates → Follow-up**, the panel above **Inventory** and **Schedule**.
+
+The follow-up sequence is timed from the quote and is over within days. The shipping date reminder
+is timed from the shipping date instead, so a customer quoted a month ahead still hears from you in
+the week that matters. It is off until you turn it on.
+
+1. Turn on the switch at the start of the panel: *Remind the customer about their quote*.
+2. Choose how long *before the **shipping date***: 1, 2, 3, 5, 7, 10, 14, 21 or 30 days.
+
+Turning it on creates its SMS and email message. Chips on the right show each one (**SMS ✓**,
+**Email ✓**, **· off** or **· no message**); click a chip to open that message under
+**Events → Quote Reminder** and reword it.
+
+Rules (hover the info icon): it is sent once per lead, however long ago the quote was given. It goes
+only to leads that are still New, have a price and a shipping date, and were created more than two
+days ago. It is not sent if the customer opted out or the lead is blocked. It waits for quiet hours.
+
+Only people whose role can change automatic messages can change it. Turn the switch off to stop it.
+
+---
+
 ## Health
 
-The third tab is [Messaging health](/settings/messaging-health) — what your automated messaging is
+The third tab is [Messaging health](/settings/messaging-health): what your automated messaging is
 actually doing right now: sending numbers, delivery rates, the queue, quiet hours and opt-outs.
 
 ---
@@ -199,8 +258,8 @@ actually doing right now: sending numbers, delivery rates, the queue, quiet hour
 | Variables render empty | The exact spelling against the variable pickers on the **Edit** tab, and that the lead has that field filled in. |
 | Message never sent | The template is **Active** (not suffixed *(inactive)* in the dropdown), and the event is the one you think it is. |
 | Every customer gets identical follow-up text | Put more than one inventory template on that step of the Follow-up schedule; one is picked at random each time. |
-| Automatic message did not fire | The event's badge — is it actually **Automatic**? |
-| Texts queued but not going out | [Messaging health](/settings/messaging-health) — quiet hours, the per-minute pace, or a rested number. |
+| Automatic message did not fire | The event's badge. Is it actually **Automatic**? |
+| Texts queued but not going out | [Messaging health](/settings/messaging-health): quiet hours, the per-minute pace, or a rested number. |
 
 ---
 
@@ -221,7 +280,7 @@ actually doing right now: sending numbers, delivery rates, the queue, quiet hour
     <iframe
       className="w-full aspect-video rounded-xl"
       src="https://www.youtube.com/embed/svwj98Ey_d8"
-      title="Customize Templates — Enterprise Version"
+      title="Customize Templates, Enterprise Version"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
@@ -230,7 +289,7 @@ actually doing right now: sending numbers, delivery rates, the queue, quiet hour
 </Tabs>
 
 <Info>
-  The videos show an earlier layout — the tabs were renamed to **Events**, **Follow-up** and
+  The videos show an earlier layout. The tabs were renamed to **Events**, **Follow-up** and
   **Health** in a later redesign. The concepts are unchanged.
 </Info>
 
@@ -242,7 +301,7 @@ actually doing right now: sending numbers, delivery rates, the queue, quiet hour
   <Card title="Messaging health" icon="heart-pulse" href="/settings/messaging-health">
     Why a message has not gone out yet.
   </Card>
-  <Card title="Triage" icon="inbox" href="/using/follow-up">
+  <Card title="Follow up" icon="inbox" href="/using/follow-up">
     The human half of following up.
   </Card>
   <Card title="Business" icon="building" href="/settings/business">

@@ -1,0 +1,150 @@
+---
+title: "Automations"
+description: "Build rules that do the next step for you when something happens to a shipment, test them on a real shipment, and see every run."
+---
+
+**Settings → Automations** (the **Automations** card in Settings) lets you build rules in plain words: *when something happens to a
+shipment, do something*. An automation can tag a shipment, assign it, change its status, send a
+template, notify the team or send it to a webhook.
+
+The page has two tabs: **Automations** (your rules) and **Runs** (what they did).
+
+<Note>
+  Automations are turned on company by company. If you do not see **Automations** in Settings,
+  contact BeRocker support to have it turned on. Your role also needs permission to view the page.
+  Only roles that can manage automations can create, edit, turn on or off, duplicate or delete
+  them; everyone else sees the rules read-only.
+</Note>
+
+---
+
+## The automations list
+
+The **Automations** card shows how many rules are turned on out of the most your company may have
+on at once (*… of … turned on*). Each row shows:
+
+| Column | What it shows |
+| --- | --- |
+| **Automation** | The name (click it to open the rule) and the description. |
+| **When** | What starts it. |
+| **If** | Its conditions, in short. |
+| **Do** | How many actions it runs. |
+| **On** | A switch to turn the rule on or off. |
+| **Runs** | How many times it ran and when it last ran. |
+
+On each row, **Edit**, **Duplicate** and **Delete** manage the rule.
+
+---
+
+## Create an automation: When, If and Do
+
+<Steps>
+  <Step title="Click New automation">
+    On **Settings → Automations**, click **New automation**. The editor opens on the right.
+  </Step>
+  <Step title="Name it">
+    **Name** is required (for example *Tag hot leads and tell Sam*). **Description** is optional.
+  </Step>
+  <Step title="When: pick what starts it">
+    Choose the event under **When**, such as a new shipment, a status change, a customer message, a
+    payment or an accepted carrier offer. A line under the list explains the event you picked.
+  </Step>
+  <Step title="If: add conditions (optional)">
+    Under **If**, click **Add condition** and choose a **Field**, an **Operator** and a **Value**.
+    With more than one condition, choose **All must match** or **Any can match**. With no conditions
+    the rule runs every time (*No conditions: runs every time.*).
+  </Step>
+  <Step title="Do: add the actions">
+    Under **Do**, use **+ Add an action** and pick what to do. Each choice shows a short description.
+    Actions include sending one of your message templates, assigning to a person, changing the
+    status, adding or removing a tag, scheduling a call, adding a note, alerting people on the team,
+    sending the shipment to a webhook, or waiting before the next step. Fill in each action's
+    settings, and use the arrows to change their order. There is a limit on actions per automation,
+    shown when you reach it.
+  </Step>
+  <Step title="Turn it on and save">
+    **Turned on** decides whether it runs. Off keeps the automation but never runs it. Click
+    **Create** (or **Save** when editing).
+  </Step>
+</Steps>
+
+If something is missing, the editor lists it under **Fix these before saving** (for example
+*Name: give the automation a name.*, *When: pick a trigger.* or *Do: add at least one action.*).
+
+Messages sent by an automation follow the same rules as everything else: never to a customer who
+opted out or is blocked, held until their quiet hours end, and never the same template twice in a
+day.
+
+### Canvas view
+
+Where your company has it, the editor has a **Form** / **Canvas** switch. **Canvas** draws the same
+rule as connected boxes. Click a box to edit that part, drag boxes to arrange them (the layout is
+saved with the automation), and use **Auto layout** to tidy them. The form stays the default.
+
+---
+
+## Test with a shipment before you turn it on
+
+Open a saved automation and scroll to **Test with a shipment**. It answers: *Would this automation
+run for a shipment as it is right now? Nothing is sent or changed.*
+
+<Steps>
+  <Step title="Enter a shipment">
+    Type the **Shipment id** and click **Check**.
+  </Step>
+  <Step title="Read the result">
+    You see *It would run for shipment #…* or *It would not run for shipment #…*, the reasons, and,
+    when it matches, **It would:** followed by each step it would take.
+  </Step>
+</Steps>
+
+The check uses the saved version of the automation. If you changed something, save first to test
+your changes.
+
+---
+
+## Turn an automation on or off, duplicate or delete it
+
+- **Turn on or off:** use the switch in the **On** column, or **Turned on** in the editor.
+- **Duplicate:** makes a copy of the rule. The copy is turned off until you are ready.
+- **Delete:** asks first. The automation stops at once, its run history is deleted with it, and a
+  run that is waiting will not finish. This cannot be undone.
+
+---
+
+## Automation runs: what each rule did and why
+
+**Settings → Automations → Runs** lists every time an event reached an automation, matched or not,
+with what it did and why. Runs are kept for a limited number of days, shown on the tab.
+
+Filter by **Any automation**, **Any status** and **Matched or not** (**Matched** or
+**Did not match**), and click **Refresh** to reload.
+
+| Column | What it shows |
+| --- | --- |
+| **When** | How long ago (hover for the exact time). |
+| **Automation** | Which rule. |
+| **Shipment** | The shipment number and customer. |
+| **Event** | What started it. |
+| **Status** | **Did not match**, **Running**, **Waiting**, **Done**, **Partly done** or **Failed**. |
+| **Matched** | **Yes** or **No**. |
+| **Took** | How long it ran. |
+
+Click a run to open its detail: the status, event, customer and time, when a waiting run
+**Resumes**, when it **Finished**, the **Conditions** it checked, and the **Steps** with the outcome
+of each one.
+
+Every run is also written on the shipment, with the reason it ran or did not.
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Webhooks and API" icon="code" href="/settings/developer">
+    Send shipments to your own tools, including from an automation.
+  </Card>
+  <Card title="Templates" icon="message" href="/settings/templates">
+    The messages an automation can send.
+  </Card>
+</CardGroup>

@@ -1,0 +1,202 @@
+---
+title: "Webhooks and API"
+description: "Send shipment events to your own web addresses, and create API keys so Zapier, Make, n8n or your own scripts can read and create shipments."
+---
+
+**Settings → Webhooks and API** connects the CRM to your own tools. It has up to two tabs:
+
+- **Webhooks**: the CRM calls a web address of yours whenever something happens to a shipment.
+- **API keys**: keys that let a tool or script read and create shipments.
+
+<Note>
+  Webhooks and the API are turned on company by company, each on its own. You see only the tab
+  your company has, and the page appears in Settings only when at least one is on. If you do not
+  see it, contact BeRocker support. Your role also needs permission to open the page. Only roles
+  that can manage webhooks can add, edit, test, rotate, delete or replay; only roles that can manage
+  API keys can create or revoke keys.
+</Note>
+
+---
+
+## Add a webhook endpoint
+
+Each endpoint is called with a signed JSON body whenever one of the events it subscribes to happens.
+
+<Steps>
+  <Step title="Click Add endpoint">
+    On **Settings → Webhooks and API → Webhooks**, in the **Endpoints** card, click
+    **Add endpoint**. The button is disabled once you reach your company's endpoint limit.
+  </Step>
+  <Step title="Fill in New endpoint">
+    - **Name** (required): for example *Zapier*, *Google Sheet* or *our CRM bridge*.
+    - **URL**: the web address to call, for example `https://example.com/berocker-webhook`.
+    - **Events** (required): **All events**, or pick the ones to send, such as a shipment being
+      created, changing status or being assigned, a customer message, a payment, or an accepted
+      carrier offer. When Marketing is on for your company, campaign and reply events are listed too.
+    - **Turned on**: off means nothing is sent, but the endpoint and its secret are kept.
+  </Step>
+  <Step title="Click Create and copy the secret">
+    **Your signing secret** opens. Copy it now; it will not be shown again. If you lose it, rotate
+    the secret to get a new one.
+  </Step>
+</Steps>
+
+### Check that a delivery really came from BeRocker
+
+The secret window explains it step by step:
+
+1. Read the signature header (`X-BeRocker-Signature`). It looks like `t=<unix seconds>,v1=<hex>`.
+2. Join the timestamp, a dot and the raw request body: `<t>.<raw body>`.
+3. Compute HMAC-SHA256 of that string with your secret, hex encoded, and compare it to `v1` with a
+   constant-time comparison.
+4. Refuse deliveries whose timestamp is older than five minutes.
+
+Every delivery also carries `X-BeRocker-Event` (the event name, for example `lead.status_changed`),
+`X-BeRocker-Delivery-Id` (this delivery; a replay gets a new one), `X-BeRocker-Event-Id` (the same
+across retries and replays, for removing duplicates) and `X-BeRocker-Attempt` (which try this is,
+starting at 1).
+
+A delivery that does not get a 2xx answer within 10 seconds is retried later, on the schedule shown
+in the secret window.
+
+---
+
+## The endpoints list: status, test, rotate and delete
+
+Each endpoint shows its name and URL, its **Events**, its **Status** and its **Activity**
+(**Last delivery**, **Last success**, **Last failure**).
+
+| Status | Meaning |
+| --- | --- |
+| **On** | Deliveries are being sent. |
+| **Off** | You turned it off. |
+| **Turned off after failures** | Too many deliveries in a row failed on every try, so it was switched off. Hover to see why. Fix your receiver, then turn it back on with **Edit**. |
+
+The **Endpoints** card says how many failed deliveries in a row switch an endpoint off.
+
+Actions on each endpoint:
+
+- **Edit**: change the name, URL, events or the **Turned on** switch.
+- **Send a test**: sends a test delivery now (only while the endpoint is **On**). Watch the
+  **Deliveries** list below for the result.
+- **Rotate secret**: deliveries are signed with a new secret right away. Update your receiver with
+  it, or its signature checks will fail. The new secret is shown once.
+- **Delete**: nothing more is sent to it, and its delivery history goes with it.
+
+---
+
+## The delivery log and Replay this delivery
+
+The **Deliveries** card lists every delivery with every try and its answer. Filter by
+**Any endpoint**, **Any status** and **Any event** (which also offers **Automation step** and
+**Test**), and click **Refresh** to reload.
+
+| Column | What it shows |
+| --- | --- |
+| **When** | How long ago. |
+| **Endpoint** | Where it went. |
+| **Event** | What happened. |
+| **Shipment** | The shipment number. |
+| **Status** | **Sending**, **Delivered** or **Failed**. |
+| **HTTP** | The status code your server answered with. |
+| **Error** | Why it failed, if it did. |
+
+Click a delivery to see the detail: status, shipment, when it was created and delivered, the
+**Next try** if it is waiting to retry, your server's **Answer** and how long it took, the error,
+the **Event id**, the **Body sent** and the **Response body**.
+
+To send it again, click **Replay this delivery**. It sends the same body again with the same event
+id, and is queued as a new delivery. Replay is available once the delivery is no longer sending, to
+people who can manage webhooks.
+
+---
+
+## Create an API key
+
+<Steps>
+  <Step title="Click Create key">
+    On **Settings → Webhooks and API → API keys**, click **Create key**.
+  </Step>
+  <Step title="Fill in New API key">
+    - **Name** (required): for example *Zapier*, *Make* or *nightly sync*.
+    - **What the key may do** (required): tick the scopes it needs. Each one says what it allows,
+      such as reading shipments, creating and changing them, adding notes, or messaging customers.
+    - **Expires**: optional. Leave it empty for a key that lasts until you revoke it.
+  </Step>
+  <Step title="Click Create key and copy it">
+    **Your new API key** opens. Copy it now; it will not be shown again. If you lose it, revoke the
+    key and create a new one.
+  </Step>
+</Steps>
+
+A key acts as the person who created it: it sees their company and anything it changes is recorded
+under their name. It stops working when that person is deactivated, when it expires, or when you
+revoke it.
+
+---
+
+## The API keys list and revoking a key
+
+Each key shows its name and the start of the key, its **Scopes**, who it **Acts as**, **Usage**
+(**Last used** and the number of requests), when it **Expires**, and its **Status**: **Active**,
+**Expired** or **Revoked**.
+
+To stop a key, click **Revoke** and confirm. This is permanent: anything using the key stops working
+right away. The key stays in the list so you can see what it did.
+
+---
+
+## How to call the API
+
+The **How to use the API** card on the **API keys** tab has everything a developer needs:
+
+- **Base URL**: shown on the card, with a copy button.
+- **Authentication**: send the key as `Authorization: Bearer <key>` or `X-Api-Key: <key>`. Answers
+  are JSON.
+- **Example: the newest shipments**:
+
+  ```bash
+  curl "<Base URL>/leads?status=new&per_page=25" \
+    -H "Authorization: Bearer brk_your_key_here" \
+    -H "Accept: application/json"
+  ```
+
+What you can call, and the scope each needs:
+
+| | Path | What it does | Scope |
+| --- | --- | --- | --- |
+| GET | `/me` | Who the key is: the person, the company, the scopes. | none |
+| GET | `/leads` | List shipments, filtered by status, search, assignee, source, created and updated dates, with sorting and paging (up to 100 per page). | `leads:read` |
+| GET | `/leads/{id}` | One shipment by id. | `leads:read` |
+| GET | `/leads/by-number/{number}` | One shipment by its number. | `leads:read` |
+| POST | `/leads` | Create a shipment: customer name, phone and email, source, trailer type, comments, pickup and delivery, and vehicles. | `leads:write` |
+| PATCH | `/leads/{id}/status` | Change the status. | `leads:write` |
+| POST | `/leads/{id}/assign` | Assign to a teammate. | `leads:write` |
+| POST | `/leads/{id}/notes` | Add an internal note. | `notes:write` |
+| POST | `/leads/{id}/messages` | Message the customer by SMS, email or WhatsApp. | `messages:send` |
+| GET | `/users` | The people on the team, to assign by id. | `users:read` |
+| GET | `/lead-sources` | Your lead sources, to create shipments under one. | `leads:read` |
+| GET | `/statuses` | Every shipment status. | `leads:read` |
+
+Limits and rules:
+
+- Up to the number of requests a minute per key shown on the card. Over that, the answer is `429`
+  with a `Retry-After` header.
+- Messages to customers follow the same rules as the app: opted-out and blocked customers are
+  refused, and quiet hours are respected.
+- A key without the scope an endpoint needs gets `403` with the code `insufficient_scope`.
+- Shipments created through the API have the same shape as every webhook body, so one integration
+  understands both.
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Automations" icon="robot" href="/settings/automations">
+    Send a shipment to a webhook as one step of an automation.
+  </Card>
+  <Card title="Lead source API" icon="plug" href="/integrations/lead-source-api">
+    The separate endpoint lead providers post leads to.
+  </Card>
+</CardGroup>

@@ -1,11 +1,14 @@
 ---
 title: "Dashboard"
-description: "Your numbers — leads, revenue, margin, conversion, response times — with every tile telling you what it actually measures."
+description: "Your numbers (leads, revenue, margin, conversion, response times), with every tile telling you what it actually measures."
 ---
 
 The **Dashboard** answers "how are we doing" without anybody exporting a spreadsheet. Every tile
 says underneath the number exactly what it counts, so nobody has to guess whether "Revenue" means
 deposits or gross bookings.
+
+You open it from **Dashboard** in the sidebar. Your role needs permission to view the dashboard;
+without it the item is not shown.
 
 <Frame>
   <img src="/images/app/dashboard.png" alt="The BeRocker dashboard showing KPI tiles and trend charts" />
@@ -15,7 +18,8 @@ deposits or gross bookings.
 
 ## Filters
 
-Across the top: a **date range**, a **team / agent** picker, and a **refresh** button. Leave the
+Across the top: a **date range**, a team and user picker (**Search team...**, shown if your role
+can see teams), and a **refresh** button. Leave the
 date range empty for all-time.
 
 <Info>
@@ -32,7 +36,7 @@ date range empty for all-time.
 | **Total Leads** | Every lead in the period. |
 | **Revenue** | Deposits collected, post-dispatch. This is your money, not the customer's total. |
 | **Net Income** | Revenue after lead cost. |
-| **Carrier Pay** | Paid to carriers — *not* your revenue. |
+| **Carrier Pay** | Paid to carriers, *not* your revenue. |
 | **Gross Bookings** | Total order value: revenue + carrier pay. |
 | **Lead Cost** | Spent on every lead, booked or not. |
 | **Gross Margin** | Net income as a share of gross bookings. |
@@ -43,7 +47,7 @@ date range empty for all-time.
 | **Active In Transit** | Loads on the road right now, and the deposit value riding on them. |
 | **Avg Deposit** | Per delivered load. |
 | **Median First-Response** | Typical time to your first reply. |
-| **Avg First-Response** | The mean — outliers skew this, which is why the median is next to it. |
+| **Avg First-Response** | The mean. Outliers skew this, which is why the median is next to it. |
 
 <Tip>
   Watch the **median** first-response, not the average. One agent who left for lunch mid-thread can
@@ -55,13 +59,13 @@ date range empty for all-time.
 ## The charts
 
 - **Revenue & Net Income** over time.
-- **Leads vs Delivered** over time — volume in against loads out.
-- **Margin % Trend** — your gross margin percentage day by day.
-- **Pipeline funnel** — how many leads reached New, Order, Signed, Paid, Posted, Dispatched and
+- **Leads vs Delivered** over time: volume in against loads out.
+- **Margin % Trend**: your gross margin percentage day by day.
+- **Pipeline Funnel**: how many leads reached New, Order, Signed, Paid, Posted, Dispatched and
   Delivered. Where the funnel narrows is where your process leaks.
-- **Top agents** — deposit total on booked loads and delivered count per agent.
-- **Top lanes** — ranked by gross bookings, with revenue and lead count.
-- **Lead sources** — per source: leads, booked, revenue, lead cost, net income, cost per booked
+- **Top Agents**: deposit total on booked loads and delivered count per agent.
+- **Top Lanes**: ranked by gross bookings, with revenue and lead count.
+- **Lead Sources**: per source: leads, booked, revenue, lead cost, net income, cost per booked
   load, and booking rate.
 
 <Info>
@@ -74,8 +78,8 @@ date range empty for all-time.
 ## Dashboard versions
 
 The version picker in the top right switches between three layouts: **Version 1** (the original
-cards — lead counts, income, commissions, recent transactions, recent activity, follow-up leads
-and tasks), **Version 2** (the tiles and charts above — the default) and **Email leads** (the same
+cards: lead counts, income, commissions, recent transactions, recent activity, follow-up leads
+and tasks), **Version 2** (the tiles and charts above, the default) and **Email leads** (the same
 view, limited to leads that came in by email). Each can be renamed from the picker, and the choice
 is remembered per user. On Version 2 the **Arrange dashboard cards** button lets you drag the cards
 into the order your team reads fastest.

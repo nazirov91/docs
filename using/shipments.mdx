@@ -16,11 +16,13 @@ Shipments is where you see the whole book at once.
 
 The tabs across the top are the pipeline, each with a live count:
 
-**All Items · New · Order · Posted · Canceled · Dispatched · Picked Up · Delivered · Completed · Archived**
+**All Items · New · Order · Posted · Dispatched · Picked Up · Delivered · Completed · Canceled · Archived**
+
+The closed stages (**Completed**, **Canceled** and **Archived**) sit at the end, after a thin divider.
 
 <Info>
   The **Order** tab is a grouping, not a status. It folds **Order**, **Signed** and **Paid** together
-  so the tab bar stays short. The individual statuses are still on each shipment — use the
+  so the tab bar stays short. The individual statuses are still on each shipment. Use the
   sub-filters below the tabs to split them apart.
 </Info>
 
@@ -31,7 +33,7 @@ See [How a lead becomes a load](/get-started/lead-journey) for what each status 
 ## Sub-filters
 
 Three tabs show a second row of buttons that split the tab into buckets. The buckets partition the
-tab — their counts add up to the tab total.
+tab: their counts add up to the tab total.
 
 | Tab | Buckets |
 | --- | --- |
@@ -39,8 +41,8 @@ tab — their counts add up to the tab total.
 | **Order** | All Orders · Needs Contract · Contract Sent · Signed · Paid |
 | **Posted** | All Posted · No Offers · Has Offers |
 
-None of these are set by hand. They are worked out from things that already exist — the quote
-message that went out, the contract, the payment, the carrier offers — so they cannot go stale.
+None of these are set by hand. They are worked out from things that already exist (the quote
+message that went out, the contract, the payment, the carrier offers), so they cannot go stale.
 
 ---
 
@@ -57,7 +59,7 @@ The sub-filters are the fastest way to answer "what is waiting on me":
 | What is paid but has no carrier? | **Order → Paid**, then check the **Carrier** column |
 
 <Tip>
-  The tab bar is sticky — it stays put while the list scrolls, so you can switch status or search a
+  The tab bar is sticky. It stays put while the list scrolls, so you can switch status or search a
   hundred rows down without scrolling back to the top.
 </Tip>
 
@@ -69,11 +71,12 @@ The sub-filters are the fastest way to answer "what is waiting on me":
 | --- | --- |
 | **Search** | By name, phone, email, lead #, VIN or location. |
 | **Filter by tags** | Narrow to shipments carrying one or more tags (shown if your role can read tags). |
-| **Owner** | Show only one agent's shipments — or everyone's (shown if your role can view other people's leads). |
-| **Filter** | Opens the filter form: **Lead status**, **Lead Provider**, **Tags**, **PU from date** / **PU to date**, **From (zip, state)**, **To (zip, state)**, **Created at**, plus two switches — **Email leads only** (leads created from parsed emails) and **Unaccepted carrier offers** (a carrier offer still waiting to be accepted). |
+| **Owner** | Show only one agent's shipments, or everyone's (shown if your role can view other people's leads). |
+| **Team** | Show the shipments owned by anyone on one team (shown if your role can see teams and your company has teams). |
+| **Filter** | Opens the filter form: **Lead status**, **Lead Provider**, **Tags**, **PU from date** / **PU to date**, **From (zip, state)**, **To (zip, state)**, **Created at**, plus two switches: **Email leads only** (leads created from parsed emails) and **Unaccepted carrier offers** (a carrier offer still waiting to be accepted). |
 | **+ Add Shipment** | Create a shipment by hand. |
 | **Manage columns** (list icon) | Choose which columns the table shows and in what order. Your choice is remembered. |
-| **Table settings** (gear) | **Compact view** (one field per column) on or off, your **Default user view** (which owner the table opens on — **Myself**, a named user, or **No User Filter** for admins), **Select rows** for bulk actions, and **Export…**. |
+| **Table settings** (gear) | **Compact view** (one field per column) on or off, your **Default user view** (which owner the table opens on: **Myself**, a named user, or **No User Filter** for admins), **Select rows** for bulk actions, and **Export…**. |
 
 **Select rows** puts a checkbox on every row. A bar appears at the bottom with the count selected,
 a **Select status** box with **Apply** to change the status of every selected shipment, and
@@ -86,11 +89,11 @@ a **Select status** box with **Apply** to change the status of every selected sh
 In the default compact view the columns are **Lead #**, **Status** (with milestone chips),
 **Secondary ID**, **Name**, **Phone**, **Origin**, **Destination**, **Vehicle**, **Created At**,
 **Pickup Date** and **Total Price**. With compact view off, the table folds those into wider
-cells — **Origin & Destination**, **Contact**, **Vehicle & Shipping Type**, **Created & Pickup
+cells: **Origin & Destination**, **Contact**, **Vehicle & Shipping Type**, **Created & Pickup
 Date**, **Pricing**. **Open** takes you to the conversation; the eye icon (**Quick view**) gives a
 preview without leaving the table.
 
-The milestone chips — **✓ Quoted**, **✓ Signed**, **✓ Paid** — accumulate and never go backwards,
+The milestone chips (**✓ Quoted**, **✓ Signed**, **✓ Paid**) accumulate and never go backwards,
 so a Dispatched shipment still shows all three.
 
 <Tip>
@@ -104,16 +107,46 @@ so a Dispatched shipment still shows all three.
 
 ---
 
-## Adding a shipment by hand
+## Add a shipment by hand
 
-**+ Add Shipment** opens the form: customer, origin and destination, vehicles, dates, trailer type
-and price.
+**+ Add Shipment** on the toolbar (or **New shipment** in the top bar) opens **Add Shipment**:
+customer, vehicles, pick-up and delivery, dates, trailer type and price. You need permission to add
+shipments.
 
 - Phone is required unless your organization allows phone-less leads (email is always required,
   and a phone is always required when you create an order rather than a lead).
-- A half-filled form is saved as a draft on your machine so a reload does not lose it — you see a
-  **Draft restored** note when it comes back — and it is cleared when you sign out, since
+- A half-filled form is saved as a draft on your machine so a reload does not lose it. You see a
+  **Draft restored** note when it comes back. The draft is cleared when you sign out, since
   brokerages share workstations.
+
+---
+
+## Fill a new shipment from a document
+
+**Add Shipment** can read a gate pass, order, dispatch sheet, PDF, photo, CSV or Excel file and
+fill the form for you.
+
+1. Open **Add Shipment**.
+2. Click the attach button in the window header (tooltip *Attach a gate pass, order, sheet or
+   photo*), or drag the file anywhere onto the window. While you drag, the window says **Drop to
+   fill in the shipment**.
+3. Wait while the bar at the top reads the file. **Cancel** stops it.
+4. Check what was filled in, then save as usual.
+
+Limits: up to 3 files at once, 15 MB each.
+
+The bar then sums up what it found, for example *Gate pass · Order · 2 vehicles*:
+
+- **N to check** lists things to look at before saving.
+- **Already on #1234** means an existing shipment matches what the document holds; the details
+  say what matched. **Open it** takes you there, so you do not create a duplicate.
+- **Still needed:** lists what the document did not give you.
+- **Price on the document:** shows a price found on the document. Fields the document did not have
+  are left empty, and anything you had already typed is kept.
+- When one file holds several routes, the bar says how many and lets you pick which one to fill in.
+
+If reading fails, **Try again**, **Read it anyway** or **Attach again** is offered, depending on
+why it stopped.
 
 ---
 

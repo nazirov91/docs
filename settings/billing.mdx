@@ -1,99 +1,136 @@
 ---
-title: "Billing and subscriptions"
-description: "See your subscription and seat count, update the card on file, download receipts and request a cancellation."
+title: "Billing"
+description: "See your plan and next charge, add or update the card on file, download receipts, subscribe after a trial, and cancel or resume your plan."
 ---
 
-**Settings → Billing & Subscriptions** shows what you are paying for and lets you keep the card on
-file current.
+**Settings → Billing** shows *your plan, payment method and receipts*. Only people whose role can
+view billing see it in the menu.
 
 <Frame>
-  <img src="/images/settings/billing.png" alt="The Billing and subscriptions page" />
+  <img src="/images/settings/billing.png" alt="The Billing page" />
 </Frame>
 
-<Info>
-  What you see here depends on how your account is billed. There are four cases:
-
-  - **Self-serve subscription** — a **Subscription** card with trial, seats and the estimated
-    monthly amount, plus **Payment history**.
-  - **Managed subscription** — a **Subscription** card showing **Amount**, **Renews** and **Card
-    on file**, with **Update card on file** and **Request cancellation**, plus **Payment
-    history**. *"This subscription is managed for you. To make changes, update your card below or
-    contact"* support.
-  - **Direct arrangement** — you will see *"We don't have subscription details to show here yet.
-    Your subscription is established through a direct Stripe payment arrangement, and the fact that
-    you don't see it on this page does not mean it is inactive."* Nothing is wrong; billing is
-    handled outside the app. Questions go to the support email shown (`info@berocker.com` by
-    default). Only **Request cancellation** is offered.
-  - **Billing switched off** — *"Billing is not available. Subscription billing is currently
-    turned off for your account."* Nothing to do here. The menu item is hidden in this case.
-</Info>
+If you can see billing but cannot change it, the page says **Ask an administrator to make
+changes.** and the buttons that change anything are hidden.
 
 ---
 
-## Your subscription
+## What the Billing page shows
 
-On a self-serve subscription the **Subscription** card shows:
+What you see depends on how your account is billed:
 
-| Line | What it is |
+| Your account | What the page shows |
 | --- | --- |
-| **Trial** | Days left and the end date, while you are on trial. |
-| **Seats (active users)** | How many active users you have right now. |
-| **Base license** | The flat monthly fee for the account. |
-| **Per user** | The per-seat price, per user per month. |
-| **Estimated monthly** | Base + (per user × seats). |
+| **Billed in the app** | Three tabs: **Overview**, **Payments** and **Payment method**. |
+| **Billed directly by the BeRocker team** | **Your plan** with an **Active** tag: *Your billing is handled directly by our team, so there's nothing to manage here.* Not seeing payment details does not mean anything is wrong. To change your plan or payment details, write to the support email shown. |
+| **Part of a larger company** | **Billing is handled by your parent company.** There is nothing to do here. |
+| **Billing not ready yet** | **We're still setting up your billing.** Your account keeps working as usual. |
+| **Billing not available** | **Billing isn't available yet**, with the support email for questions. |
 
-Next to it: **Subscribe** (until a subscription exists) and **Manage billing & receipts**, which
-opens the payment processor's portal for the card on file and invoices.
+The support email is `info@berocker.com` unless your page shows a different one.
 
-<Warning>
-  Seats count **active users**. Adding a user in
-  [Team and security](/settings/team-and-security) changes what you pay. When someone leaves,
-  deactivate them rather than leaving the account sitting there.
-</Warning>
+If the details shown are not the latest, the top of the page says *Showing details as of …* with a
+**Refresh** link.
 
 ---
 
-## Subscription states
+## Your plan (Overview tab)
 
-| Badge | Meaning |
+The **Overview** tab has your plan card and your **Payment method** card.
+
+The plan card shows the plan name, a status tag, the amount per billing period and what happens
+next: *Next charge … on …*, *Renews on …*, or *Your plan ends on … You keep full access until
+then.* It lists what the plan covers, any discount and any **Account credit**, and how many active
+users you are billed for. People switched off in Team and security are not billed. It also says
+where receipts are emailed.
+
+| Status tag | Meaning |
 | --- | --- |
-| **On trial** | Inside the trial window; the end date is shown. |
-| **Trial expired** | Trial is over and no subscription has started. |
+| **Free trial** | You are in your free trial. |
+| **Trial ended** | Your trial is over and no plan has started. |
 | **Active** | Paid and current. |
-| **Past due** | A payment failed. Update the card. |
-| **Canceled** | The subscription has ended. |
-| **No subscription** | Nothing set up yet. |
-| **Unavailable** | Billing is switched off. |
+| **Ending** | You cancelled; the plan ends at the end of the period. |
+| **Payment due** | A payment failed. Update your card. |
+| **Action needed** | Your bank needs you to confirm a payment. |
+| **Add a card** | There is no payment method on file. |
+| **Setup incomplete** | The subscription was not finished. |
+| **Unpaid** | Payments have failed and money is outstanding. |
+| **Paused** | Payments are paused. |
+| **Canceled** | The plan has ended. |
 
-<Warning>
-  **Past due** is the one to act on today. Update the card on file before the grace window closes.
-</Warning>
-
----
-
-## Update card on file
-
-On a managed subscription, **Update card on file** opens the payment processor's secure portal
-(self-serve accounts use **Manage billing & receipts** for the same thing). The card details go
-straight to the processor — BeRocker never stores your card number.
-
-Use it when the card expires, the bank reissues it, or a payment fails.
+When something needs your attention, a box at the top of the Overview tab says what and offers the
+fix, such as **Update card**, **Add a card**, **Pay … now**, **Confirm payment** or **Subscribe**.
+The same reminder can appear as a thin bar at the top of every page while a payment is overdue.
 
 ---
 
-## Payment history
+## Subscribe after your free trial
 
-Every processed payment: **Date**, **Amount** and a **Receipt** link (**View**, or **PDF**).
-Draft and unpaid invoices are not listed, so everything here is money that actually moved.
+During a free trial, the plan card shows when the trial ends, what the plan will cost (**Base
+license (includes 1 user)**, **Each additional user**, and an estimate for your current number of
+users), and a **Subscribe** button.
+
+1. Click **Subscribe**. The **Subscribe to BeRocker** dialog opens.
+2. Enter your card details and confirm.
 
 ---
 
-## Request cancellation
+## Add or update your card
 
-Shown on managed and direct-arrangement accounts. It opens a **Request cancellation** dialog —
-*cancellations are handled by our team so nothing is ever interrupted by accident* — and **Send
-request** sends it to the BeRocker team rather than switching your account off on the spot.
-Someone will confirm before anything changes.
+**Where:** **Settings → Billing → Payment method** tab, or the **Payment method** card on the
+Overview tab.
+
+1. Click **Update** (or **Add a card** if none is on file).
+2. In the **Update payment method** dialog, enter **Name on card**, **Card number**, **Expiry**,
+   **CVC** and **ZIP**.
+3. Click **Save card**. If a payment is waiting, the button reads **Save card and pay …** and the
+   new card is charged for it straight away.
+
+The new card replaces the old one for all future payments. Card details are handled by Stripe;
+BeRocker never stores them. The card shows its expiry date, and the card warns you when it has
+expired or expires soon.
+
+If you pay another way (for example by bank), the card shows that method and the button reads
+**Use a card instead**.
+
+---
+
+## Download receipts (Payments tab)
+
+The **Payments** tab lists every payment: **Date**, **Description**, **Amount** (with any refunded
+or credited amount), **Status** and **Download PDF** for the receipt. Click **Load more** to see
+older payments.
+
+---
+
+## Cancel your plan
+
+**Where:** the **Cancel plan** link at the bottom of the **Overview** tab.
+
+1. Click **Cancel plan**. The **Cancel your plan?** dialog opens.
+2. It says you keep full access until the end of the current period, and nothing else will be
+   charged.
+3. Optionally pick a reason and add a note.
+4. Click **Cancel on …** (the end date). Click **Keep plan** to back out.
+
+Your plan's tag changes to **Ending** and the plan card shows the end date.
+
+---
+
+## Resume a cancelled plan
+
+Before the end date, click **Resume plan** at the bottom of the **Overview** tab. Your plan
+continues as before and nothing is interrupted. Once the plan has ended, it can no longer be
+resumed from this page.
+
+---
+
+## Request a change when billing is handled by our team
+
+If your billing is handled directly by the BeRocker team, click **Request a change or
+cancellation**, describe what you want in the **Request a change** dialog and click **Send
+request**. The team takes care of it and follows up by email, so nothing is interrupted by
+accident.
 
 ---
 
@@ -101,7 +138,7 @@ Someone will confirm before anything changes.
 
 <CardGroup cols={2}>
   <Card title="Team and security" icon="users" href="/settings/team-and-security">
-    Seat count comes from here.
+    Billed users come from here.
   </Card>
   <Card title="Contact support" icon="life-ring" href="/support/contact">
     Anything billing-related a page cannot answer.

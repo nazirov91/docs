@@ -1,6 +1,6 @@
 ---
 title: "Notifications"
-description: "Choose which events ping you, and where — by email, SMS and Slack, per user."
+description: "Choose which events notify you, and where, by email or SMS. Each person sets their own."
 ---
 
 **Settings → Notifications** controls what BeRocker tells *you* about. It is per-user: your settings
@@ -16,20 +16,21 @@ do not affect anyone else on your team.
 
 ---
 
-The page has two tabs: **Overview** (the settings below) and **Templates** — *edit the email & SMS
+The page has two tabs: **Overview** (the settings below) and **Templates**, where you *edit the email & SMS
 messages your team receives for internal events (new lead, new offer, payments, orders…). Changes
 apply to your organization.* The Templates tab works like [Templates → Events](/settings/templates):
 pick an event, switch **Email / SMS**, edit and **Save changes**.
 
 ---
 
-## Step 1 — where they go
+## Set where your notifications go
 
 Under **Notifications channels** there are two fields: an **SMS** number and an **Email address**.
 Fill them in and click **Save**.
 
-Then use **Send test SMS** and **Send test email** (*send yourself a test to confirm a channel
-works*) to confirm the destination actually receives something.
+Then use **Send test SMS** and **Send test email** (*Send yourself a test to confirm a channel
+works*) to confirm the destination actually receives something. Each is greyed out until the field
+has a number or address.
 
 <Warning>
   Until you save both, a yellow banner sits at the top of the page:
@@ -38,13 +39,14 @@ works*) to confirm the destination actually receives something.
   > delivered to a saved phone number and email address. Until you add and save your SMS and email,
   > turning on the channels below won't reach you.
 
+  The banner's **Add SMS & email** button (or **Add SMS** / **Add email**) scrolls to the fields.
   Ticking event boxes before saving your contact details does nothing.
 </Warning>
 
 <Warning>
   You cannot use the same number or email you already use as a customer-facing contact in
-  [Profile → User Contacts](/settings/profile). The page refuses it — *"This number is already used
-  as a contact. Pick a different one or leave it empty."* — because your own notifications would
+  [Profile → User Contacts](/settings/profile). The page refuses it (*"This number is already used
+  as a contact. Pick a different one or leave it empty."*) because your own notifications would
   otherwise arrive as messages from an unrecognised number and pile up in
   [Interactions](/using/interactions).
 </Warning>
@@ -56,15 +58,18 @@ works*) to confirm the destination actually receives something.
 
 ---
 
-## Step 2 — which events
+## Choose which events notify you
 
 Below that is **Notifications events**, split into five tabs: **Leads**, **Chats**, **Payments**,
 **Orders** and **Email Parsing**.
 
 Each row is one event (its name and description under **Options**), and each has a tick box per
-channel — **Email**, **SMS** and **Slack**. Tick the combinations you want; each tick is saved
-immediately. A channel whose contact detail is not saved yet shows a greyed box — hovering says
+channel: **Email**, **SMS** and **Slack**. Tick the combinations you want; each tick is saved
+immediately. A channel whose contact detail is not saved yet shows a greyed box. Hovering says
 why, and clicking it offers to jump to the fields above.
+
+The Slack column reads **Slack (unavailable)**: Slack is disconnected for your organization, so it
+cannot be turned on. Existing Slack settings are kept for reference.
 
 <Tabs>
   <Tab title="Leads">
@@ -73,7 +78,7 @@ why, and clicking it offers to jump to the fields above.
     | **New Lead** | A new lead enters the system. Contains basic contact information and shipping route details. |
     | **New Hot Lead** | A high-priority lead is created. These require immediate attention and faster response times. |
     | **Price Issue** | There is a problem with pricing in the BeRocker AI Pricing system. Manual price entry is required for this lead. |
-    | **Lead Status Trigger** | A lead's status changes — for example from *New* to *Order* to *Signed*. |
+    | **Lead Status Trigger** | A lead's status changes, for example from *New* to *Order* to *Signed*. |
 
     *Custom Vehicle Lead* (a lead with an off-dictionary vehicle, which gets no automatic quote) is
     an in-app alert only; it does not appear in this table.
@@ -83,7 +88,7 @@ why, and clicking it offers to jump to the fields above.
     | --- | --- |
     | **New Message** | A lead sends a new message through the chat system. |
     | **User Agree** | A client confirms agreement to proceed with the service or accepts terms. |
-    | **User Opt Out** | A client opts out of the conversation — declines the service or asks to stop being contacted. |
+    | **User Opt Out** | A client opts out of the conversation: declines the service or asks to stop being contacted. |
     | **Reminder** | A scheduled time arrives to remind staff to follow up with a specific lead. |
     | **User Wants Call** | A customer requests a phone call. |
     | **Empty AI Response** | The AI chat assistant cannot generate an appropriate response and needs manual intervention. |
@@ -93,7 +98,7 @@ why, and clicking it offers to jump to the fields above.
     | Event | Fires when |
     | --- | --- |
     | **Payment Success** | A payment is successfully processed and funds are received. |
-    | **Payment Failed** | A payment attempt fails — insufficient funds, card issues or otherwise. |
+    | **Payment Failed** | A payment attempt fails: insufficient funds, card issues or otherwise. |
     | **Payment Refund** | A refund is processed and funds are returned to the customer. |
     | **Payment Dispute** | A customer opens a dispute or chargeback on a payment. |
     | **Payment Dispute Won** | A dispute is resolved and the company receives the funds back. |
@@ -104,8 +109,8 @@ why, and clicking it offers to jump to the fields above.
     | --- | --- |
     | **New Order** | A customer completes the booking process and creates a confirmed order. |
     | **New Offer** | A carrier sends a new offer on a Super Dispatch / Central Dispatch load. |
-    | **Offer Accepted** | A carrier accepts your Super Dispatch offer — the load is now covered. |
-    | **Offer Declined** | A carrier declines your Super Dispatch offer. Declining a carrier's request yourself does not fire it — that is your own action, not news. |
+    | **Offer Accepted** | A carrier accepts your Super Dispatch offer; the load is now covered. |
+    | **Offer Declined** | A carrier declines your Super Dispatch offer. Declining a carrier's request yourself does not fire it, because that is your own action. |
     | **Offer Cancelled** | A carrier cancels their offer or withdraws the request it sent you. |
     | **Lb Order Cancelled** | An order posted to a load board is cancelled, affecting carrier assignments. |
     | **Contract Cancelled** | A signed contract is cancelled on the load board. |
@@ -122,7 +127,7 @@ why, and clicking it offers to jump to the fields above.
   </Tab>
 </Tabs>
 
-There is no Save button for events — a tick applies as soon as you make it.
+There is no Save button for events: a tick applies as soon as you make it.
 
 ---
 
@@ -138,8 +143,8 @@ Start narrow and add rather than starting wide and drowning:
 | Watching the AI | Empty AI Response, AI Final Price Request, Price Issue |
 
 <Tip>
-  If you find yourself ignoring notifications, that is the signal to turn some off — not to try
-  harder. An alert you ignore is worse than no alert.
+  If you find yourself ignoring notifications, turn some off. An alert you ignore is worse than no
+  alert.
 </Tip>
 
 ---
@@ -152,7 +157,7 @@ Start narrow and add rather than starting wide and drowning:
 | A channel box is greyed out | That channel's number or email is not saved yet. Hover it for the reason; click it to jump to the fields. |
 | Too many | Untick event types. Payments and Orders are usually the noisy ones for a broker. |
 | Only some events arrive | Those events are unticked on that channel, or the lead is not assigned to you. |
-| Slack column does nothing | Slack has to be connected for your organization first. |
+| Slack column is greyed out | Slack is unavailable for your organization, so it cannot be turned on. |
 
 ---
 
@@ -174,7 +179,7 @@ Start narrow and add rather than starting wide and drowning:
 
 <CardGroup cols={2}>
   <Card title="Profile" icon="user" href="/settings/profile">
-    Your customer-facing contacts — keep them separate from these.
+    Your customer-facing contacts. Keep them separate from these.
   </Card>
   <Card title="Templates" icon="message" href="/settings/templates">
     Messages to customers, not alerts to you.

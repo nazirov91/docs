@@ -1,112 +1,226 @@
 ---
 title: "Team and security"
-description: "Add and configure users, build teams, set roles and pay, require two-step verification and review sign-in history."
+description: "Add and edit users, build teams, create roles and set permissions, require two-step verification, review sign-in history, control MCP access and manage user contacts."
 ---
 
 **Settings → Team and security** is where you run your team.
 
-<Frame>
-  <img src="/images/settings/team-and-security.png" alt="Team and security with the People, Teams, Two-step verification, Sign-in history and User contacts tabs" />
-</Frame>
-
-Five tabs: **People**, **Teams**, **Two-step verification**, **Sign-in history** and
-**User contacts**. Each one is shown only to roles with the matching permission.
+The screen has seven tabs: **People**, **Teams**, **Roles**, **Two-step verification**,
+**Sign-in history**, **MCP** and **User contacts**. Each tab is shown only to people whose role
+includes the matching permission, so you may see fewer.
 
 ---
 
-## People
+## People tab
 
-One row per user with the columns **Member** (name, email and a *Deactivated* / *Blocked* chip
+One row per user with the columns **Member** (name, email and a *Deactivated* or *Blocked* chip
 when they are not active), **Role**, **Team**, **Ready to work**, **Receives leads**, **Last
-active**, **Added** and an **Edit** button.
+active** and **Added**. You can sort by **Member**, **Last active** and **Added**.
 
 **Ready to work** says what, if anything, stops the person from working, in the order you would
 fix it: *Deactivated*, *Blocked*, *No phone number*, *No call number*, *No SMS number*, *Leads
 off*, *Not signed in yet* or *Ready*. Hover it for the fix.
 
-The **Receives leads** switch turns lead assignment on or off for that person without
-deactivating their account — use it when someone is on holiday. It can only be switched on for
-someone who already has a lead distribution rule.
+Use **Search by name or email**, or filter by **Any status**, **Any role** and **Any team**.
+**Clear filters** resets them. **Add user** opens the creation flow.
 
-**Search by name or email**, or filter by **Any status** and **Any role**. **Add user** opens the
-creation flow.
+If any broker or dispatcher has no phone number, a yellow banner at the top counts them: *They
+can't call or text customers until they do. Open them with Edit to add a number.*
+
+The gear button at the end of each row opens a menu with **Edit** (opens the user's page) and
+**Permissions** (see below). You only see the items your role allows.
 
 ---
 
-## Adding a user
+## Turn lead assignment on or off for a person
 
-**Add user** opens the **Add a user** page. Nothing is saved until you press **Create user** on
-the last step. The steps depend on the role: a **Broker** or **Dispatcher** gets three —
-**Account**, **Phone and SMS**, **Leads and pay** — and every other role gets two — **Account**
-and **Pay**. **Continue** moves forward, **Back** goes back, and a summary panel on the right
-counts what is still missing before the person can sign in or take leads.
+The **Receives leads** switch in the People tab turns new-lead assignment on or off for that
+person without deactivating their account. Use it when someone is on holiday.
+
+- It shows **On** or **Off** next to the switch.
+- It is greyed out for anyone who is not active, and for you if your role cannot edit users.
+- It only works for someone who already has a lead distribution rule.
+
+---
+
+## Add a user
+
+Click **Add user** in the People tab. The **Add a user** page opens. Nothing is saved until you
+press **Create user** on the last step.
+
+The steps depend on the role you pick. A **Broker** or **Dispatcher** gets three steps:
+**Account**, **Phone and SMS** and **Leads and pay**. Every other role gets two: **Account** and
+**Pay**. **Continue** moves forward, **Back** goes back, **Cancel** leaves without saving, and a
+summary panel on the right counts what is still missing before the person can sign in or take
+leads.
 
 <Steps>
   <Step title="Account">
     *Who they are and what they can do in BeRocker.*
 
     - **Full name**.
-    - **Work email** — their login.
-    - **Role** — Admin, Manager, Team lead, Broker or Dispatcher (see below).
-    - **Team** — pick one.
-    - **Display name** — the name customers see on messages.
-    - **Password** — at least 8 characters (when editing: **New password**, blank keeps the
-      current one).
+    - **Work email**: their login.
+    - **Role**: any role from the Roles tab, including custom roles you created.
+    - **Teams**: assign to one or more teams (optional).
+    - **Display name**: the name customers see on messages.
+    - **Password**: at least 8 characters. Share it with them securely; they can change it in
+      their profile.
     - **Require two-step verification when they sign in**.
   </Step>
 
   <Step title="Phone and SMS">
-    Brokers and dispatchers only. *Brokers need a call and SMS number to work leads* — for a
-    broker the numbers are required; for a dispatcher you can add them later.
+    Brokers and dispatchers only. *Brokers need a call and SMS number to work leads.* For a broker
+    the numbers are required; for a dispatcher you can add them later.
 
-    - **Calls** — **Provider** and **Phone number**.
-    - **Texts (SMS)** — tick **Same number as calls**, or give a separate provider and number.
+    - **Calls**: **Provider** and **Phone number**.
+    - **Texts (SMS)**: tick **Same number as calls**, or give a separate provider and number.
     - **Add WhatsApp or email** adds another channel row (**Channel** WhatsApp or Email,
       **Provider**, and the number or email).
 
-    A RingCentral number still has to be **registered** by the agent from their own Profile page
+    A RingCentral number still has to be **registered** by the person from their own Profile page
     before it works.
   </Step>
 
   <Step title="Leads and pay (or Pay)">
-    For brokers and dispatchers, **Lead distribution** first: the **Receives new leads** switch,
-    then **Leads per day** and **Working hours timezone**. A user who already has a custom
-    schedule is changed in [Lead distribution](/settings/lead-distribution) instead.
+    For brokers and dispatchers, **Lead distribution** comes first: *Choose whether new leads are
+    shared with them.* Set the **Receives new leads** switch, then **Leads per day** and **Working
+    hours timezone**. A user who already has a custom schedule is changed in
+    [Lead distribution](/settings/lead-distribution) instead.
 
-    Then **Set pay and commission** — optional, used for salary and commission reports:
+    Then switch on **Set pay and commission** if you want it. It is optional and used for salary
+    and commission reports:
 
-    - **Fixed salary ($)** — leave it at 0 if they are commission-only.
+    - **Fixed salary ($)**: leave it at 0 if they are commission-only.
     - **Shareholding fee (%)**.
-    - **Commission tiers** — **From ($)** / **To ($)** / **Commission (%)** rows; **Add a tier**
+    - **Commission tiers**: **From ($)**, **To ($)** and **Commission (%)** rows; **Add a tier**
       for each range of revenue.
 
-    > For example: up to \$2,000 → 20%, \$2,001–\$3,000 → 22.5%, above \$3,000 → 25%.
+    Once pay has been saved for a user, it can be changed but not cleared.
   </Step>
 
   <Step title="Create user">
-    The last step's button reads **Create user** (or **Save changes** when editing). If the
-    account was created but a later part failed, the page says so and offers **Save the rest**.
+    The last step's button reads **Create user**. If the account was created but a later part
+    failed, the page says so and the button changes to **Save the rest**.
   </Step>
 </Steps>
 
-Then send the agent their login and ask them to open **Settings → Profile** and register their
-number.
+Afterwards, send the person their login and ask them to open **Settings → Profile** and register
+their number.
 
 ---
 
-## Roles
+## Edit a user
 
-| Role | As the app describes it |
+In the People tab, click the gear button on the person's row and choose **Edit**. The **Edit
+user** page has the same steps as adding a user. **Password** becomes **New password**; leave it
+blank to keep the current one. Changes are saved when you press **Save changes**.
+
+The **Permissions** button at the top right of the page opens the same Permissions dialog as the
+People tab menu.
+
+---
+
+## Change one person's permissions
+
+Use this to give or take away a permission for one person without changing their role.
+
+1. Go to **Settings → Team and security → People**.
+2. Click the gear button on the person's row and choose **Permissions** (or press **Permissions**
+   on their Edit user page).
+3. The dialog shows their **Role:** at the top. Pick a tab:
+   - **Quick**: about ten plain-English switches. Each switch shows **On**, **Off** or **Partly**
+     and saves the moment you click it. A message confirms *Switched on* or *Switched off* with an
+     **Undo** button.
+   - **Advanced**: every permission, grouped in sections with a "held of total" count. Search
+     with **Search permissions, or a section name…** and use **Expand all** / **Collapse all**.
+     Each permission shows where it comes from: **via role**, **added** (given to this person
+     only) or **taken away** (removed for this person only). Switch permissions on or off, then
+     press **Save changes**.
+4. Optionally, **Start from a preset** (when presets are offered) sets the person's permissions to
+   a ready-made set and moves you to the Advanced tab. Only this person changes, not their role.
+   Nothing is saved until you press **Save changes**.
+
+**Restore a taken-away permission:** on the Advanced tab, the **Taken away for this person** box
+lists every permission removed from this person. Click **Restore** next to one to give it back,
+then press **Save changes**.
+
+Good to know:
+
+- Only people whose role lets them manage people's permissions can change anything. Everyone
+  else who can open the dialog sees the permissions read-only.
+- For an Administrator, *Administrators hold every permission. Anything you switch off here is
+  taken away from this person only.*
+- While you have unsaved changes on the Advanced tab, the Quick switches are locked until you save
+  or discard them.
+- Closing with unsaved changes asks *Discard changes?*; choose **Discard** or **Keep editing**.
+- If you change your own permissions, your access updates straight away.
+
+---
+
+## Create or edit a role
+
+The **Roles** tab lists every role as a card with its name, a description, a **System** tag for
+the built-in roles and the number of people who hold it. Use **Search roles…** to find one.
+
+*System roles are built in and can't be deleted. The Administrator always keeps full access.
+Changes apply in the app right away and never remove anyone's data or sign them out.*
+
+The built-in roles are:
+
+| Role | What it is for |
 | --- | --- |
-| **Admin** | Full access, including settings, billing and the team. |
-| **Manager** | Oversees leads, dispatch and the team day to day. |
-| **Team lead** | Leads a team of brokers and follows their work. |
-| **Broker** | Works leads by phone, text and email. Needs a phone number. |
-| **Dispatcher** | Moves booked loads to carriers. Needs a phone number. |
+| **Admin** | Full access to everything: billing, integrations, teammates and roles. Always keeps every permission and can't be edited or deleted. |
+| **Manager** | Runs day-to-day operations: manages leads, teammates, teams and carriers, and views reports. |
+| **Team lead** | Leads a sales or dispatch team: follows and assigns the team's leads and tracks how the team is doing. |
+| **Broker** | Sales agent: creates, quotes and works leads, calls and texts customers and takes payments. |
+| **Dispatcher** | Handles the carrier side: posts and dispatches loads, manages carriers and drivers, and accepts offers. |
 
-Roles carry a set of permissions, and permissions are what actually hide or show menu items and
-buttons. If someone cannot see a screen, that is why. Roles are not edited in the app — ask
-support if you need a different one.
+**To create a role:**
+
+1. Click **New role**. The **New role** panel opens.
+2. Enter a **Role name** (required) and an optional **Description**.
+3. Choose the permissions, in any of three ways:
+   - **Quick setup**: tick a bundle to switch on all of its permissions below; untick it to
+     switch them off. A bundle that is only partly on shows **partly**.
+   - **Start from a preset**: pick a ready-made set (for example the built-in roles' defaults:
+     **Administrator**, **Manager**, **Team Lead**, **Broker**, **Dispatcher**, or **Blank (no
+     permissions)**). This replaces the current selection, and nothing changes until you save.
+   - Switch individual permissions on or off in the sections below. Each section has an **All**
+     tick box and a count. Search with **Search permissions, or a section name…**. A tag shows
+     how many are selected, for example *42 of 280 selected*.
+4. Click **Create role**.
+
+**To edit a role:** click **Edit** on its card, change the description or permissions, and click
+**Save changes**. The name of a system role cannot be changed. The Administrator role cannot be
+edited at all, so its button reads **View** and the panel says *The Administrator role always has
+full access and can't be edited.*
+
+Closing with unsaved changes asks *Discard changes?*.
+
+Only people whose role allows adding, editing or deleting roles see **New role**, **Edit**,
+**Duplicate** and **Delete**.
+
+After you have a role, assign it to people on their Edit user page.
+
+---
+
+## Duplicate a role
+
+On the **Roles** tab, click **Duplicate** on a role's card (*Create a copy with the same
+permissions*). The **Duplicate** panel opens with the name *Copy of* plus the original name and
+the same permissions. Change what you need and click **Create role**.
+
+---
+
+## Delete a role
+
+1. On the **Roles** tab, click **Delete** on the role's card.
+2. If people hold the role, the dialog warns how many and asks you to choose a role under **Move
+   members to**. You must pick one before you can delete.
+3. Click **Delete role**.
+
+The role is permanently removed. Teammates keep their accounts and data; only their access level
+changes. System roles cannot be deleted, so their **Delete** button is greyed out.
 
 ---
 
@@ -114,47 +228,127 @@ support if you need a different one.
 
 > Group people into teams to organize leads, reports and lead distribution.
 
-Every user belongs to a team. **Create a team** opens a dialog with **Team name** and a
-**Members** list (search users and tick them); finish with **Create team**. Each row shows the
-team and its member count, and **Edit** reopens the same dialog (**Save changes**).
+The **Teams** tab lists each team with its **Members** and when it was **Created**. Use **Search
+teams or people** to find one.
+
+- **Create a team** opens a dialog with **Team name** and a **Members** list (search users and
+  tick them). Finish with **Create team**.
+- **Edit** reopens the same dialog; finish with **Save changes**.
+- The bin button deletes a team after you confirm (**Delete team**). The people on it keep their
+  accounts, roles and leads; they just stop being grouped together. The app can refuse when
+  something still relies on the team, for example lead distribution, and says why.
 
 Teams are what the Dashboard's team filter and per-team reporting run on.
 
 ---
 
-## Two-step verification
+## Require two-step verification for everyone
 
-Under **Two-step authentication**, one switch: **Require two-step authentication for your team** —
-*this will require any team member without two-step authentication to enable it the next time they
-sign in.*
+On the **Two-step verification** tab, under **Two-step authentication**, one switch: **Require
+two-step authentication for your team**. *This will require any team member without two-step
+authentication to enable it the next time they sign in.*
+
+The switch is greyed out unless your role allows changing it.
 
 <Warning>
-  Turning this on affects everyone who signs in afterwards. Tell your team before you flip it, or
-  you will spend the morning on the phone.
+  Turning this on affects everyone who signs in afterwards. Tell your team before you switch it on.
 </Warning>
 
 ---
 
 ## Sign-in history
 
-Sign-in sessions across the whole organization — **Id**, **Member**, **Team**, **Role**,
-**Device**, **Last activity** and **IP** — with **Search by name or email** and a **User Role**
-filter. Check it after any suspicion of a shared or leaked password.
+The **Sign-in history** tab lists sign-in sessions across the whole company: **Id**, **Member**,
+**Team**, **Role**, **Device**, **Last activity** and **IP**, with **Search by name or email** and
+a **User Role** filter. Check it after any suspicion of a shared or leaked password.
 
-Individual users see their own sessions on their [Profile](/settings/profile) page.
+Each person sees their own sessions on their [Profile](/settings/profile) page.
+
+---
+
+## Connect AI tools through MCP
+
+The **MCP** tab lets your team connect Claude, ChatGPT or another AI tool to the CRM. Each person
+signs in with their own account and sees only what their role allows. Only people whose role can
+manage MCP access see this tab.
+
+### Company switches
+
+Three switches at the top apply to the whole company:
+
+| Switch | What it does |
+| --- | --- |
+| **MCP** | Lets your team connect Claude, ChatGPT and other AI tools. Off: nobody can connect, whatever their role says, Administrators included. |
+| **Allow changes** | Change lead sources and distribution, each confirmed. Needed for the **Changes** column below. Off: MCP only reads (and posts loads where allowed). |
+| **Full CRM access** | Do what the person can do on screen, each confirmed. Needed for the **Full CRM** column below. |
+
+Turning on **Allow changes** or **Full CRM access** asks you to confirm first. Both are greyed out
+while **MCP** is off. When MCP is off, a banner says *MCP is off for everyone. The settings below
+are kept for when you turn it back on.*
+
+### Your MCP address
+
+**Your MCP address** shows the address to paste into the AI tool, with a **Copy** button. Click
+**How to connect** for step-by-step setup for **Claude (web, desktop or phone)**, **ChatGPT**,
+**Claude Code**, **Cursor and other MCP clients** and, when access keys are available,
+**Scripts with an access key**. To check it works, ask *"What time is it for me in the CRM?"*,
+then *"Show my 5 newest leads."*
+
+### What each role can do through MCP
+
+A table with one row per role and one switch per grant: **Connect**, **All shipments**, **Same
+customer**, **Reports**, **Payments**, **Load boards**, **Changes** and **Full CRM**. Hover a
+column heading for what it means. Without **Connect**, a role cannot use MCP at all. **Changes**
+and **Full CRM** show *Company switch off* while their company switch is off. The Administrator
+row is marked **Always on** and cannot be changed.
+
+### Block a person or end their connection
+
+The **People** list shows each person, their **Role**, an **MCP** switch with their status
+(*Allowed*, *No access*, *Blocked* or *Off for the company*) and whether they are **Connected**.
+
+- **Block a person:** switch their **MCP** switch off. Blocking overrides their role and ends any
+  connection they have. Switch it back on to allow them again.
+- **End connection:** click **End connection** on their row and confirm. Their MCP connection
+  ends now, and any access keys they hold are revoked. They can connect again unless blocked.
+
+People with no role cannot connect; a note counts them.
+
+### Access keys
+
+When access keys are available on your account, an **Access keys** section lists them: **Key**
+(name, status and purpose), **Acts as**, **Reaches**, **Powers**, **Created**, **Last used** and
+**Expires**. A key is read-only unless given powers, and every key a person holds shares their
+600 calls a minute.
+
+To create a key:
+
+1. Click **Create key** (greyed out until MCP is on).
+2. Fill in **Name**, an optional **Purpose** and **Acts as** (the person whose access the key
+   uses). Only Administrators can make a key for someone else.
+3. Under **What it can reach**, tick the features the key may read (all are ticked to start).
+4. Optionally, Administrators can tick **Powers**. A power is only available if the chosen person
+   holds it and the company switch is on. A key with powers must have **Changes per hour** set
+   and must expire within 90 days. With **Full CRM access**, tick **What it can change**.
+5. Set **Expires** (optional for a read-only key) and click **Create key**.
+6. Copy the key from **Your new access key**. *Copy this key now. It won't be shown again.*
+
+To stop a key, click **Revoke** on its row and confirm. Anything using it stops on its next call.
+This cannot be undone.
 
 ---
 
 ## User contacts
 
-Every contact channel for every user in one table (the same **Channel / Provider / Contact /
-Default / Status** columns as the Profile page, filterable by **Contact**, **Channel**,
-**Provider**, **Status** and **Default**), so you can see at a glance who has no default SMS
-number and therefore cannot text anyone. You can edit or delete entries here too.
+The **User contacts** tab lists every contact channel for every user in one table (the same
+**Channel / Provider / Contact / Default / Status** columns as the Profile page), filterable by
+**Contact**, **Channel**, **Provider**, **Status** and **Default**. You can see at a glance who has
+no default SMS number and therefore cannot text anyone. **Add user contact** adds one, and you can
+edit or delete entries here too.
 
 <Tip>
-  This is the fastest way to diagnose "my agent's messages are not sending". Nine times out of ten
-  there is no default contact for the channel.
+  This is the fastest way to diagnose "my agent's messages are not sending". Most of the time there
+  is no default contact for the channel.
 </Tip>
 
 ---

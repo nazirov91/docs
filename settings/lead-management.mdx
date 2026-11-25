@@ -1,0 +1,176 @@
+---
+title: "Lead management"
+description: "The Lead Management screen: lead sources, lead distribution, lead logs, lead numbering, deleting a lead permanently and importing leads, customers and terminals from a CSV file."
+---
+
+**Settings → Lead Management** brings together everything about how leads arrive and are handled.
+It has five tabs:
+
+| Tab | What it is for |
+| --- | --- |
+| **Lead sources** | The places leads come from and their endpoint URLs. See [Lead sources](/settings/lead-sources). |
+| **Lead distribution** | Who receives new leads, and how many. See [Lead distribution](/settings/lead-distribution). |
+| **Logs** | What happened to each lead, step by step. |
+| **Configurations** | **Lead numbering** and **Delete a lead permanently**. |
+| **Import data** | Bring in leads, customers or terminals from a CSV file. |
+
+Each tab is shown only to people whose role allows it, so you may see fewer. The screen opens on
+**Lead sources**, or on **Lead distribution** if you cannot see lead sources.
+
+---
+
+## Lead logs
+
+The **Logs** tab (**Lead logs**) is the detailed lifecycle of every lead: pricing, messages,
+follow-ups, posts and dispatches. Open a lead to see exactly what fired and what did not.
+
+The table has one row per lead: **Lead #**, **Customer**, **Source**, **Lead status**, **Events**,
+**Failures** and **Last activity**.
+
+- Search with **Search by lead # or customer**.
+- Filter by **Category** and **Status**, or tick **Only with failures**.
+- Click a row or **View** to open the lead's lifecycle log.
+
+The lifecycle log shows the lead's customer, source, email, broker, phone, status and created
+date, and two tabs:
+
+- **History**: everything that has already happened. A drop-down filters it to **All**,
+  **Customer**, **Team**, **System** or **Webhook**. With **Webhook** selected you see every load
+  board webhook delivery for the lead; deliveries that failed are listed first, and **Check failed
+  webhooks** tries them again.
+- **Upcoming**: messages scheduled to send for this lead.
+
+When a provider says "we sent it", or a customer says they never got a message, this is where you
+check.
+
+---
+
+## Set the next lead number
+
+**Where:** **Settings → Lead Management → Configurations → Lead numbering**.
+
+Set the number your next lead will receive. It takes effect immediately and then keeps counting up
+on its own. Already-used numbers are skipped automatically, so lead numbers can never collide.
+Useful when you move to BeRocker from another CRM.
+
+1. Check **Highest lead number used so far** (or *No leads yet*).
+2. Enter the **Next lead number**, for example `4501`. It must be a whole number between 1 and the
+   maximum shown under the field. You can move it up or down, even back to a lower number.
+   Or click **Continue sequentially (#N)** to carry on from the highest number used.
+3. Click **Save**. The **Change the next lead number?** dialog says which number the next lead will
+   get. If that number is already used, it says already-used numbers will be skipped.
+4. Click **Yes, apply**.
+
+**Save** stays greyed out until you enter a different, valid number. Only people whose role can
+change the lead number see this section.
+
+---
+
+## Delete a lead permanently
+
+**Where:** **Settings → Lead Management → Configurations → Delete a lead permanently**.
+
+**Administrators only.** The section carries an *Admins only* tag, and no other role can see or
+use it.
+
+It removes the lead and everything related to it: vehicles, messages and calls, payments, load
+board posts and carrier offers, contracts, comments and history. **This cannot be undone.**
+
+Limits:
+
+- One lead at a time.
+- A daily limit for your whole company (5 a day unless your screen shows a different number).
+  **Deletions left today** shows how many are left, for example *3 of 5*. When none are left, the
+  field is greyed out and the screen says the limit resets at midnight.
+- A lead that is still live on a load board cannot be deleted. Remove it from the load board first,
+  so carriers stop seeing a load that will no longer exist.
+
+Steps:
+
+1. Type the lead's number in **Lead number** and click **Review & delete**.
+2. The **Delete this lead permanently?** dialog shows the lead's number, customer, status and
+   created date, and lists what will also be deleted with counts (for example *Messages & calls:
+   12*, *Payments: 1*). If the lead is still live on a load board, the dialog says so and you
+   cannot continue.
+3. Read the warning: *This cannot be undone.* Payments already taken from a card are not refunded;
+   only the CRM's record of them is removed.
+4. Type the lead number again in **Type the lead number … to confirm**.
+5. Click **Delete permanently**. It stays greyed out until the number you typed matches.
+
+Afterwards a message confirms the lead was deleted, and it appears in **Recently deleted** with
+**Lead**, **Customer**, **Status**, **Deleted by** and **When**.
+
+---
+
+## Import leads, customers or terminals from a CSV file
+
+**Where:** **Settings → Lead Management → Import data**.
+
+The import has three steps, shown at the top: **Upload file**, **Map columns** and **Import**.
+You can import only the kinds of data your role allows.
+
+### Step 1: Upload file
+
+1. Under **What do you want to import?** choose **Leads**, **Customers** or **Terminals**.
+2. For leads, choose the **Lead source**. Imported leads are attributed to this source and follow
+   its lead distribution rules.
+3. Under **CSV file**, click **Choose file**. CSV only, up to 10 MB and 5000 rows. The first row
+   must contain column headers.
+4. Click **Continue**.
+
+### Step 2: Map columns
+
+The screen shows the first rows of your file and the number of rows. Match each field to a column
+from your file. Columns whose headers BeRocker recognises are matched for you; any field left on
+**Not imported** is skipped. A sample of the values appears beside each matched field.
+
+Required fields are marked with a star. **Import** stays greyed out until they are matched, and a
+warning lists what is missing:
+
+| Importing | Required |
+| --- | --- |
+| **Leads** | **First name** (or **Full name**), **Phone**, **Origin city** (or ZIP) and **Destination city** (or ZIP). |
+| **Customers** | **First name**, **Full name** or **Company name**. |
+| **Terminals** | **Name**. |
+
+Tips for leads:
+
+- **External ID** is the lead's ID in the system you are leaving. Rows with an ID that was already
+  imported are skipped as duplicates.
+- **Vehicle(s)** takes free text like *2020 Honda Civic*; split several vehicles with `;`. Or use
+  separate **Vehicle year**, **Vehicle make** and **Vehicle model** columns, comma-separated for
+  several vehicles. **Vehicle type** defaults to Car.
+- **Price** and **Deposit** are totals for the lead, split evenly across its vehicles.
+- When you match a **Status** column, **Status mapping** appears: match each status in your file
+  to a BeRocker status. Values left unmapped are imported as *New*.
+- When you match a **Trailer type** column, **Trailer type mapping** appears. Values left
+  unmapped are guessed automatically, defaulting to *Open*.
+
+Click **Import** (the button names the number of rows, for example *Import 250 leads*), or
+**Back** to change the file.
+
+### Step 3: Import
+
+A progress bar shows how many rows are done. You can leave the page; the import continues in the
+background.
+
+When it finishes, the screen says how many rows were imported, for example *Imported 248 of 250
+leads*. Any skipped rows are listed with their **Row** and **Reason**. Click **Import another
+file** to start again.
+
+<Tip>
+  Import a handful of rows first and check the result before running the whole file.
+</Tip>
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Lead sources" icon="plug" href="/settings/lead-sources">
+    Add sources and providers, and set what leads cost.
+  </Card>
+  <Card title="Lead distribution" icon="share-nodes" href="/settings/lead-distribution">
+    Who gets new leads.
+  </Card>
+</CardGroup>

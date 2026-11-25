@@ -7,7 +7,7 @@ Work top to bottom. Each item links to the page that explains it.
 
 <Info>
   The CRM has its own checklist: **Get started** at the top of the sidebar (also the chip by the
-  bell). It walks through seven steps in this order — **Business profile**, **Phone and SMS**,
+  bell). It walks through seven steps in this order: **Business profile**, **Phone and SMS**,
   **Email**, **Payments**, **Lead sources**, **Team and lead distribution**, and the optional
   **Try it: your first lead**, which sends you a test lead through your own quote form. Each step
   shows **Required** or **Optional** and **To do**, **Needs attention** or **Ready**; the sidebar
@@ -17,11 +17,11 @@ Work top to bottom. Each item links to the page that explains it.
 
 ---
 
-## Day one — the account
+## Day one: the account
 
 <Steps>
   <Step title="Company details">
-    **Settings → Business → Account details**: account name, address and — importantly — the correct
+    **Settings → Business → Account details**: account name, address and, importantly, the correct
     **time zone**. Everything scheduled runs off it.
 
     → [Business](/settings/business)
@@ -36,20 +36,26 @@ Work top to bottom. Each item links to the page that explains it.
   <Step title="Terms & Conditions">
     The shipper and carrier agreement templates.
   </Step>
+  <Step title="Hawaii shipping (if you ship to Hawaii)">
+    **Settings → Business → Hawaii shipping**: switch it on, untick islands you do not serve and
+    check the ocean freight price per vehicle.
+
+    → [Business](/settings/business)
+  </Step>
 </Steps>
 
 ---
 
-## Day one — connections
+## Day one: connections
 
 <Steps>
   <Step title="Phone and SMS">
-    Connect at least one of Twilio, RingCentral, Telnyx, Vonage, Quo or Zoom Phone.
+    Connect at least one of Twilio, RingCentral, Telnyx, Vonage, Quo, Zoom Phone or Dialpad.
 
     → [Integrations](/settings/integrations)
   </Step>
   <Step title="Email">
-    Connect SendGrid, Mailgun or Gmail — and set up SPF, DKIM and DMARC before you send anything.
+    Connect SendGrid, Mailgun or Gmail, and set up SPF, DKIM and DMARC before you send anything.
 
     → [Email deliverability](/integrations/email/sendgrid/email-deliveribility)
   </Step>
@@ -60,6 +66,12 @@ Work top to bottom. Each item links to the page that explains it.
     → [Central Dispatch](/integrations/loadboards/centraldispatch) ·
     [Super Dispatch](/integrations/loadboards/superdispatch)
   </Step>
+  <Step title="Load board and carrier rules">
+    Decide on auto-unposting, Super Dispatch order import and price updates, and set the **Minimum
+    cargo coverage** you require from carriers.
+
+    → [Carriers and Loadboards](/settings/carriers-and-loadboards)
+  </Step>
   <Step title="Payments">
     Connect a processor and pick your default.
 
@@ -69,13 +81,21 @@ Work top to bottom. Each item links to the page that explains it.
 
 ---
 
-## Day two — leads in
+## Day two: leads in
 
 <Steps>
   <Step title="Create your lead sources">
-    One per website or provider, each with its **per-lead price** so your ROI numbers work.
+    One per website or provider, each with its **lead cost model** (a fixed price per lead or a
+    percentage of collected payments) so your ROI numbers work. **Add lead provider** creates the
+    source and emails the provider its instructions in one step.
 
     → [Lead sources](/settings/lead-sources)
+  </Step>
+  <Step title="Moving from another CRM?">
+    Set the **Next lead number** so numbering carries on from your old system, and bring in old
+    leads, customers and terminals with **Import data**.
+
+    → [Lead management](/settings/lead-management)
   </Step>
   <Step title="Hand out the endpoint URLs">
     Or point your own website form at one.
@@ -83,8 +103,8 @@ Work top to bottom. Each item links to the page that explains it.
     → [Lead source API](/integrations/lead-source-api)
   </Step>
   <Step title="Set up email parsing (if a provider emails you)">
-    Connect the mailbox, build a narrow filter, watch the Activity tab before turning automatic
-    processing on.
+    Connect the mailbox, choose **Read every email** or build a narrow filter, test the prompt, and
+    watch the Activity tab before turning **Process incoming emails** on.
 
     → [Email parsing](/settings/email-parsing)
   </Step>
@@ -92,9 +112,15 @@ Work top to bottom. Each item links to the page that explains it.
 
 ---
 
-## Day two — the team
+## Day two: the team
 
 <Steps>
+  <Step title="Check the roles">
+    The built-in roles cover most teams. Create a custom role, or adjust one person's permissions,
+    if someone needs more or less access.
+
+    → [Team and security](/settings/team-and-security)
+  </Step>
   <Step title="Add your users">
     Role, team, payout and contacts, in one flow.
 
@@ -117,7 +143,7 @@ Work top to bottom. Each item links to the page that explains it.
 
 ---
 
-## Before you turn it on — what customers will see
+## Before you turn it on: what customers will see
 
 <Steps>
   <Step title="Read every template">
@@ -129,7 +155,10 @@ Work top to bottom. Each item links to the page that explains it.
     So repeat customers do not get identical texts.
   </Step>
   <Step title="Build your follow-up sequence">
-    First step within the hour; spread the rest; give it an end.
+    First step within the hour; spread the rest; give it an end. Consider the shipping date
+    reminder and the automatic review request after delivery too.
+
+    → [Templates](/settings/templates)
   </Step>
   <Step title="Set pricing">
     Choose the engine, set the correction factor, set your deposit brackets. Decide whether Auto
@@ -138,7 +167,7 @@ Work top to bottom. Each item links to the page that explains it.
     → [Pricing](/settings/pricing)
   </Step>
   <Step title="Customise the booking page">
-    Wording, colours, and — carefully — whether the card is charged automatically.
+    Wording, colours, and, carefully, whether the card is charged automatically.
 
     → [Booking page](/settings/booking-page)
   </Step>
@@ -175,7 +204,7 @@ Work top to bottom. Each item links to the page that explains it.
 | Every agent has a **default SMS** and **default email** contact | [Team and security → User contacts](/settings/team-and-security) |
 | Time zone is right | [Business](/settings/business) |
 | At least one email and one phone provider is **Active** | [Integrations](/settings/integrations) |
-| Every lead source has a per-lead price | [Lead sources](/settings/lead-sources) |
+| Every lead source has a lead cost set | [Lead sources](/settings/lead-sources) |
 | Somebody is named as after-hours fallback | [Lead distribution](/settings/lead-distribution) |
 | Quote templates read like a person wrote them | [Templates](/settings/templates) |
 | A test lead makes it all the way to a quote | Send one to your own endpoint |

@@ -25,15 +25,15 @@ description: "Where your quoted price comes from: the carrier pricing engine, th
 
 The page tells you plainly which mode you are in:
 
-- **Auto Price is ON** — new leads are priced and quoted automatically.
-- **Auto Price is OFF** — *"New leads are not priced or quoted automatically — your team quotes them
-  by hand."* The engine is still used for the price estimates shown when you add a vehicle or a
+- **Auto Price is ON**: new leads are priced and quoted automatically.
+- **Auto Price is OFF**: new leads are not priced or quoted automatically, and your team quotes them
+  by hand. The engine is still used for the price estimates shown when you add a vehicle or a
   shipment yourself.
 
 ### Choosing an engine
 
-Under **Select auto price type** — shown whether or not Auto Price is on, because the engine also
-drives the manual add-vehicle / add-shipment estimates:
+Under **Select auto price type** (shown whether or not Auto Price is on, because the engine also
+drives the manual add-vehicle / add-shipment estimates):
 
 | Engine | Notes |
 | --- | --- |
@@ -50,8 +50,7 @@ Under **Lead Auto Price**, the **Correction factor** (%):
 > Percentage applied to the recommended price. 100% uses it as-is; lower reduces the quote, higher
 > increases it.
 
-At 100% nothing changes. Set anything else and the app spells out the effect with a worked example
-(*"Auto-priced quotes will be 10% above the … — e.g. a … recommendation is quoted at …"*). Click
+At 100% nothing changes. Set anything else and the app spells out the effect with a worked example of a recommended price and the quote it becomes. Click
 **Save** (shown only to roles that can set the auto price).
 
 <Tip>
@@ -126,7 +125,7 @@ A bracket with 10% percentage, \$100 fixed and a \$250 minimum:
 
 ## Price tiers
 
-> Offer your customers three price options instead of one — for example Standard, Rush and
+> Offer your customers three price options instead of one, for example Standard, Rush and
 > Expedited.
 
 When enabled:
@@ -139,7 +138,7 @@ When enabled:
 
 <Steps>
   <Step title="Tier 1 is calculated">
-    A new lead's Tier 1 gets the automatically calculated price — auto price + correction factor +
+    A new lead's Tier 1 gets the automatically calculated price: auto price + correction factor +
     deposit.
   </Step>
   <Step title="Tiers 2 and 3 are seeded from it">
@@ -157,7 +156,7 @@ When enabled:
 
 Each tier card has a **Name** (e.g. *Standard*), **Subtext** (e.g. *Refundable until pickup*),
 **Description** (shown to the customer on the booking page), **Price markup** (%) and **Deposit
-increase** — as a **%** over the Tier 1 deposit or a fixed **$** amount per vehicle. On Tier 1 the
+increase**, as a **%** over the Tier 1 deposit or a fixed **$** amount per vehicle. On Tier 1 the
 markup and deposit controls are locked: it always starts from the auto-calculated price and keeps
 the deposit from the deposit price table. The ocean fee is never marked up. A live preview shows
 how the three tiers will look on the booking page, with each tier's deposit listed under the
@@ -175,13 +174,13 @@ cards; click **Save**. Only users who can change pricing settings see **Save**.
 Switching the **Price tiers** toggle asks you to confirm, then saves. It never changes the price of
 any lead, so leads that are being booked, signed or paid are not affected.
 
-- **Turning tiers off:** every lead keeps its current price as its single price — including a tier
+- **Turning tiers off:** every lead keeps its current price as its single price, including a tier
   the customer already chose. The booking page shows one price again.
 - **Turning tiers on:** every lead's current price becomes its Tier 1, and Tiers 2 and 3 are
   calculated from it with your markups. A lead that was on a tier before keeps that tier if its
   price has not changed since.
 - **A customer with the booking page already open:** if the price they chose is no longer the
-  price — because you switched tiers or edited a tier price — the booking page says *Your price
+  price (because you switched tiers or edited a tier price), the booking page says *Your price
   was updated since this page was opened*, shows the current prices and lets them choose again.
   Nothing is saved at the old price.
 
@@ -194,7 +193,7 @@ any lead, so leads that are being booked, signed or paid are not affected.
   current markups; the lead stays on its selected tier, so on Tier 2 or 3 the lead's price changes
   to the recalculated value (the confirmation says so).
 - **Add new vehicle** (or **Edit vehicle** on a vehicle with no price yet) on a lead that is on
-  Tier 2 or 3: enter the Tier 1 (base) price — that tier's markup is added automatically.
+  Tier 2 or 3: enter the Tier 1 (base) price, and that tier's markup is added automatically.
 - **Edit vehicle** on a priced vehicle of a lead on Tier 2 or 3: the prices you enter are that
   tier's prices; the other tiers stay as they are.
 - **Apply prices to lead** in the pricing engine sets a new Tier 1 and recalculates Tiers 2 and 3;

@@ -4,7 +4,8 @@ description: "The exportable leads table plus the leads-status, user-charges and
 ---
 
 **Settings → Reports** is the export and analysis view. Four tabs:
-**Overview**, **Leads Report**, **User Charges** and **Lead Sources**.
+**Overview**, **Leads Report**, **User Charges** and **Lead Sources**. **Leads Report**, **User Charges** and **Lead
+Sources** are shown only to people whose role allows each report.
 
 <Frame>
   <img src="/images/settings/reports.png" alt="Settings → Reports on the Overview tab, showing the leads table with search, filter, saved exports and export" />
@@ -24,7 +25,7 @@ your columns, and export.
 | **Filter** | Status, dates, source, lanes, tags and more. |
 | **Saved exports** | Your saved export configurations. |
 | **Export** | Opens the **Export Report** dialog. |
-| Columns button | Choose which columns appear — and therefore which ones export. |
+| Columns button | Choose which columns appear, and therefore which ones export. |
 
 ### Saved export configurations
 
@@ -41,25 +42,31 @@ If you build the same export every month, save it:
     Give the **Configuration name** (e.g. *Weekly statements*) and click **Export**.
   </Step>
   <Step title="Next month">
-    Open **Saved exports** and run it again.
+    Open **Saved exports**. The **Saved export configurations** list shows each one with its number
+    of columns and when it was last updated. Click one to apply its filters and columns, then
+    export.
   </Step>
 </Steps>
 
-The **Scope** is **Current view** or **All matching** — the page you are looking at, or every row
+The **Scope** is **Current view** or **All matching**: the page you are looking at, or every row
 your filter matches.
+
+To remove a saved export, click the bin button next to it in **Saved export configurations** and
+confirm *Delete this saved export?*.
 
 ---
 
 ## Leads Report
 
-Leads broken down by status over your chosen period. The quick answer to "how much is sitting in
+Leads broken down by status over the date range you pick. The quick answer to "how much is sitting in
 each stage right now" and "how did last month compare".
 
 ---
 
 ## User Charges
 
-What each agent earned, using the pay settings on their user record, grouped by team:
+What each agent earned over the date range you pick, using the pay settings on their user record,
+grouped by team. **Filter by Teams** narrows it to some teams. The columns are:
 
 **Total count · Total amount · Fixed amount · Shareholding fee · Percentage fee · Total**
 
@@ -80,7 +87,7 @@ Per-provider performance:
 | **Total Charges** | What you spent on that source. |
 | **AVG Charges** | Average cost per lead. |
 | **ROI (%)** | Return on that spend. |
-| **Actions** | Opens the source's detail. |
+| **Actions** | Opens **Lead source details**: leads, responses, agree and disagree leads, signs, total and average costs, and transactions for that source. |
 
 <Tip>
   This is the table to open before renewing a provider contract. A source with the most leads and
