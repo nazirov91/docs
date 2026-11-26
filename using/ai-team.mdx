@@ -171,17 +171,22 @@ on to get a weekly summary chat each Monday. You can also ask the chat for it.
 
 ## Test it as a customer and fix a reply
 
-Click the flask in the box (*Test as a customer. Nothing is sent to anyone.*). The chat shows
-**Test · you are the customer**.
+Click the flask in the box (*Test as a customer. Nothing is sent to anyone.*). A test runs in its
+own frame inside the chat, headed **Testing: pick something to try** and then **Testing: …** with
+what you are testing, and **You are the customer**. While it runs, the chat above it folds into one
+row, **Chat · … messages**; click **Show** to see it again, or **Hide**. A strip above the box says
+**Testing as a customer**, and the box says **Nothing is sent**.
 
 <Steps>
   <Step title="Pick something to try, or write as a customer">
     Choose one of the suggested cards (new ones have a dot, tried ones a tick, and **… more to try**
-    shows the rest), or type in **Say something as a customer**. Nothing is sent to anyone.
+    shows the rest), or type in **Say something as a customer**. **Cancel** goes back to the chat.
   </Step>
   <Step title="Read the reply">
-    The real assistant answers. A reply may say what it used, **Hands this to a rep** when it would
-    pass the conversation on, or **Stays silent** with the reason.
+    Your messages are labelled **Customer (you)** and the answers **Sales assistant's reply**. The
+    real assistant answers. A reply may say what it used, **Hands this to a rep** when it would pass
+    the conversation on, or **Stays silent** with the reason. At the bottom of the frame,
+    **Try saying** offers what a customer might say next.
   </Step>
   <Step title="Fix a reply">
     Click a reply, then **Fix it**. The box shows **Fixing this reply**; type what it should say in
@@ -189,12 +194,39 @@ Click the flask in the box (*Test as a customer. Nothing is sent to anyone.*). T
     **Your fix**. **What was sent** shows exactly what the customer would have received.
   </Step>
   <Step title="End the test">
-    Click **End test**. The test stays in the chat to read later, marked **Test ended**. If you change
-    something during a test, **Changed since this test started** offers **Restart**.
+    Click **End test** in the frame's header. The test folds into one card in the chat,
+    **Test: … · … messages**. Click **Open** to read it again (it is read-only, marked
+    **You were the customer · Ended**), and **Close** to fold it back. If you change something during
+    a test, **Changed since this test started** offers **Restart**.
   </Step>
 </Steps>
 
 A dot on the flask means you have changes you have not tested yet.
+
+### Rules about tone and wording
+
+You can ask the chat for a warmer tone, different wording, longer or shorter messages, more than one
+question in a message, exclamation marks or emoji. It saves the rule together with what the rule
+allows, shown on the saved card as an **Allows: …** line.
+
+The saved card also shows the rule tried on one customer message: **Tried on: “…”**, then
+**Before: …** and **Now: …**. If the rule did not change that reply, it shows **Now: …** with
+*Same answer as before. This rule did not change the reply to that message.* The rule is still
+saved.
+
+What a rule can raise:
+
+- up to 3 questions in one message
+- up to 480 characters in one message
+- up to 3 exclamation marks
+- emoji
+- phrases you want it to use
+
+Prices, facts, hand-offs to a person and the built-in safety rules cannot be loosened.
+
+<Note>
+  Rules about tone saved before this update need to be asked for and saved again.
+</Note>
 
 ---
 
