@@ -16,9 +16,11 @@ own.
   *Only an admin can teach or test it.*).
 </Note>
 
-The page has the chat on the left and five tabs on the right: **What it knows**, **How it acts**,
-**Handoff**, **Personality** and **Hours**. A dot on **AI Team** in the sidebar means a reply
-finished while you were on another page.
+The page has the chat on the left and six tabs on the right: **What it knows**, **How it acts**,
+**Handoff**, **Personality**, **Hours** and, after a thin line, **Test**. On a phone the page shows
+one thing at a time, and the tab row starts with **Chat** and **Test**, then the five setup tabs;
+**Chat** has a dot while a reply is being written or is waiting for you behind another tab. A dot on
+**AI Team** in the sidebar means a reply finished while you were on another page.
 
 ---
 
@@ -116,6 +118,7 @@ While it reads, a progress bar shows in the box. What it finds waits, switched o
 
 Where your browser supports it, the microphone in the box works the same way as in Ask AI: a rising
 tone when it starts, a falling tone when it stops, and a sentence under the box if it cannot listen.
+The **Test** tab's box has a microphone too; only one of them listens at a time.
 See [voice typing](/using/ai-assistant) and [Troubleshooting](/support/troubleshooting).
 
 ### Replies in the chat
@@ -153,7 +156,7 @@ Only you can see your chats.
 When you open AI Team, the chat starts with a short note, **Since you last looked**: replies that
 failed, how many customer messages it handled and handed to a person, what the overnight review did,
 changes you have not tested, and anything still missing before it can go live. Click **Ask** on a
-line to dig in, or **Test** on untested changes. Close it with **×**.
+line to dig in, or **Test** on untested changes to open the **Test** tab. Close it with **×**.
 
 ---
 
@@ -171,37 +174,47 @@ on to get a weekly summary chat each Monday. You can also ask the chat for it.
 
 ## Test it as a customer and fix a reply
 
-Click the flask in the box (*Test as a customer. Nothing is sent to anyone.*). A test runs in its
-own frame inside the chat, headed **Testing: pick something to try** and then **Testing: …** with
-what you are testing, and **You are the customer**. While it runs, the chat above it folds into one
-row, **Chat · … messages**; click **Show** to see it again, or **Hide**. A strip above the box says
-**Testing as a customer**, and the box says **Nothing is sent**.
+Testing has its own **Test** tab. Open it from the tab row, with the flask in the chat box (*Test as
+a customer. Nothing is sent to anyone.*), or with **Test it** on a saved change, which opens the tab
+and starts a test of that change. The chat box always talks to the assistant; the **Test** tab has a
+box of its own, where you write as the customer.
+
+The tab's header says **Testing as a customer** and *Nothing is sent to anyone*. While a test runs it
+also has **Restart**, which runs the test again from your first line, and **End test**.
 
 <Steps>
   <Step title="Pick something to try, or write as a customer">
-    Choose one of the suggested cards (new ones have a dot, tried ones a tick, and **… more to try**
-    shows the rest), or type in **Say something as a customer**. **Cancel** goes back to the chat.
+    With no test running, the tab says *Pick something to try, or just write as a customer would.*
+    and lists things worth trying: a change you have not tested yet (marked with a dot) and common
+    customer situations (a tick once tried); **… more to try** shows more. Click one to start, or
+    type in the tab's box, **Say something as a customer** (the box says **Nothing is sent**).
   </Step>
   <Step title="Read the reply">
     Your messages are labelled **Customer (you)** and the answers **Sales assistant's reply**. The
     real assistant answers. A reply may say what it used, **Hands this to a rep** when it would pass
-    the conversation on, or **Stays silent** with the reason. At the bottom of the frame,
+    the conversation on, or **Stays silent** with the reason. Where offered, click a reply and then
+    **What was sent** to see exactly what the customer would have received. Under the conversation,
     **Try saying** offers what a customer might say next.
   </Step>
   <Step title="Fix a reply">
-    Click a reply, then **Fix it**. The box shows **Fixing this reply**; type what it should say in
-    **What should it say?** and send. The fix is saved (*This one is saved*) and the reply is marked
-    **Your fix**. **What was sent** shows exactly what the customer would have received.
+    Click **Fix this reply** under a reply. It puts the reply into the chat box, quoted, as
+    *In the test, to “…” it answered “…”. It should* (on a new line under anything already in the
+    box; on a phone it switches to **Chat**). Finish the sentence with what it should have said and
+    send it to the assistant, which saves the change.
   </Step>
   <Step title="End the test">
-    Click **End test** in the frame's header. The test folds into one card in the chat,
-    **Test: … · … messages**. Click **Open** to read it again (it is read-only, marked
-    **You were the customer · Ended**), and **Close** to fold it back. If you change something during
-    a test, **Changed since this test started** offers **Restart**.
+    Click **End test**. The tab goes back to what you can try. If you save a change while a test is
+    running, the tab says *You saved a change since this test started.* with **Restart with the new
+    rules**.
   </Step>
 </Steps>
 
-A dot on the flask means you have changes you have not tested yet.
+With no test running, the **Test** tab also lists the tests you ran in the open chat under
+**Earlier tests in this chat**, one card each, **Test: … · … messages**. Click **Open** to read one
+again (it is read-only, marked **You were the customer · Ended**), and **Back** to return.
+
+A dot on the flask means you have changes you have not tested yet; opening the **Test** tab clears
+it. On a phone the **Test** tab shows a dot too, also when the running test is out of date.
 
 ### Rules about tone and wording
 
