@@ -23,3 +23,36 @@ and subagents run on Opus.
   documentation, research, long test-and-fix loops.
 - A cheaper model than Opus is fine for a trivial lookup.
 - If the owner says otherwise in a session, that wins.
+
+## 💸 GitHub Actions cost real money: ship in batches (owner rule — mandatory)
+
+The owner was billed $195 for GitHub Actions in one month. In berocker-api and
+berocker-front, EVERY push to ANY branch runs the full CI (about 11 billed
+minutes in berocker-api, about 7 in berocker-front), and every merge to main
+runs it again before the deploy. berocker-ai-service-be and the docs repo have
+no CI today; keep it that way unless the owner asks.
+
+- **Batch.** Collect related fixes and ship them together in one pull request,
+  a few releases a day at most. A hotfix ships on its own only when live users
+  are being hurt right now (a broken screen, wrong money or data, failed
+  payments, lost or wrong messages to customers). Everything else waits for
+  the next batch.
+- **Push only when it is ready to merge.** Commit locally as you go. Push a
+  branch once, when it is ready to become a pull request; push again only to
+  fix what that pull request needs. Never push to save work or to "see what CI
+  says". If a stop hook asks you to push unpushed commits, push only a branch
+  that is ready for its pull request; otherwise say in one line why it stays
+  local.
+- **Never push a branch that is the same as main.** After a merge, reset the
+  working branch to main locally only (`git checkout -B <branch> origin/main`)
+  and do not push it; the next real change is the next push.
+- **No CI for changes CI cannot check.** A commit that only touches docs,
+  CLAUDE.md, README files or `resources/whats-new/whats-new.json` gets
+  `[skip ci]` in its commit message, and its merge commit message too.
+- **Check locally first.** Run the tests, lint and type-check on your machine
+  or container before pushing; CI confirms, it does not discover.
+- **Never** re-run a workflow just to see it pass, push an empty commit to
+  start CI, or close and reopen a pull request to restart it.
+- **Ask first** before adding a workflow, a job, a matrix entry, a scheduled
+  run, or anything that makes CI run more often or longer (the Golden Rule
+  applies to CI minutes too).
